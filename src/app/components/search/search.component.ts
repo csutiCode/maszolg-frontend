@@ -15,6 +15,8 @@ export class SearchComponent implements OnInit {
   selectedCountry: any = {
     id: 0, name: ''
   };
+  selectedCity: string = '';
+ 
 
 
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class SearchComponent implements OnInit {
     );
   }
 
+  //TODO: get data from backend
   onSelect(country_id: any){
     this.dataService.getAll().subscribe((res:any)=>{
       this.cities = res['cities'].filter(
@@ -39,6 +42,17 @@ export class SearchComponent implements OnInit {
         console.log(this.cities);
     })
   }
+
+  //TODO: build the backend URL
+  onSubmit(event: any) {
+    this.selectedCity = event.target.value;
+    console.log("Hello world" + this.selectedCity);
+    this.dataService.getAccountsForCity(this.selectedCity).subscribe(
+      (response: any) => console.log(response),
+      (error: any) => console.log(error)
+    )
+  }
+
 }
 
 

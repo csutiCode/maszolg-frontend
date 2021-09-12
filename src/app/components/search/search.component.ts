@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-search',
@@ -7,9 +8,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataService: DataService) { }
+
+  countries: any;
+  cities: any;
+  selectedCountry: any = {
+    id: 0, name: ''
+  };
+
 
   ngOnInit(): void {
+    this.showAll();
+    this.onSelect(this.selectedCountry.id);
   }
 
+  showAll() {
+    return this.dataService.getAll().subscribe(
+      (data:any)=> {
+        this.countries = data,
+        console.log(this.countries);
+      }
+    );
+  }
+
+  onSelect(country_id: any){
+    this.dataService.getAll().subscribe((res:any)=>{
+      this.cities = res['cities'].filter(
+        (res:any)=>res.country_id == country_id!.value
+      ),
+        console.log(this.cities);
+    })
+  }
 }
+
+

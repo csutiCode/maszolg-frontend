@@ -1,0 +1,25 @@
+{"countries": [
+    {"id": 1,
+    "name": "Germany"},
+    
+    {"id": 2,
+        "name": "Austria"},
+        
+    {"id": 3,
+        "name": "England"}
+    ], 
+
+"cities": [
+    {"id": 1,
+        "name": "Stuttgart",
+        "country_id": 1},
+    {"id": 2,
+        "name": "Berlin",
+        "country_id": 1},
+    {"id": 3,
+        "name": "Wien",
+         "country_id": 2}
+    ]
+}
+
+        

@@ -1,8 +1,5 @@
 <div class="card" style="width: 18rem;">
 
-
-
-
 <div class="mb-3">
     <label for="country">Country</label>
     <select [(ngModel)]="selectedCountry.id" (change)="onSelect($event.target)" class="form-select" aria-label="Default select example">
@@ -15,12 +12,13 @@
 <div class="mb-3" *ngIf="selectedCountry.id!=0" >
 
     <label for ="city">City</label>
-    <select class="form-select" aria-label="Default select example">
+    <select  class="form-select" aria-label="Default select example">
         <option value="0">Select City</option>
-        <option *ngFor="let city of cities" [value]="city.id">
+        <option *ngFor="let city of cities" [ngValue]="city">
             {{city.name}}
         </option>
         </select>
+        <button  ng-click="onSubmit(city.name)">Submit</button>
     </div>
-    <button>Submit</button>
+
 </div>

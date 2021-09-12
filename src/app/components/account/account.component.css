@@ -1,0 +1,12 @@
+div {
+    margin-left: auto;
+    margin-right: auto;
+    width: 24em;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+button {
+    margin: 20px;
+    display: block;
+}

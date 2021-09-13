@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -7,17 +8,17 @@ import { RestService } from 'src/app/services/rest.service';
   styleUrls: ['./search.component.css']
 })
 
-
 export class SearchComponent implements OnInit {
 
-  constructor(private restService: RestService) { }
+  constructor(private restService: RestService, private router: Router) { }
 
   countries: Array<any> | undefined;
   cities: any;
   selectedCountry: any = {
     uuid: 0, name: ''
   };
-  selectedCity: string = '';
+  selectedCity: any = {
+    uuid: 0, name: ''};
  
 
   ngOnInit(): void {
@@ -36,31 +37,12 @@ export class SearchComponent implements OnInit {
 
   onSelect(uuid: string){
     this.cities = this.countries?.find((country) => country.country_uuid == uuid ).cities;
-    //console.log("deine mutter oida 💩💩💩");
-    
-  }
-  /*
-    
-  //TODO: get data from backend
-  onSelect(country_id: any){
-    this.dataService.getAll().subscribe((res:any)=>{
-      this.cities = res['cities'].filter(
-        (res:any)=>res.country_id == country_id!.value
-      ),
-        console.log(this.cities);
-    })
   }
 
-  //TODO: build the backend URL
-  onSubmit(event: any) {
-    this.selectedCity = event.target.value;
-    console.log("Hello world" + this.selectedCity);
-    this.dataService.getAccountsForCity(this.selectedCity).subscribe(
-      (response: any) => console.log(response),
-      (error: any) => console.log(error)
-    )
+  onSubmit(cityName: string) {    
+    this.router.navigate(['list'], { queryParams: { city: cityName }});
   }
-  */
+  
 
 }
 

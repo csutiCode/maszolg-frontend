@@ -3,25 +3,24 @@
 <div class="mb-3">
     <label for="country">Country</label>
     <select [(ngModel)]="selectedCountry.uuid" (change)="onSelect(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
-        <option value="0">Select Country</option>
-        <option *ngFor="let country of countries" [value]="country.country_uuid">
-          {{country.name}}</option>
-      </select>
+            <option value="0"> </option>
+            <option *ngFor="let country of countries" [value]="country.country_uuid">
+            {{country.name}}</option>
+    </select>
 </div>
 
-
-
-
-    <div class="mb-3" *ngIf="selectedCountry.id!=0" >
+<div class="mb-3" *ngIf="selectedCountry.uuid!=0">
     <label for ="city">City</label>
-    <select  class="form-select" aria-label="Default select example">
-        <option value="0">Select City</option>
-        <option *ngFor="let city of cities" [value]="city.id">
-            {{city.name}}
-        </option>
-        </select>
-        <button  ng-click="onSubmit(city.name)">Submit</button>
+    <select [(ngModel)]="selectedCity" class="form-select" aria-label="Default select example">
+            <option value="0"> </option>
+            <option *ngFor="let city of cities" [value]="city.name">
+                {{city.name}}
+            </option>
+    </select>
+        
+</div>
+    <div class="mb-3" *ngIf="selectedCity.uuid!=0">
+        <button (click)="onSubmit(selectedCity)">Submit</button>
     </div>
-
 </div>
 

@@ -15,14 +15,14 @@ export class SearchComponent implements OnInit {
   countries: Array<any> | undefined;
   cities: any;
   selectedCountry: any = {
-    id: 0, name: ''
+    uuid: 0, name: ''
   };
   selectedCity: string = '';
  
 
   ngOnInit(): void {
     this.showAll();
-    this.onSelect(this.selectedCountry.id);
+    this.onSelect(this.selectedCountry.uuid);
   }
 
   showAll() {
@@ -34,8 +34,8 @@ export class SearchComponent implements OnInit {
     )
   }
 
-  onSelect(country_id: number){
-    this.cities = this.countries?.find((country) => country.id == country_id ).cities;
+  onSelect(uuid: string){
+    this.cities = this.countries?.find((country) => country.country_uuid == uuid ).cities;
     //console.log("deine mutter oida 💩💩💩");
     
   }

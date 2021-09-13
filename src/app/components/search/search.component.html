@@ -2,9 +2,9 @@
 
 <div class="mb-3">
     <label for="country">Country</label>
-    <select [(ngModel)]="selectedCountry.id" (change)="onSelect(selectedCountry.id)" class="form-select" aria-label="Default select example">
+    <select [(ngModel)]="selectedCountry.uuid" (change)="onSelect(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
         <option value="0">Select Country</option>
-        <option *ngFor="let country of countries" [value]="country.id">
+        <option *ngFor="let country of countries" [value]="country.country_uuid">
           {{country.name}}</option>
       </select>
 </div>

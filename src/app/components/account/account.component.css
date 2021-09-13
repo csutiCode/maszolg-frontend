@@ -1,12 +1,10 @@
-div {
-    margin-left: auto;
-    margin-right: auto;
-    width: 24em;
-    text-align: center;
-    margin: 0 auto;
-    display: block;
+div{
+    display: flex;
 }
 button {
-    margin: 20px;
-    display: block;
+    width: 200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: inline;
 }
+

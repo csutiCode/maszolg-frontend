@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/services/data.service';
+import { RestService } from 'src/app/services/rest.service';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
+
+
 export class SearchComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  constructor(private restService: RestService) { }
 
-  countries: any;
+  countries: Array<any> | undefined;
   cities: any;
   selectedCountry: any = {
     id: 0, name: ''
@@ -18,21 +20,27 @@ export class SearchComponent implements OnInit {
   selectedCity: string = '';
  
 
-
   ngOnInit(): void {
     this.showAll();
     this.onSelect(this.selectedCountry.id);
   }
 
   showAll() {
-    return this.dataService.getAll().subscribe(
+    return this.restService.get("/search").subscribe(
       (data:any)=> {
         this.countries = data,
-        console.log(this.countries);
+        console.log(this.countries)
       }
-    );
+    )
   }
 
+  onSelect(country_id: number){
+    this.cities = this.countries?.find((country) => country.id == country_id ).cities;
+    //console.log("deine mutter oida 💩💩💩");
+    
+  }
+  /*
+    
   //TODO: get data from backend
   onSelect(country_id: any){
     this.dataService.getAll().subscribe((res:any)=>{
@@ -52,6 +60,7 @@ export class SearchComponent implements OnInit {
       (error: any) => console.log(error)
     )
   }
+  */
 
 }
 

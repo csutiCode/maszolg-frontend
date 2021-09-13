@@ -2,19 +2,21 @@
 
 <div class="mb-3">
     <label for="country">Country</label>
-    <select [(ngModel)]="selectedCountry.id" (change)="onSelect($event.target)" class="form-select" aria-label="Default select example">
+    <select [(ngModel)]="selectedCountry.id" (change)="onSelect(selectedCountry.id)" class="form-select" aria-label="Default select example">
         <option value="0">Select Country</option>
-        <option *ngFor="let country of countries?.countries" [value]="country.id">
+        <option *ngFor="let country of countries" [value]="country.id">
           {{country.name}}</option>
       </select>
 </div>
 
-<div class="mb-3" *ngIf="selectedCountry.id!=0" >
 
+
+
+    <div class="mb-3" *ngIf="selectedCountry.id!=0" >
     <label for ="city">City</label>
     <select  class="form-select" aria-label="Default select example">
         <option value="0">Select City</option>
-        <option *ngFor="let city of cities" [ngValue]="city">
+        <option *ngFor="let city of cities" [value]="city.id">
             {{city.name}}
         </option>
         </select>
@@ -22,3 +24,4 @@
     </div>
 
 </div>
+

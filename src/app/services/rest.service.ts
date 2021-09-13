@@ -10,8 +10,8 @@ import {catchError} from 'rxjs/operators';
 })
 export class RestService {
 
-  //TODO: correct path
-  readonly REST_URL: string = "localhost:8080";
+  //TODO: define the correct path
+  readonly REST_URL: string = "http://localhost:8080/";
 
   readonly HTTP_PARAMS: Object = {
       headers: new HttpHeaders(

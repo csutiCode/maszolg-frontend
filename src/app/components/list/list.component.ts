@@ -12,7 +12,7 @@ export class ListComponent implements OnInit {
   constructor(private restService: RestService, private route: ActivatedRoute) { }
 
   accounts: any;
-  cityName?: string;
+  cityName: string | null = this.route.snapshot.queryParamMap.get('city')
 
   ngOnInit(): void {
     //get the city parameter from the URL

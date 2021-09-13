@@ -10,7 +10,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AccountComponent } from './components/account/account.component';
 import { AboutComponent } from './components/about/about.component';
 import { ListComponent } from './components/list/list.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
@@ -28,8 +27,7 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
+
     HttpClientModule
   ],
   providers: [],

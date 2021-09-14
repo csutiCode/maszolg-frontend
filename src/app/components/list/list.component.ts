@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { RestService } from 'src/app/services/rest.service';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private restService: RestService, private route: ActivatedRoute) { }
+  constructor(private restService: RestService, private route: ActivatedRoute,private router: Router) { }
 
   accounts: any;
   cityName: string | null = this.route.snapshot.queryParamMap.get('city')
@@ -32,4 +32,13 @@ export class ListComponent implements OnInit {
       }
     )
   }
+
+  onMore(accountUuid: string) {
+    console.log(accountUuid);
+    this.router.navigate(['account'], { queryParams: { uuid: accountUuid }});
+  }
+
+  
+
+
 }

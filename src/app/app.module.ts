@@ -12,6 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { RegComponent } from './components/reg/reg.component';
+import { AccountDetailsComponent } from './components/account-details/account-details.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { RegComponent } from './components/reg/reg.component';
     ListComponent,
     LoginComponent,
     RegComponent,
+    AccountDetailsComponent,
     
   ],
   imports: [

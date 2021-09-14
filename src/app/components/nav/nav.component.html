@@ -1,15 +1,31 @@
+
 <div>
   <ul class="nav justify-content-end">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" routerLink="/search" routerLinkActive="active" href="#">Szolgáltatót keresek</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/account" routerLinkActive="active"  href="#">Szolgáltató vagyok</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/about" routerLinkActive="active" href="#">A MaSzolgról</a>
-    </li>
+    <div>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" routerLink="/search" routerLinkActive="active" href="#">Szolgáltatót keresek</a>
+      </li>
+    </div>
+   
+    <div class="nav-item"> 
+      <a class="dropdown" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        Szolgáltató vagyok
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li><a class="dropdown-item" href="#" routerLink="/about" routerLinkActive="active">Bejelentkezés</a></li>
+        <li><a class="dropdown-item" href="#" routerLink="/reg" routerLinkActive="active">Regisztráció</a></li>
+      </ul>
+     
+    </div>
+    <div>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about" routerLinkActive="active" href="#">A MaSzolgról</a>
+      </li>
+    </div>
+    
+
   </ul>
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-  </footer>
+
+  
 </div>
+<header class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"></header>

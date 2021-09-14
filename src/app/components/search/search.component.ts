@@ -14,6 +14,7 @@ export class SearchComponent implements OnInit {
 
   countries: Array<any> | undefined;
   cities: any;
+  
   selectedCountry: any = {
     uuid: 0, name: ''
   };

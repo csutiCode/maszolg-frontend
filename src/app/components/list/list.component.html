@@ -1,5 +1,15 @@
 <p>All accounts in the city: {{cityName}} </p>
+<div>
+ <label>Kategoria</label>
 
+    <select [(ngModel)]="selectedCategory.name" class="form-select"  (change)="onSelect(selectedCategory.name)" aria-label="Default select example" aria-label="Default select example">
+      <option value="0"></option>
+      <option *ngFor="let category of categories" [value]="category.name">
+          {{category.name}}
+      </option>    
+  </select>
+
+</div>
 <table class="table">
     <thead>
       <tr>

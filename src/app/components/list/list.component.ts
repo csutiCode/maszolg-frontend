@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ListService } from 'src/app/services/list.service';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -9,10 +10,16 @@ import { RestService } from 'src/app/services/rest.service';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private restService: RestService, private route: ActivatedRoute,private router: Router) { }
+  constructor(private restService: RestService, private route: ActivatedRoute,private router: Router,
+    private listService: ListService) { }
 
   accounts: any;
+
   cityName: string | null = this.route.snapshot.queryParamMap.get('city')
+
+  categories: any;
+
+  selectedCategory: any =  {id: 0, name: ''};
 
   ngOnInit(): void {
     //get the city parameter from the URL
@@ -22,13 +29,33 @@ export class ListComponent implements OnInit {
       }
     );
     this.getAllAccountsForCity(this.route.snapshot.queryParamMap.get('city'));
+    this.getAllCategories();
   }
 
   getAllAccountsForCity(cityName: string | null) {
     return this.restService.get("/city/" + cityName).subscribe(
       (data:any)=> {
-        this.accounts = data,
+        this.accounts = data
         console.log(this.accounts)
+      }
+    )
+  }
+
+  getAllCategories() {
+    return this.restService.get("/categories/").subscribe(
+      (data:any)=> {
+        this.categories = data,
+        console.log(this.categories)
+      }
+    )
+  }
+
+  onSelect(categoryName: string) {
+    console.log(categoryName);
+    this.restService.get("/" + this.cityName + "/" + categoryName).subscribe(
+      (data:any)=> {
+        this.accounts = data,
+        console.log(this.categories)
       }
     )
   }
@@ -37,8 +64,4 @@ export class ListComponent implements OnInit {
     console.log(accountUuid);
     this.router.navigate(['account'], { queryParams: { uuid: accountUuid }});
   }
-
-  
-
-
 }

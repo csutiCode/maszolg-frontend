@@ -1,3 +1,37 @@
-<p>account-details works!</p>
-<p>Lastname: {{account.lastName}}</p>
-<p>FirstName: {{account.firstName}}</p>
+
+<div class="flex-container">
+    <div class="card" style="width: 46rem;">
+
+
+        <h2>Részletek</h2>
+        
+        <table>
+          <tr>
+            <th>Vezetéknév:</th>
+            <td>{{account.firstName}}</td>
+          </tr>
+          <tr>
+            <th>Keresztnév:</th>
+            <td>{{account.lastName}}</td>
+          </tr>
+          <tr>
+            <th>Telefon:</th>
+            <td>{{account.phone}}</td>
+          </tr>
+          <tr>
+            <th>E-Mail:</th>
+            <td>{{account.email}}</td>
+          </tr>
+          <tr>
+            <th>Magamról:</th>
+            <td>{{account.comment}}</td>
+          </tr>
+          
+
+        </table>
+        
+
+      </div>
+
+</div>
+

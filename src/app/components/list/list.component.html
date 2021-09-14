@@ -16,14 +16,15 @@
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
         <th scope="col">Profession</th>
+        <th scope="col">Rank</th>
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let account of accounts" >
+        <tr *ngFor="let account of accounts" (click)="onMore(account.listedAccount_uuid)">
             <td>{{account.firstName}}</td>
             <td>{{account.lastName}}</td>
             <td> <span *ngFor="let profession of account.professions">{{profession.name}} </span></td>
-            <td> <button  (click)="onMore(account.listedAccount_uuid)">More</button></td>
+            <td>{{account.averageRating}}</td>
         </tr>
     </tbody>
 </table>

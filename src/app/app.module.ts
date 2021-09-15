@@ -14,7 +14,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegComponent } from './components/reg/reg.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
 import { ClassificationComponent } from './components/classification/classification.component';
-import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,6 @@ import { DialogComponent } from './components/dialog/dialog.component';
     RegComponent,
     AccountDetailsComponent,
     ClassificationComponent,
-    DialogComponent,
     
   ],
   imports: [

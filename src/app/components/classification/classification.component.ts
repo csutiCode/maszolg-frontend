@@ -19,7 +19,6 @@ export class ClassificationComponent implements OnInit {
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
-
   backendMessage?: string;
   
   constructor(private restService: RestService, private route: ActivatedRoute) { }

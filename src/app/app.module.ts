@@ -14,6 +14,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegComponent } from './components/reg/reg.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
 import { ClassificationComponent } from './components/classification/classification.component';
+import { RegFormComponent } from './components/reg-form/reg-form.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ClassificationComponent } from './components/classification/classificat
     RegComponent,
     AccountDetailsComponent,
     ClassificationComponent,
+    RegFormComponent,
     
   ],
   imports: [

@@ -11,7 +11,7 @@ import {catchError} from 'rxjs/operators';
 export class RestService {
 
   //TODO: define the correct path
-  readonly REST_URL: string = "http://localhost:8080/";
+  readonly URL: string = "http://localhost:8080/";
 
   readonly HTTP_PARAMS: Object = {
       headers: new HttpHeaders(
@@ -27,7 +27,7 @@ export class RestService {
 
 get<T>(path: string, data?: any): Observable<T> {
     const params = data ? Object.assign({params: new HttpParams({fromObject: data})}, this.HTTP_PARAMS) : this.HTTP_PARAMS;
-    return this.http.get<T>(this.REST_URL + path, params).pipe(
+    return this.http.get<T>(this.URL + path, params).pipe(
       catchError(error => {
                   let errorMsg: string;
                   if (error.error instanceof ErrorEvent) {
@@ -39,12 +39,23 @@ get<T>(path: string, data?: any): Observable<T> {
                   })
                 );
 }
-/*
+
 post<T>(path: string, data: any, getParams?: any): Observable<T> {
     const params = data ? Object.assign({params: new HttpParams({fromObject: getParams})}, this.HTTP_PARAMS) : this.HTTP_PARAMS;
-    return this.http.post<T>(this.REST_URL + path, data, params).pipe(first(), catchError(this.handleError<T>('post: ' + path + (data))));
+    return this.http.post<T>(this.URL + path, data, params).pipe(
+        catchError(error => {
+            let errorMsg: string;
+            if (error.error instanceof ErrorEvent) {
+                errorMsg = `Error: ${error.error.message}`;
+                } else {
+                errorMsg = this.getServerErrorMessage(error);
+                }
+                return throwError(errorMsg);
+            })
+          );
 }
 
+/*
 put<T>(path: string, data: any): Observable<T> {
     return this.http.put<T>(this.REST_URL + path, data, this.HTTP_PARAMS).pipe(first(), catchError(this.handleError<T>('put: ' + path + (data))));
 }

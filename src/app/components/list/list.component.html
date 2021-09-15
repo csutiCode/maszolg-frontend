@@ -20,7 +20,7 @@
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let account of accounts" (click)="onMore(account.listedAccount_uuid)">
+        <tr class="hovered" *ngFor="let account of accounts" (click)="onMore(account.listedAccount_uuid)">
             <td>{{account.firstName}}</td>
             <td>{{account.lastName}}</td>
             <td> <span *ngFor="let profession of account.professions">{{profession.name}} </span></td>

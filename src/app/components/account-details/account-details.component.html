@@ -26,12 +26,17 @@
             <th>Magamról:</th>
             <td>{{account.comment}}</td>
           </tr>
-          
-
         </table>
-        
-
       </div>
-
+      <div>
+        <button (click)="onSubmit()">Értékelem</button>
+      </div>
+      <div *ngIf="classification">
+        <app-classification></app-classification>
+        <div>
+          <button (click)="onCancel()">Megse</button>
+        </div>
+      </div>
+     
 </div>
 

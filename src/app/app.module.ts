@@ -9,10 +9,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
 import { ListComponent } from './components/list/list.component';
 import {HttpClientModule} from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { RegComponent } from './components/reg/reg.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
+import { ClassificationComponent } from './components/classification/classification.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,15 @@ import { AccountDetailsComponent } from './components/account-details/account-de
     LoginComponent,
     RegComponent,
     AccountDetailsComponent,
+    ClassificationComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,7 +10,10 @@ import { RestService } from 'src/app/services/rest.service';
 export class AccountDetailsComponent implements OnInit {
 
   account: any;
+
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
+
+  classification: boolean = false;
 
 
   constructor(private restService: RestService, private route: ActivatedRoute) { }
@@ -24,7 +27,6 @@ export class AccountDetailsComponent implements OnInit {
     this.getListedAccount(this.route.snapshot.queryParamMap.get('uuid'));
   }
 
-
   getListedAccount(uuid: string | null) {
     return this.restService.get("accounts/" + uuid).subscribe(
       (data:any)=> {
@@ -33,4 +35,14 @@ export class AccountDetailsComponent implements OnInit {
       }
     )
   }
+
+
+  onSubmit() {
+    this.classification = true;
+  }
+
+  onCancel() {
+    this.classification = false;
+  }
+
 }

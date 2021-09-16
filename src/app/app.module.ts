@@ -15,6 +15,7 @@ import { RegComponent } from './components/reg/reg.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
 import { ClassificationComponent } from './components/classification/classification.component';
 import { RegFormComponent } from './components/reg-form/reg-form.component';
+import { UpdateFormComponent } from './components/update-form/update-form.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { RegFormComponent } from './components/reg-form/reg-form.component';
     AccountDetailsComponent,
     ClassificationComponent,
     RegFormComponent,
+    UpdateFormComponent,
     
   ],
   imports: [

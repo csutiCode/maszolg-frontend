@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class RegComponent implements OnInit {
 
   backendMessage: any;
 
-  constructor(private restService: RestService, private fb: FormBuilder) { }
+  constructor(private restService: RestService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.createForm() 
@@ -37,6 +38,6 @@ export class RegComponent implements OnInit {
         console.log(this.backendMessage)
       }
     )
-    console.log(this.backendMessage)
+    this.router.navigate(['/login']);
   }
 }

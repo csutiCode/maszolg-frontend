@@ -1,20 +1,33 @@
-<form>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
    
     <h1 class="h3 mb-3 fw-normal">Bejelentkezés</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
       <label for="floatingInput">Email cím</label>
     </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Jelszó</label>
+    <div *ngIf="loginForm.controls['email'].invalid  && loginForm.controls['email'].touched"
+          class="alert alert-danger">
+        <div *ngIf="loginForm.controls['email'].errors.required">
+          email is required.
+         </div>
+         <div *ngIf="loginForm.controls['email'].errors.email">
+          invalid email
+         </div>
     </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Emlékezz rám
-      </label>
+
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+      <label for="floatingPassword">Jelszó</label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+    <div *ngIf="loginForm.controls['password'].invalid  && loginForm.controls['password'].touched"
+    class="alert alert-danger">
+        <div *ngIf="loginForm.controls['password'].errors.required">
+          Password is required.
+         </div>
+    </div>
+
+   
+    <button class="w-100 btn btn-lg btn-primary" type="submit"  >Sign in</button>
   </form>

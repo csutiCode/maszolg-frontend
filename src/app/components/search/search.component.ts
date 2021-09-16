@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit {
   }
 
   showAll() {
-    return this.restService.get("/search").subscribe(
+    return this.restService.get("search").subscribe(
       (data:any)=> {
         this.countries = data,
         console.log(this.countries)

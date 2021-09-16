@@ -1,18 +1,41 @@
-<form>
+<form  [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
    
     <h1 class="h3 mb-3 fw-normal">Regisztráció</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Felhasználónév</label>
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
+      <label for="floatingInput">E-Mail</label>
+    </div>
+    <div *ngIf="registrationForm.controls['email'].invalid  && registrationForm.controls['email'].touched"
+    class="alert alert-danger">
+    
+        <div *ngIf="registrationForm.controls['email'].errors.required">
+          Email is required.
+         </div>
+         <div *ngIf="registrationForm.controls['email'].errors.email">
+         Invalid email format.
+         </div>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
       <label for="floatingPassword">Jelszó</label>
     </div>
+    <div *ngIf="registrationForm.controls['password'].invalid  && registrationForm.controls['password'].touched"
+    class="alert alert-danger">
+        <div *ngIf="registrationForm.controls['password'].errors.required">
+          Password is required.
+         </div>
+    </div>
     <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="confirmedPassword">
         <label for="floatingPassword">Jelszó</label>
       </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" routerLink="/reg/form" routerLinkActive="active"   >Regisztráció</button>
+      <div *ngIf="registrationForm.controls['confirmedPassword'].invalid  && registrationForm.controls['confirmedPassword'].touched"
+      class="alert alert-danger">
+          <div *ngIf="registrationForm.controls['confirmedPassword'].errors.required">
+            Password confirmation is required.
+           </div>
+      </div>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!registrationForm.valid">Regisztráció</button>
+
   </form>

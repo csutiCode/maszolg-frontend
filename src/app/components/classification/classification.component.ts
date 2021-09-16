@@ -27,10 +27,10 @@ export class ClassificationComponent implements OnInit {
   createForm() {
     this.classificationForm = this.fb.group({
     
-      email: new FormControl('', Validators.minLength(4)),
+      email: new FormControl('', Validators.required),
       createdBy: ['', Validators.required ],
-      comment: new FormControl('', Validators.minLength(4)),
-      rating: new FormControl('', Validators.minLength(4)),
+      comment: new FormControl('', Validators.required),
+      rating: new FormControl('', Validators.required),
     }); 
   }
 

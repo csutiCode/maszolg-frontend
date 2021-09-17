@@ -8,7 +8,6 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
 import { ListComponent } from './components/list/list.component';
-import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { RegComponent } from './components/reg/reg.component';
@@ -16,6 +15,7 @@ import { AccountDetailsComponent } from './components/account-details/account-de
 import { ClassificationComponent } from './components/classification/classification.component';
 import { RegFormComponent } from './components/reg-form/reg-form.component';
 import { UpdateFormComponent } from './components/update-form/update-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,11 +37,14 @@ import { UpdateFormComponent } from './components/update-form/update-form.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

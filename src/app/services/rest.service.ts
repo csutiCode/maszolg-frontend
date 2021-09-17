@@ -13,13 +13,23 @@ export class RestService {
   //TODO: define the correct path
   readonly URL: string = "http://localhost:8080/";
 
+  
+
   readonly HTTP_PARAMS: Object = {
       headers: new HttpHeaders(
           {
-              'Content-Type': 'application/JSON'
+              'Content-Type': 'application/JSON',
+              'Access-Control-Allow-Credentials': 'true',
+              "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+                "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+              
           }
       )
   };
+
+
+
   
 
   constructor(private http: HttpClient) {
@@ -39,6 +49,9 @@ get<T>(path: string, data?: any): Observable<T> {
                   })
                 );
 }
+
+
+
 
 post<T>(path: string, data: any, getParams?: any): Observable<T> {
     const params = data ? Object.assign({params: new HttpParams({fromObject: getParams})}, this.HTTP_PARAMS) : this.HTTP_PARAMS;

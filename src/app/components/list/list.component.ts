@@ -42,7 +42,7 @@ export class ListComponent implements OnInit {
   }
 
   getAllCategories() {
-    return this.restService.get("search/categories/").subscribe(
+    return this.restService.get("search/categories").subscribe(
       (data:any)=> {
         this.categories = data,
         console.log(this.categories)
@@ -52,7 +52,7 @@ export class ListComponent implements OnInit {
 
   onSelect(categoryName: string) {
     console.log(categoryName);
-    this.restService.get("/search/" + this.cityName + "/" + categoryName).subscribe(
+    this.restService.get("search/" + this.cityName + "/" + categoryName).subscribe(
       (data:any)=> {
         this.accounts = data,
         console.log(this.categories)

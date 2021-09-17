@@ -37,30 +37,30 @@ export class LoginComponent implements OnInit {
         console.log(this.token)
       }
     )
-
+    //it works only in two steps
+    this. getListedAccount();
+      //TODO: redirect to the updateForm, the param is going to be the uuid of the listed account
   
 
     
-    //TODO: redirect to the updateForm, the param is going to be the uuid of the listed account
+    
 
   }
 
   getListedAccount() {
+
+    //refactor this shit
+
     console.log("Token after login: ")
     console.log(this.token)
-    /*
-    const headers = new Headers({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
-    })
-  
-    */
-    //0: "Bearer undefined"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+   
+
+    
     var reqHeader = new HttpHeaders({ 
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.token,
       'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": "http://localhost:8080/*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
         "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
    });

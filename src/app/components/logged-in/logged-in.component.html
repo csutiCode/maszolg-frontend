@@ -1,0 +1,20 @@
+<!--
+    in this component we can update our data as an account and check out our classifications and write comment on our classifications
+-->
+
+<div>
+    <button (click)="switchToUpdate($event)">Update my data</button>
+    <button (click)="switchToClassifications($event)">Classifications</button>
+</div>
+
+<div *ngIf="update">
+    <app-update-form></app-update-form>
+</div>
+
+<div *ngIf="classifications">
+    <app-my-classifications></app-my-classifications>
+</div>
+
+<div>
+    <button (click)="logout()" >Log out</button>
+</div>

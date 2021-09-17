@@ -13,9 +13,10 @@ import { LoginComponent } from './components/login/login.component';
 import { RegComponent } from './components/reg/reg.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
 import { ClassificationComponent } from './components/classification/classification.component';
-import { RegFormComponent } from './components/reg-form/reg-form.component';
 import { UpdateFormComponent } from './components/update-form/update-form.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoggedInComponent } from './components/logged-in/logged-in.component';
+import { MyClassificationsComponent } from './components/my-classifications/my-classifications.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +31,9 @@ import { HttpClientModule } from '@angular/common/http';
     RegComponent,
     AccountDetailsComponent,
     ClassificationComponent,
-    RegFormComponent,
     UpdateFormComponent,
+    LoggedInComponent,
+    MyClassificationsComponent,
     
   ],
   imports: [

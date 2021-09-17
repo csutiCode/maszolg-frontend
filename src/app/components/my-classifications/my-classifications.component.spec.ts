@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegFormComponent } from './reg-form.component';
+import { MyClassificationsComponent } from './my-classifications.component';
 
-describe('RegFormComponent', () => {
-  let component: RegFormComponent;
-  let fixture: ComponentFixture<RegFormComponent>;
+describe('MyClassificationsComponent', () => {
+  let component: MyClassificationsComponent;
+  let fixture: ComponentFixture<MyClassificationsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegFormComponent ]
+      declarations: [ MyClassificationsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegFormComponent);
+    fixture = TestBed.createComponent(MyClassificationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

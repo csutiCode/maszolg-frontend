@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
   listedAccount: any;
 
   constructor(private restService: RestService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
-
+  
+  
+   
   ngOnInit(): void {
     this.createForm() 
   }
@@ -37,20 +39,17 @@ export class LoginComponent implements OnInit {
         console.log(this.token)
       }
     )
-    //it works only in two steps
-    this. getListedAccount();
-      //TODO: redirect to the updateForm, the param is going to be the uuid of the listed account
-  
-
-    
+    //it works only in two steps???
     
 
-  }
+    //TODO: redirect to the updateForm, the param is going to be the uuid of the listed account
+    ;
+
+ }
 
   getListedAccount() {
 
-    //refactor this shit
-
+    //TODO: refactor this shit
     console.log("Token after login: ")
     console.log(this.token)
    
@@ -83,5 +82,7 @@ export class LoginComponent implements OnInit {
         
       }
     )
+
+    this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid }});
   }
 }

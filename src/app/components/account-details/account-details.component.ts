@@ -28,7 +28,7 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   getListedAccount(uuid: string | null) {
-    return this.restService.get("search/accounts/" + uuid).subscribe(
+    return this.restService.get("search/account/" + uuid).subscribe(
       (data:any)=> {
         this.account = data,
         console.log(this.account)

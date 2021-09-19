@@ -33,7 +33,22 @@ export class RestService {
   
 
   constructor(private http: HttpClient) {
-   }
+}
+
+getListedAccount<ListedAccount> (path: string, data?: any): Observable<ListedAccount>  {
+const params = data ? Object.assign({params: new HttpParams({fromObject: data})}, this.HTTP_PARAMS) : this.HTTP_PARAMS;
+return this.http.get<ListedAccount>(this.URL + path, params).pipe(
+  catchError(error => {
+              let errorMsg: string;
+              if (error.error instanceof ErrorEvent) {
+                  errorMsg = `Error: ${error.error.message}`;
+                  } else {
+                  errorMsg = this.getServerErrorMessage(error);
+                  }
+                  return throwError(errorMsg);
+              })
+            );
+}
 
 get<T>(path: string, data?: any): Observable<T> {
     const params = data ? Object.assign({params: new HttpParams({fromObject: data})}, this.HTTP_PARAMS) : this.HTTP_PARAMS;

@@ -1,4 +1,5 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+<div >
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
    
     <h1 class="h3 mb-3 fw-normal">Bejelentkezés</h1>
 
@@ -28,9 +29,14 @@
          </div>
     </div>
 
-   
     <button class="w-100 btn btn-lg btn-primary" type="submit"  >Sign in</button>
   </form>
   <div>
     <button class="w-100 btn btn-lg btn-primary" (click)="getListedAccount()"  >Auth</button>
   </div>
+</div>
+<div  *ngIf="isLoggedIn">
+  <app-logged-in>
+
+  </app-logged-in>
+</div>

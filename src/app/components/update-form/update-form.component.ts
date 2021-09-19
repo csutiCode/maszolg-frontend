@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie';
 import { RestService } from 'src/app/services/rest.service';
+import { ListedAccount } from '../listedAccount';
 
 @Component({
   selector: 'app-update-form',
@@ -9,28 +13,18 @@ import { RestService } from 'src/app/services/rest.service';
 })
 export class UpdateFormComponent implements OnInit {
 
- 
-  regForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    comment: new FormControl(''),
-    phoneNumber: new FormControl(''),
-    country: new FormControl(''),
-    city:  new FormControl(''),
-    postalCode:  new FormControl(''),
-    street:  new FormControl(''),
-    number:  new FormControl(''),
-    category: new FormControl(''),
-    profession: new FormControl('')
+  
+  //TODO: get the listedAccount Object
+  uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
-  });
 
+  regForm: any;
+
+  listedAccount?: ListedAccount;
   countries: Array<any> | undefined;
   cities: any;
   categories: Array<any> | undefined;
   professions: Array<any> | undefined;
-  
-
 
   selectedCountry: any = {
     uuid: 0, name: ''};
@@ -45,17 +39,91 @@ export class UpdateFormComponent implements OnInit {
       uuid: 0, name: ''
     };
 
-  constructor(private restService: RestService) { }
+    backendMessage: any;
 
-  
-    //TODO: send a get request to get all of the countries and cities 
+    token?: string;
 
+  constructor(private router: Router, 
+                private restService: RestService, 
+                private route: ActivatedRoute,
+                private cookieService: CookieService,
+                private http: HttpClient) {
+
+    this.getListedAccount(this.uuid);
+    console.log("Listed Account objekt from the constructor: ");
+    console.log(this.listedAccount);
+    this.createForm();
+
+
+    this.token= cookieService.get("JWT");
+
+   }
 
     ngOnInit(): void {
+
+    
+      //PROBLEM: my listedAccount is undefined, the listedAccount Objekt is going to be initialized just after these
+     
+      console.log("Listed Account objekt: ");
+      console.log(this.listedAccount);
+
       this.showAll();
       this.onSelectCountry(this.selectedCountry.uuid);
       this.onSelectCategory(this.selectedCategory.uuid);
       this.getAllCategories();
+
+      console.log("Listed Account objekt 2x: ");
+      console.log(this.listedAccount);
+
+      
+    }
+
+    createForm() {
+      this.regForm = new FormGroup({
+        firstName: new FormControl(''),
+        lastName: new FormControl(''),
+        email: new FormControl(''),
+        comment: new FormControl(''),
+        phoneNumber: new FormControl(''),
+        country: new FormControl(''),
+        city:  new FormControl(''),
+        postalCode:  new FormControl(''),
+        street:  new FormControl(''),
+        number:  new FormControl(''),
+        category: new FormControl(''),
+        profession: new FormControl('')
+    
+      
+    });
+
+      this.regForm.get("firstName").setValue(this.listedAccount?.firstName);
+      this.regForm.get("lastName").setValue(this.listedAccount?.lastName);
+      this.regForm.get("email").setValue(this.listedAccount?.email);
+      this.regForm.get("comment").setValue(this.listedAccount?.comment);
+      this.regForm.get("phoneNumber").setValue(this.listedAccount?.phoneNumber);
+      this.regForm.get("country").setValue(this.listedAccount?.country);
+      this.regForm.get("city").setValue(this.listedAccount?.address?.city);
+      this.regForm.get("postalCode").setValue(this.listedAccount?.address?.postalCode);
+      this.regForm.get("street").setValue(this.listedAccount?.address?.street);
+      this.regForm.get("number").setValue(this.listedAccount?.address?.number);
+      this.regForm.get("category").setValue(this.listedAccount?.category);
+      this.regForm.get("profession").setValue(this.listedAccount?.profession);
+
+    }
+    
+   
+
+
+    getListedAccount(uuid: string | null) {
+      return this.restService.get("search/account/" + uuid).subscribe(
+        (data:any)=> {
+          this.listedAccount = data,
+          console.log("Listed Account objekt from the method ");
+          console.log(this.listedAccount)
+          //I have to call this method here, because all other initialization is too early -> they don't create listedaccount object
+          this.createForm();
+        }
+      )
     }
 
     getAllCategories() {
@@ -76,7 +144,6 @@ export class UpdateFormComponent implements OnInit {
       )
     }
 
-
     onSelectCountry(uuid: string){
       this.cities = this.countries?.find((country) => country.country_uuid == uuid ).cities;
     }
@@ -87,6 +154,38 @@ export class UpdateFormComponent implements OnInit {
 
   onSubmit() {
 
+
+    var reqHeader = new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token,
+      'Access-Control-Allow-Credentials': 'true',
+      "Access-Control-Allow-Origin": "http://localhost:8080/*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+   });
+
+
+   
+     //
+     this.http.post("http://localhost:8080/auth/save/listedAccount", this.regForm.value,  { headers: reqHeader }).subscribe(
+      (data:any)=> {
+        this.listedAccount = data,
+        console.log(this.listedAccount)
+        
+      }
+     )
+      
+
+      /*
+    
+    //elvileg nem müködhet a save -> stimmel is    
+    this.restService.post("auth/save/listedAccount", this.regForm.value, reqHeader).subscribe(
+      (data:any)=> {
+        this.backendMessage = data,
+        console.log(this.backendMessage)
+      }
+    )
+    */
   }
 
 }

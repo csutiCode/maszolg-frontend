@@ -3,6 +3,9 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
+import { ListedAccount } from '../listedAccount';
+import { CookieService } from 'ngx-cookie';
+
 
 @Component({
   selector: 'app-login',
@@ -13,12 +16,19 @@ export class LoginComponent implements OnInit {
 
   loginForm: any;
   token: any;
-  listedAccount: any;
+  listedAccount?: ListedAccount;
+  isLoggedIn: boolean = false;
 
-  constructor(private restService: RestService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
+  constructor(private restService: RestService, 
+              private fb: FormBuilder, 
+              private route: ActivatedRoute, 
+              private router: Router, 
+              private http: HttpClient,
+              private cookieService: CookieService) {
+
+   }
   
-  
-   
+
   ngOnInit(): void {
     this.createForm() 
   }
@@ -39,11 +49,15 @@ export class LoginComponent implements OnInit {
         console.log(this.token)
       }
     )
-    //it works only in two steps???
+
+    //set the token as cookie -> works
+    this.cookieService.put("JWT", this.token);
     
+    //it works only in two steps???
+    //this.getListedAccount();
 
     //TODO: redirect to the updateForm, the param is going to be the uuid of the listed account
-    ;
+    
 
  }
 
@@ -60,8 +74,8 @@ export class LoginComponent implements OnInit {
       'Authorization': 'Bearer ' + this.token,
       'Access-Control-Allow-Credentials': 'true',
       "Access-Control-Allow-Origin": "http://localhost:8080/*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
    });
 
 
@@ -81,8 +95,20 @@ export class LoginComponent implements OnInit {
         console.log(this.listedAccount)
         
       }
+      
+
     )
 
-    this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid }});
+    //if the login is successfull, isLoggedIn is true -> open the loggedInComponent and close the login component
+    //this.isLoggedIn = true;
+    /*
+      *ngIf="!isLoggedIn"
+
+    */
+
+      //if we get the object, redirect
+      if (this.listedAccount!=null) {
+        this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid }});
+      }
   }
 }

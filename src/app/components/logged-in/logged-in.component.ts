@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CookieModule, CookieService } from 'ngx-cookie';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -18,7 +19,10 @@ export class LoggedInComponent implements OnInit {
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
 
-  constructor(private router: Router, private restService: RestService, private route: ActivatedRoute) {
+  constructor(private router: Router, 
+              private restService: RestService, 
+              private route: ActivatedRoute,
+              private cookieService: CookieService) {
   }
 
   ngOnInit(): void {
@@ -40,6 +44,7 @@ export class LoggedInComponent implements OnInit {
   logout() {
     console.log("Logged out.")
     //delete the cookie from the storage
+    this.cookieService.removeAll();
 
     //redirect to home
     this.router.navigate(['/home']);

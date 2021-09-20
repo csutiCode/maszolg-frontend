@@ -14,10 +14,11 @@ import { RegComponent } from './components/reg/reg.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
 import { ClassificationComponent } from './components/classification/classification.component';
 import { UpdateFormComponent } from './components/update-form/update-form.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoggedInComponent } from './components/logged-in/logged-in.component';
 import { MyClassificationsComponent } from './components/my-classifications/my-classifications.component';
 import { CookieModule, CookieService } from 'ngx-cookie';
+import { TokenInterceptor } from './interceptors/TokenInterceptor';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,13 @@ import { CookieModule, CookieService } from 'ngx-cookie';
   ],
   providers: [
     [CookieService],
+    [
+      {
+        provide: HTTP_INTERCEPTORS,
+        useClass: TokenInterceptor,
+        multi: true
+      }
+    ]
     
 
   ],

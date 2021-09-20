@@ -3,8 +3,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
-import { ListedAccount } from '../listedAccount';
 import { CookieService } from 'ngx-cookie';
+import { ListedAccount } from '../listedAccount';
 
 
 @Component({
@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    
     //send the credentials, get the JWT
     this.restService.post("account/login", this.loginForm.value).subscribe(
       (data:any)=> {
@@ -49,7 +50,25 @@ export class LoginComponent implements OnInit {
         console.log(this.token)
       }
     )
-
+    /*
+      
+    var reqHeader = new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Credentials': 'true',
+      "Access-Control-Allow-Origin": "http://localhost:8080/*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "skip": "true"
+   });
+  
+   
+    this.http.post("http://localhost:8080/auth/account/login", this.loginForm.value,  {headers: reqHeader})
+            .subscribe(
+              (data:any)=> {
+                this.token = data,
+                console.log(this.token)
+              }
+            )
+        */     
     //set the token as cookie -> works
     this.cookieService.put("JWT", this.token);
     

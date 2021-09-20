@@ -40,12 +40,10 @@ export class LoggedInComponent implements OnInit {
     )
   }
  
-
   logout() {
     console.log("Logged out.")
     //delete the cookie from the storage
-    this.cookieService.removeAll();
-
+    this.cookieService.remove("JWT");
     //redirect to home
     this.router.navigate(['/home']);
   }

@@ -41,44 +41,20 @@ export class LoginComponent implements OnInit {
     }); 
   }
 
-  onSubmit() {
+  onLogin() {
     
     //send the credentials, get the JWT
     this.restService.post("account/login", this.loginForm.value).subscribe(
       (data:any)=> {
         this.token = data,
         console.log(this.token)
+        //set the token as cookie -> works
+        this.cookieService.put("JWT", this.token);
+        this.getListedAccount();
       }
     )
-    /*
-      
-    var reqHeader = new HttpHeaders({ 
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Origin": "http://localhost:8080/*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "skip": "true"
-   });
-  
    
-    this.http.post("http://localhost:8080/auth/account/login", this.loginForm.value,  {headers: reqHeader})
-            .subscribe(
-              (data:any)=> {
-                this.token = data,
-                console.log(this.token)
-              }
-            )
-        */     
-    //set the token as cookie -> works
-    this.cookieService.put("JWT", this.token);
-    
-    //it works only in two steps???
-    //this.getListedAccount();
-
-    //TODO: redirect to the updateForm, the param is going to be the uuid of the listed account
-    
-
- }
+  }
 
   getListedAccount() {
 
@@ -97,37 +73,15 @@ export class LoginComponent implements OnInit {
       "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
    });
 
-
-    let myHeaders = new Headers();
-                myHeaders.append('Authorization', `Bearer ${this.token}`);
-                myHeaders.append('Access-Control-Allow-Origin', '*');
-                myHeaders.append('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-
-
-    console.table(reqHeader)
-
     
      //send the JWT, get the ListedAccount
      this.http.get("http://localhost:8080/auth",  { headers: reqHeader }).subscribe(
       (data:any)=> {
         this.listedAccount = data,
         console.log(this.listedAccount)
-        
+        if (this.listedAccount!=null)
+        this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid }})
       }
-      
-
     )
-
-    //if the login is successfull, isLoggedIn is true -> open the loggedInComponent and close the login component
-    //this.isLoggedIn = true;
-    /*
-      *ngIf="!isLoggedIn"
-
-    */
-
-      //if we get the object, redirect
-      if (this.listedAccount!=null) {
-        this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid }});
-      }
   }
 }

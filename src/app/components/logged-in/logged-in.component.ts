@@ -31,7 +31,11 @@ export class LoggedInComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.listedAccount = this.restService.getListedAccount("search/accounts/" + this.uuid);
+  this.listedAccount = this.restService.getListedAccount("search/accounts/" + this.uuid);
+  if (this.listedAccount.firstName!=null) {
+    this.firstLogin = false;
+  }
+
 
   }
 

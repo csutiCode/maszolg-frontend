@@ -20,15 +20,20 @@ export class UpdateFormComponent implements OnInit {
   regForm: any;
 
   
-
   listedAccount?: ListedAccount;
+
+
   countries: Array<any> | undefined;
+
   cities: any;
+
   categories: Array<any> | undefined;
+
   professions: Array<any> | undefined;
 
   selectedCountry: any = {
     uuid: 0, name: ''};
+
   selectedCity: any = {
     uuid: 0, name: ''};
 
@@ -49,24 +54,11 @@ export class UpdateFormComponent implements OnInit {
                 private route: ActivatedRoute,
                 private cookieService: CookieService,
                 private http: HttpClient) {
-
     this.getListedAccount(this.uuid);
-    console.log("Listed Account objekt from the constructor: ");
-    console.log(this.listedAccount);
-    this.createForm();
-
-
     this.token= cookieService.get("JWT");
-
    }
 
     ngOnInit(): void {
-
-    
-      //PROBLEM: my listedAccount is undefined, the listedAccount Objekt is going to be initialized just after these
-     
-      console.log("Listed Account objekt: ");
-      console.log(this.listedAccount);
 
       this.showAll();
       this.onSelectCountry(this.selectedCountry.uuid);
@@ -88,7 +80,7 @@ export class UpdateFormComponent implements OnInit {
         street:  new FormControl(''),
         number:  new FormControl(''),
         category: new FormControl(''),
-        profession: new FormControl('')
+        professions: new FormControl('')
 
     });
 
@@ -97,24 +89,26 @@ export class UpdateFormComponent implements OnInit {
       this.regForm.get("email").setValue(this.listedAccount?.email);
       this.regForm.get("comment").setValue(this.listedAccount?.comment);
       this.regForm.get("phoneNumber").setValue(this.listedAccount?.phoneNumber);
-      this.regForm.get("country").setValue(this.listedAccount?.country);
-      this.regForm.get("city").setValue(this.listedAccount?.address?.city);
+      //this.regForm.get("country").setValue(this.listedAccount?.country);
+      this.regForm.get("city").setValue(this.listedAccount?.address?.city.name);
+
+      console.log("City name: "+ this.listedAccount?.address?.city.name)
       this.regForm.get("postalCode").setValue(this.listedAccount?.address?.postalCode);
       this.regForm.get("street").setValue(this.listedAccount?.address?.street);
       this.regForm.get("number").setValue(this.listedAccount?.address?.number);
-      this.regForm.get("category").setValue(this.listedAccount?.category);
-      this.regForm.get("profession").setValue(this.listedAccount?.profession);
+      //this.regForm.get("category").setValue(this.listedAccount?.category);
+      this.regForm.get("professions").setValue(this.listedAccount?.professions);
 
     }
-    
-   
 
+
+  
 
     getListedAccount(uuid: string | null) {
       return this.restService.get("search/account/" + uuid).subscribe(
         (data:any)=> {
           this.listedAccount = data,
-          console.log("Listed Account objekt from the method ");
+          console.log("Listed Account objekt from the method in UpdateForm Component: ");
           console.log(this.listedAccount)
           //I have to call this method here, because all other initialization is too early -> they don't create listedaccount object
           this.getAllCategories()
@@ -149,7 +143,33 @@ export class UpdateFormComponent implements OnInit {
       this.professions = this.categories?.find((category) => category.category_uuid == uuid ).professions;
     }
 
-  onSubmit() {
+    onSubmit() {
+
+
+      console.log("RegForm value before sending it: ")
+
+      console.table(this.regForm.value);
+
+
+      //not the best solution
+      this.listedAccount = this.regForm.value;
+
+
+      //unfortunately this is a UUID:
+      console.log("Category from form:")
+      console.log(this.regForm.get("category"));
+
+      console.log("Selected category")
+      console.log(this.selectedCategory)
+
+      let profession = this.regForm.value.professions;
+
+      this.listedAccount?.professions?.push(profession)
+
+      console.log("Listed Account Object before sending it: ")
+      console.table(this.listedAccount);
+
+      
 
 
     var reqHeader = new HttpHeaders({ 
@@ -162,7 +182,7 @@ export class UpdateFormComponent implements OnInit {
    });
 
 
-     this.http.post("http://localhost:8080/auth/save/listedAccount", this.regForm.value,  { headers: reqHeader }).subscribe(
+     this.http.post("http://localhost:8080/auth/save/listedAccount", this.listedAccount,  { headers: reqHeader }).subscribe(
       (data:any)=> {
         this.listedAccount = data,
         console.log(this.listedAccount)
@@ -170,10 +190,8 @@ export class UpdateFormComponent implements OnInit {
       }
      )
       
-
       /*
-    
-    //elvileg nem müködhet a save -> stimmel is    
+      //elvileg nem müködhet a save -> stimmel is    
     this.restService.post("auth/save/listedAccount", this.regForm.value, reqHeader).subscribe(
       (data:any)=> {
         this.backendMessage = data,
@@ -182,5 +200,8 @@ export class UpdateFormComponent implements OnInit {
     )
     */
   }
+
+
+
 
 }

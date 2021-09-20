@@ -1,98 +1,97 @@
 
-
 <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
 
    
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">First name</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="firstName">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">last name</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="lastName">
-            </div>
-        </div>
-        <div class="form-group row">
-          <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-          <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="email" readonly>
-          </div>
-        </div>
+  <div class="form-group row">
+      <label  class="col-sm-2 col-form-label">First name</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="firstName">
+      </div>
+  </div>
+  <div class="form-group row">
+      <label  class="col-sm-2 col-form-label">last name</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="lastName">
+      </div>
+  </div>
+  <div class="form-group row">
+    <label  class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="email" readonly>
+    </div>
+  </div>
 
+<div class="form-group row">
+  <label  class="col-sm-2 col-form-label">Phone</label>
+  <div class="col-sm-10">
+    <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="phoneNumber">
+  </div>
+</div>
+  <div class="form-group row">
+      <label  class="col-sm-2 col-form-label">Komment</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="comment">
+      </div>
+  </div>
+  <div class="mb-3">
+      <label for="country">Country</label>
+      <select [(ngModel)]="selectedCountry.uuid" formControlName="country" (change)="onSelectCountry(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
+              <option value="0"> </option>
+              <option *ngFor="let country of countries" [value]="country.country_uuid">
+              {{country.name}}</option>
+      </select>
+  </div>   
+  <div class="mb-3" *ngIf="selectedCountry.uuid!=0">
+      <label for ="city">City</label>
+      <select [(ngModel)]="selectedCity" formControlName="city" class="form-select" aria-label="Default select example">
+              <option value="0"> </option>
+              <option *ngFor="let city of cities" [value]="city.name">
+                  {{city.name}}
+              </option>
+      </select>       
+  </div>
+  <div *ngIf="selectedCity.uuid!=0">
       <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Phone</label>
-        <div class="col-sm-10">
-          <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="phoneNumber">
-        </div>
-    </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Komment</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="comment">
-            </div>
-        </div>
-        <div class="mb-3">
-            <label for="country">Country</label>
-            <select [(ngModel)]="selectedCountry.uuid" formControlName="country" (change)="onSelectCountry(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
-                    <option value="0"> </option>
-                    <option *ngFor="let country of countries" [value]="country.country_uuid">
-                    {{country.name}}</option>
-            </select>
-        </div>   
-        <div class="mb-3" *ngIf="selectedCountry.uuid!=0">
-            <label for ="city">City</label>
-            <select [(ngModel)]="selectedCity" formControlName="city" class="form-select" aria-label="Default select example">
-                    <option value="0"> </option>
-                    <option *ngFor="let city of cities" [value]="city.name">
-                        {{city.name}}
-                    </option>
-            </select>       
-        </div>
-        <div *ngIf="selectedCity.uuid!=0">
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">PostalCode</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="postalCode">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Street</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="street">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">number</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="number">
-                </div>
-            </div>
-        </div>
-        <div class="mb-3">
-          <label for="country">Category</label>
-          <select [(ngModel)]="selectedCategory.uuid" formControlName="category" (change)="onSelectCategory(selectedCategory.uuid)" class="form-select" aria-label="Default select example">
-                  <option value="0"> </option>
-                  <option *ngFor="let category of categories" [value]="category.category_uuid">
-                  {{category.name}}</option>
-          </select>
-      </div>   
-      <div class="mb-3" *ngIf="selectedCategory.uuid!=0">
-        <label for ="city">Profession</label>
-        <select [(ngModel)]="selectedProfession" formControlName="profession" class="form-select" aria-label="Default select example">
-                <option value="0"> </option>
-                <option *ngFor="let profession of professions" [value]="profession.name">
-                    {{profession.name}}
-                </option>
-        </select>       
-    </div>
+          <label for="inputEmail3" class="col-sm-2 col-form-label">PostalCode</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="postalCode">
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">Street</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="street">
+          </div>
+      </div>
+      <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label">number</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="number">
+          </div>
+      </div>
+  </div>
+  <div class="mb-3">
+    <label for="country">Category</label>
+    <select [(ngModel)]="selectedCategory.uuid" formControlName="category" (change)="onSelectCategory(selectedCategory.uuid)" class="form-select" aria-label="Default select example">
+            <option value="0"> </option>
+            <option *ngFor="let category of categories" [value]="category.category_uuid">
+            {{category.name}}</option>
+    </select>
+</div>   
+<div class="mb-3" *ngIf="selectedCategory.uuid!=0">
+  <label for ="city">Profession</label>
+  <select [(ngModel)]="selectedProfession" formControlName="professions" class="form-select" aria-label="Default select example">
+          <option value="0"> </option>
+          <option *ngFor="let profession of professions" [value]="profession.name">
+              {{profession.name}}
+          </option>
+  </select>       
+</div>
 
 
 
-        <div>
-            <button  type="submit">Elkuld</button>
-        </div>
+  <div>
+      <button  type="submit">Elkuld</button>
+  </div>
 
 </form>

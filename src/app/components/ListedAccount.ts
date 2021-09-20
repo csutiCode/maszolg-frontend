@@ -5,7 +5,7 @@ export interface ListedAccount {
     firstName?: string;
     lastName?: string;
     phoneNumber?: number;
-    profession?: Array<any>;
+    professions?: Array<any>;
     address?: Address;
     comment?: string;
     lastLogin?: Date;
@@ -14,8 +14,8 @@ export interface ListedAccount {
     email?: string;
     averageRating?: number;
     listedAccount_uuid?: string;
-    country?: string,
-    category?: string
+    category: string;
+    country: string;
 
 
     }
@@ -24,12 +24,23 @@ export interface ListedAccount {
     export class Address {
 
         constructor(
-            public city: string,
+            public city: City,
             public postalCode: string,
             public street: string,
             public number: string,
         ) {}
     }
+
+    export interface City {
+        name?: string;
+        uuid?: string;
+    }
+
+    export interface Profession {
+        name?: string;
+        uuid?: string;
+    }
+
 
 
 

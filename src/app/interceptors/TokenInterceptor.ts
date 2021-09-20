@@ -11,12 +11,9 @@ export class TokenInterceptor implements HttpInterceptor {
 
 
   constructor(public auth: AuthService) {
-
     this.urlsToIntercept= [
         "auth/*"
       ];
-
-      
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -31,9 +28,10 @@ export class TokenInterceptor implements HttpInterceptor {
             return next.handle(modifiedRequest);
     }
     return next.handle(request);
-   
 
   }
+
+  
 
  
 }

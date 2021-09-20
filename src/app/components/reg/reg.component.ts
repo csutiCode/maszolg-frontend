@@ -36,8 +36,10 @@ export class RegComponent implements OnInit {
       (data:any)=> {
         this.backendMessage = data,
         console.log(this.backendMessage)
+        
       }
     )
+    //ha sikeres a regisztráció: modal -> kerlek, jelentkezz be
     this.router.navigate(['/login']);
   }
 }

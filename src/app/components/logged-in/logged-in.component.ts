@@ -14,7 +14,11 @@ export class LoggedInComponent implements OnInit {
   siteName: any = '';
   update: boolean = false;
   classifications: boolean = false;
+
   listedAccount:  any;
+
+  //if it's the first login, we have to set the data
+  firstLogin?: boolean = true;
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
@@ -34,8 +38,11 @@ export class LoggedInComponent implements OnInit {
   getListedAccount(uuid: string | null) {
     return this.restService.get("search/accounts/" + uuid).subscribe(
       (data:any)=> {
-        this.listedAccount = data,
-        console.log(this.listedAccount)
+        this.listedAccount = data
+        console.log("First name: " + this.listedAccount.firstName)
+        if (this.listedAccount.firstName!=null) {
+          this.firstLogin = false;
+        }
       }
     )
   }

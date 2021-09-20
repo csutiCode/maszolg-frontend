@@ -17,8 +17,9 @@ export class UpdateFormComponent implements OnInit {
   //TODO: get the listedAccount Object
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
-
   regForm: any;
+
+  
 
   listedAccount?: ListedAccount;
   countries: Array<any> | undefined;
@@ -72,10 +73,6 @@ export class UpdateFormComponent implements OnInit {
       this.onSelectCategory(this.selectedCategory.uuid);
       this.getAllCategories();
 
-      console.log("Listed Account objekt 2x: ");
-      console.log(this.listedAccount);
-
-      
     }
 
     createForm() {
@@ -92,8 +89,7 @@ export class UpdateFormComponent implements OnInit {
         number:  new FormControl(''),
         category: new FormControl(''),
         profession: new FormControl('')
-    
-      
+
     });
 
       this.regForm.get("firstName").setValue(this.listedAccount?.firstName);
@@ -121,6 +117,7 @@ export class UpdateFormComponent implements OnInit {
           console.log("Listed Account objekt from the method ");
           console.log(this.listedAccount)
           //I have to call this method here, because all other initialization is too early -> they don't create listedaccount object
+          this.getAllCategories()
           this.createForm();
         }
       )
@@ -165,8 +162,6 @@ export class UpdateFormComponent implements OnInit {
    });
 
 
-   
-     //
      this.http.post("http://localhost:8080/auth/save/listedAccount", this.regForm.value,  { headers: reqHeader }).subscribe(
       (data:any)=> {
         this.listedAccount = data,

@@ -1,13 +1,16 @@
 <!--
     in this component we can update our data as an account and check out our classifications and write comment on our classifications
 -->
-<div>
- 
+<div *ngIf="firstLogin">
+    <p>This is your first login, please, send us some data</p>
+    <app-update-form></app-update-form>
 </div>
-<div>
+
+<div *ngIf="!firstLogin">
     <button (click)="switchToUpdate($event)">Update my data</button>
     <button (click)="switchToClassifications($event)">Classifications</button>
 </div>
+
 
 <div *ngIf="update">
     <app-update-form></app-update-form>

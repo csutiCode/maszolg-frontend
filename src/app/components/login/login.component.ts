@@ -72,7 +72,16 @@ export class LoginComponent implements OnInit {
       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
       "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
    });
-
+   /* temporarely doesn't work, don't know why
+   this.restService.get("http://localhost:8080/auth",  { headers: reqHeader }).subscribe(
+    (data:any)=> {
+      this.listedAccount = data,
+      console.log(this.listedAccount)
+      if (this.listedAccount!=null)
+      this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid }})
+    }
+  )
+    */
     
      //send the JWT, get the ListedAccount
      this.http.get("http://localhost:8080/auth",  { headers: reqHeader }).subscribe(
@@ -83,5 +92,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid }})
       }
     )
+    
   }
 }

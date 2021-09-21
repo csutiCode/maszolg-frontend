@@ -1,1 +1,28 @@
-<p>my-classifications works!</p>
+<div *ngIf="listedAccount.classifications.length>0">
+    <p>Értékelések:</p>
+    <div *ngFor="let classification of listedAccount.classifications">
+      
+      <table>
+        <tr>
+          <th>Created By: </th>
+          <td>{{classification.createdBy}}</td>
+        </tr>
+        <tr>
+          <th>Comment:</th>
+          <td>{{classification.comment}}</td>
+        </tr>
+        <tr>
+          <th>Rating:</th>
+          <td>{{classification.rating}}</td>
+        </tr>
+        <th>---------------------------</th>
+        <div>
+          <button (click)="reactOnComment()">React</button>
+        </div>
+       
+      </table>
+      
+    </div>
+  
+
+  </div>

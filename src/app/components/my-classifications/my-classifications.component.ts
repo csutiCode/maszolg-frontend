@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CookieService } from 'ngx-cookie';
 import { RestService } from 'src/app/services/rest.service';
-import { ListedAccount } from '../listedAccount';
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-my-classifications',
@@ -13,13 +12,16 @@ import { ListedAccount } from '../listedAccount';
 export class MyClassificationsComponent implements OnInit {
 
 
+  
+  closeModal?: string;
   listedAccount: any;
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
 
   constructor( private restService: RestService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.getListedAccount(this.uuid);
@@ -41,8 +43,29 @@ export class MyClassificationsComponent implements OnInit {
 
   reactOnComment() {
     console.log("React on comment")
-
+    //open a modal to handle this 
   }
+
+  triggerModal(content: any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((res) => {
+      this.closeModal = `Closed with: ${res}`;
+    }, (res) => {
+      this.closeModal = `Dismissed ${this.getDismissReason(res)}`;
+    });
+  }
+  
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
+
+  
 
 
 

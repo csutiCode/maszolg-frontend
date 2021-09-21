@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ListService } from 'src/app/services/list.service';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -10,8 +9,7 @@ import { RestService } from 'src/app/services/rest.service';
 })
 export class ListComponent implements OnInit {
 
-  constructor(private restService: RestService, private route: ActivatedRoute,private router: Router,
-    private listService: ListService) { }
+  constructor(private restService: RestService, private route: ActivatedRoute,private router: Router) { }
 
   accounts: any;
 

@@ -1,3 +1,4 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,7 +13,7 @@ export class RegComponent implements OnInit {
 
   registrationForm: any;
 
-  backendMessage: any;
+  response?: any;
 
   constructor(private restService: RestService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) { }
 
@@ -32,14 +33,21 @@ export class RegComponent implements OnInit {
 
 
   onSubmit() {
+
+
     this.restService.post("account/createAccount", this.registrationForm.value).subscribe(
-      (data:any)=> {
-        this.backendMessage = data,
-        console.log(this.backendMessage)
-        
+      (data: any)=> {
+        this.response = data,
+        console.log("message from backend: ")
+        console.log(data)
+
+
+        this.router.navigate(['/login']);
+      }, (error: HttpErrorResponse) => {
+        console.log('123 ' + error.status + " - " + error.statusText);
       }
     )
     //ha sikeres a regisztráció: modal -> kerlek, jelentkezz be
-    this.router.navigate(['/login']);
+    
   }
 }

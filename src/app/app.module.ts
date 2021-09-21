@@ -21,6 +21,7 @@ import { CookieModule, CookieService } from 'ngx-cookie';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { ProfessionComponent } from './components/profession/profession.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -49,7 +50,9 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     HttpClientModule,
     ReactiveFormsModule,
     CookieModule.forRoot(),
-    NgMultiSelectDropDownModule
+    NgMultiSelectDropDownModule,
+    NgbModule 
+
 
   ],
   providers: [

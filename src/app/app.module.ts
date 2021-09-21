@@ -19,6 +19,9 @@ import { LoggedInComponent } from './components/logged-in/logged-in.component';
 import { MyClassificationsComponent } from './components/my-classifications/my-classifications.component';
 import { CookieModule, CookieService } from 'ngx-cookie';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
+import { ProfessionComponent } from './components/profession/profession.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+
 
 @NgModule({
   declarations: [
@@ -36,6 +39,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     UpdateFormComponent,
     LoggedInComponent,
     MyClassificationsComponent,
+    ProfessionComponent,
     
   ],
   imports: [
@@ -44,7 +48,9 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CookieModule.forRoot()
+    CookieModule.forRoot(),
+    NgMultiSelectDropDownModule
+
   ],
   providers: [
     [CookieService],

@@ -17,15 +17,14 @@ export class LoginComponent implements OnInit {
   loginForm: any;
   token: any;
   listedAccount?: ListedAccount;
+  firstLogin: boolean = false;
   isLoggedIn: boolean = false;
 
   constructor(private restService: RestService, 
               private fb: FormBuilder, 
-              private route: ActivatedRoute, 
               private router: Router, 
               private http: HttpClient,
               private cookieService: CookieService) {
-
    }
   
 
@@ -42,7 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    
     //send the credentials, get the JWT
     this.restService.post("account/login", this.loginForm.value).subscribe(
       (data:any)=> {
@@ -53,7 +51,6 @@ export class LoginComponent implements OnInit {
         this.getListedAccount();
       }
     )
-   
   }
 
   getListedAccount() {
@@ -61,9 +58,7 @@ export class LoginComponent implements OnInit {
     //TODO: refactor this shit
     console.log("Token after login: ")
     console.log(this.token)
-   
 
-    
     var reqHeader = new HttpHeaders({ 
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.token,
@@ -87,9 +82,17 @@ export class LoginComponent implements OnInit {
      this.http.get("http://localhost:8080/auth",  { headers: reqHeader }).subscribe(
       (data:any)=> {
         this.listedAccount = data,
-        console.log(this.listedAccount)
-        if (this.listedAccount!=null)
-        this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid }})
+        console.log ("Listedaccount lastname from the first get method: ")
+        console.log(this.listedAccount?.lastName)
+        this.isLoggedIn = true;
+
+        //redirect to the first login page or to the normal login page, set the first login as query param
+        if (this.listedAccount?.lastName!="" && this.listedAccount!=null){
+          this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid, firstLogin: false }, })
+        } else {
+          this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid, firstLogin: true }, })
+
+        }
       }
     )
     

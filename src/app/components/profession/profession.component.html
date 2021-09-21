@@ -1,0 +1,24 @@
+    <div class="mb-3">
+    <label for="country">Category</label>
+    <select [(ngModel)]="selectedCategory.uuid" (change)="onSelectCategory(selectedCategory.uuid)" class="form-select" aria-label="Default select example">
+            <option value="0"> </option>
+            <option *ngFor="let category of categories" [value]="category.category_uuid">
+            {{category.name}}</option>
+    </select>
+</div>   
+
+<div class="mb-3" *ngIf="selectedCategory.uuid!=0">
+    <ng-multiselect-dropdown
+    [placeholder]="'custom placeholder'"
+    [settings]="dropdownSettings"
+    [data]="dropdownList"
+    [(ngModel)]="selectedItems"
+    (onSelect)="onItemSelect($event)"
+    (onSelectAll)="onSelectAll($event)"
+  >
+  </ng-multiselect-dropdown>
+</div>
+<div>
+    <button  (click)="onSubmit()">Elkuld</button>
+</div>
+

@@ -18,7 +18,10 @@ export class LoggedInComponent implements OnInit {
   listedAccount:  any;
 
   //if it's the first login, we have to set the data
-  firstLogin?: boolean = true;
+  firstLoginParam: string | null = this.route.snapshot.queryParamMap.get('firstLogin')
+
+
+  firstLogin: boolean = true;
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
@@ -27,14 +30,20 @@ export class LoggedInComponent implements OnInit {
               private restService: RestService, 
               private route: ActivatedRoute,
               private cookieService: CookieService) {
+                
+  this.firstLoginParam = this.route.snapshot.queryParamMap.get('firstLogin')
+
+  if (this.firstLoginParam=="false") {
+    this.firstLogin = false;
+  }
   }
 
   ngOnInit(): void {
 
   this.listedAccount = this.restService.getListedAccount("search/accounts/" + this.uuid);
-  if (this.listedAccount.firstName!=null) {
-    this.firstLogin = false;
-  }
+
+  
+  
 
 
   }

@@ -12,7 +12,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
   constructor(public auth: AuthService) {
     this.urlsToIntercept= [
-        "auth/*"
+        "auth/**"
       ];
   }
 

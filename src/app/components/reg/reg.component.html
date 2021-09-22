@@ -1,4 +1,4 @@
-<form  [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+<form  [formGroup]="registrationForm" (ngSubmit)="onSubmit()"   (ngSubmit)="openVerticallyCentered(content)">
    
     <h1 class="h3 mb-3 fw-normal">Regisztráció</h1>
 
@@ -36,6 +36,26 @@
             Password confirmation is required.
            </div>
       </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" [disabled]="!registrationForm.valid">Regisztráció</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit"   [disabled]="!registrationForm.valid">Regisztráció</button>
 
   </form>
+
+
+  
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Registration status</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    <p>{{response}}</p>
+    
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" routerLink="/login">Login</button>
+  </div>
+</ng-template>

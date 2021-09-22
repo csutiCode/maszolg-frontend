@@ -1,7 +1,8 @@
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -13,9 +14,17 @@ export class RegComponent implements OnInit {
 
   registrationForm: any;
 
-  response?: any;
+  response?: HttpResponse<any>;
 
-  constructor(private restService: RestService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) { }
+  closeModal?: any;
+
+  readonly URL: string = "http://localhost:8080/";
+
+
+  constructor(private restService: RestService,
+     private fb: FormBuilder, 
+     private modalService: NgbModal,
+     private http: HttpClient) { }
 
   ngOnInit(): void {
     this.createForm() 
@@ -27,27 +36,46 @@ export class RegComponent implements OnInit {
       email: new FormControl ('', [Validators.required, Validators.email]),
       password: new FormControl ('', Validators.required),
       confirmedPassword: new FormControl ('', Validators.required),
-     
     }); 
   }
 
 
   onSubmit() {
+     
+    var reqHeaders = new HttpHeaders({ 
+            'Content-Type': 'application/JSON',
+          'Access-Control-Allow-Credentials': 'true',
+          "Access-Control-Allow-Origin": "*",
+             "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+         });
 
-
+      
+    this.http.post("http://localhost:8080/account/createAccount", this.registrationForm.value, { headers: reqHeaders })
+    .subscribe(
+      (data:any)=> {
+        this.response = data,
+        console.log("message from backend: ")
+        console.log(this.response)
+        }, response => console.log('HTTP Error', response.status),
+        
+    )
+    /*
     this.restService.post("account/createAccount", this.registrationForm.value).subscribe(
       (data: any)=> {
         this.response = data,
         console.log("message from backend: ")
         console.log(data)
-
-
-        this.router.navigate(['/login']);
-      }, (error: HttpErrorResponse) => {
-        console.log('123 ' + error.status + " - " + error.statusText);
-      }
+      }, response => console.log('HTTP Error', response.status) 
     )
-    //ha sikeres a regisztráció: modal -> kerlek, jelentkezz be
-    
+   */
   }
+
+
+  openVerticallyCentered(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+    
+
+
 }

@@ -75,8 +75,10 @@ post<T>(path: string, data: any, getParams?: any): Observable<T> {
         catchError(error => {
             let errorMsg: string;
             if (error.error instanceof ErrorEvent) {
+                console.log("Error message from the service:")
                 errorMsg = `Error: ${error.error.message}`;
                 } else {
+                console.log("Error message from the service:")
                 errorMsg = this.getServerErrorMessage(error);
                 }
                 return throwError(errorMsg);

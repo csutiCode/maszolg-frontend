@@ -30,20 +30,23 @@
 
   <button class="btn btn-danger" (click)="triggerModal(modalData)">Open Modal</button>
 
+   
 <ng-template #modalData let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Angular Bootstrap Modal Popup</h4>
+    <h4 class="modal-title" id="modal-basic-title">Sikeres Regisztráció</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">×</span>
     </button>
   </div>
   <div class="modal-body">
-    <p><strong>Are you sure you want to delete <span class="text-primary">"Agatha Harkness"</span> profile?</strong></p>
-    
-    <p>All data related to west view profile will be removed permanently.
+    <p>
+      Kérlek, jelentkezz be!
     </p>
+    
   </div>
+
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="modal.close('Save click')">Close</button>
+    <button type="button" class="close" >Bejelentkezés</button>
   </div>
+
 </ng-template>

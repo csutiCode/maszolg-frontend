@@ -1,8 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Component, OnInit,  } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -14,7 +13,11 @@ export class RegComponent implements OnInit {
 
   registrationForm: any;
 
-  response?: HttpResponse<any>;
+  response?: any;
+
+  error?: any;
+
+  status?: number = 200;
 
   closeModal?: any;
 
@@ -55,9 +58,14 @@ export class RegComponent implements OnInit {
     .subscribe(
       (data:any)=> {
         this.response = data,
+        //this.status = this.response.status,
         console.log("message from backend: ")
         console.log(this.response)
-        }, response => console.log('HTTP Error', response.status),
+        }, (error: any) => {
+          console.log('HTTP Error status code: ', error.error),
+        this.response = error.error,
+        this.status = error.status
+      }
         
     )
     /*

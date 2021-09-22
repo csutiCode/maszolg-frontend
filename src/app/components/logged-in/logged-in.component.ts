@@ -46,12 +46,7 @@ export class LoggedInComponent implements OnInit {
         this.listedAccount = data
         console.table(this.listedAccount)
          //redirect to the first login page or to the normal login page, set the first login as query param
-        if (this.listedAccount?.lastName!="" && this.listedAccount!=null){
-          this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid, firstLogin: false }, })
-        } else {
-          this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid, firstLogin: true }, })
-
-      }
+       
       }
     )
   }

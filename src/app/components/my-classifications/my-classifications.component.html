@@ -1,4 +1,4 @@
-<div *ngIf="listedAccount.classifications.length>0">
+<div class="card w-50 m-auto" *ngIf="listedAccount.classifications.length>0">
     <p>Értékelések:</p>
     <div *ngFor="let classification of listedAccount.classifications">
       
@@ -15,38 +15,32 @@
           <th>Rating:</th>
           <td>{{classification.rating}}</td>
         </tr>
-        <th>---------------------------</th>
-        <div>
-          <button (click)="triggerModal(modalData)">React</button>
-        </div>
-       
-      </table>
       
+        
+        
+      </table>
+      <div class="card m-auto">
+        <button (click)="openVerticallyCentered(content, classification.classificationUuid)">React</button>
+      </div>
     </div>
-  
-
   </div>
 
-
-  <button class="btn btn-danger" (click)="triggerModal(modalData)">Open Modal</button>
-
-   
-<ng-template #modalData let-modal>
+<ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Sikeres Regisztráció</h4>
+    <h4 class="modal-title" id="modal-basic-title">Komment</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">×</span>
     </button>
   </div>
+  
   <div class="modal-body">
-    <p>
-      Kérlek, jelentkezz be!
-    </p>
-    
+    <label for="exampleFormControlTextarea1">Komment</label>
+    <textarea  [(ngModel)]="comment"  value="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
-
   <div class="modal-footer">
-    <button type="button" class="close" >Bejelentkezés</button>
-  </div>
+    <button type="button" class="close" (click)="onComment(comment)" (click)="modal.dismiss('Cross click')">Elküld</button>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')">Megse</button>
 
+  </div>
+  
 </ng-template>

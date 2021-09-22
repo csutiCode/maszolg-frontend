@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
       (data:any)=> {
         this.listedAccount = data,
         this.isLoggedIn = true;
-        this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid, firstLogin: true } })
+        this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid, firstLogin: false } })
       }
     )
   }

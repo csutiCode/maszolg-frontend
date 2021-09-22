@@ -29,7 +29,7 @@ export class ClassificationComponent implements OnInit {
     private fb: FormBuilder,
     private modalService: NgbModal,
     private http: HttpClient){
-      this.createForm() }
+    this.createForm() }
 
   ngOnInit(): void {
      
@@ -64,7 +64,7 @@ export class ClassificationComponent implements OnInit {
           this.response = data,
           //this.status = this.response.status,
           console.log("message from backend: ")
-          console.log(this.response)
+          console.log(this.status)
           }, (error: any) => {
             console.log('HTTP Error status code: ', error.error),
             console.table(error),
@@ -73,20 +73,9 @@ export class ClassificationComponent implements OnInit {
         }
   
     )
-
-
-    
-
     //TODO: if succesfull, send a dialog with thank you, classification saved, then reload
-    
-
-    
   }
-  
-
-
-
-  
+    
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }

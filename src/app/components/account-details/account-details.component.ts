@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -16,7 +17,9 @@ export class AccountDetailsComponent implements OnInit {
   classification: boolean = false;
 
 
-  constructor(private restService: RestService, private route: ActivatedRoute) { }
+  constructor(private restService: RestService, 
+    private route: ActivatedRoute,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.route.queryParams
@@ -43,6 +46,10 @@ export class AccountDetailsComponent implements OnInit {
 
   onCancel() {
     this.classification = false;
+  }
+
+  openVerticallyCentered(content: any) {
+    this.modalService.open(content, { centered: true });
   }
 
 }

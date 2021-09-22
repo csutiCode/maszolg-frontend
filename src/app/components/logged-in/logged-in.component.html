@@ -1,24 +1,27 @@
 <!--
     in this component we can update our data as an account and check out our classifications and write comment on our classifications
 -->
-<div *ngIf="firstLogin">
-    <p>This is your first login, please, send us some data</p>
-    <app-update-form></app-update-form>
-</div>
+<div class="card w-75 m-auto">
+        
+    <div class="m-auto" *ngIf="firstLogin">
+        <p>This is your first login, please, send us some data</p>
+        <app-update-form></app-update-form>
+    </div>
 
-<div *ngIf="!firstLogin">
-    <button (click)="switchToUpdate($event)">Update my data</button>
-    <button (click)="switchToClassifications($event)">Classifications</button>
-</div>
+    <div class="m-auto" *ngIf="!firstLogin">
+        <button class="w-100 btn btn-lg btn-primary" (click)="switchToUpdate($event)">Update my data</button>
+        <button class="w-100 btn btn-lg btn-primary" (click)="switchToClassifications($event)">Classifications</button>
+    </div>
 
-<div *ngIf="update">
-    <app-update-form></app-update-form>
-</div>
+    <div *ngIf="update">
+        <app-update-form></app-update-form>
+    </div>
 
-<div *ngIf="classifications">
-    <app-my-classifications></app-my-classifications>
-</div>
+    <div *ngIf="classifications">
+        <app-my-classifications></app-my-classifications>
+    </div>
 
-<div>
-    <button (click)="logout()" >Log out</button>
+    <div class="m-auto">
+        <button class="w-100 btn btn-lg btn-primary" (click)="logout()" >Log out</button>
+    </div>
 </div>

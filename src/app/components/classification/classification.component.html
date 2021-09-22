@@ -1,4 +1,4 @@
-<form [formGroup]="classificationForm" (ngSubmit)="onSubmit()"  (ngSubmit)="openVerticallyCentered(content)">
+<form class="card w-75 m-auto" [formGroup]="classificationForm" (ngSubmit)="onSubmit()"  (ngSubmit)="openVerticallyCentered(content)">
   <div>
     Text about the rules of classification
   </div>
@@ -45,7 +45,7 @@
 
     <div class="form-row align-items-center">
         <div class="col-auto my-1">
-          <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
+          <label class="mr-sm-2" for="inlineFormCustomSelect">Rating</label>
           <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"  formControlName="rating">
             <option selected>---</option>
             <option value="ONE">One</option>

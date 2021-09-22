@@ -59,10 +59,10 @@
   </div>
    
   <div class="modal-footer" *ngIf="status==200">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" routerLink="/home">Login</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" routerLink="/login">Login</button>
   </div>
 
   <div class="modal-footer" *ngIf="status!=200">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" >Back</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" routerLink="/reg">Back</button>
   </div>
 </ng-template>

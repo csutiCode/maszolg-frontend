@@ -141,7 +141,7 @@ export class UpdateFormComponent implements OnInit {
       (data:any)=> {
         this.listedAccount = data,
         console.log(this.listedAccount)
-        //TODO: redirect to the profession page
+        //: redirect to the profession page
         this.secondPage = true;
 
       }

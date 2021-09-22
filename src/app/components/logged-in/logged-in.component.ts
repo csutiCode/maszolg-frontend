@@ -20,11 +20,9 @@ export class LoggedInComponent implements OnInit {
   //if it's the first login, we have to set the data
   firstLoginParam: string | null = this.route.snapshot.queryParamMap.get('firstLogin')
 
-
   firstLogin: boolean = true;
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
-
 
   constructor(private router: Router, 
               private restService: RestService, 
@@ -35,27 +33,25 @@ export class LoggedInComponent implements OnInit {
 
   if (this.firstLoginParam=="false") {
     this.firstLogin = false;
-  }
+    } 
   }
 
   ngOnInit(): void {
-
-  this.listedAccount = this.restService.getListedAccount("search/accounts/" + this.uuid);
-
-  
-  
-
-
+  this.restService.getListedAccount("search/accounts/" + this.uuid);
   }
 
   getListedAccount(uuid: string | null) {
     return this.restService.get("search/accounts/" + uuid).subscribe(
       (data:any)=> {
         this.listedAccount = data
-        console.log("First name: " + this.listedAccount.firstName)
-        if (this.listedAccount.firstName!=null) {
-          this.firstLogin = false;
-        }
+        console.table(this.listedAccount)
+         //redirect to the first login page or to the normal login page, set the first login as query param
+        if (this.listedAccount?.lastName!="" && this.listedAccount!=null){
+          this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid, firstLogin: false }, })
+        } else {
+          this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid, firstLogin: true }, })
+
+      }
       }
     )
   }

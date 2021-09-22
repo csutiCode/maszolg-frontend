@@ -2,3 +2,13 @@
     background-color: antiquewhite;
     cursor:pointer;
 }
+
+.test {
+    width: fit-content;
+    background: green;
+    text-align: center;
+    /*
+    padding: 10px; (innerhalb)
+    margin-left: 15px; (zum nächsten element)
+    */
+}

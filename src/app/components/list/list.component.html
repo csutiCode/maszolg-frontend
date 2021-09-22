@@ -1,5 +1,7 @@
-<p>All accounts in the city: {{cityName}} </p>
-<div>
+
+<div class="card w-75 m-auto">
+ <p>All accounts in the city: {{cityName}} </p>
+
  <label>Kategoria</label>
 
     <select [(ngModel)]="selectedCategory.name" class="form-select"  (change)="onSelect(selectedCategory.name)" aria-label="Default select example" aria-label="Default select example">
@@ -9,9 +11,9 @@
       </option>    
   </select>
 
-</div>
-<table class="table">
-    <thead>
+
+<table class="table ">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
@@ -28,7 +30,7 @@
         </tr>
     </tbody>
 </table>
-
+</div>
 
 
 

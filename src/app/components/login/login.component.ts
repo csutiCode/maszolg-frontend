@@ -82,19 +82,9 @@ export class LoginComponent implements OnInit {
      this.http.get("http://localhost:8080/auth",  { headers: reqHeader }).subscribe(
       (data:any)=> {
         this.listedAccount = data,
-        console.log ("Listedaccount lastname from the first get method: ")
-        console.log(this.listedAccount?.lastName)
         this.isLoggedIn = true;
-
-        //redirect to the first login page or to the normal login page, set the first login as query param
-        if (this.listedAccount?.lastName!="" && this.listedAccount!=null){
-          this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount.listedAccount_uuid, firstLogin: false }, })
-        } else {
-          this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid, firstLogin: true }, })
-
-        }
+        this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid, firstLogin: true } })
       }
     )
-    
   }
 }

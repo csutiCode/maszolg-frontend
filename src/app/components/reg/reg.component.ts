@@ -19,7 +19,6 @@ export class RegComponent implements OnInit {
 
   status?: number = 200;
 
-  closeModal?: any;
 
   readonly URL: string = "http://localhost:8080/";
 
@@ -62,6 +61,7 @@ export class RegComponent implements OnInit {
         console.log("message from backend: ")
         console.log(this.response)
         }, (error: any) => {
+          console.table(error),
           console.log('HTTP Error status code: ', error.error),
         this.response = error.error,
         this.status = error.status

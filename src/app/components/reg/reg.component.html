@@ -50,20 +50,19 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
-      <div >
-        <p>{{response}}</p>
-      </div>
-    </div>
-    <div>
-
-    </div>
+      <div class="modal-body">
+          <div >
+            <p>{{response}}</p>
+          </div>
+        </div>
+        <div>
+  </div>
    
   <div class="modal-footer" *ngIf="status==200">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" routerLink="/login">Login</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" routerLink="/home">Login</button>
   </div>
-  
+
   <div class="modal-footer" *ngIf="status!=200">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" routerLink="/reg">Back</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" >Back</button>
   </div>
 </ng-template>

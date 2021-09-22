@@ -1,6 +1,8 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -15,9 +17,18 @@ export class ClassificationComponent implements OnInit {
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
   backendMessage?: string;
+
+  response?: any;
+
+  error?: any;
+
+  status?: number = 200;
+
   
   constructor(private restService: RestService, private route: ActivatedRoute, private router: Router,
-    private fb: FormBuilder){
+    private fb: FormBuilder,
+    private modalService: NgbModal,
+    private http: HttpClient){
       this.createForm() }
 
   ngOnInit(): void {
@@ -37,23 +48,49 @@ export class ClassificationComponent implements OnInit {
   onSubmit() {
     console.warn(this.classificationForm.value);
 
-    this.restService.post("save/classification/" + this.uuid, this.classificationForm.value).subscribe(
-      (data:any)=> {
-        this.backendMessage = data,
-        console.log(this.backendMessage)
-      }
+    
+    var reqHeaders = new HttpHeaders({ 
+      'Content-Type': 'application/JSON',
+    'Access-Control-Allow-Credentials': 'true',
+    "Access-Control-Allow-Origin": "*",
+       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+   });
+
+
+        this.http.post("http://localhost:8080/save/classification/" + this.uuid, this.classificationForm.value, { headers: reqHeaders })
+        .subscribe(
+        (data:any)=> {
+          this.response = data,
+          //this.status = this.response.status,
+          console.log("message from backend: ")
+          console.log(this.response)
+          }, (error: any) => {
+            console.log('HTTP Error status code: ', error.error),
+            console.table(error),
+          this.response = error.error,
+          this.status = error.status
+        }
+  
     )
+
+
     
 
     //TODO: if succesfull, send a dialog with thank you, classification saved, then reload
-    this.reloadCurrentRoute();
+    
+
+    
   }
   
-  reloadCurrentRoute() {
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate(['home']);
-    });
+
+
+
+  
+  openVerticallyCentered(content: any) {
+    this.modalService.open(content, { centered: true });
   }
+    
 
 
 }

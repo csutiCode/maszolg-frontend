@@ -1,34 +1,45 @@
 <!--
     in this component we can update our data as an account and check out our classifications and write comment on our classifications
 -->
-
 <div>
-    <nav>
-        <div class="w-25 m-auto">
-            <button class="w-100 btn btn-sm btn-primary" (click)="logout()" >Log out</button>
-           
+    <ul class="nav justify-content-end m-auto">
+        <div>
+          <li class="nav-item">
+            <a class="nav-link active"   href="#">News</a>
+          </li>
         </div>
-    </nav>
-</div>
-<div class="card w-75 m-auto">
-        
-    <div class="m-auto" *ngIf="firstLogin">
-        <p>This is your first login, please, send us some data</p>
-        <app-update-form></app-update-form>
-    </div>
+        <div>
+            <li class="nav-item">
+              <a class="nav-link active"  href="#" (click)="swithToClassifications()" >My Classification</a>
+            </li>
+        </div>
+        <div>
+            <li class="nav-item">
+              <a class="nav-link active"   href="#" >Update me data</a>
+            </li>
+        </div>
+        <div>
+            <li class="nav-item">
+              <a class="nav-link active"  (click)="logout()"  href="#">Logout</a>
+            </li>
+        </div>
+    
+        <div class="nav-item"> 
+            <a class="nav-link active" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              About me
+            </a>
+        </div>
 
-    <div class="m-auto" *ngIf="!firstLogin">
-        <button class="w-100 btn btn-lg btn-primary" (click)="switchToUpdate($event)">Update my data</button>
-        <button class="w-100 btn btn-lg btn-primary" (click)="switchToClassifications($event)">Classifications</button>
-    </div>
-
-    <div *ngIf="update">
+<div class="card"> 
+    <div *ngIf="" >
         <app-update-form></app-update-form>
     </div>
 
     <div *ngIf="classifications">
         <app-my-classifications></app-my-classifications>
     </div>
-
-   
 </div>
+      
+        
+        
+      

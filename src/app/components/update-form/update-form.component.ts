@@ -47,6 +47,7 @@ export class UpdateFormComponent implements OnInit {
                 private route: ActivatedRoute,
                 private cookieService: CookieService,
                 private http: HttpClient) {
+                  
     this.getListedAccount(this.uuid);
     this.token= cookieService.get("JWT");
    }

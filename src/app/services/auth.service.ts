@@ -15,6 +15,8 @@ export class AuthService {
         private router: Router) {
     //this hides the navbar if somebody logged in
     this.visible = true; 
+    if (this.getToken()!=null)
+      this.visible = false; 
    }
 
 

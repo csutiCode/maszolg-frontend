@@ -21,7 +21,6 @@ export class LoggedInComponent implements OnInit {
   //if it's the first login, we have to set the data
   firstLoginParam: string | null = this.route.snapshot.queryParamMap.get('firstLogin')
 
-  firstLogin: boolean = true;
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
@@ -31,11 +30,7 @@ export class LoggedInComponent implements OnInit {
               private cookieService: CookieService,
               private authService: AuthService) {
                 
-  this.firstLoginParam = this.route.snapshot.queryParamMap.get('firstLogin')
-
-  if (this.firstLoginParam=="false") {
-    this.firstLogin = false;
-    } 
+  
   }
 
   ngOnInit(): void {
@@ -52,23 +47,20 @@ export class LoggedInComponent implements OnInit {
       }
     )
   }
+  swithToClassifications() {
+    console.log("Mi a fasz van???")
+  }
+
  
   logout() {
     console.log("Logged out.")
     //delete the cookie from the storage
     this.cookieService.remove("JWT");
+    //make the nav header visible
     this.authService.show();
     //redirect to home
     this.router.navigate(['/home']);
   }
 
-  switchToUpdate(event:any) {
-    this.update = true;
-    this.classifications=false;
-  }
-
-  switchToClassifications(event: any) {
-    this.classifications= true;
-    this.update=false;
-  }
+  
 }

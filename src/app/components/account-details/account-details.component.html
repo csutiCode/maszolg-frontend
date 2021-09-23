@@ -39,12 +39,16 @@
               <td>{{classification.createdBy}}</td>
             </tr>
             <tr>
-              <th>Comment:</th>
-              <td>{{classification.comment}}</td>
+              <th>Text:</th>
+              <td>{{classification.text}}</td>
             </tr>
             <tr>
               <th>Rating:</th>
               <td>{{classification.rating}}</td>
+            </tr>
+            <tr *ngIf="classification.commented">
+              <th>{{account.firstName}} megjegyzese:</th>
+              <td>{{classification.comment}}</td>
             </tr>
           </table>
         </div>

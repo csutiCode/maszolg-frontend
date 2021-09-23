@@ -9,19 +9,20 @@
         </tr>
         <tr>
           <th>Comment:</th>
-          <td>{{classification.comment}}</td>
+          <td>{{classification.text}}</td>
         </tr>
         <tr>
           <th>Rating:</th>
           <td>{{classification.rating}}</td>
         </tr>
-      
-        
-        
+
+        <p>{{classification.commented}}</p>
+
+        <div class="card m-auto" *ngIf="classification.commented">
+          <button (click)="openVerticallyCentered(content, classification.classificationUuid)">React</button>
+        </div>
       </table>
-      <div class="card m-auto">
-        <button (click)="openVerticallyCentered(content, classification.classificationUuid)">React</button>
-      </div>
+      
     </div>
   </div>
 

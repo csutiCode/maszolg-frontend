@@ -40,14 +40,15 @@ export class ClassificationComponent implements OnInit {
     
       email: new FormControl('', Validators.required),
       createdBy: ['', Validators.required ],
-      comment: new FormControl('', Validators.required),
+      text: new FormControl('', Validators.required),
       rating: new FormControl('', Validators.required),
     }); 
   }
 
   onSubmit() {
-    console.warn(this.classificationForm.value);
-
+    console.log("Classification to send: ");
+    console.table(this.classificationForm.value)
+  
     
     var reqHeaders = new HttpHeaders({ 
       'Content-Type': 'application/JSON',

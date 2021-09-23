@@ -47,6 +47,7 @@ export class MyClassificationsComponent implements OnInit {
     return this.restService.get("search/account/" + uuid).subscribe(
       (data:any)=> {
         this.listedAccount = data
+        console.table(this.listedAccount)
       }
       
     )
@@ -58,6 +59,9 @@ export class MyClassificationsComponent implements OnInit {
     this.classificationUuid = uuid;
     console.log(uuid)
     this.modalService.open(content, { centered: true });
+    console.log("is commented?")
+    
+
   }
 
 

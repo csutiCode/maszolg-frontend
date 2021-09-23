@@ -20,15 +20,14 @@ export class LoginComponent implements OnInit {
   token: any;
   listedAccount?: ListedAccount;
   firstLogin: boolean = false;
-  isLoggedIn: boolean = false;
 
   constructor(private restService: RestService, 
               private fb: FormBuilder, 
               private router: Router, 
               private http: HttpClient,
               private cookieService: CookieService,
-              private authService: AuthService,
-              public navService: NavService) {
+              private authService: AuthService
+              ) {
    }
   
 
@@ -53,7 +52,7 @@ export class LoginComponent implements OnInit {
         //set the token as cookie -> works
         this.cookieService.put("JWT", this.token);
         this.getListedAccount();
-        this.navService.hide();
+        this.authService.hide();
         
       }
     )
@@ -88,7 +87,6 @@ export class LoginComponent implements OnInit {
      this.http.get("http://localhost:8080/auth",  { headers: reqHeader }).subscribe(
       (data:any)=> {
         this.listedAccount = data,
-        this.isLoggedIn = true;
         this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid, firstLogin: false } })
       }
     )

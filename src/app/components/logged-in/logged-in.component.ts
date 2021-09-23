@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieModule, CookieService } from 'ngx-cookie';
+import { AuthService } from 'src/app/services/auth.service';
 import { NavService } from 'src/app/services/nav.service';
 import { RestService } from 'src/app/services/rest.service';
 
@@ -29,7 +30,7 @@ export class LoggedInComponent implements OnInit {
               private restService: RestService, 
               private route: ActivatedRoute,
               private cookieService: CookieService,
-              private navService: NavService) {
+              private authService: AuthService) {
                 
   this.firstLoginParam = this.route.snapshot.queryParamMap.get('firstLogin')
 
@@ -57,7 +58,7 @@ export class LoggedInComponent implements OnInit {
     console.log("Logged out.")
     //delete the cookie from the storage
     this.cookieService.remove("JWT");
-    this.navService.show();
+    this.authService.show();
     //redirect to home
     this.router.navigate(['/home']);
   }

@@ -8,18 +8,27 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
 
- 
+  visible: boolean;
+
 
   constructor(private cookieService: CookieService,
         private router: Router) {
-
+    //this hides the navbar if somebody logged in
+    this.visible = true; 
    }
+
+
 
   getToken(): string {
     console.log("Token from getToken: " + this.cookieService.get("JWT"));
     return this.cookieService.get("JWT");
-    
   }
+
+  hide() { this.visible = false; }
+
+  show() { this.visible = true; }
+
+  toggle() { this.visible = !this.visible; }
 
 
 

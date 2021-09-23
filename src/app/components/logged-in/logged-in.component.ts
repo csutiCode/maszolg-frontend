@@ -18,8 +18,6 @@ export class LoggedInComponent implements OnInit {
 
   listedAccount:  any;
 
-  //if it's the first login, we have to set the data
-  firstLoginParam: string | null = this.route.snapshot.queryParamMap.get('firstLogin')
 
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
@@ -29,38 +27,22 @@ export class LoggedInComponent implements OnInit {
               private route: ActivatedRoute,
               private cookieService: CookieService,
               public authService: AuthService) {
-                
-  
+
   }
 
   ngOnInit(): void {
   this.restService.getListedAccount("search/accounts/" + this.uuid);
   }
-
-  getListedAccount(uuid: string | null) {
-    return this.restService.get("search/accounts/" + uuid).subscribe(
-      (data:any)=> {
-        this.listedAccount = data
-        console.table(this.listedAccount)
-         //redirect to the first login page or to the normal login page, set the first login as query param
-       
-      }
-    )
-  }
+  
   switchToClassifications() {
     console.log("Mi a fasz van???")
     this.classifications=true;
     this.update=false;
   }
-
-
   switchToUpdateForm() {
     this.classifications=false;
     this.update=true;
-
-
   }
-
  
   logout() {
     console.log("Logged out.")

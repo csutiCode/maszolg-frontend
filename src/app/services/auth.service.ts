@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { BehaviorSubject } from 'rxjs';
+import { BooleanLiteral } from 'typescript';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
 
   visible: boolean;
+
+
 
 
   constructor(private cookieService: CookieService,

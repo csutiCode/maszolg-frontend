@@ -3,45 +3,37 @@
 -->
 <div >
     <ul class="nav justify-content-end m-auto">
-        <div>
-          <li class="nav-item">
-            <a class="nav-link active"   href="#">News</a>
-          </li>
-        </div>
 
         <div>
             <li class="nav-item">
-                <button (click)="switchToClassifications()"> My Classifications</button>
-                
-              
+                <button class="nav-link active"  (click)="switchToClassifications()"> My Classifications</button>              
             </li>
         </div>
 
         <div>
             <li class="nav-item">
-                <button (click)="switchToUpdateForm()">Update me data</button>
+                <button class="nav-link active"  (click)="switchToUpdateForm()">Update me data</button>
               
             </li>
-        </div>
-
+        </div>  
         <div>
             <li class="nav-item">
-              <a class="nav-link active"  (click)="logout()"  href="#">Logout</a>
+                <button class="nav-link active"  (click)="logout()"> About me</button>              
+            </li>
+        </div>
+        <div>
+            <li class="nav-item">
+                <button class="nav-link active"  (click)="logout()"> Logout</button>              
             </li>
         </div>
     
-        <div class="nav-item"> 
-            <a class="nav-link active" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              About me
-            </a>
-        </div>
+
 
 
 <div class="card w-75 " *ngIf="classifications">
     <app-my-classifications></app-my-classifications>
 
 </div>
-
 
 <div class="card w-75 " *ngIf="update">
     <app-update-form></app-update-form>

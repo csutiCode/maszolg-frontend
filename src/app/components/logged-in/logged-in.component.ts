@@ -28,7 +28,7 @@ export class LoggedInComponent implements OnInit {
               private restService: RestService, 
               private route: ActivatedRoute,
               private cookieService: CookieService,
-              private authService: AuthService) {
+              public authService: AuthService) {
                 
   
   }
@@ -47,8 +47,18 @@ export class LoggedInComponent implements OnInit {
       }
     )
   }
-  swithToClassifications() {
+  switchToClassifications() {
     console.log("Mi a fasz van???")
+    this.classifications=true;
+    this.update=false;
+  }
+
+
+  switchToUpdateForm() {
+    this.classifications=false;
+    this.update=true;
+
+
   }
 
  

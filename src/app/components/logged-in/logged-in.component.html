@@ -1,23 +1,29 @@
 <!--
     in this component we can update our data as an account and check out our classifications and write comment on our classifications
 -->
-<div>
+<div >
     <ul class="nav justify-content-end m-auto">
         <div>
           <li class="nav-item">
             <a class="nav-link active"   href="#">News</a>
           </li>
         </div>
+
         <div>
             <li class="nav-item">
-              <a class="nav-link active"  href="#" (click)="swithToClassifications()" >My Classification</a>
+                <button (click)="switchToClassifications()"> My Classifications</button>
+                
+              
             </li>
         </div>
+
         <div>
             <li class="nav-item">
-              <a class="nav-link active"   href="#" >Update me data</a>
+                <button (click)="switchToUpdateForm()">Update me data</button>
+              
             </li>
         </div>
+
         <div>
             <li class="nav-item">
               <a class="nav-link active"  (click)="logout()"  href="#">Logout</a>
@@ -30,15 +36,18 @@
             </a>
         </div>
 
-<div class="card"> 
-    <div *ngIf="" >
-        <app-update-form></app-update-form>
-    </div>
 
-    <div *ngIf="classifications">
-        <app-my-classifications></app-my-classifications>
-    </div>
+<div class="card w-75 " *ngIf="classifications">
+    <app-my-classifications></app-my-classifications>
+
 </div>
+
+
+<div class="card w-75 " *ngIf="update">
+    <app-update-form></app-update-form>
+
+</div>
+   
       
         
         

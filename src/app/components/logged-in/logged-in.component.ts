@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CookieModule, CookieService } from 'ngx-cookie';
+import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
-import { NavService } from 'src/app/services/nav.service';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({

@@ -6,7 +6,6 @@ import { RestService } from 'src/app/services/rest.service';
 import { CookieService } from 'ngx-cookie';
 import { ListedAccount } from '../listedAccount';
 import { AuthService } from 'src/app/services/auth.service';
-import { NavService } from 'src/app/services/nav.service';
 
 
 @Component({
@@ -51,6 +50,8 @@ export class LoginComponent implements OnInit {
         console.log(this.token)
         //set the token as cookie -> works
         this.cookieService.put("JWT", this.token);
+
+        
         this.getListedAccount();
         this.authService.hide();
         

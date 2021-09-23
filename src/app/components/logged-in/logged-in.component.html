@@ -1,6 +1,15 @@
 <!--
     in this component we can update our data as an account and check out our classifications and write comment on our classifications
 -->
+
+<div>
+    <nav>
+        <div class="w-25 m-auto">
+            <button class="w-100 btn btn-sm btn-primary" (click)="logout()" >Log out</button>
+           
+        </div>
+    </nav>
+</div>
 <div class="card w-75 m-auto">
         
     <div class="m-auto" *ngIf="firstLogin">
@@ -21,7 +30,5 @@
         <app-my-classifications></app-my-classifications>
     </div>
 
-    <div class="m-auto">
-        <button class="w-100 btn btn-lg btn-primary" (click)="logout()" >Log out</button>
-    </div>
+   
 </div>

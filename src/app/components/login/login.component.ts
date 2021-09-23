@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
 import { CookieService } from 'ngx-cookie';
 import { ListedAccount } from '../listedAccount';
+import { AuthService } from 'src/app/services/auth.service';
+import { NavService } from 'src/app/services/nav.service';
 
 
 @Component({
@@ -24,7 +26,9 @@ export class LoginComponent implements OnInit {
               private fb: FormBuilder, 
               private router: Router, 
               private http: HttpClient,
-              private cookieService: CookieService) {
+              private cookieService: CookieService,
+              private authService: AuthService,
+              public navService: NavService) {
    }
   
 
@@ -49,6 +53,8 @@ export class LoginComponent implements OnInit {
         //set the token as cookie -> works
         this.cookieService.put("JWT", this.token);
         this.getListedAccount();
+        this.navService.hide();
+        
       }
     )
   }

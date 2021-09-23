@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Component, OnInit,  } from '@angular/core';
+import { Component, Inject, OnInit,  } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import {  NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { RestService } from 'src/app/services/rest.service';
+import {  NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-reg',
@@ -19,14 +18,23 @@ export class RegComponent implements OnInit {
 
   status?: number = 200;
 
-
   readonly URL: string = "http://localhost:8080/";
 
+  date: any = {year: '', month: '',day:''};
 
-  constructor(private restService: RestService,
-     private fb: FormBuilder, 
-     private modalService: NgbModal,
-     private http: HttpClient) { }
+  registerRequest: any = {
+    email: '',
+    password: '',
+    confirmedPassword: '',
+    dateOfBirth: ''
+  };
+
+
+  model?: NgbDateStruct
+
+  constructor(private fb: FormBuilder, 
+              private modalService: NgbModal,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.createForm() 
@@ -38,11 +46,14 @@ export class RegComponent implements OnInit {
       email: new FormControl ('', [Validators.required, Validators.email]),
       password: new FormControl ('', Validators.required),
       confirmedPassword: new FormControl ('', Validators.required),
+      dateOfBirth: new FormControl('', Validators.required)
     }); 
   }
 
 
   onSubmit() {
+    
+    this.mapFormToRegisterRequest();
      
     var reqHeaders = new HttpHeaders({ 
             'Content-Type': 'application/JSON',
@@ -53,7 +64,7 @@ export class RegComponent implements OnInit {
          });
 
       
-    this.http.post("http://localhost:8080/account/createAccount", this.registrationForm.value, { headers: reqHeaders })
+    this.http.post("http://localhost:8080/account/createAccount", this.registerRequest, { headers: reqHeaders })
     .subscribe(
       (data:any)=> {
         this.response = data,
@@ -79,11 +90,20 @@ export class RegComponent implements OnInit {
    */
   }
 
-
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
-    
+
+  mapFormToRegisterRequest() {
+    this.registerRequest = this.registrationForm.value;
+    this.date = this.registrationForm.get("dateOfBirth").value;
+    this.date = new Date(this.date.year, this.date.month, this.date.day)
+    this.registerRequest.dateOfBirth= this.date;
+    console.log("RegisterRequest Object: ")
+    console.table(this.registerRequest)
+    return this.registerRequest;
+  }
+  
 
 
 }

@@ -60,8 +60,6 @@ export class UpdateFormComponent implements OnInit {
 
     createForm() {
       this.regForm = new FormGroup({
-
-
         firstName: new FormControl(''),
         lastName: new FormControl(''),
         email: new FormControl(''),

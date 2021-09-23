@@ -101,7 +101,7 @@ export class ProfessionComponent implements OnInit {
     (data:any)=> {
       this.backendMessage = data,
       console.log(this.backendMessage)
-      this.router.navigate(['home'], { queryParams: { uuid: this.uuid }})
+      this.router.navigate(['loggedIn'], { queryParams: { uuid: this.uuid }})
 
     })
   }

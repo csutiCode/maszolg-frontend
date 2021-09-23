@@ -41,8 +41,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     LoggedInComponent,
     MyClassificationsComponent,
     ProfessionComponent,
-    
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -52,7 +52,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CookieModule.forRoot(),
     NgMultiSelectDropDownModule,
     NgbModule 
-
 
   ],
   providers: [

@@ -18,7 +18,7 @@
 
         <p>{{classification.commented}}</p>
 
-        <div class="card m-auto" *ngIf="classification.commented">
+        <div class="card m-auto" *ngIf="!classification.commented">
           <button (click)="openVerticallyCentered(content, classification.classificationUuid)">React</button>
         </div>
       </table>

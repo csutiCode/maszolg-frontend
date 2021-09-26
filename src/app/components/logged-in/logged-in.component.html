@@ -12,7 +12,7 @@
 
         <div>
             <li class="nav-item">
-                <button class="nav-link active"  (click)="switchToUpdateForm()">Update me data</button>
+                <button class="nav-link active"  (click)="switchToUpdateForm()">Update my data</button>
               
             </li>
         </div>  
@@ -30,12 +30,12 @@
 
 
 
-<div class="card w-75 " *ngIf="classifications">
+<div class="card w-100 " *ngIf="classifications">
     <app-my-classifications></app-my-classifications>
 
 </div>
 
-<div class="card w-75 " *ngIf="update">
+<div class="card w-100" *ngIf="update">
     <app-update-form></app-update-form>
 
 </div>

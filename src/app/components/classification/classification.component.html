@@ -39,7 +39,7 @@
         Comment is required.
       </div>
 </div>
-
+    <!--
     <div class="form-row align-items-center">
         <div class="col-auto my-1">
           <label class="mr-sm-2" for="inlineFormCustomSelect">Rating</label>
@@ -53,6 +53,16 @@
           </select>
         </div>
     </div>
+    -->
+    
+    <div class="form-row align-items-center">
+      <div class="col-auto my-1">
+        <label class="mr-sm-2" for="inlineFormCustomSelect">Rating</label>
+
+        <ngb-rating formControlName="rating" [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+      
+      </div>
+  </div>
     <div *ngIf="classificationForm.controls['rating'].invalid  && classificationForm.controls['rating'].touched"
     class="alert alert-danger">
     

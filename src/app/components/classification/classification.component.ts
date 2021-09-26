@@ -24,6 +24,8 @@ export class ClassificationComponent implements OnInit {
 
   status?: number = 200;
 
+  starRating = 0; 
+
   
   constructor(private restService: RestService, private route: ActivatedRoute, private router: Router,
     private fb: FormBuilder,

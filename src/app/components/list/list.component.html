@@ -26,7 +26,7 @@
             <td>{{account.firstName}}</td>
             <td>{{account.lastName}}</td>
             <td> <span *ngFor="let profession of account.professions">{{profession.name}} </span></td>
-            <td>{{account.averageRating}}</td>
+            <td><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></td>
         </tr>
     </tbody>
 </table>

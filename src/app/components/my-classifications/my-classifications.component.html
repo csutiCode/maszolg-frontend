@@ -1,6 +1,6 @@
-<div class="card w-50 m-auto" *ngIf="listedAccount.classifications.length>0">
+<div class="m-auto" *ngIf="listedAccount.classifications.length>0">
     <p>Értékelések:</p>
-    <div *ngFor="let classification of listedAccount.classifications">
+    <div class="m-auto" *ngFor="let classification of listedAccount.classifications">
       
       <table>
         <tr>
@@ -13,10 +13,8 @@
         </tr>
         <tr>
           <th>Rating:</th>
-          <td>{{classification.rating}}</td>
+          <td><ngb-rating class="sr-only" [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></td>
         </tr>
-
-        <p>{{classification.commented}}</p>
 
         <div class="card m-auto" *ngIf="!classification.commented">
           <button (click)="openVerticallyCentered(content, classification.classificationUuid)">React</button>

@@ -45,6 +45,7 @@
             <tr>
               <th>Rating:</th>
               <td>{{classification.rating}}</td>
+               <td><ngb-rating  class="sr-only" [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></td>
             </tr>
             <tr *ngIf="classification.commented">
               <th>{{account.firstName}} megjegyzese:</th>

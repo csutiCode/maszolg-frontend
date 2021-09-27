@@ -3,6 +3,12 @@
 -->
 <div >
     <ul class="nav justify-content-end m-auto">
+        <div>
+            <li class="nav-item">
+                <button class="nav-link active"  (click)="openVerticallyCentered(content)"> Upload image</button>              
+            </li>
+        </div>
+
 
         <div>
             <li class="nav-item">
@@ -39,6 +45,54 @@
     <app-update-form></app-update-form>
 
 </div>
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Upload image</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+        <div class="modal-body">
+            <div class="text-center">
+                <input class="form-control" type="file" 
+                        (change)="onChange($event)">
+              
+                <button (click)="onUpload()" 
+                    class="btn btn-success">
+                    Upload
+                </button>
+            </div>
+              
+            <!-- Shareable short link of  uoloaded file -->
+            <div class="container text-center jumbotron"
+                *ngIf="shortLink">
+                <h2> Visit Here</h2>
+            </div>
+              
+            <!--Flag variable is used here-->
+            <div class="container" *ngIf="loading">
+                <h3>Loading ...</h3>
+            </div>
+          </div>
+          <div>
+    </div>
+     
+    <div class="modal-footer" *ngIf="status==200">     
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')" >OK</button>
+    </div>
+  
+    <div class="modal-footer" *ngIf="status!=200">
+      <div>
+        <p>Ooops, something went wrong!</p>
+      </div>
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')" >Back</button>
+    </div>
+  </ng-template>
+  
+  
    
       
         

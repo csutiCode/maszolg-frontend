@@ -51,7 +51,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     CookieModule.forRoot(),
     NgMultiSelectDropDownModule,
-    NgbModule 
+    NgbModule,
+    
 
   ],
   providers: [

@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
 import { RestService } from 'src/app/services/rest.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-logged-in',
@@ -21,6 +22,8 @@ export class LoggedInComponent implements OnInit {
 
   listedAccount:  any;
   message?: string;
+  image?: any = {};
+  data?: any;
 
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
@@ -31,13 +34,44 @@ export class LoggedInComponent implements OnInit {
               private cookieService: CookieService,
               public authService: AuthService,
               private modalService: NgbModal,
-              private http: HttpClient) {
-
+              private http: HttpClient,
+              private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
+
   this.restService.getListedAccount("search/accounts/" + this.uuid);
+
+  const reqHeader = new HttpHeaders({ 
+    //'Content-Type': 'multipart/form-data',
+    'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
+    'Access-Control-Allow-Credentials': 'true',
+    "Access-Control-Allow-Origin": "http://localhost:8080/*",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+    "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+ });
+    
+  //get the image from the backend
+  this.image = this.http.get("http://localhost:8080/search/getImage/" + this.uuid, 
+      {observe: 'body', headers: reqHeader, responseType: 'blob'}).subscribe(data => {
+
+      let objectURL =URL.createObjectURL(data);
+      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+      console.log("data")
+      console.table(data)
+      console.log("image")
+      console.table(this.image)
+
+    });
+
+    
+    console.log("image")
+    console.table(this.image)
   }
+
+  
+
   
   switchToClassifications() {
     console.log("Mi a fasz van???")
@@ -106,11 +140,12 @@ export class LoggedInComponent implements OnInit {
       (data:any)=> {
         this.message = data,
         console.log(this.message)
-
       }
     )
-      
   }
+
+
+
 
 
 

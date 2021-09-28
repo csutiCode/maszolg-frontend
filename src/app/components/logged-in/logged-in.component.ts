@@ -24,6 +24,7 @@ export class LoggedInComponent implements OnInit {
   message?: string;
   image?: any = {};
   data?: any;
+  page: number = 4;
 
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')

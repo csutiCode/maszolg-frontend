@@ -1,16 +1,26 @@
-
 <div class="card w-75 m-auto">
  <p>All accounts in the city: {{cityName}} </p>
 
  <label>Kategoria</label>
 
-    <select [(ngModel)]="selectedCategory.name" class="form-select"  (change)="onSelect(selectedCategory.name)" aria-label="Default select example" aria-label="Default select example">
-      <option value="0"></option>
+    <select [(ngModel)]="selectedCategory.name" class="form-select"  
+            (change)="onSelect(selectedCategory.name)" 
+            aria-label="Default select example"
+            aria-label="Default select example">
       <option *ngFor="let category of categories" [value]="category.name">
           {{category.name}}
-      </option>    
+      </option>
   </select>
 
+
+<ngb-pagination class="d-flex justify-content-center" 
+              aria-label="Default pagination" 
+              [collectionSize]="accounts.length" 
+              #numPages 
+              [pageSize]="itemsPerPage" 
+              [(page)]="currentPage" 
+              (pageChange)="onPageChange(currentPage)">
+            </ngb-pagination>
 
 <table class="table ">
     <thead class="thead-dark">
@@ -22,15 +32,19 @@
       </tr>
     </thead>
     <tbody>
-        <tr class="hovered" *ngFor="let account of accounts" (click)="onMore(account.listedAccount_uuid)">
+        <tr class="hovered" *ngFor="let account of accounts | slice: pageSize | slice: 0:itemsPerPage"  (click)="onMore(account.listedAccount_uuid)">
             <td>{{account.firstName}}</td>
             <td>{{account.lastName}}</td>
-            <td> <span *ngFor="let profession of account.professions">{{profession.name}} </span></td>
+            <td> <span *ngFor="let profession of account.professions">{{profession.name}}</span></td>
             <td><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></td>
         </tr>
+        
     </tbody>
-</table>
-</div>
+  </table>
+  
+
+
+
 
 
 

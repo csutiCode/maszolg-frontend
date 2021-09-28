@@ -22,6 +22,7 @@ import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { ProfessionComponent } from './components/profession/profession.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CookieModule.forRoot(),
     NgMultiSelectDropDownModule,
     NgbModule,
+    BrowserAnimationsModule
     
 
   ],

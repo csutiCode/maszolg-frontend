@@ -11,13 +11,18 @@ export class ListComponent implements OnInit {
 
   constructor(private restService: RestService, private route: ActivatedRoute,private router: Router) { }
 
-  accounts: any;
+  accounts: any[] = [];
 
   cityName: string | null = this.route.snapshot.queryParamMap.get('city')
 
   categories: any;
 
   selectedCategory: any =  {id: 0, name: ''};
+
+  currentPage = 1;
+  itemsPerPage = 5;
+  pageSize= 1;
+
 
   ngOnInit(): void {
     //get the city parameter from the URL
@@ -62,4 +67,14 @@ export class ListComponent implements OnInit {
     console.log(accountUuid);
     this.router.navigate(['account'], { queryParams: { uuid: accountUuid }});
   }
+
+  //to pagination
+  public onPageChange(pageNum: number): void {
+    this.pageSize = this.itemsPerPage*(pageNum - 1);
+  }
+  
+  public changePagesize(num: number): void {
+    this.itemsPerPage = this.pageSize + num;
+  }
+  
 }

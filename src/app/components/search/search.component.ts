@@ -10,9 +10,11 @@ import { RestService } from 'src/app/services/rest.service';
 
 export class SearchComponent implements OnInit {
 
-  constructor(private restService: RestService, private router: Router) { }
+  constructor(private restService: RestService, 
+              private router: Router) { }
 
   countries: Array<any> | undefined;
+
   cities: any;
   
   selectedCountry: any = {
@@ -35,7 +37,7 @@ export class SearchComponent implements OnInit {
       }
     )
   }
-
+  
   onSelect(uuid: string){
     this.cities = this.countries?.find((country) => country.country_uuid == uuid ).cities;
   }

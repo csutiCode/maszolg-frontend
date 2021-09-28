@@ -39,7 +39,7 @@ export class AccountDetailsComponent implements OnInit {
     );
     this.getListedAccount(this.route.snapshot.queryParamMap.get('uuid'));
 
-
+    //temporarely doesn't work if i outsource it
     const reqHeader = new HttpHeaders({ 
       'Access-Control-Allow-Credentials': 'true',
       "Access-Control-Allow-Origin": "http://localhost:8080/*",

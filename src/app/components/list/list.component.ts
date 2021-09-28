@@ -31,12 +31,12 @@ export class ListComponent implements OnInit {
         console.log(params); 
       }
     );
-    this.getAllAccountsForCity(this.route.snapshot.queryParamMap.get('city'));
+    this.getAllAccountsForCity();
     this.getAllCategories();
   }
 
-  getAllAccountsForCity(cityName: string | null) {
-    return this.restService.get("search/city/" + cityName).subscribe(
+  getAllAccountsForCity() {
+    return this.restService.get("search/city/" + this.cityName).subscribe(
       (data:any)=> {
         this.accounts = data
         console.log(this.accounts)
@@ -54,6 +54,12 @@ export class ListComponent implements OnInit {
   }
 
   onSelect(categoryName: string) {
+    //from the default option, the value is 0
+    if (categoryName=="0") {
+      this.getAllAccountsForCity();
+    }
+
+
     console.log(categoryName);
     this.restService.get("search/" + this.cityName + "/" + categoryName).subscribe(
       (data:any)=> {

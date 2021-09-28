@@ -7,13 +7,15 @@
             (change)="onSelect(selectedCategory.name)" 
             aria-label="Default select example"
             aria-label="Default select example">
+      <option value="0">Mind</option>
       <option *ngFor="let category of categories" [value]="category.name">
           {{category.name}}
       </option>
+
   </select>
 
-
-<ngb-pagination class="d-flex justify-content-center" 
+<div *ngIf="accounts.length > 5">
+  <ngb-pagination class="d-flex justify-content-center" 
               aria-label="Default pagination" 
               [collectionSize]="accounts.length" 
               #numPages 
@@ -21,6 +23,8 @@
               [(page)]="currentPage" 
               (pageChange)="onPageChange(currentPage)">
             </ngb-pagination>
+</div>
+
 
 <table class="table ">
     <thead class="thead-dark">

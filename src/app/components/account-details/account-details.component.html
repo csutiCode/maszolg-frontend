@@ -1,39 +1,20 @@
-
-<div >
-  <div>
-    <img [src]='image'>
+<div class="card w-75 m-auto" >
+  <img [src]='image' alt="Avatar" style="width:40%">
+  <div class="container">
+    <h4><b>{{account.firstName}} {{account.lastName}}</b></h4>
+    <h4><b>{{account.phone}}</b></h4>
+    <h4><b>{{account.email}}</b></h4>
+    <h4><b>{{account.comment}}</b></h4>
+    <p> <span *ngFor="let profession of account.professions">{{profession.name}}</span></p>
   </div>
-    <div class="card w-75 m-auto" >
+  <div class="mb-3  m-left">
+    <button  class="w-100 btn btn-sm btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
+  </div>
+</div>
 
-        <h2>Részletek</h2>
-        
-        <table class="table ">
-          <tr>
-            <th>Vezetéknév:</th>
-            <td>{{account.firstName}}</td>
-          </tr>
-          <tr>
-            <th>Keresztnév:</th>
-            <td>{{account.lastName}}</td>
-          </tr>
-          <tr>
-            <th>Telefon:</th>
-            <td>{{account.phone}}</td>
-          </tr>
-          <tr>
-            <th>E-Mail:</th>
-            <td>{{account.email}}</td>
-          </tr>
-          <tr>
-            <th>Magamról:</th>
-            <td>{{account.comment}}</td>
-          </tr>
-        </table>
-        <div class="mb-3  m-auto">
-          <button  class="w-100 btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
-        </div>
-      </div>
-      <div class="card w-75 m-auto" *ngIf="account.classifications.length>0">
+
+<div>
+      <div class="card w-50 m-auto" *ngIf="account.classifications.length>0">
         <p>Értékelések:</p>
         <div *ngFor="let classification of account.classifications">
           <table>
@@ -57,9 +38,7 @@
           </table>
         </div>
        </div>
-
-       <div class="card w-75 m-auto" *ngIf="classification">
-        
+       <div class="card w-75 m-auto" *ngIf="classification"> 
         <div class="card  m-auto">
           <button  class="w-100 btn btn-lg btn-primary" (click)="onCancel()">Megse</button>
         </div>

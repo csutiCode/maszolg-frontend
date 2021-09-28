@@ -1,8 +1,13 @@
 <!--
     in this component we can update our data as an account and check out our classifications and write comment on our classifications
 -->
-<div >
+<div>
+    
     <ul class="nav justify-content-end m-auto">
+        <div class="card w-5">
+            <img [src]='image' />
+        </div>
+        
         <div>
             <li class="nav-item">
                 <button class="nav-link active"  (click)="openVerticallyCentered(content)"> Upload image</button>              
@@ -44,9 +49,7 @@
     <app-update-form></app-update-form>
 
 </div>
-<div class="card w-25 ">
-    <img [src]='image' />
-</div>
+
 
 
 

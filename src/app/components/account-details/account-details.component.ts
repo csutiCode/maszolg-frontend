@@ -1,6 +1,9 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'ngx-cookie';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -16,10 +19,17 @@ export class AccountDetailsComponent implements OnInit {
 
   classification: boolean = false;
 
+  image?: any = {};
+
+  data?: any;
+
 
   constructor(private restService: RestService, 
     private route: ActivatedRoute,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal,
+    private cookieService: CookieService,
+    private http: HttpClient,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.route.queryParams
@@ -28,6 +38,28 @@ export class AccountDetailsComponent implements OnInit {
     }
     );
     this.getListedAccount(this.route.snapshot.queryParamMap.get('uuid'));
+
+
+    const reqHeader = new HttpHeaders({ 
+      'Access-Control-Allow-Credentials': 'true',
+      "Access-Control-Allow-Origin": "http://localhost:8080/*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+   });
+      
+    //get the image from the backend
+    this.image = this.http.get("http://localhost:8080/search/getImage/" + this.uuid, 
+        {observe: 'body', headers: reqHeader, responseType: 'blob'}).subscribe(data => {
+  
+        let objectURL =URL.createObjectURL(data);
+        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+  
+        console.log("data")
+        console.table(data)
+        console.log("image")
+        console.table(this.image)
+  
+      });
   }
 
   getListedAccount(uuid: string | null) {
@@ -37,6 +69,31 @@ export class AccountDetailsComponent implements OnInit {
         console.log(this.account)
       }
     )
+  }
+  
+  getImage() {
+    const reqHeader = new HttpHeaders({ 
+      //'Content-Type': 'multipart/form-data',
+      'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
+      'Access-Control-Allow-Credentials': 'true',
+      "Access-Control-Allow-Origin": "http://localhost:8080/*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+   });
+      
+    //get the image from the backend
+    this.image = this.http.get("http://localhost:8080/search/getImage/" + this.uuid, 
+        {observe: 'body', headers: reqHeader, responseType: 'blob'}).subscribe(data => {
+  
+        let objectURL =URL.createObjectURL(data);
+        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+  
+        console.log("data")
+        console.table(data)
+        console.log("image")
+        console.table(this.image)
+  
+      });
   }
 
 

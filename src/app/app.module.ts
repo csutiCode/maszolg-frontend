@@ -23,6 +23,7 @@ import { ProfessionComponent } from './components/profession/profession.componen
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NewsComponent } from './components/news/news.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoggedInComponent,
     MyClassificationsComponent,
     ProfessionComponent,
+    NewsComponent,
   ],
 
   imports: [

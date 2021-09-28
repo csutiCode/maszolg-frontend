@@ -1,20 +1,15 @@
 <!--
     in this component we can update our data as an account and check out our classifications and write comment on our classifications
 -->
-<div>
-    
+
+<div class="card w-100">
     <ul class="nav justify-content-end m-auto">
-        <div class="card w-5">
-            <img [src]='image' />
+
+        <div>
+
+            <img [src]='image' (click)="openVerticallyCentered(content)"  ngbTooltip="Upload an image"/>
         </div>
         
-        <div>
-            <li class="nav-item">
-                <button class="nav-link active"  (click)="openVerticallyCentered(content)"> Upload image</button>              
-            </li>
-        </div>
-
-
         <div>
             <li class="nav-item">
                 <button class="nav-link active"  (click)="switchToClassifications()"> My Classifications</button>              
@@ -27,28 +22,38 @@
               
             </li>
         </div>  
+
         <div>
             <li class="nav-item">
                 <button class="nav-link active"  (click)="logout()"> About me</button>              
             </li>
         </div>
+
         <div>
             <li class="nav-item">
                 <button class="nav-link active"  (click)="logout()"> Logout</button>              
             </li>
         </div>
+    </ul>
+
+<div>
+    <div>
+        <app-news></app-news>
+    </div>
+        
+    <div class="card w-80 m-auto" *ngIf="classifications">
+        <app-my-classifications></app-my-classifications>
+    </div>
+
+    <div class="card w-80 m-auto" *ngIf="update">
+        <app-update-form></app-update-form>
+    </div>
+
+</div>
+
+
+
     
-
-
-<div class="card w-100 " *ngIf="classifications">
-    <app-my-classifications></app-my-classifications>
-
-</div>
-
-<div class="card w-100" *ngIf="update">
-    <app-update-form></app-update-form>
-
-</div>
 
 
 
@@ -66,7 +71,7 @@
                 <input class="form-control" type="file" 
                         (change)="onChange($event)">
               
-                <button (click)="onUpload()" 
+                <button (click)="onUpload()" (click)="modal.close('Close click')"
                     class="btn btn-success">
                     Upload
                 </button>

@@ -101,7 +101,7 @@ export class ProfessionComponent implements OnInit {
     (data:any)=> {
       this.backendMessage = data,
       console.log(this.backendMessage)
-      this.router.navigate(['loggedIn'], { queryParams: { uuid: this.uuid }})
+      window.location.reload();
 
     })
   }
@@ -113,4 +113,5 @@ export class ProfessionComponent implements OnInit {
       console.log(items);
     }
 
+    
 }

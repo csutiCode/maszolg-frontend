@@ -22,7 +22,7 @@ export class LoggedInComponent implements OnInit {
 
   listedAccount:  any;
   message?: string;
-  image?: any = {};
+  image?: any;
   data?: any;
 
 
@@ -64,14 +64,9 @@ export class LoggedInComponent implements OnInit {
         console.table(this.image)
   
       });
-  
 
- 
     }
 
-  
-
-  
   switchToClassifications() {
     console.log("Mi a fasz van???")
     this.classifications=true;
@@ -119,6 +114,10 @@ export class LoggedInComponent implements OnInit {
         console.log(this.file);
 
         this.upload();
+
+        //reload the page!
+        window.location.reload();
+
     }
 
     upload() {

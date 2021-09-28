@@ -1,5 +1,5 @@
 <div class="card w-75 m-auto" >
-  <img [src]='image' alt="Avatar" style="width:40%">
+  <img [src]='image' alt="Avatar" style="width: 200px">
   <div class="container">
     <h4><b>{{account.firstName}} {{account.lastName}}</b></h4>
     <h4><b>{{account.phone}}</b></h4>
@@ -17,25 +17,28 @@
       <div class="card w-50 m-auto" *ngIf="account.classifications.length>0">
         <p>Értékelések:</p>
         <div *ngFor="let classification of account.classifications">
-          <table>
-            <tr>
-              <th>Created By: </th>
-              <td>{{classification.createdBy}}</td>
-            </tr>
-            <tr>
-              <th>Text:</th>
-              <td>{{classification.text}}</td>
-            </tr>
-            <tr>
-              <th>Rating:</th>
-              <td>{{classification.rating}}</td>
-               <td><ngb-rating  class="sr-only" [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></td>
-            </tr>
-            <tr *ngIf="classification.commented">
-              <th>{{account.firstName}} megjegyzese:</th>
-              <td>{{classification.comment}}</td>
-            </tr>
-          </table>
+          <div>
+            <table class="card m-auto">
+              <tr>
+                <th>Created By: </th>
+                <td>{{classification.createdBy}}</td>
+              </tr>
+              <tr>
+                <th>Text:</th>
+                <td>{{classification.text}}</td>
+              </tr>
+              <tr>
+                <th>Rating:</th>
+                <td>{{classification.rating}}</td>
+                 <td><ngb-rating  class="sr-only" [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></td>
+              </tr>
+              <tr *ngIf="classification.commented">
+                <th>{{account.firstName}} megjegyzese:</th>
+                <td>{{classification.comment}}</td>
+              </tr>
+            </table>
+          </div>
+   
         </div>
        </div>
        <div class="card w-75 m-auto" *ngIf="classification"> 

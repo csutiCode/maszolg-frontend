@@ -88,10 +88,12 @@ export class MyClassificationsComponent implements OnInit {
       (data:any)=> {
         this.response = data,
         console.log(this.response)
-        //: redirect to the profession page
-
+        
       }
      )
+    //reload the page
+    window.location.reload();
+
   }
     
 

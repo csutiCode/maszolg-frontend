@@ -7,7 +7,6 @@ import { ListComponent } from './components/list/list.component';
 import { LoggedInComponent } from './components/logged-in/logged-in.component';
 import { LoginComponent } from './components/login/login.component';
 import { MyClassificationsComponent } from './components/my-classifications/my-classifications.component';
-import { ProfessionComponent } from './components/profession/profession.component';
 import { RegComponent } from './components/reg/reg.component';
 import { SearchComponent } from './components/search/search.component';
 import { UpdateFormComponent } from './components/update-form/update-form.component';

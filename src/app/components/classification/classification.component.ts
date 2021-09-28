@@ -68,6 +68,8 @@ export class ClassificationComponent implements OnInit {
           //this.status = this.response.status,
           console.log("message from backend: ")
           console.log(this.status)
+          
+
           }, (error: any) => {
             console.log('HTTP Error status code: ', error.error),
             console.table(error),
@@ -81,6 +83,11 @@ export class ClassificationComponent implements OnInit {
     
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
+  }
+
+  reloadPage() {
+    //reload the page!
+    window.location.reload();
   }
     
 

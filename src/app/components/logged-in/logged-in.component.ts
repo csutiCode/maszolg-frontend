@@ -24,6 +24,7 @@ export class LoggedInComponent implements OnInit {
   message?: string;
   image?: any;
   data?: any;
+  isDefault: boolean=true;
 
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
@@ -42,6 +43,7 @@ export class LoggedInComponent implements OnInit {
 
   this.restService.getListedAccount("search/accounts/" + this.uuid);
 
+  //TODO: refactor this shit!!!
     const reqHeader = new HttpHeaders({ 
       //'Content-Type': 'multipart/form-data',
       'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
@@ -62,7 +64,10 @@ export class LoggedInComponent implements OnInit {
         console.table(data)
         console.log("image")
         console.table(this.image)
-  
+        //change to the 
+        if (data.size!=0) {
+          this.isDefault=false;
+        }
       });
 
     }
@@ -141,6 +146,9 @@ export class LoggedInComponent implements OnInit {
       }
     )
   }
+
+
+  
 
 
 

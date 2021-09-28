@@ -5,9 +5,12 @@
 <div class="card w-100">
     <ul class="nav justify-content-end m-auto">
 
-        <div>
-
-            <img [src]='image' (click)="openVerticallyCentered(content)"  ngbTooltip="Upload an image"/>
+        <div *ngIf="isDefault">
+            <img  src="assets/images/avatar.png" (click)="openVerticallyCentered(content)"  ngbTooltip="Upload your profile picture!">
+            
+        </div>
+        <div *ngIf="!isDefault">
+            <img [src]='image' (click)="openVerticallyCentered(content)"  ngbTooltip="Upload an image">
         </div>
         
         <div>

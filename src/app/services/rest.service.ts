@@ -29,10 +29,6 @@ export class RestService {
       )
   };
 
-
-
-  
-
   constructor(private http: HttpClient) {
 }
 

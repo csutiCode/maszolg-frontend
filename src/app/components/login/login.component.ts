@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
      this.http.get("http://localhost:8080/auth",  { headers: reqHeader }).subscribe(
       (data:any)=> {
         this.listedAccount = data,
-        this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid, firstLogin: false } })
+        this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid} })
       }
     )
   }

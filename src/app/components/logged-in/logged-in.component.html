@@ -10,25 +10,30 @@
             
         </div>
         <div *ngIf="!isDefault">
-            <img [src]='image' (click)="openVerticallyCentered(content)"  ngbTooltip="Upload an image">
+            <img [src]='image' (click)="openVerticallyCentered(content)"  ngbTooltip="Change your profile image">
         </div>
         
         <div>
             <li class="nav-item">
-                <button class="nav-link active"  (click)="switchToClassifications()"> My Classifications</button>              
+                <button class="nav-link active"  (click)="switchTo('myClassifications')"> My Classifications</button>              
+            </li>
+        </div>
+        <div>
+            <li class="nav-item">
+                <button class="nav-link active" (click)="switchTo('myData')" > My Data</button>              
             </li>
         </div>
 
         <div>
             <li class="nav-item">
-                <button class="nav-link active"  (click)="switchToUpdateForm()">Update my data</button>
+                <button class="nav-link active"  (click)="switchTo('updateForm')">Update my data</button>
               
             </li>
         </div>  
 
         <div>
             <li class="nav-item">
-                <button class="nav-link active"  (click)="logout()"> About me</button>              
+                <button class="nav-link active" (click)="switchTo('news')"> News</button>              
             </li>
         </div>
 
@@ -40,24 +45,21 @@
     </ul>
 
 <div>
-    <div>
+    <div class="card w-80 m-auto" *ngIf="switch==='news'">
         <app-news></app-news>
     </div>
-        
-    <div class="card w-80 m-auto" *ngIf="classifications">
+    <div class="card w-80 m-auto" *ngIf="switch==='myClassifications'">
         <app-my-classifications></app-my-classifications>
     </div>
 
-    <div class="card w-80 m-auto" *ngIf="update">
+    <div class="card w-80 m-auto" *ngIf="switch==='updateForm'">
         <app-update-form></app-update-form>
     </div>
 
+    <div class="card w-80 m-auto" *ngIf="switch==='myData'">
+        <app-update-form></app-update-form>
+    </div>
 </div>
-
-
-
-    
-
 
 
 

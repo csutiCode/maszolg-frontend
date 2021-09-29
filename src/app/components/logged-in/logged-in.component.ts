@@ -14,18 +14,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class LoggedInComponent implements OnInit {
 
-
-  siteName: any = '';
-  update: boolean = false;
-  classifications: boolean = false;
-  status: number = 200;
+  switch: string = "news";
 
   listedAccount:  any;
   message?: string;
   image?: any;
   data?: any;
   isDefault: boolean=true;
-
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
@@ -42,8 +37,11 @@ export class LoggedInComponent implements OnInit {
   ngOnInit(): void {
 
   this.restService.getListedAccount("search/accounts/" + this.uuid);
+  this.getImage();
+  }
 
-  //TODO: refactor this shit!!!
+  getImage() {
+    //TODO: refactor this shit!!!
     const reqHeader = new HttpHeaders({ 
       //'Content-Type': 'multipart/form-data',
       'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
@@ -69,64 +67,44 @@ export class LoggedInComponent implements OnInit {
           this.isDefault=false;
         }
       });
-
-    }
-
-  switchToClassifications() {
-    console.log("Mi a fasz van???")
-    this.classifications=true;
-    this.update=false;
   }
-  switchToUpdateForm() {
-    this.classifications=false;
-    this.update=true;
+  /*
+    +++++++++++++++++++++++++++++++++++++++++++++++++ SWITCH IN LOGGED IN BETWEEN THE COMPONENTS++++++++++++++++++++++++++++++++++++++
+  */
+  //get the value from the toggle
+  switchTo(switchValue: string) {
+    this.switch = switchValue;
+    console.log(this.switch)
+
   }
  
-  logout() {
-    console.log("Logged out.")
-    //delete the cookie from the storage
-    this.cookieService.remove("JWT");
-    //make the nav header visible
-    this.authService.show();
-    //redirect to home
-    this.router.navigate(['/home']);
-  }
-
-
+     /*
+    +++++++++++++++++++++++++++++++++++++++++++++++++ IMAGE UPLOAD ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    */
+  //open the modal
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
   }
-
-
+ 
     //staff to file upload
-    shortLink: string = "";
-    loading: boolean = false; // Flag variable
     file?: any; // Variable to store file
     formData = new FormData();
-  
 
   
-    // On file Select
+    // On file Select in the image upload modal
     onChange(event: any) {
         this.file = event.target.files[0];
     }
   
     // OnClick of button Upload
     onUpload() {
-
-
-        //this.loading = !this.loading;
         console.log(this.file);
-
         this.upload();
-
-        //reload the page!
         window.location.reload();
-
     }
 
+    //send the post request with the image to the backend
     upload() {
-
     //formdata to handle the "pair"
     this.formData.append("file", this.file);
 
@@ -145,6 +123,20 @@ export class LoggedInComponent implements OnInit {
         console.log(this.message)
       }
     )
+  }
+   /*
+    +++++++++++++++++++++++++++++++++++++++++++++++++ LOGOUT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    */
+
+  logout() {
+    console.log("Logged out.")
+    //delete the cookie from the storage
+    this.cookieService.remove("JWT");
+    //make the nav header visible
+    this.authService.show();
+    //redirect to home
+    this.router.navigate(['/home']);
+  
   }
 
 

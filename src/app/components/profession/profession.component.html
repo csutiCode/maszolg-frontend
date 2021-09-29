@@ -1,4 +1,10 @@
-    <div class="mb-3">
+<div *ngIf="areProfessionsSet">
+    <p>Your professions: </p>
+    <span *ngFor="let profession of listedAccount.professions">{{profession.name}}</span>
+    
+</div>
+
+<div class="mb-3" *ngIf="!areProfessionsSet">
     <label for="country">Category</label>
     <select [(ngModel)]="selectedCategory.uuid" (change)="onSelectCategory(selectedCategory.uuid)" class="form-select" aria-label="Default select example">
             <option value="0"> </option>
@@ -13,10 +19,13 @@
     [settings]="dropdownSettings"
     [data]="dropdownList"
     [(ngModel)]="selectedItems">
- 
   </ng-multiselect-dropdown>
+  
+    <div>
+        <button class="w-40 btn btn-sm btn-primary"  (click)="onSubmit()">Elkuld</button>
+    </div>
 </div>
-<div>
-    <button  (click)="onSubmit()">Elkuld</button>
-</div>
+
+
+
 

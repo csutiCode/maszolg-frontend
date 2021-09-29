@@ -80,7 +80,7 @@ export class UpdateFormComponent implements OnInit {
       this.regForm.get("lastName").setValue(this.listedAccount?.lastName);
       this.regForm.get("comment").setValue(this.listedAccount?.comment);
       this.regForm.get("phoneNumber").setValue(this.listedAccount?.phoneNumber);
-      this.regForm.get("city").setValue(this.listedAccount?.address?.city.name);
+      this.regForm.get("city").setValue(this.listedAccount?.address?.city.city_uuid);
       this.regForm.get("postalCode").setValue(this.listedAccount?.address?.postalCode);
       this.regForm.get("street").setValue(this.listedAccount?.address?.street);
       this.regForm.get("number").setValue(this.listedAccount?.address?.number);

@@ -28,6 +28,11 @@ export class ProfessionComponent implements OnInit {
  
   selectedProfessions?: Array<string>;
 
+  listedAccount?: any;
+
+  areProfessionsSet: boolean = false;
+
+
   selectedCategory: any = {
     uuid: 0, name: ''
   };
@@ -42,11 +47,13 @@ export class ProfessionComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private http: HttpClient,
-    public auth: AuthService,
-    private router: Router) {
+    public auth: AuthService) {
     }
 
   ngOnInit(): void {
+    
+    this.getListedAccount(this.uuid);
+
     this.getAllCategories();
 
     this.onSelectCategory(this.selectedCategory.uuid);
@@ -62,9 +69,10 @@ export class ProfessionComponent implements OnInit {
       idField: 'profession_uuid',
       textField: 'name',
       enableCheckAll: false,
-
       itemsShowLimit: 3,
     };
+
+
   }
 
 
@@ -80,6 +88,24 @@ export class ProfessionComponent implements OnInit {
     this.professions = this.categories?.find((category) => category.category_uuid == uuid ).professions;
     this.dropdownList = this.professions; 
     console.table(this.dropdownList)
+  }
+
+  getListedAccount(uuid: string | null) {
+    return this.restService.get("search/account/" + uuid).subscribe(
+      (data:any)=> {
+        this.listedAccount = data,
+        console.log("Professions Component: ");
+        console.log(this.listedAccount)
+
+        console.log("Professions from the listed account: ");
+        console.table(this.listedAccount.professions);
+
+        //undefined
+        console.log(this.listedAccount.professions.length)
+        this.areProfessionsSet = this.listedAccount.professions.length > 0 ? true : false;
+
+      }
+    )
   }
 
 
@@ -101,7 +127,7 @@ export class ProfessionComponent implements OnInit {
     (data:any)=> {
       this.backendMessage = data,
       console.log(this.backendMessage)
-      window.location.reload();
+      //window.location.reload();
 
     })
   }

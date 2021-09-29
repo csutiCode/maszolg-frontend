@@ -39,8 +39,6 @@
         </div>
     </div>
 
-
-
     <div class="mb-3" *ngIf="enabled">
         <label for="country">Country</label>
         <select [(ngModel)]="selectedCountry.uuid" formControlName="country" (change)="onSelectCountry(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
@@ -49,7 +47,7 @@
                 {{country.name}}</option>
         </select>
     </div>   
-    <div class="mb-3" *ngIf="selectedCountry.uuid!=0">
+    <div class="mb-3" *ngIf="selectedCountry.uuid!=0 || enabled">
         <label for ="city">City</label>
         <select [(ngModel)]="selectedCity" formControlName="city" class="form-select" aria-label="Default select example">
                 <option value="0"> </option>
@@ -58,6 +56,7 @@
                 </option>
         </select>       
     </div>
+
     <div *ngIf="selectedCity.uuid!=0">
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">PostalCode</label>
@@ -77,20 +76,16 @@
               <input type="email" class="form-control" id="inputEmail3" placeholder=""  formControlName="number">
             </div>
         </div>
-
-
-
     </div>
     
 
-   
 
     <div *ngIf="enabled">
-      <button type="submit"  type="submit">Elkuld</button>
+      <button class="w-20 btn btn-sm btn-primary"  type="submit">Send</button>
     </div>
 
   </form>
-  <div *ngIf="!enabled">
-    <button (click)="enableEdit()"  ngbTooltip="Enable to edit your data!">Enable edit</button>
-  </div>
+    <div *ngIf="!enabled">
+      <button class="w-20 btn btn-sm btn-primary" (click)="enableEdit()"  ngbTooltip="Enable to edit your data!">Enable edit</button>
+    </div>
 </div>

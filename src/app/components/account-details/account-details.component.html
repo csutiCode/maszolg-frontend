@@ -7,9 +7,13 @@
     <h4><b>{{account.comment}}</b></h4>
     <p> <span *ngFor="let profession of account.professions">{{profession.name}}</span></p>
   </div>
-  <div class="mb-3  m-left">
+
+  <div class="mb-3  m-left" *ngIf="!isCookieSet">
     <button  class="w-100 btn btn-sm btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
   </div>
+
+  
+  
 </div>
 
 
@@ -38,6 +42,9 @@
               </tr>
             </table>
           </div>
+          <div class="card m-auto" *ngIf="isCookieSet && !classification.commented">
+            <button (click)="openComment(comment, classification.classificationUuid)">React</button>
+          </div>
    
         </div>
        </div>
@@ -58,6 +65,27 @@
   </div>
       <div class="modal-body">
         <app-classification></app-classification>
+  </div>
+  
+</ng-template>
+
+
+<ng-template #comment let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Komment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">×</span>
+    </button>
+  </div>
+  
+  <div class="modal-body">
+    <label for="exampleFormControlTextarea1">Komment</label>
+    <textarea  [(ngModel)]="commentOnClassification"  value="comcommentOnClassificationment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="close" (click)="onComment(commentOnClassification)" (click)="modal.dismiss('Cross click')">Elküld</button>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')">Megse</button>
+
   </div>
   
 </ng-template>

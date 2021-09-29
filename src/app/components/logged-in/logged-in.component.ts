@@ -77,10 +77,10 @@ export class LoggedInComponent implements OnInit {
     console.log(this.switch)
 
   }
- 
-     /*
-    +++++++++++++++++++++++++++++++++++++++++++++++++ IMAGE UPLOAD ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    */
+
+  /*
+  +++++++++++++++++++++++++++++++++++++++++++++++++ IMAGE UPLOAD ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  */
   //open the modal
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });

@@ -24,7 +24,7 @@ export class MyClassificationsComponent implements OnInit {
   commentOnClassificationDto: any ={
     classificationUuid: '',
     comment: ''
-}
+  }
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 

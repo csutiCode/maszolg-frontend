@@ -23,6 +23,24 @@ export class AccountDetailsComponent implements OnInit {
 
   data?: any;
 
+  response: any;
+
+  //if a cookie is present, the user is logged in 
+  isCookieSet: boolean = this.cookieService.get("JWT") ? true : false;
+
+  commentOnClassificationDto: any ={
+    classificationUuid: '',
+    comment: ''
+  }
+
+  classificationUuid: string = '';
+
+  token: string = this.cookieService.get("JWT");
+
+  commentOnClassification:string ='';
+
+
+
 
   constructor(private restService: RestService, 
     private route: ActivatedRoute,
@@ -107,6 +125,47 @@ export class AccountDetailsComponent implements OnInit {
 
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });
+  }
+
+
+  openComment(content: any, uuid: string) {
+    console.log("UUID:")
+    this.classificationUuid = uuid;
+    console.log(uuid)
+    this.modalService.open(content, { centered: true });
+    console.log("is commented?")
+  }
+
+  
+  onComment(comment:string) {
+    
+    this.commentOnClassificationDto.classificationUuid = this.classificationUuid;
+    this.commentOnClassificationDto.comment = comment;
+
+    console.table(this.commentOnClassificationDto)
+    console.log("TOKEN:")
+    console.log(this.token)
+    
+    //TODO: send a post request to the URL with the comment of the classification
+    var reqHeader = new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.token,
+      'Access-Control-Allow-Credentials': 'true',
+      "Access-Control-Allow-Origin": "http://localhost:8080/*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+   });
+    //TODO: I need to get the commentOnClassification UUID somehow from the template
+     this.http.post("http://localhost:8080/auth/save/commentOnClassification", this.commentOnClassificationDto,  { headers: reqHeader }).subscribe(
+      (data:any)=> {
+        this.response = data,
+        console.log(this.response)
+        
+      }
+     )
+    //reload the page
+    window.location.reload();
+
   }
 
 }

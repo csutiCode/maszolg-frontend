@@ -44,9 +44,7 @@
     <div class="form-row align-items-center">
       <div class="col-auto my-1">
         <label class="mr-sm-2" for="inlineFormCustomSelect">Rating</label>
-
         <ngb-rating formControlName="rating" [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
-      
       </div>
   </div>
     <div *ngIf="classificationForm.controls['rating'].invalid  && classificationForm.controls['rating'].touched"
@@ -84,7 +82,7 @@
     <div>
       <p>Ooops, something went wrong!</p>
     </div>
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" >Back</button>
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" (click)="reloadPage()" >Back</button>
   </div>
 </ng-template>
 

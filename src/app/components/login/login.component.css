@@ -9,3 +9,13 @@ form {
 .text-center {
     text-align: center!important;
 }
+
+.form-floating {
+    padding: 10px 10px 10px 10px;
+}
+
+button {
+    padding: 10px 10px 10px 10px;
+}
+
+

@@ -1,6 +1,6 @@
-<div class="card  w-40 m-auto" style="width: 18rem;">
+<div class="card  w-50 m-auto" style="width: 18rem;">
 
-<div class="mb-3 m-auto" >
+<div class="class= w-75 m-auto" >
     <label for="country">Country</label>
     <select [(ngModel)]="selectedCountry.uuid" (change)="onSelect(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
             <option value="0"> </option>
@@ -8,7 +8,7 @@
             {{country.name}}</option>
     </select>
 </div>
-<div class="mb-3 m-auto" *ngIf="selectedCountry.uuid!=0">
+<div class="w-75 m-auto" *ngIf="selectedCountry.uuid!=0">
     <label for ="city">City</label>
     <select [(ngModel)]="selectedCity" class="form-select" aria-label="Default select example">
             <option *ngFor="let city of cities" [value]="city.name">
@@ -16,7 +16,7 @@
             </option>
     </select>        
 </div>
-    <div class="mb-3 m-auto" *ngIf="selectedCity.uuid!=0">
+    <div class="class=w-75 m-auto" *ngIf="selectedCity.uuid!=0">
         <button  class="w-100 btn btn-lg btn-primary" (click)="onSubmit(selectedCity)">Keress</button>
     </div>
 </div>

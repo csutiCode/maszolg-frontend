@@ -65,45 +65,23 @@
 <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Upload image</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
     </div>
         <div class="modal-body">
-            <div class="text-center">
-                <input class="form-control" type="file" 
+            <div class="text-center m-auto">
+                <input class="form-control  m-auto padding-bottom" type="file" 
                         (change)="onChange($event)">
-              
-                <button (click)="onUpload()" (click)="modal.close('Close click')"
-                    class="btn btn-success">
-                    Upload
-                </button>
-            </div>
-              
-            <!-- Shareable short link of  uoloaded file -->
-            <div class="container text-center jumbotron"
-                *ngIf="shortLink">
-                <h2> Visit Here</h2>
-            </div>
-              
-            <!--Flag variable is used here-->
-            <div class="container" *ngIf="loading">
-                <h3>Loading ...</h3>
+                <div class="m-auto">
+                    <button (click)="onUpload()" (click)="modal.close('Close click')"
+                    class="btn btn-primary  m-auto ">Upload</button>
+                    <button type="button" class="btn btn-primary  m-auto" (click)="modal.close('Close click')" >Back</button>
+
+                </div>
+             
             </div>
           </div>
           <div>
     </div>
-     
-    <div class="modal-footer" *ngIf="status==200">     
-      <button type="button" class="btn btn-light" (click)="modal.close('Close click')" >OK</button>
-    </div>
-  
-    <div class="modal-footer" *ngIf="status!=200">
-      <div>
-        <p>Ooops, something went wrong!</p>
-      </div>
-      <button type="button" class="btn btn-light" (click)="modal.close('Close click')" >Back</button>
-    </div>
+
   </ng-template>
   
   

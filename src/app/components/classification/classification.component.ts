@@ -75,6 +75,8 @@ export class ClassificationComponent implements OnInit {
             console.table(error),
           this.response = error.error,
           this.status = error.status
+          //reload the page and close the classification modal
+          
         }
   
     )

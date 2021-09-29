@@ -13,11 +13,7 @@
             <img [src]='image' (click)="openVerticallyCentered(content)"  ngbTooltip="Change your profile image">
         </div>
         
-        <div>
-            <li class="nav-item">
-                <button class="nav-link active"  (click)="switchTo('myClassifications')"> My Classifications</button>              
-            </li>
-        </div>
+       
         <div>
             <li class="nav-item">
                 <button class="nav-link active" (click)="switchTo('myData')" > My Data</button>              
@@ -48,9 +44,7 @@
     <div class="card w-80 m-auto" *ngIf="switch==='news'">
         <app-news></app-news>
     </div>
-    <div class="card w-80 m-auto" *ngIf="switch==='myClassifications'">
-        <app-my-classifications></app-my-classifications>
-    </div>
+   
 
     <div class="card w-80 m-auto" *ngIf="switch==='updateForm'">
         <app-update-form></app-update-form>

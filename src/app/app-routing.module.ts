@@ -6,7 +6,6 @@ import { HomeComponent } from './components/home/home.component';
 import { ListComponent } from './components/list/list.component';
 import { LoggedInComponent } from './components/logged-in/logged-in.component';
 import { LoginComponent } from './components/login/login.component';
-import { MyClassificationsComponent } from './components/my-classifications/my-classifications.component';
 import { RegComponent } from './components/reg/reg.component';
 import { SearchComponent } from './components/search/search.component';
 import { UpdateFormComponent } from './components/update-form/update-form.component';
@@ -22,12 +21,7 @@ const routes: Routes = [
   {path: 'account', component: AccountDetailsComponent},
   {path: 'loggedIn', component: LoggedInComponent,
         children: [
-          {
-              path: 'myClassifications',
-              outlet: '',
-              component: MyClassificationsComponent,
-              pathMatch: 'full'
-          },
+         
           {
               path: '',
               outlet: 'updateForm',

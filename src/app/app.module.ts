@@ -16,7 +16,6 @@ import { ClassificationComponent } from './components/classification/classificat
 import { UpdateFormComponent } from './components/update-form/update-form.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoggedInComponent } from './components/logged-in/logged-in.component';
-import { MyClassificationsComponent } from './components/my-classifications/my-classifications.component';
 import { CookieModule, CookieService } from 'ngx-cookie';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
 import { ProfessionComponent } from './components/profession/profession.component';
@@ -41,7 +40,6 @@ import { NewsComponent } from './components/news/news.component';
     ClassificationComponent,
     UpdateFormComponent,
     LoggedInComponent,
-    MyClassificationsComponent,
     ProfessionComponent,
     NewsComponent,
   ],

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  ActivatedRoute, Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { FormBuilder} from '@angular/forms';
 import { Profession } from '../listedAccount';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
@@ -49,6 +48,7 @@ export class ProfessionComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllCategories();
+
     this.onSelectCategory(this.selectedCategory.uuid);
 
     this.dropdownList = [
@@ -61,8 +61,7 @@ export class ProfessionComponent implements OnInit {
       singleSelection: false,
       idField: 'profession_uuid',
       textField: 'name',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
+      enableCheckAll: false,
       itemsShowLimit: 3,
     };
   }
@@ -109,9 +108,6 @@ export class ProfessionComponent implements OnInit {
     onItemSelect(item: any) {
       console.log(item);
     }
-    onSelectAll(items: any) {
-      console.log(items);
-    }
-
+   
     
 }

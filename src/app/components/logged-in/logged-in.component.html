@@ -40,11 +40,14 @@
         </div>
     </ul>
 
+<!--
+    nested components
+-->
+
 <div>
     <div class="card w-80 m-auto" *ngIf="switch==='news'">
         <app-news></app-news>
     </div>
-   
 
     <div class="card w-80 m-auto" *ngIf="switch==='updateForm'">
         <app-update-form></app-update-form>
@@ -55,7 +58,9 @@
     </div>
 </div>
 
-
+<!--
+    modal to upload the profile image
+-->
 
 
 <ng-template #content let-modal>

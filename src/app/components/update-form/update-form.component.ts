@@ -1,10 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import {  ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { RestService } from 'src/app/services/rest.service';
-import { ListedAccount } from '../listedAccount';
 
 @Component({
   selector: 'app-update-form',
@@ -23,12 +22,10 @@ export class UpdateFormComponent implements OnInit {
   
   listedAccount?: any;
 
-
   countries: Array<any> | undefined;
 
   cities: any;
 
- 
 
   selectedCountry: any = {
     uuid: 0, name: ''};
@@ -36,11 +33,11 @@ export class UpdateFormComponent implements OnInit {
   selectedCity: any = {
     uuid: 0, name: ''};
 
-  
+  backendMessage: any;
 
-    backendMessage: any;
+  token?: string;
 
-    token?: string;
+  enable: boolean=false;
 
   constructor( 
                 private restService: RestService, 
@@ -74,20 +71,53 @@ export class UpdateFormComponent implements OnInit {
 
     });
 
-      this.regForm.get("email").setValue(this.listedAccount?.email);
 
-      
+      //set the values from the listedAccount and set them read only if they are already set
+      //
+      this.regForm.get("email").setValue(this.listedAccount?.email);      
       this.regForm.get("firstName").setValue(this.listedAccount?.firstName);
       this.regForm.get("lastName").setValue(this.listedAccount?.lastName);
       this.regForm.get("comment").setValue(this.listedAccount?.comment);
       this.regForm.get("phoneNumber").setValue(this.listedAccount?.phoneNumber);
+
       this.regForm.get("city").setValue(this.listedAccount?.address?.city.name);
+
       this.regForm.get("postalCode").setValue(this.listedAccount?.address?.postalCode);
       this.regForm.get("street").setValue(this.listedAccount?.address?.street);
       this.regForm.get("number").setValue(this.listedAccount?.address?.number);
       
 
+      if (this.regForm.get("email")!='') {
+        this.regForm.get("email").disable();
+      }
+      if (this.regForm.get("firstName")!='') {
+        this.regForm.get("firstName").disable();
+      }
+      if (this.regForm.get("lastName")!='') {
+        this.regForm.get("lastName").disable();
+      }
+      if (this.regForm.get("comment")!='') {
+        this.regForm.get("comment").disable();
+      }
+      if (this.regForm.get("phoneNumber")!='') {
+        this.regForm.get("phoneNumber").disable();
+      }
+      if (this.regForm.get("postalCode")!='') {
+        this.regForm.get("postalCode").disable();
+      }
+      if (this.regForm.get("street")!='') {
+        this.regForm.get("street").disable();
+      }
+      if (this.regForm.get("number")!='') {
+        this.regForm.get("number").disable();
+      }
+      if (this.regForm.get("city")!='') {
+        this.enable = true;
+      }
+      
     }
+
+
     getListedAccount(uuid: string | null) {
       return this.restService.get("search/account/" + uuid).subscribe(
         (data:any)=> {
@@ -146,6 +176,19 @@ export class UpdateFormComponent implements OnInit {
       }
      )
       
+  }
+
+  
+  enableEdit() {
+    this.enable = false;
+    this.regForm.get("firstName").enable();  
+    this.regForm.get("lastName").enable();
+    this.regForm.get("comment").enable();
+    this.regForm.get("phoneNumber").enable();
+    this.regForm.get("postalCode").enable();
+    this.regForm.get("street").enable();
+    this.regForm.get("number").enable();
+
   }
 
 

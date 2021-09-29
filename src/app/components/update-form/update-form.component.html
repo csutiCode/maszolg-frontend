@@ -41,7 +41,7 @@
 
 
 
-    <div class="mb-3">
+    <div class="mb-3" *ngIf="!enable">
         <label for="country">Country</label>
         <select [(ngModel)]="selectedCountry.uuid" formControlName="country" (change)="onSelectCountry(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
                 <option value="0"> </option>
@@ -78,8 +78,11 @@
             </div>
         </div>
     </div>
+    <div *ngIf="!enable">
+      <button  type="submit">Elkuld</button>
+    </div>
     <div>
-        <button  type="submit">Elkuld</button>
+        <button (click)="enableEdit()" type="submit">Enable edit</button>
     </div>
   </form>
 </div>

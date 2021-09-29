@@ -13,3 +13,10 @@
   .container {
     padding: 2px 16px;
   }
+
+  img {
+    border-radius: 8px;
+    width: 180px;
+    float: right;
+
+  }

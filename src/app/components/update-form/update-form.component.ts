@@ -37,7 +37,8 @@ export class UpdateFormComponent implements OnInit {
 
   token?: string;
 
-  enable: boolean=false;
+  enabled: boolean = true;
+
 
   constructor( 
                 private restService: RestService, 
@@ -79,17 +80,15 @@ export class UpdateFormComponent implements OnInit {
       this.regForm.get("lastName").setValue(this.listedAccount?.lastName);
       this.regForm.get("comment").setValue(this.listedAccount?.comment);
       this.regForm.get("phoneNumber").setValue(this.listedAccount?.phoneNumber);
-
       this.regForm.get("city").setValue(this.listedAccount?.address?.city.name);
-
       this.regForm.get("postalCode").setValue(this.listedAccount?.address?.postalCode);
       this.regForm.get("street").setValue(this.listedAccount?.address?.street);
       this.regForm.get("number").setValue(this.listedAccount?.address?.number);
       
-
-      if (this.regForm.get("email")!='') {
-        this.regForm.get("email").disable();
-      }
+     
+    
+      //disable the edit of the fields, if they are already set
+     
       if (this.regForm.get("firstName")!='') {
         this.regForm.get("firstName").disable();
       }
@@ -111,9 +110,13 @@ export class UpdateFormComponent implements OnInit {
       if (this.regForm.get("number")!='') {
         this.regForm.get("number").disable();
       }
+      
       if (this.regForm.get("city")!='') {
-        this.enable = true;
+        this.enabled = false;
       }
+        
+      
+
       
     }
 
@@ -175,12 +178,12 @@ export class UpdateFormComponent implements OnInit {
 
       }
      )
-      
   }
 
-  
+
   enableEdit() {
-    this.enable = false;
+
+    this.enabled = true;
     this.regForm.get("firstName").enable();  
     this.regForm.get("lastName").enable();
     this.regForm.get("comment").enable();

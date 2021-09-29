@@ -62,6 +62,7 @@ export class ProfessionComponent implements OnInit {
       idField: 'profession_uuid',
       textField: 'name',
       enableCheckAll: false,
+
       itemsShowLimit: 3,
     };
   }

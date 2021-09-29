@@ -22,6 +22,13 @@
 
         <div>
             <li class="nav-item">
+                <button class="nav-link active"  (click)="switchTo('profession')">Profession</button>
+              
+            </li>
+        </div>  
+
+        <div>
+            <li class="nav-item">
                 <button class="nav-link active"  (click)="switchTo('updateForm')">Update my data</button>
               
             </li>
@@ -45,6 +52,7 @@
 -->
 
 <div>
+
     <div class="card w-80 m-auto" *ngIf="switch==='news'">
         <app-news></app-news>
     </div>
@@ -56,6 +64,10 @@
     <div class="card w-80 m-auto" *ngIf="switch==='myData'">
         <app-account-details></app-account-details>
     </div>
+    <div class="card w-80 m-auto" *ngIf="switch==='profession'">
+        <app-profession></app-profession>
+    </div>
+    
 </div>
 
 <!--

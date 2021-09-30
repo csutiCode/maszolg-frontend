@@ -5,6 +5,13 @@
         <label  class="col-sm-2 col-form-label">First name</label>
         <div class="col-sm-10">
           <input class="form-control" formControlName="firstName">  
+         </div>
+         <div *ngIf="regForm.controls['firstName'].invalid  && regForm.controls['firstName'].touched">
+            <div *ngIf="regForm.controls['firstName'].errors.required">
+              <small class="text danger" >
+                First name is required.
+              </small>
+            </div>
         </div>
     </div>
 

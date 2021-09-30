@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component,  OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import {  ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { RestService } from 'src/app/services/rest.service';
@@ -59,7 +59,7 @@ export class UpdateFormComponent implements OnInit {
 
     createForm() {
       this.regForm = new FormGroup({
-        firstName: new FormControl(''),
+        firstName: new FormControl('', Validators.required),
         lastName: new FormControl(''),
         email: new FormControl(''),
         comment: new FormControl(''),

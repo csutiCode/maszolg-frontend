@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Component, Inject, OnInit,  } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import {  NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { createDateOfBirthValidator, createPasswordStrengthValidator } from '../utils/formValidators';
 
 @Component({
   selector: 'app-reg',
@@ -44,9 +45,9 @@ export class RegComponent implements OnInit {
   createForm() {
     this.registrationForm = this.fb.group({
       email: new FormControl ('', [Validators.required, Validators.email]),
-      password: new FormControl ('', Validators.required),
+      password: new FormControl ('', [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]),
       confirmedPassword: new FormControl ('', Validators.required),
-      dateOfBirth: new FormControl('', Validators.required)
+      dateOfBirth: new FormControl('', [Validators.required, createDateOfBirthValidator()])
     }); 
   }
 

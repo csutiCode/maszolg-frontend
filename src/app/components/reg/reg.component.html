@@ -7,44 +7,75 @@
       <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
       <label for="floatingInput">E-Mail</label>
     </div>
-    <div *ngIf="registrationForm.controls['email'].invalid  && registrationForm.controls['email'].touched"
-    class="alert alert-danger">
+    <div *ngIf="registrationForm.controls['email'].invalid  && registrationForm.controls['email'].touched">
     
         <div *ngIf="registrationForm.controls['email'].errors.required">
-          Email is required.
+          <small class="text danger" >
+            E-Mail is required.
+          </small>
          </div>
          <div *ngIf="registrationForm.controls['email'].errors.email">
-         Invalid email format.
+          <small class="text danger" >
+            Invalid E-mail.
+          </small>
          </div>
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
       <label for="floatingPassword">Jelszó</label>
     </div>
-    <div *ngIf="registrationForm.controls['password'].invalid  && registrationForm.controls['password'].touched"
-    class="alert alert-danger">
+      <div class="field-message" *ngIf="registrationForm.controls['password'].errors.passwordStrength">
+        <small class="text danger" >
+          Password not strong enough.
+        </small>
+      </div> 
+       
+           <div *ngIf="registrationForm.controls['password'].invalid  && registrationForm.controls['password'].touched"
+    >
         <div *ngIf="registrationForm.controls['password'].errors.required">
-          Password is required.
+          <small class="text danger" >
+            Password is required.
+          </small>
          </div>
     </div>
+     
+ 
     <div class="form-floating">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="confirmedPassword">
         <label for="floatingPassword">Jelszó</label>
       </div>
+
+
       <div *ngIf="registrationForm.controls['confirmedPassword'].invalid  && registrationForm.controls['confirmedPassword'].touched"
-      class="alert alert-danger">
+     >
           <div *ngIf="registrationForm.controls['confirmedPassword'].errors.required">
-            Password confirmation is required.
+            <small class="text danger" >
+              Password confirmation is required.
+            </small>
+            
            </div>
       </div>
+
+      
+
       <div class="form-floating">
           <div class="input-group">
             <input class="form-control" placeholder="yyyy-mm-dd"
-                    ngbDatepicker #d="ngbDatepicker"   formControlName="dateOfBirth" >
-            
+                    ngbDatepicker #d="ngbDatepicker"   formControlName="dateOfBirth"  >
+
               <button class="btn btn-outline-secondary calendar"  (click)="d.toggle()" type="button"></button>
-            
+              
         </div>
+        <div *ngIf="registrationForm.controls['dateOfBirth'].errors.dateOfBirth"
+          class="alert alert-danger">
+            <div *ngIf="registrationForm.controls['dateOfBirth'].errors.dateOfBirth">
+              to old
+            </div>
+    </div>
+
+      
+        
+      
       </div>
       <hr/>
 

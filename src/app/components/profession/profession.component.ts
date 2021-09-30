@@ -32,6 +32,8 @@ export class ProfessionComponent implements OnInit {
 
   areProfessionsSet: boolean = false;
 
+  edit?: boolean;
+
 
   selectedCategory: any = {
     uuid: 0, name: ''
@@ -71,8 +73,6 @@ export class ProfessionComponent implements OnInit {
       enableCheckAll: false,
       itemsShowLimit: 3,
     };
-
-
   }
 
 
@@ -103,7 +103,7 @@ export class ProfessionComponent implements OnInit {
         //undefined
         console.log(this.listedAccount.professions.length)
         this.areProfessionsSet = this.listedAccount.professions.length > 0 ? true : false;
-
+        this.edit = this.listedAccount.professions.length > 0 ? false : true;
       }
     )
   }
@@ -134,6 +134,13 @@ export class ProfessionComponent implements OnInit {
 
     onItemSelect(item: any) {
       console.log(item);
+    }
+
+
+
+    enableEdit() {
+      this.edit = true;
+      console.log(this.edit)
     }
    
     

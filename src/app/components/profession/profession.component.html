@@ -1,31 +1,44 @@
+
+    
 <div *ngIf="areProfessionsSet">
     <p>Your professions: </p>
     <span *ngFor="let profession of listedAccount.professions">{{profession.name}}</span>
     
+    <div *ngIf="!edit">
+        <button class="w-40 btn btn-sm btn-primary"  (click)="enableEdit()">Modidy</button>
+    </div>
+
+
 </div>
 
-<div class="mb-3" *ngIf="!areProfessionsSet">
-    <label for="country">Category</label>
-    <select [(ngModel)]="selectedCategory.uuid" (change)="onSelectCategory(selectedCategory.uuid)" class="form-select" aria-label="Default select example">
-            <option value="0"> </option>
-            <option *ngFor="let category of categories" [value]="category.category_uuid">
-            {{category.name}}</option>
-    </select>
-</div>   
 
-<div class="mb-3" *ngIf="selectedCategory.uuid!=0">
-    <ng-multiselect-dropdown
-    [placeholder]="''"
-    [settings]="dropdownSettings"
-    [data]="dropdownList"
-    [(ngModel)]="selectedItems">
-  </ng-multiselect-dropdown>
+
+
+<div *ngIf="edit">
+    <div class="mb-3" >
+        <label for="country">Category</label>
+        <select [(ngModel)]="selectedCategory.uuid" (change)="onSelectCategory(selectedCategory.uuid)" class="form-select" aria-label="Default select example">
+                <option value="0"> </option>
+                <option *ngFor="let category of categories" [value]="category.category_uuid">
+                {{category.name}}</option>
+        </select>
+    </div>   
+    
+    <div class="mb-3" *ngIf="selectedCategory.uuid!=0">
+        <ng-multiselect-dropdown
+        [placeholder]="''"
+        [settings]="dropdownSettings"
+        [data]="dropdownList"
+        [(ngModel)]="selectedItems">
+      </ng-multiselect-dropdown>
+    
+      
+</div>
+
+  
   
     <div>
         <button class="w-40 btn btn-sm btn-primary"  (click)="onSubmit()">Elkuld</button>
     </div>
 </div>
-
-
-
 

@@ -68,7 +68,18 @@ export class UpdateFormComponent implements OnInit {
         city:  new FormControl(''),
         postalCode:  new FormControl(''),
         street:  new FormControl(''),
-        number:  new FormControl('')
+        number:  new FormControl(''),
+
+        cityFromBackend: new FormControl(''),
+        postalCodeFromBackend: new FormControl(''),
+        streetFromBackend: new FormControl(''),
+        numberFromBackend: new FormControl('')
+
+
+
+
+
+
 
     });
 
@@ -84,8 +95,13 @@ export class UpdateFormComponent implements OnInit {
       this.regForm.get("postalCode").setValue(this.listedAccount?.address?.postalCode);
       this.regForm.get("street").setValue(this.listedAccount?.address?.street);
       this.regForm.get("number").setValue(this.listedAccount?.address?.number);
-      
-     
+
+      this.regForm.get("cityFromBackend").setValue(this.listedAccount?.address?.city.name);
+      this.regForm.get("postalCodeFromBackend").setValue(this.listedAccount?.address?.postalCode);
+      this.regForm.get("streetFromBackend").setValue(this.listedAccount?.address?.street);
+      this.regForm.get("numberFromBackend").setValue(this.listedAccount?.address?.number);
+
+
     
       //disable the edit of the fields, if they are already set
      
@@ -110,6 +126,7 @@ export class UpdateFormComponent implements OnInit {
       if (this.regForm.get("number")!='') {
         this.regForm.get("number").disable();
       }
+     
       
       if (this.regForm.get("city")!='') {
         this.enabled = false;

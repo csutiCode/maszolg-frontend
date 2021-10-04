@@ -2,51 +2,51 @@
     in this component we can update our data as an account and check out our classifications and write comment on our classifications
 -->
 
-<div class="card w-75 m-auto">
-    <ul class="nav justify-content-end m-auto">
-
-        <div *ngIf="isDefault">
+<div class="card w-75">
+    
+    <ul class="nav-left ">
+        <div class="image" *ngIf="isDefault" >
             <img  src="assets/images/avatar.png" (click)="openVerticallyCentered(content)"  ngbTooltip="Upload your profile picture!">
-            
-        </div>
-        <div *ngIf="!isDefault">
-            <img [src]='image' (click)="openVerticallyCentered(content)"  ngbTooltip="Change your profile image">
         </div>
         
-       
-        <div>
+        <div  class="image" *ngIf="!isDefault">
+            <img [src]='image' (click)="openVerticallyCentered(content)"  ngbTooltip="Change your profile image">
+        </div>
+    </ul>
+
+    <ul class="nav nav-right justify-content-end">
+        <div >
             <li class="nav-item">
-                <button class="nav-link active" (click)="switchTo('myData')" > My Data</button>              
+                <button class="w-100 btn btn-lg btn-primary" (click)="switchTo('myData')" > My Data</button>              
             </li>
         </div>
-
         <div>
             <li class="nav-item">
-                <button class="nav-link active"  (click)="switchTo('profession')">Profession</button>
-              
+                <button class="w-100 btn btn-lg btn-primary"  (click)="switchTo('profession')">Profession</button>
             </li>
         </div>  
 
         <div>
             <li class="nav-item">
-                <button class="nav-link active"  (click)="switchTo('updateForm')">Update my data</button>
-              
+                <button class="w-100 btn btn-lg btn-primary"  (click)="switchTo('updateForm')">Update my data</button>
             </li>
         </div>  
 
         <div>
             <li class="nav-item">
-                <button class="nav-link active" (click)="switchTo('news')"> News</button>              
+                <button class="w-100 btn btn-lg btn-primary" (click)="switchTo('news')"> News</button>              
             </li>
         </div>
 
         <div>
             <li class="nav-item">
-                <button class="nav-link active"  (click)="logout()"> Logout</button>              
+                <button class="w-100 btn btn-lg btn-primary"  (click)="logout()"> Logout</button>              
             </li>
         </div>
     </ul>
 
+    
+       
 <!--
     nested components
 -->

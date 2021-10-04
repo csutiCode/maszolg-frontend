@@ -179,11 +179,10 @@
           </div>
         </div>
     </div>
-    
-
 
     <div *ngIf="enabled">
-      <button class="w-20 btn btn-sm btn-primary"  [disabled]="!regForm.valid"  type="submit">Send</button>
+      <button class="w-20 btn btn-sm btn-primary" ngbTooltip="You need to fill all of the fields to send it"
+         type="submit">Send</button>
     </div>
 
   </form>

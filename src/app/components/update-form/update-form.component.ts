@@ -60,15 +60,15 @@ export class UpdateFormComponent implements OnInit {
     createForm() {
       this.regForm = new FormGroup({
         firstName: new FormControl('', Validators.required),
-        lastName: new FormControl(''),
+        lastName: new FormControl('', Validators.required),
         email: new FormControl(''),
         comment: new FormControl(''),
-        phoneNumber: new FormControl(''),
-        country: new FormControl(''),
-        city:  new FormControl(''),
-        postalCode:  new FormControl(''),
-        street:  new FormControl(''),
-        number:  new FormControl(''),
+        phoneNumber: new FormControl('', Validators.required),
+        country: new FormControl('', Validators.required),
+        city:  new FormControl('', Validators.required),
+        postalCode:  new FormControl('', Validators.required),
+        street:  new FormControl('', Validators.required),
+        number:  new FormControl('', Validators.required),
 
         cityFromBackend: new FormControl(''),
         postalCodeFromBackend: new FormControl(''),

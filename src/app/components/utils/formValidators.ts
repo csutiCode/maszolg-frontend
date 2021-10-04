@@ -28,11 +28,14 @@ export function createDateOfBirthValidator(): ValidatorFn {
         }
 
         let min = new Date("1950-01-01");
+
         let current = new Date();
+        
         //let max = current.setMonth(current.getMonth() - 218);
 
         const dateOfBirthValid = control.value >= min // || control.value <= max
         console.log(value)
+        console.log(min)
         return !dateOfBirthValid ? {dateOfBirth:true}: null;
     }
 

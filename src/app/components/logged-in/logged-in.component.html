@@ -4,7 +4,7 @@
 
 <div class="card w-75">
     
-    <ul class="nav-left ">
+    <ul class="nav nav-right justify-content-end">
         <div class="image" *ngIf="isDefault" >
             <img  src="assets/images/avatar.png" (click)="openVerticallyCentered(content)"  ngbTooltip="Upload your profile picture!">
         </div>
@@ -12,12 +12,12 @@
         <div  class="image" *ngIf="!isDefault">
             <img [src]='image' (click)="openVerticallyCentered(content)"  ngbTooltip="Change your profile image">
         </div>
-    </ul>
+    
 
-    <ul class="nav nav-right justify-content-end">
+    
         <div >
             <li class="nav-item">
-                <button class="w-100 btn btn-lg btn-primary" (click)="switchTo('myData')" > My Data</button>              
+                <button class="w-100 btn btn-lg btn-primary " (click)="switchTo('myData')" > My Data</button>              
             </li>
         </div>
         <div>
@@ -51,7 +51,7 @@
     nested components
 -->
 
-<div>
+<div class="forRem">
 
     <div class="card w-80 m-auto" *ngIf="switch==='news'">
         <app-news></app-news>

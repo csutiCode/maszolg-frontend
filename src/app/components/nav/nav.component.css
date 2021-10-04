@@ -1,7 +1,13 @@
-nav-item {
-    font-family: "Lucida Console", "Courier New", monospace;
-    display: inline;
-}
+
 div {
     display: inline;
+}
+
+a {
+    font-family: "Lucida Console", "Courier New", monospace;
+    display: inline;
+    font-style: normal;
+    color: black;
+    font-size: large;
+
 }

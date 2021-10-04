@@ -6,11 +6,19 @@
     float: none; /* Added */
     margin-bottom: 10px; /* Added */
     margin-top: 5%;
+    padding: 1rem;
     }
 
+.image {
+    padding-right: 36rem;
+}
+
 img {
+   
     border-radius: 8px;
-    width: 120px;
+    width: 6rem;
+    box-shadow: 0 20px 20px 0 rgba(0,0,0,0.2);
+    
 }
 
 .img:hover {
@@ -19,7 +27,6 @@ img {
 
 .nav-item {
     margin: 12px 12px 12px 12px;
-
 }
 .nav-left {
     float: left;
@@ -27,4 +34,12 @@ img {
 .nav-right {
     float: right;
 }
+
+.forRem {
+    padding: 1rem;
+}
+
+
+
+
 

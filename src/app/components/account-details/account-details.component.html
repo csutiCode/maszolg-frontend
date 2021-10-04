@@ -1,4 +1,4 @@
-<div>
+<div class="card w-50 m-auto">
   <div class="container">
 
     <img [src]='image' alt="Avatar" style="width: 16rem">
@@ -18,10 +18,18 @@
     <h4>Professions:</h4>
     <p> <span *ngFor="let profession of account.professions">{{profession.name}}</span></p>
 
+    <div *ngIf="account.address.workAddress">
+      <h4 >Address:</h4>
+    <p>{{account.address.postalCode}}</p>
+    <p>{{account.address.city.cityName}}</p>
+    <p>{{account.address.number}}</p>
+
+    </div>
+    
   </div>
 
-  <div class="mb-3  m-left" *ngIf="!isCookieSet">
-    <button  class="w-100 btn btn-sm btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
+  <div class="mb-3  m-auto" *ngIf="!isCookieSet">
+    <button  class=" btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
   </div>
 
   
@@ -30,7 +38,7 @@
 
 
 <div>
-      <div class="card w-50 m-auto" *ngIf="account.classifications.length>0">
+      <div class="card w-25 m-auto" *ngIf="account.classifications.length>0">
         <p>Értékelések:</p>
         <div *ngFor="let classification of account.classifications">
           <div>

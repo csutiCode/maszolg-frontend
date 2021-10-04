@@ -1,13 +1,23 @@
-<div class="card w-75 m-auto">
-
+<div>
   <div class="container">
-    <img [src]='image' alt="Avatar" style="width: 200px">
-    <h4><b>Name: {{account.firstName}} {{account.lastName}}</b></h4>
-    <h4><b>Phone: {{account.phone}}</b></h4>
-    <h4><b>E-Mail: {{account.email}}</b></h4>
-    <h4><b>Abount me: {{account.comment}}</b></h4>
-    <h4><b>Professions: </b></h4>
+
+    <img [src]='image' alt="Avatar" style="width: 16rem">
+
+    <h4>Name: </h4>
+    <h1>{{account.firstName}} {{account.lastName}}</h1>
+
+    <h4>Phone:</h4>
+    <h1> {{account.phoneNumber}}</h1>
+
+    <h4>E-Mail:</h4>
+    <h1> {{account.email}}</h1>
+
+    <h4>Abount me: </h4>
+    <h1>{{account.comment}}</h1>
+
+    <h4>Professions:</h4>
     <p> <span *ngFor="let profession of account.professions">{{profession.name}}</span></p>
+
   </div>
 
   <div class="mb-3  m-left" *ngIf="!isCookieSet">

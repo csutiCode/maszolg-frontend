@@ -85,6 +85,8 @@ export class AccountDetailsComponent implements OnInit {
       (data:any)=> {
         this.account = data,
         console.log(this.account)
+        console.log(this.account.phoneNumber)
+
       }
     )
   }

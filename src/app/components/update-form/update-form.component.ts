@@ -69,6 +69,7 @@ export class UpdateFormComponent implements OnInit {
         postalCode:  new FormControl('', Validators.required),
         street:  new FormControl('', Validators.required),
         number:  new FormControl('', Validators.required),
+        workAddress: new FormControl(''),
 
         cityFromBackend: new FormControl(''),
         postalCodeFromBackend: new FormControl(''),
@@ -166,12 +167,16 @@ export class UpdateFormComponent implements OnInit {
 
 
     onSubmit() {
-      console.log("RegForm value before sending it: ")
+      console.log("work address: ")
 
+
+
+
+      console.log(this.regForm.get("workAddress"))
+
+   
       console.table(this.regForm.value);
 
-      //not the best solution
-      this.listedAccount = this.regForm.value;
 
 
     console.log("Listed Account Object before sending it: ")

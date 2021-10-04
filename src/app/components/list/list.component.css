@@ -3,19 +3,12 @@
     cursor:pointer;
 }
 
-.test {
-    width: fit-content;
-    background: green;
-    text-align: center;
-    /*
-    padding: 10px; (innerhalb)
-    margin-left: 15px; (zum nächsten element)
-    */
-}
 
-card {
+
+.card {
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+    padding: 1rem;
   }
   

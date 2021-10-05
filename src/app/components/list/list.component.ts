@@ -7,9 +7,12 @@ import { RestService } from 'src/app/services/rest.service';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
+
 export class ListComponent implements OnInit {
 
-  constructor(private restService: RestService, private route: ActivatedRoute,private router: Router) { }
+  constructor(private restService: RestService, 
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   accounts: any[] = [];
 
@@ -20,7 +23,9 @@ export class ListComponent implements OnInit {
   selectedCategory: any =  {id: 0, name: ''};
 
   currentPage = 1;
+
   itemsPerPage = 5;
+
   pageSize= 1;
 
 
@@ -31,15 +36,15 @@ export class ListComponent implements OnInit {
         console.log(params); 
       }
     );
-    this.getAllAccountsForCity();
-    this.getAllCategories();
+      this.getAllAccountsForCity();
+      this.getAllCategories();
   }
 
   getAllAccountsForCity() {
     return this.restService.get("search/city/" + this.cityName).subscribe(
       (data:any)=> {
         this.accounts = data
-        console.log(this.accounts)
+        console.table(this.accounts)
       }
     )
   }
@@ -60,7 +65,7 @@ export class ListComponent implements OnInit {
     }
 
 
-    console.log(categoryName);
+  console.log(categoryName);
     this.restService.get("search/" + this.cityName + "/" + categoryName).subscribe(
       (data:any)=> {
         this.accounts = data,

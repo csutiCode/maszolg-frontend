@@ -128,6 +128,7 @@ export class ProfessionComponent implements OnInit {
       this.backendMessage = data,
       console.log(this.backendMessage)
       //window.location.reload();
+      window.location.reload();
 
     })
   }

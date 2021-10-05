@@ -39,6 +39,8 @@ export class UpdateFormComponent implements OnInit {
 
   enabled: boolean = true;
 
+  elseCity?: string;
+
 
   constructor( 
                 private restService: RestService, 
@@ -75,11 +77,6 @@ export class UpdateFormComponent implements OnInit {
         postalCodeFromBackend: new FormControl(''),
         streetFromBackend: new FormControl(''),
         numberFromBackend: new FormControl('')
-
-
-
-
-
 
 
     });
@@ -167,21 +164,13 @@ export class UpdateFormComponent implements OnInit {
 
 
     onSubmit() {
-      console.log("work address: ")
-
-
-
-
-      console.log(this.regForm.get("workAddress"))
-
-   
-      console.table(this.regForm.value);
-
-
+    
+    console.table(this.regForm.value);
 
     console.log("Listed Account Object before sending it: ")
     console.table(this.listedAccount);
 
+    
     var reqHeader = new HttpHeaders({ 
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.token,
@@ -189,17 +178,24 @@ export class UpdateFormComponent implements OnInit {
       "Access-Control-Allow-Origin": "http://localhost:8080/*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
         "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-   });
+    });
 
-     this.http.post("http://localhost:8080/auth/save/listedAccount", this.regForm.value,  { headers: reqHeader }).subscribe(
+   
+    
+
+
+      this.http.post("http://localhost:8080/auth/save/listedAccount", this.regForm.value,  { headers: reqHeader }).subscribe(
       (data:any)=> {
         this.listedAccount = data,
         console.log(this.listedAccount)
         //: redirect to the profession page
-        this.secondPage = true;
+ 
 
       }
      )
+     
+
+
   }
 
 

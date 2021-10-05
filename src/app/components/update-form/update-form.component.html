@@ -77,8 +77,7 @@
       <label  class="col-sm-2 col-form-label">City</label>
       <div class="col-sm-10">
         <input  class="form-control"   formControlName="cityFromBackend" readonly>
-      </div>
-      
+      </div> 
     </div>
 
     
@@ -123,7 +122,7 @@
     <div class="mb-3" *ngIf="selectedCountry.uuid!=0 || enabled">
         <label for ="city">City</label>
         <select [(ngModel)]="selectedCity" formControlName="city" class="form-select" aria-label="Default select example">
-                <option> </option>
+                <option value="else">Else </option>
                 <option *ngFor="let city of cities" [value]="city.name">
                     {{city.name}}
                 </option>
@@ -135,8 +134,16 @@
                   </div>
               </div>       
         </select>
-       
     </div>
+
+    
+    <div class="form-group row" *ngIf="selectedCity==='else'">
+      <label  class="col-sm-2 col-form-label">City</label>
+      <div class="col-sm-10">
+        <input  class="form-control" [(ngModel)]="elseCity" >
+      </div> 
+    </div>
+
 
     <div *ngIf="selectedCity.uuid!=0">
         <div class="form-group row">

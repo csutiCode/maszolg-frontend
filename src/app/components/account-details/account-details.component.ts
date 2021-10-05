@@ -84,9 +84,8 @@ export class AccountDetailsComponent implements OnInit {
     return this.restService.get("search/account/" + uuid).subscribe(
       (data:any)=> {
         this.account = data,
-        console.log(this.account)
-        console.log(this.account.phoneNumber)
-
+        console.table(this.account)
+        console.log(this.account.lastLogin)
       }
     )
   }

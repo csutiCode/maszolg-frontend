@@ -41,7 +41,6 @@ export class AccountDetailsComponent implements OnInit {
 
 
 
-
   constructor(private restService: RestService, 
     private route: ActivatedRoute,
     private modalService: NgbModal,

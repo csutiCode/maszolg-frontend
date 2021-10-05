@@ -16,11 +16,30 @@ export class UpdateFormComponent implements OnInit {
   //TODO: get the listedAccount Object
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
-  regForm: any;
+  regForm = new FormGroup({
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    email: new FormControl(''),
+    comment: new FormControl(''),
+    phoneNumber: new FormControl('', Validators.required),
+    country: new FormControl('', Validators.required),
+    city:  new FormControl('', Validators.required),
+    postalCode:  new FormControl('', Validators.required),
+    street:  new FormControl('', Validators.required),
+    number:  new FormControl('', Validators.required),
+    workAddress: new FormControl(''),
+
+    cityFromBackend: new FormControl(''),
+    postalCodeFromBackend: new FormControl(''),
+    streetFromBackend: new FormControl(''),
+    numberFromBackend: new FormControl('')
+
+
+});
 
   secondPage:boolean = false;
   
-  listedAccount?: any;
+  listedAccount: any;
 
   countries: Array<any> | undefined;
 
@@ -52,6 +71,7 @@ export class UpdateFormComponent implements OnInit {
                   
     this.getListedAccount(this.uuid);
     this.token= cookieService.get("JWT");
+    
    }
 
     ngOnInit(): void {
@@ -62,54 +82,33 @@ export class UpdateFormComponent implements OnInit {
     }
 
     createForm() {
-      this.regForm = new FormGroup({
-        firstName: new FormControl('', Validators.required),
-        lastName: new FormControl('', Validators.required),
-        email: new FormControl(''),
-        comment: new FormControl(''),
-        phoneNumber: new FormControl('', Validators.required),
-        country: new FormControl('', Validators.required),
-        city:  new FormControl('', Validators.required),
-        postalCode:  new FormControl('', Validators.required),
-        street:  new FormControl('', Validators.required),
-        number:  new FormControl('', Validators.required),
-        workAddress: new FormControl(''),
+      
+      //set the values from the listedAccount
+      this.regForm.get("email")?.setValue(this.listedAccount?.email);      
+      this.regForm.get("firstName")?.setValue(this.listedAccount.firstName);
+      this.regForm.get("lastName")?.setValue(this.listedAccount.lastName);
+      this.regForm.get("comment")?.setValue(this.listedAccount?.comment);
+      this.regForm.get("phoneNumber")?.setValue(this.listedAccount?.phoneNumber);
+      this.regForm.get("city")?.setValue(this.listedAccount?.address?.city.city_uuid);
+      this.regForm.get("postalCode")?.setValue(this.listedAccount?.address?.postalCode);
+      this.regForm.get("street")?.setValue(this.listedAccount?.address?.street);
+      this.regForm.get("number")?.setValue(this.listedAccount?.address?.number);
 
-        cityFromBackend: new FormControl(''),
-        postalCodeFromBackend: new FormControl(''),
-        streetFromBackend: new FormControl(''),
-        numberFromBackend: new FormControl('')
-
-
-    });
-
-
-      //set the values from the listedAccount and set them read only if they are already set
-      this.regForm.get("email").setValue(this.listedAccount?.email);      
-      this.regForm.get("firstName").setValue(this.listedAccount?.firstName);
-      this.regForm.get("lastName").setValue(this.listedAccount?.lastName);
-      this.regForm.get("comment").setValue(this.listedAccount?.comment);
-      this.regForm.get("phoneNumber").setValue(this.listedAccount?.phoneNumber);
-      this.regForm.get("city").setValue(this.listedAccount?.address?.city.city_uuid);
-      this.regForm.get("postalCode").setValue(this.listedAccount?.address?.postalCode);
-      this.regForm.get("street").setValue(this.listedAccount?.address?.street);
-      this.regForm.get("number").setValue(this.listedAccount?.address?.number);
-
-      this.regForm.get("cityFromBackend").setValue(this.listedAccount?.address?.city.name);
-      this.regForm.get("postalCodeFromBackend").setValue(this.listedAccount?.address?.postalCode);
-      this.regForm.get("streetFromBackend").setValue(this.listedAccount?.address?.street);
-      this.regForm.get("numberFromBackend").setValue(this.listedAccount?.address?.number);
+      this.regForm.get("cityFromBackend")?.setValue(this.listedAccount?.address?.city.name);
+      this.regForm.get("postalCodeFromBackend")?.setValue(this.listedAccount?.address?.postalCode);
+      this.regForm.get("streetFromBackend")?.setValue(this.listedAccount?.address?.street);
+      this.regForm.get("numberFromBackend")?.setValue(this.listedAccount?.address?.number);
 
 
       //disable the edit of the fields, if they are already set
       if  (!this.enabled) {
-       this.regForm.get("firstName").disable();
-       this.regForm.get("lastName").disable();
-       this.regForm.get("comment").disable();
-       this.regForm.get("phoneNumber").disable();
-       this.regForm.get("postalCode").disable();
-       this.regForm.get("street").disable();
-       this.regForm.get("number").disable();
+       this.regForm.get("firstName")?.disable();
+       this.regForm.get("lastName")?.disable();
+       this.regForm.get("comment")?.disable();
+       this.regForm.get("phoneNumber")?.disable();
+       this.regForm.get("postalCode")?.disable();
+       this.regForm.get("street")?.disable();
+       this.regForm.get("number")?.disable();
       }
     
      
@@ -124,7 +123,6 @@ export class UpdateFormComponent implements OnInit {
           console.log("Listed Account object from the method in UpdateForm Component: ");
           console.table(this.listedAccount)
           //I have to call this method here, because all other initialization is too early -> they don't create listedaccount object
-          this.createForm();
           //if the most important property is not set, then first login
           if (this.listedAccount.firstName==null) {
             this.firstLogin = true;
@@ -133,8 +131,10 @@ export class UpdateFormComponent implements OnInit {
             this.firstLogin = false;
             this.enabled = false;
           }
-          console.log("enabled???");
-          console.log(this.enabled);
+          console.log("firstname");
+          console.log(this.listedAccount.firstName);
+
+          this.createForm();
         }
       )
     }
@@ -186,13 +186,13 @@ export class UpdateFormComponent implements OnInit {
 
   enableEdit() {
     this.enabled = true;
-    this.regForm.get("firstName").enable();  
-    this.regForm.get("lastName").enable();
-    this.regForm.get("comment").enable();
-    this.regForm.get("phoneNumber").enable();
-    this.regForm.get("postalCode").enable();
-    this.regForm.get("street").enable();
-    this.regForm.get("number").enable();
+    this.regForm.get("firstName")?.enable();  
+    this.regForm.get("lastName")?.enable();
+    this.regForm.get("comment")?.enable();
+    this.regForm.get("phoneNumber")?.enable();
+    this.regForm.get("postalCode")?.enable();
+    this.regForm.get("street")?.enable();
+    this.regForm.get("number")?.enable();
   }
 
 

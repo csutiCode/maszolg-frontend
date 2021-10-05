@@ -1,13 +1,12 @@
-<div *ngIf="!secondPage" >
-  <form [formGroup]="regForm" (ngSubmit)="onSubmit()" >
-
+<div>
+  <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
         <label  class="col-sm-2 col-form-label">First name</label>
         <div class="col-sm-10">
           <input class="form-control" formControlName="firstName">  
          </div>
          <div *ngIf="regForm.controls['firstName'].invalid  && regForm.controls['firstName'].touched">
-            <div *ngIf="regForm.controls['firstName'].errors.required">
+            <div *ngIf="regForm.controls['firstName'].errors?.required">
               <small class="text danger" >
                 First name is required.
               </small>
@@ -17,12 +16,12 @@
 
 
     <div class="form-group row">
-        <label  class="col-sm-2 col-form-label">last name</label>
+        <label  class="col-sm-2 col-form-label">Last name</label>
         <div class="col-sm-10">
           <input class="form-control" formControlName="lastName">
         </div>
         <div *ngIf="regForm.controls['lastName'].invalid  && regForm.controls['lastName'].touched">
-          <div *ngIf="regForm.controls['lastName'].errors.required">
+          <div *ngIf="regForm.controls['lastName'].errors?.required">
             <small class="text danger" >
               First name is required.
             </small>
@@ -45,7 +44,7 @@
       <input  class="form-control"   formControlName="phoneNumber">
     </div>
     <div *ngIf="regForm.controls['phoneNumber'].invalid  && regForm.controls['phoneNumber'].touched">
-      <div *ngIf="regForm.controls['phoneNumber'].errors.required">
+      <div *ngIf="regForm.controls['phoneNumber'].errors?.required">
         <small class="text danger" >
           First name is required.
         </small>
@@ -109,7 +108,7 @@
                 <option *ngFor="let country of countries" [value]="country.country_uuid">
                 {{country.name}}</option>
                 <div *ngIf="regForm.controls['country'].invalid  && regForm.controls['country'].touched">
-                  <div *ngIf="regForm.controls['country'].errors.required">
+                  <div *ngIf="regForm.controls['country'].errors?.required">
                     <small class="text danger" >
                       Country is required.
                     </small>
@@ -126,7 +125,7 @@
                     {{city.name}}
                 </option>
                 <div *ngIf="regForm.controls['city'].invalid  && regForm.controls['city'].touched">
-                  <div *ngIf="regForm.controls['city'].errors.required">
+                  <div *ngIf="regForm.controls['city'].errors?.required">
                     <small class="text danger" >
                       City is required.
                     </small>
@@ -151,7 +150,7 @@
               <input class="form-control" placeholder=""  formControlName="postalCode">
             </div>
             <div *ngIf="regForm.controls['postalCode'].invalid  && regForm.controls['postalCode'].touched">
-              <div *ngIf="regForm.controls['postalCode'].errors.required">
+              <div *ngIf="regForm.controls['postalCode'].errors?.required">
                 <small class="text danger" >
                   First name is required.
                 </small>
@@ -164,7 +163,7 @@
               <input class="form-control" placeholder=""  formControlName="street">
             </div>
             <div *ngIf="regForm.controls['street'].invalid  && regForm.controls['street'].touched">
-              <div *ngIf="regForm.controls['street'].errors.required">
+              <div *ngIf="regForm.controls['street'].errors?.required">
                 <small class="text danger" >
                   First name is required.
                 </small>
@@ -177,7 +176,7 @@
               <input type="email" class="form-control" placeholder=""  formControlName="number">
             </div>
             <div *ngIf="regForm.controls['number'].invalid  && regForm.controls['number'].touched">
-              <div *ngIf="regForm.controls['number'].errors.required">
+              <div *ngIf="regForm.controls['number'].errors?.required">
                 <small class="text danger" >
                   First name is required.
                 </small>

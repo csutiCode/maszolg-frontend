@@ -37,9 +37,11 @@ export class UpdateFormComponent implements OnInit {
 
   token?: string;
 
-  enabled: boolean = true;
-
   elseCity?: string;
+
+  firstLogin: boolean = true;
+
+  enabled: boolean = false;
 
 
   constructor( 
@@ -83,7 +85,6 @@ export class UpdateFormComponent implements OnInit {
 
 
       //set the values from the listedAccount and set them read only if they are already set
-      //
       this.regForm.get("email").setValue(this.listedAccount?.email);      
       this.regForm.get("firstName").setValue(this.listedAccount?.firstName);
       this.regForm.get("lastName").setValue(this.listedAccount?.lastName);
@@ -100,38 +101,20 @@ export class UpdateFormComponent implements OnInit {
       this.regForm.get("numberFromBackend").setValue(this.listedAccount?.address?.number);
 
 
-    
       //disable the edit of the fields, if they are already set
-     
-      if (this.regForm.get("firstName")!='') {
-        this.regForm.get("firstName").disable();
+      if  (!this.enabled) {
+       this.regForm.get("firstName").disable();
+       this.regForm.get("lastName").disable();
+       this.regForm.get("comment").disable();
+       this.regForm.get("phoneNumber").disable();
+       this.regForm.get("postalCode").disable();
+       this.regForm.get("street").disable();
+       this.regForm.get("number").disable();
       }
-      if (this.regForm.get("lastName")!='') {
-        this.regForm.get("lastName").disable();
-      }
-      if (this.regForm.get("comment")!='') {
-        this.regForm.get("comment").disable();
-      }
-      if (this.regForm.get("phoneNumber")!='') {
-        this.regForm.get("phoneNumber").disable();
-      }
-      if (this.regForm.get("postalCode")!='') {
-        this.regForm.get("postalCode").disable();
-      }
-      if (this.regForm.get("street")!='') {
-        this.regForm.get("street").disable();
-      }
-      if (this.regForm.get("number")!='') {
-        this.regForm.get("number").disable();
-      }
-     
-      
+    
       if (this.regForm.get("city")!='') {
         this.enabled = false;
       }
-        
-      
-
       
     }
 
@@ -144,6 +127,13 @@ export class UpdateFormComponent implements OnInit {
           console.log(this.listedAccount)
           //I have to call this method here, because all other initialization is too early -> they don't create listedaccount object
           this.createForm();
+          //if the most important property is not set, then first login
+          if (this.listedAccount.firstName!=null) {
+            this.firstLogin = false;
+            this.enabled = false;
+          } else {
+            this.enabled = true;
+          }
         }
       )
     }
@@ -164,43 +154,36 @@ export class UpdateFormComponent implements OnInit {
 
 
     onSubmit() {
-    
-    console.table(this.regForm.value);
+        
+        console.table(this.regForm.value);
 
-    console.log("Listed Account Object before sending it: ")
-    console.table(this.listedAccount);
+        console.log("Listed Account Object before sending it: ")
+        console.table(this.listedAccount);
 
-    
-    var reqHeader = new HttpHeaders({ 
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.token,
-      'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Origin": "http://localhost:8080/*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-    });
-
-   
-    
+        
+        var reqHeader = new HttpHeaders({ 
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + this.token,
+          'Access-Control-Allow-Credentials': 'true',
+          "Access-Control-Allow-Origin": "http://localhost:8080/*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+        });
 
 
-      this.http.post("http://localhost:8080/auth/save/listedAccount", this.regForm.value,  { headers: reqHeader }).subscribe(
-      (data:any)=> {
-        this.listedAccount = data,
-        console.log(this.listedAccount)
-        //: redirect to the profession page
- 
-
-      }
-     )
-     
-
-
+          this.http.post("http://localhost:8080/auth/save/listedAccount", this.regForm.value,  { headers: reqHeader }).subscribe(
+          (data:any)=> {
+            this.listedAccount = data,
+            console.log(this.listedAccount)
+            //simple reload
+            //reload the page
+            window.location.reload();
+          }
+        )
   }
 
 
   enableEdit() {
-
     this.enabled = true;
     this.regForm.get("firstName").enable();  
     this.regForm.get("lastName").enable();
@@ -209,10 +192,5 @@ export class UpdateFormComponent implements OnInit {
     this.regForm.get("postalCode").enable();
     this.regForm.get("street").enable();
     this.regForm.get("number").enable();
-
   }
-
-
-
-
 }

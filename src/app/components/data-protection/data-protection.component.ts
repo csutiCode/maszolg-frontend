@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from 'src/app/services/rest.service';
 
 @Component({
   selector: 'app-data-protection',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataProtectionComponent implements OnInit {
 
-  constructor() { }
+  text:any;
+
+  constructor(private restService: RestService) { }
 
   ngOnInit(): void {
+    this.getText();
   }
+
+  
+  getText() {
+    return this.restService.get("public/" + "data-protection").subscribe(
+      (data:any)=> {
+        this.text = data,
+        console.log(this.text)
+      }
+    )
+  }
+
 
 }

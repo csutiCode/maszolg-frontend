@@ -39,9 +39,9 @@ export class UpdateFormComponent implements OnInit {
 
   elseCity?: string;
 
-  firstLogin: boolean = true;
+  firstLogin: boolean = false;
 
-  enabled: boolean = false;
+  enabled: boolean = true;
 
 
   constructor( 
@@ -112,9 +112,7 @@ export class UpdateFormComponent implements OnInit {
        this.regForm.get("number").disable();
       }
     
-      if (this.regForm.get("city")!='') {
-        this.enabled = false;
-      }
+     
       
     }
 
@@ -123,17 +121,20 @@ export class UpdateFormComponent implements OnInit {
       return this.restService.get("search/account/" + uuid).subscribe(
         (data:any)=> {
           this.listedAccount = data,
-          console.log("Listed Account objekt from the method in UpdateForm Component: ");
-          console.log(this.listedAccount)
+          console.log("Listed Account object from the method in UpdateForm Component: ");
+          console.table(this.listedAccount)
           //I have to call this method here, because all other initialization is too early -> they don't create listedaccount object
           this.createForm();
           //if the most important property is not set, then first login
-          if (this.listedAccount.firstName!=null) {
+          if (this.listedAccount.firstName==null) {
+            this.firstLogin = true;
+            this.enabled = true;
+          } else {
             this.firstLogin = false;
             this.enabled = false;
-          } else {
-            this.enabled = true;
           }
+          console.log("enabled???");
+          console.log(this.enabled);
         }
       )
     }

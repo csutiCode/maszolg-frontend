@@ -109,7 +109,7 @@ export class LoggedInComponent implements OnInit {
     this.formData.append("file", this.file);
 
     var reqHeader = new HttpHeaders({ 
-      //'Content-Type': 'multipart/form-data',
+      'Content-Type': 'multipart/form-data',
       'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
       'Access-Control-Allow-Credentials': 'true',
       "Access-Control-Allow-Origin": "http://localhost:8080/*",

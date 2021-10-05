@@ -23,6 +23,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewsComponent } from './components/news/news.component';
+import { DataProtectionComponent } from './components/data-protection/data-protection.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { NewsComponent } from './components/news/news.component';
     LoggedInComponent,
     ProfessionComponent,
     NewsComponent,
+    DataProtectionComponent,
+    ContactComponent,
   ],
 
   imports: [

@@ -2,6 +2,8 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { DataProtectionComponent } from './components/data-protection/data-protection.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListComponent } from './components/list/list.component';
 import { LoggedInComponent } from './components/logged-in/logged-in.component';
@@ -19,17 +21,9 @@ const routes: Routes = [
   {path: 'account/update', component: UpdateFormComponent},
   {path: 'home', component: HomeComponent},
   {path: 'account', component: AccountDetailsComponent},
-  {path: 'loggedIn', component: LoggedInComponent,
-        children: [
-         
-          {
-              path: '',
-              outlet: 'updateForm',
-              component: UpdateFormComponent,
-              pathMatch: 'full'
-          }
-        ]
-      }
+  {path: 'loggedIn', component: LoggedInComponent},
+  {path: 'contact', component: ContactComponent},
+  {path: 'data-protection', component: DataProtectionComponent}
 
 ];
 

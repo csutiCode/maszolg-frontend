@@ -3,23 +3,23 @@
   <ul class="nav justify-content-end m-auto">
     <div>
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" routerLink="/search" routerLinkActive="active" href="#">Szolgáltatót keresek</a>
+        <a class="nav-link active" aria-current="page" routerLink="/search" routerLinkActive="active" href="#">{{search}}</a>
       </li>
     </div>
    
     <div class="nav-item"> 
       <a class="nav-link active" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-        Szolgáltató vagyok
+        {{account}}
       </a>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <li><a class="dropdown-item" href="#" routerLink="/reg" routerLinkActive="active">Regisztráció</a></li>
-        <li><a class="dropdown-item" href="#" routerLink="/login" routerLinkActive="active">Bejelentkezés</a></li>
+        <li><a class="dropdown-item" href="#" routerLink="/reg" routerLinkActive="active">{{registration}}</a></li>
+        <li><a class="dropdown-item" href="#" routerLink="/login" routerLinkActive="active">{{login}}</a></li>
       </ul>
      
     </div>
     <div>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/about" routerLinkActive="active" href="#">A MaSzolgról</a>
+        <a class="nav-link" routerLink="/about" routerLinkActive="active" href="#">{{aboutUs}}</a>
       </li>
     </div>
     

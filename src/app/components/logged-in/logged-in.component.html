@@ -6,7 +6,7 @@
     
     <ul class="nav nav-right justify-content-end">
         <div class="image" *ngIf="isDefault" >
-            <img  src="assets/images/avatar.png" (click)="openVerticallyCentered(content)"  ngbTooltip="Upload your profile picture!">
+            <img  src="assets/images/avatar.png" (click)="openVerticallyCentered(content)"  ngbTooltip={{pictureTooltip}}>
         </div>
         
         <div  class="image" *ngIf="!isDefault">
@@ -17,36 +17,38 @@
     
         <div >
             <li class="nav-item">
-                <button class="w-100 btn btn-lg btn-primary " (click)="switchTo('myData')" > My Data</button>              
+                <button class="w-100 btn btn-lg btn-primary " (click)="switchTo('myData')" > {{myData}}</button>              
             </li>
         </div>
         <div>
             <li class="nav-item">
-                <button class="w-100 btn btn-lg btn-primary"  (click)="switchTo('profession')">Profession</button>
+                <button class="w-100 btn btn-lg btn-primary"  (click)="switchTo('profession')">{{profession}}</button>
             </li>
         </div>  
 
         <div>
             <li class="nav-item">
-                <button class="w-100 btn btn-lg btn-primary"  (click)="switchTo('updateForm')">Update my data</button>
+                <button class="w-100 btn btn-lg btn-primary"  (click)="switchTo('updateForm')">{{updateMyData}}</button>
             </li>
         </div>  
 
         <div>
             <li class="nav-item">
-                <button class="w-100 btn btn-lg btn-primary" (click)="switchTo('news')"> News</button>              
+                <button class="w-100 btn btn-lg btn-primary" (click)="switchTo('news')"> {{news}}</button>              
             </li>
         </div>
-        
+        <!--
         <div>
             <li class="nav-item">
-                <button class="w-100 btn btn-lg btn-primary" (click)="delete()"> Delete account</button>              
+                <button class="w-100 btn btn-lg btn-primary" (click)="delete()" > Delete account</button>              
             </li>
         </div>
+         -->
+
 
         <div>
             <li class="nav-item">
-                <button class="w-100 btn btn-lg btn-primary"  (click)="logout()"> Logout</button>              
+                <button class="w-100 btn btn-lg btn-primary"  (click)="onLogout()"> {{logout}}</button>              
             </li>
         </div>
     </ul>

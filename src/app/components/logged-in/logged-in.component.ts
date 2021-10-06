@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
 import { RestService } from 'src/app/services/rest.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Messages } from '../utils/messages';
 
 @Component({
   selector: 'app-logged-in',
@@ -13,6 +14,15 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./logged-in.component.css']
 })
 export class LoggedInComponent implements OnInit {
+
+
+  myData: string = Messages.myData;
+  profession: string = Messages.profession;
+  updateMyData :string = Messages.updateMyData;
+  news : string = Messages.news;
+  logout : string = Messages.logout;
+  pictureTooltip:string = Messages.pictureTooltip;
+
 
   switch: string = "news";
 
@@ -156,7 +166,7 @@ export class LoggedInComponent implements OnInit {
     +++++++++++++++++++++++++++++++++++++++++++++++++ LOGOUT ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     */
 
-  logout() {
+  onLogout() {
     console.log("Logged out.")
     //delete the cookie from the storage
     this.cookieService.remove("JWT");

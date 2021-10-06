@@ -12,8 +12,6 @@ export class AuthService {
   visible: boolean;
 
 
-
-
   constructor(private cookieService: CookieService,
         private router: Router) {
     //this hides the navbar if somebody logged in

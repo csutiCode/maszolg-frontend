@@ -1,7 +1,7 @@
 <div>
   <form [formGroup]="regForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
-        <label  class="col-sm-2 col-form-label">First name</label>
+        <label  class="col-sm-2 col-form-label">{{firstName}}</label>
         <div class="col-sm-10">
           <input class="form-control" formControlName="firstName">  
          </div>
@@ -16,7 +16,7 @@
 
 
     <div class="form-group row">
-        <label  class="col-sm-2 col-form-label">Last name</label>
+        <label  class="col-sm-2 col-form-label">{{lastName}}</label>
         <div class="col-sm-10">
           <input class="form-control" formControlName="lastName">
         </div>
@@ -31,7 +31,7 @@
 
     
     <div class="form-group row">
-      <label  class="col-sm-2 col-form-label">Email</label>
+      <label  class="col-sm-2 col-form-label">{{email}}</label>
       <div class="col-sm-10">
         <input class="form-control"  formControlName="email" readonly>
       </div>
@@ -39,7 +39,7 @@
     </div>
   
   <div class="form-group row">
-    <label  class="col-sm-2 col-form-label">Phone</label>
+    <label  class="col-sm-2 col-form-label">{{phone}}</label>
     <div class="col-sm-10">
       <input  class="form-control"   formControlName="phoneNumber">
     </div>
@@ -54,7 +54,7 @@
 
 
     <div class="form-group row">
-        <label  class="col-sm-2 col-form-label">Komment</label>
+        <label  class="col-sm-2 col-form-label">{{about}}</label>
         <div class="col-sm-10">
           <input class="form-control"  placeholder=""  formControlName="comment">
         </div>
@@ -73,7 +73,7 @@
       
    
     <div class="form-group row" *ngIf="!enabled">
-      <label  class="col-sm-2 col-form-label">City</label>
+      <label  class="col-sm-2 col-form-label">{{city}}</label>
       <div class="col-sm-10">
         <input  class="form-control"   formControlName="cityFromBackend" readonly>
       </div> 
@@ -81,28 +81,28 @@
 
     
     <div class="form-group row" *ngIf="!enabled">
-      <label  class="col-sm-2 col-form-label">Postal Code</label>
+      <label  class="col-sm-2 col-form-label">{{postalCode}}</label>
       <div class="col-sm-10">
         <input  class="form-control"   formControlName="postalCodeFromBackend" readonly>
       </div>
     </div>
 
     <div class="form-group row" *ngIf="!enabled">
-      <label  class="col-sm-2 col-form-label">Street</label>
+      <label  class="col-sm-2 col-form-label">{{street}}</label>
       <div class="col-sm-10">
         <input  class="form-control"   formControlName="streetFromBackend" readonly>
       </div>
     </div>
 
     <div class="form-group row" *ngIf="!enabled">
-      <label  class="col-sm-2 col-form-label">Number</label>
+      <label  class="col-sm-2 col-form-label">{{number}}</label>
       <div class="col-sm-10">
         <input  class="form-control"   formControlName="numberFromBackend" readonly>
       </div>
     </div>
 
     <div class="mb-3" *ngIf="enabled ">
-        <label for="country">Country</label>
+        <label for="country">{{country}}</label>
         <select [(ngModel)]="selectedCountry.uuid" formControlName="country" (change)="onSelectCountry(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
                 <option> </option>
                 <option *ngFor="let country of countries" [value]="country.country_uuid">
@@ -118,7 +118,7 @@
     </div>   
 
     <div class="mb-3" *ngIf="selectedCountry.uuid!=0 || enabled">
-        <label for ="city">City</label>
+        <label for ="city">{{city}}</label>
         <select [(ngModel)]="selectedCity" formControlName="city" class="form-select" aria-label="Default select example">
                 <option value="else">Else </option>
                 <option *ngFor="let city of cities" [value]="city.name">
@@ -136,7 +136,7 @@
 
     
     <div class="form-group row" *ngIf="selectedCity==='else'">
-      <label  class="col-sm-2 col-form-label">City</label>
+      <label  class="col-sm-2 col-form-label">{{city}}</label>
       <div class="col-sm-10">
         <input  class="form-control" [(ngModel)]="elseCity" >
       </div> 
@@ -158,7 +158,7 @@
           </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Street</label>
+            <label for="inputEmail3" class="col-sm-2 col-form-label">{{street}}</label>
             <div class="col-sm-10">
               <input class="form-control" placeholder=""  formControlName="street">
             </div>
@@ -171,7 +171,7 @@
           </div>
         </div>
         <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">number</label>
+            <label for="inputEmail3" class="col-sm-2 col-form-label">{{number}}</label>
             <div class="col-sm-10">
               <input type="email" class="form-control" placeholder=""  formControlName="number">
             </div>

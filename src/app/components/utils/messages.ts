@@ -1,5 +1,5 @@
 export class Messages {
-    
+
     /* FOOTER
     */
     public static data_protection ="Adatvédelem";
@@ -28,7 +28,29 @@ export class Messages {
     public static updateMyData ="Adataim frissítése";
     public static news ="Újdonságok";
     public static logout ="Kijelentkezés";
-    public static pictureTooltip = "Töltsd fel a profilképed!"
+    public static uploadTooltip = "Töltsd fel a profilképed!"
+    public static changeTooltip = "Cseréld le a profilképed!"
+    public static uploadPicture = "Profilkép feltöltése"
+
+    /* SEARCH
+    */
+
+    /* UPDATE
+    */
+    public static firstName ="Keresztnév";
+    public static lastName ="Vezetéknév";
+    public static email ="E-Mail";
+    public static phone ="Telefon";
+    public static about ="Magamról";
+    public static country = "Ország"
+    public static city = "Város";
+    public static postalCode = "Irányítószám";
+    public static street = "Utca";
+    public static number = "Házszám";
+  
+
+
+
 
 
 }

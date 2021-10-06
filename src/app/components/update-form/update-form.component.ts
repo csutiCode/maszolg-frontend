@@ -4,6 +4,7 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import {  ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { RestService } from 'src/app/services/rest.service';
+import { Messages } from '../utils/messages';
 
 @Component({
   selector: 'app-update-form',
@@ -11,6 +12,17 @@ import { RestService } from 'src/app/services/rest.service';
   styleUrls: ['./update-form.component.css']
 })
 export class UpdateFormComponent implements OnInit {
+
+  firstName: string = Messages.firstName;
+  lastName: string = Messages.lastName;
+  email: string = Messages.email;
+  phone: string = Messages.phone;
+  country: string = Messages.country;
+  city: string = Messages.city;
+  postalCode: string = Messages.postalCode;
+  street: string = Messages.street;
+  number: string = Messages.number;
+  about: string = Messages.about;
 
   
   //TODO: get the listedAccount Object

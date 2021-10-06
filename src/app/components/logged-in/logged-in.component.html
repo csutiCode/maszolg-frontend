@@ -6,11 +6,11 @@
     
     <ul class="nav nav-right justify-content-end">
         <div class="image" *ngIf="isDefault" >
-            <img  src="assets/images/avatar.png" (click)="openVerticallyCentered(content)"  ngbTooltip={{pictureTooltip}}>
+            <img  src="assets/images/avatar.png" (click)="openVerticallyCentered(content)"  ngbTooltip={{uploadTooltip}}>
         </div>
         
         <div  class="image" *ngIf="!isDefault">
-            <img [src]='image' (click)="openVerticallyCentered(content)"  ngbTooltip="Change your profile image">
+            <img [src]='image' (click)="openVerticallyCentered(content)"  ngbTooltip={{changeTooltip}}>
         </div>
     
 
@@ -85,7 +85,7 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title">Upload image</h4>
+      <h4 class="modal-title">{{uploadPicture}}</h4>
     </div>
         <div class="modal-body">
             <div class="text-center m-auto">
@@ -93,8 +93,8 @@
                         (change)="onChange($event)">
                 <div class="m-auto">
                     <button (click)="onUpload()" (click)="modal.close('Close click')"
-                    class="btn btn-primary  m-auto ">Upload</button>
-                    <button type="button" class="btn btn-primary  m-auto" (click)="modal.close('Close click')" >Back</button>
+                    class="btn btn-primary  m-auto ">Feltöltés</button>
+                    <button type="button" class="btn btn-primary  m-auto" (click)="modal.close('Close click')" >Vissza</button>
 
                 </div>
              

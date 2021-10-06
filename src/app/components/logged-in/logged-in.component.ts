@@ -21,7 +21,9 @@ export class LoggedInComponent implements OnInit {
   updateMyData :string = Messages.updateMyData;
   news : string = Messages.news;
   logout : string = Messages.logout;
-  pictureTooltip:string = Messages.pictureTooltip;
+  uploadTooltip:string = Messages.uploadTooltip;
+  changeTooltip:string = Messages.changeTooltip;
+  uploadPicture:string = Messages.uploadPicture;
 
 
   switch: string = "news";

@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { RestService } from './rest.service';
@@ -44,7 +45,8 @@ export class AuthService {
   constructor(private cookieService: CookieService,
         private router: Router,
         private http: HttpClient,
-        private restService: RestService) {
+        private restService: RestService,
+        private sanitizer: DomSanitizer) {
         //this hides the navbar if somebody logged in
         this.visible = true; 
           if (this.getToken()!=null) {
@@ -81,9 +83,10 @@ export class AuthService {
           //set the token as cookie -> works
           this.cookieService.put("JWT", this.token);
           //hide the navbar
-          this.hide();
+          
           //get the listedAccount and make a redirect
           this.getListedAccount();
+          //this.hide();
           
       }
     )
@@ -100,7 +103,7 @@ export class AuthService {
    
 
    public saveListedAccount(form : any) {
-         this.http.post("http://localhost:8080/auth/save/listedAccount", form.value,  { headers: this.reqHeaderAuth }).subscribe(
+         this.http.post("http://localhost:8080/auth/save/listedAccount", form,  { headers: this.reqHeaderAuth }).subscribe(
           (data:any)=> {
             this.listedAccount = data,
             console.log(this.listedAccount)  
@@ -108,8 +111,17 @@ export class AuthService {
       )
    }
 
+   public sendComment(commentOnClassificationDto : any) {
+    console.log(commentOnClassificationDto)
+      this.http.post("http://localhost:8080/auth/save/commentOnClassification", commentOnClassificationDto,  { headers: this.reqHeaderAuth }).subscribe(
+        (data:any)=> {
+          this.response = data,
+          console.log(this.response)
+        }
+      )
+   }
 
-
+  
   getToken(): string {
     console.log("Token from getToken: " + this.cookieService.get("JWT"));
     return this.cookieService.get("JWT");

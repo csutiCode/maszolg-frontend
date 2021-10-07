@@ -13,6 +13,7 @@ import { Messages } from '../utils/messages';
 })
 export class RegComponent implements OnInit {
 
+  
   required : string = Messages.required
   wrongEmail: string = Messages.wrongEmail
 
@@ -23,8 +24,6 @@ export class RegComponent implements OnInit {
   error?: any = this.authService.error;
 
   status?: number = this.authService.status;
-
-  readonly URL: string = "http://localhost:8080/";
 
   date: any = {year: '', month: '',day:''};
 

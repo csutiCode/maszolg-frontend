@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie';
+import { AuthService } from 'src/app/services/auth.service';
 import { RestService } from 'src/app/services/rest.service';
 import { Messages } from '../utils/messages';
 
@@ -55,7 +56,8 @@ export class AccountDetailsComponent implements OnInit {
     private modalService: NgbModal,
     private cookieService: CookieService,
     private http: HttpClient,
-    private sanitizer: DomSanitizer) { }
+    private sanitizer: DomSanitizer,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.route.queryParams
@@ -64,8 +66,7 @@ export class AccountDetailsComponent implements OnInit {
     }
     );
     this.getListedAccount(this.route.snapshot.queryParamMap.get('uuid'));
-
-    //temporarely doesn't work if i outsource it
+    
     const reqHeader = new HttpHeaders({ 
       'Access-Control-Allow-Credentials': 'true',
       "Access-Control-Allow-Origin": "http://localhost:8080/*",
@@ -86,6 +87,7 @@ export class AccountDetailsComponent implements OnInit {
         console.table(this.image)
   
       });
+      
   }
 
   getListedAccount(uuid: string | null) {
@@ -99,31 +101,6 @@ export class AccountDetailsComponent implements OnInit {
     )
   }
   
-  getImage() {
-    const reqHeader = new HttpHeaders({ 
-      //'Content-Type': 'multipart/form-data',
-      'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
-      'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Origin": "http://localhost:8080/*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-   });
-      
-    //get the image from the backend
-    this.image = this.http.get("http://localhost:8080/search/getImage/" + this.uuid, 
-        {observe: 'body', headers: reqHeader, responseType: 'blob'}).subscribe(data => {
-  
-        let objectURL =URL.createObjectURL(data);
-        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-  
-        console.log("data")
-        console.table(data)
-        console.log("image")
-        console.table(this.image)
-  
-      });
-  }
-
 
   onSubmit() {
     this.classification = true;
@@ -147,35 +124,14 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   
-  onComment(comment:string) {
-    
+  onComment(comment:string) {    
     this.commentOnClassificationDto.classificationUuid = this.classificationUuid;
     this.commentOnClassificationDto.comment = comment;
 
-    console.table(this.commentOnClassificationDto)
-    console.log("TOKEN:")
-    console.log(this.token)
-    
-    //TODO: send a post request to the URL with the comment of the classification
-    var reqHeader = new HttpHeaders({ 
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.token,
-      'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Origin": "http://localhost:8080/*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-   });
-    //TODO: I need to get the commentOnClassification UUID somehow from the template
-     this.http.post("http://localhost:8080/auth/save/commentOnClassification", this.commentOnClassificationDto,  { headers: reqHeader }).subscribe(
-      (data:any)=> {
-        this.response = data,
-        console.log(this.response)
-        
-      }
-     )
-    //reload the page
+    this.authService.sendComment(this.commentOnClassificationDto)
     window.location.reload();
-
   }
+
+   
 
 }

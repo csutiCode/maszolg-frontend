@@ -85,18 +85,14 @@ export class UpdateFormComponent implements OnInit {
                   
     this.getListedAccount(this.uuid);
     this.token= cookieService.get("JWT");
-    
    }
 
     ngOnInit(): void {
-
       this.getAllCountries();
       this.onSelectCountry(this.selectedCountry.uuid);
-
     }
 
     createForm() {
-      
       //set the values from the listedAccount
       this.regForm.get("email")?.setValue(this.listedAccount?.email);      
       this.regForm.get("firstName")?.setValue(this.listedAccount.firstName);
@@ -108,6 +104,7 @@ export class UpdateFormComponent implements OnInit {
       this.regForm.get("postalCode")?.setValue(this.listedAccount?.address?.postalCode);
       this.regForm.get("street")?.setValue(this.listedAccount?.address?.street);
       this.regForm.get("number")?.setValue(this.listedAccount?.address?.number);
+      this.regForm.get("workAddress")?.setValue(this.listedAccount?.address?.workAddress)
 
       this.regForm.get("cityFromBackend")?.setValue(this.listedAccount?.address?.city.name);
       this.regForm.get("postalCodeFromBackend")?.setValue(this.listedAccount?.address?.postalCode);
@@ -120,11 +117,12 @@ export class UpdateFormComponent implements OnInit {
        this.regForm.get("firstName")?.disable();
        this.regForm.get("lastName")?.disable();
        this.regForm.get("comment")?.disable();
-       //this.regForm.get("webPage")?.disable();
+       this.regForm.get("webPage")?.disable();
        this.regForm.get("phoneNumber")?.disable();
        this.regForm.get("postalCode")?.disable();
        this.regForm.get("street")?.disable();
        this.regForm.get("number")?.disable();
+       this.regForm.get("workAddress")?.disable();
       }
     
      
@@ -149,8 +147,9 @@ export class UpdateFormComponent implements OnInit {
           }
           console.log("firstname");
           console.log(this.listedAccount.firstName);
-
+          
           this.createForm();
+          
         }
       )
     }
@@ -194,22 +193,28 @@ export class UpdateFormComponent implements OnInit {
             console.log(this.listedAccount)
             //simple reload
             //reload the page
-            //window.location.reload();
+            window.location.reload();
           }
         )
   }
 
 
   enableEdit() {
+    
     this.enabled = true;
+    
     this.regForm.get("firstName")?.enable();  
     this.regForm.get("lastName")?.enable();
     this.regForm.get("comment")?.enable();
+    this.regForm.get("webPage")?.enable();
     this.regForm.get("phoneNumber")?.enable();
     this.regForm.get("postalCode")?.enable();
     this.regForm.get("street")?.enable();
     this.regForm.get("number")?.enable();
+    this.regForm.get("workAddress")?.enable();
   }
+
+  
 
 
 

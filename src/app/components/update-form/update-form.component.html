@@ -108,26 +108,29 @@
       </div>
     </div>
 
-    <div class="mb-3" *ngIf="enabled ">
+    <div class="mb-3" *ngIf="enabled">
         <label for="country">{{country}}</label>
         <select [(ngModel)]="selectedCountry.uuid" formControlName="country" (change)="onSelectCountry(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
-                <option> </option>
+                <option > </option>
                 <option *ngFor="let country of countries" [value]="country.country_uuid">
                 {{country.name}}</option>
-                <div *ngIf="regForm.controls['country'].invalid  && regForm.controls['country'].touched">
+                <!--
+              <div *ngIf="regForm.controls['country'].invalid  && regForm.controls['country'].touched">
                   <div *ngIf="regForm.controls['country'].errors?.required">
                     <small class="text danger" >
                       Country is required.
                     </small>
                   </div>
               </div>
+                 -->
+               
         </select>
     </div>   
 
-    <div class="mb-3" *ngIf="selectedCountry.uuid!=0 || enabled">
+    <div class="mb-3" *ngIf="enabled">
         <label for ="city">{{city}}</label>
         <select [(ngModel)]="selectedCity" formControlName="city" class="form-select" aria-label="Default select example">
-                <option value="else">Else </option>
+                <option value="else"> Else </option>
                 <option *ngFor="let city of cities" [value]="city.name">
                     {{city.name}}
                 </option>
@@ -150,7 +153,7 @@
     </div>
 
 
-    <div *ngIf="selectedCity.uuid!=0">
+    <div>
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">PostalCode</label>
             <div class="col-sm-10">

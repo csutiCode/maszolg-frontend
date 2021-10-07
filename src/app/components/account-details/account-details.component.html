@@ -43,44 +43,6 @@
 </div>
 
 
-<div>
-      <div class="card w-25 m-auto" *ngIf="account.classifications.length>0">
-        <p>Értékelések:</p>
-        <div *ngFor="let classification of account.classifications">
-          <div>
-            <table class="card m-auto">
-              <tr>
-                <th>Created By: </th>
-                <td>{{classification.createdBy}}</td>
-              </tr>
-              <tr>
-                <th>Text:</th>
-                <td>{{classification.text}}</td>
-              </tr>
-              <tr>
-                <th>Rating:</th>
-                <td>{{classification.rating}}</td>
-                 <td><ngb-rating  class="sr-only" [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></td>
-              </tr>
-              <tr *ngIf="classification.commented">
-                <th>{{account.firstName}} megjegyzese:</th>
-                <td>{{classification.comment}}</td>
-              </tr>
-            </table>
-          </div>
-          <div class="card m-auto" *ngIf="isCookieSet && !classification.commented">
-            <button (click)="openComment(comment, classification.classificationUuid)">React</button>
-          </div>
-   
-        </div>
-       </div>
-       <div class="card w-75 m-auto" *ngIf="classification"> 
-        <div class="card  m-auto">
-          <button  class="w-100 btn btn-lg btn-primary" (click)="onCancel()">Megse</button>
-        </div>
-      </div>
-</div>
-
 -->
 
 
@@ -139,9 +101,52 @@
   </div>
   <div  *ngIf="!isCookieSet">
     <button  class=" btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
-    <button  class=" btn btn-lg btn-primary " (click)="openVerticallyCentered(content)">Vissza</button>
   </div>
 </section>
+
+
+
+<div>
+  <div class="card w-50 m-auto" *ngIf="account.classifications.length>0">
+    <p>Értékelések:</p>
+    <div *ngFor="let classification of account.classifications">
+      <div>
+        <table class="card m-auto">
+          <tr>
+            <th>Created By: </th>
+            <td>{{classification.createdBy}}</td>
+          </tr>
+          <tr>
+            <th>Text:</th>
+            <td>{{classification.text}}</td>
+          </tr>
+          <tr>
+            <th>Rating:</th>
+            <td>{{classification.rating}}</td>
+             <td><ngb-rating  class="sr-only" [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></td>
+          </tr>
+          <tr *ngIf="classification.commented">
+            <th>{{account.firstName}} megjegyzese:</th>
+            <td>{{classification.comment}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="card m-auto" *ngIf="isCookieSet && !classification.commented">
+        <button (click)="openComment(comment, classification.classificationUuid)">React</button>
+      </div>
+
+    </div>
+   </div>
+   <div class="card w-75 m-auto" *ngIf="classification"> 
+    <div class="card  m-auto">
+      <button  class="w-100 btn btn-lg btn-primary" (click)="onCancel()">Megse</button>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 
 </div>

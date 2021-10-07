@@ -83,10 +83,9 @@ export class AuthService {
           //set the token as cookie -> works
           this.cookieService.put("JWT", this.token);
           //hide the navbar
-          
           //get the listedAccount and make a redirect
           this.getListedAccount();
-          //this.hide();
+          
           
       }
     )
@@ -97,6 +96,7 @@ export class AuthService {
       (data:any)=> {
         this.listedAccount = data,
         this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid} })
+        this.hide();
       }
     ) 
   }

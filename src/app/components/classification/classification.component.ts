@@ -35,7 +35,6 @@ export class ClassificationComponent implements OnInit {
   constructor(private route: ActivatedRoute, 
               private fb: FormBuilder,
               private modalService: NgbModal,
-              private http: HttpClient,
               private publicService: PublicService){
     this.createForm() 
   }

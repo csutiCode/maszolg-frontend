@@ -4,24 +4,33 @@
     <h1 class="h3 mb-3 fw-normal">Regisztráció</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
+      
+      <input  class="form-control"  placeholder="name@example.com" formControlName="email">
+      <div *ngIf="registrationForm.controls['email'].invalid  && registrationForm.controls['email'].touched">
+        <div *ngIf="registrationForm.controls['email'].errors?.required">
+          <small class="text danger" >
+            {{required}}
+          </small>
+        </div>
+        <div *ngIf="registrationForm.controls['email'].errors?.email">
+          <small class="text danger" >
+            {{wrongEmail}}
+          </small>
+        </div>
+      </div>
       <label for="floatingInput">E-Mail</label>
+     
     </div>
-    <div *ngIf="registrationForm.controls['email'].invalid  && registrationForm.controls['email'].touched">
-    
-        <div *ngIf="registrationForm.controls['email'].errors.required">
-          <small class="text danger" >
-            E-Mail is required.
-          </small>
-         </div>
-         <div *ngIf="registrationForm.controls['email'].errors.email">
-          <small class="text danger" >
-            Invalid E-mail.
-          </small>
-         </div>
-    </div>
+   
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+        <div *ngIf="registrationForm.controls['password'].invalid  && registrationForm.controls['password'].touched">
+          <div *ngIf="registrationForm.controls['password'].errors?.required">
+            <small class="text danger" >
+              {{required}}
+            </small>
+          </div>
+        </div>
       <label for="floatingPassword">Jelszó</label>
     </div>
     <!-- 
@@ -33,32 +42,20 @@
        
     -->
      
-           <div *ngIf="registrationForm.controls['password'].invalid  && registrationForm.controls['password'].touched">
-        <div *ngIf="registrationForm.controls['password'].errors.required">
-          <small class="text danger" >
-            Password is required.
-          </small>
-         </div>
-    </div>
+         
      
  
     <div class="form-floating">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="confirmedPassword">
-        <label for="floatingPassword">Jelszó</label>
-      </div>
-
-
-      <div *ngIf="registrationForm.controls['confirmedPassword'].invalid  && registrationForm.controls['confirmedPassword'].touched"
-     >
-          <div *ngIf="registrationForm.controls['confirmedPassword'].errors.required">
+        <div *ngIf="registrationForm.controls['confirmedPassword'].invalid  && registrationForm.controls['confirmedPassword'].touched">
+          <div *ngIf="registrationForm.controls['confirmedPassword'].errors?.required">
             <small class="text danger" >
-              Password confirmation is required.
+              {{required}}
             </small>
-            
-           </div>
-      </div>
-
-      
+          </div>
+        </div>
+        <label for="floatingPassword">Jelszó</label>
+      </div>    
 
       <div class="form-floating">
           <div class="input-group">

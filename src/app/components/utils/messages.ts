@@ -5,6 +5,7 @@ export class Messages {
 
     public static required = "Kötelező elem"
     public static disabledButton = "Az adatlap hiányos"
+    public static wrongEmail = "Hibás e-mail cím"
 
     /* FOOTER
     */

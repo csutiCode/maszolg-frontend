@@ -3,6 +3,7 @@ import { Component, Inject, OnInit,  } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import {  NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { createDateOfBirthValidator, createPasswordStrengthValidator } from '../utils/formValidators';
+import { Messages } from '../utils/messages';
 
 @Component({
   selector: 'app-reg',
@@ -10,6 +11,9 @@ import { createDateOfBirthValidator, createPasswordStrengthValidator } from '../
   styleUrls: ['./reg.component.css']
 })
 export class RegComponent implements OnInit {
+
+  required : string = Messages.required
+  wrongEmail: string = Messages.wrongEmail
 
   registrationForm: any;
 

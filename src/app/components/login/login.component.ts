@@ -6,6 +6,7 @@ import { RestService } from 'src/app/services/rest.service';
 import { CookieService } from 'ngx-cookie';
 import { ListedAccount } from '../listedAccount';
 import { AuthService } from 'src/app/services/auth.service';
+import { Messages } from '../utils/messages';
 
 
 @Component({
@@ -14,6 +15,10 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  required : string = Messages.required;
+  login : string = Messages.login;
+
 
   loginForm: any;
   token: any;

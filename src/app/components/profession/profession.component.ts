@@ -5,6 +5,7 @@ import { FormBuilder} from '@angular/forms';
 import { Profession } from '../listedAccount';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
+import { Messages } from '../utils/messages';
 
 
 @Component({
@@ -13,6 +14,8 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./profession.component.css']
 })
 export class ProfessionComponent implements OnInit {
+
+  category:string = Messages.category;
 
   dropdownList : any;
   selectedItems : any;

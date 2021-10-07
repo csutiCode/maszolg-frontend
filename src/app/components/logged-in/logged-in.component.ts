@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RestService } from 'src/app/services/rest.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Messages } from '../utils/messages';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-logged-in',

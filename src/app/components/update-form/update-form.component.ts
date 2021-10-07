@@ -1,4 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Component,  OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import {  ActivatedRoute } from '@angular/router';
@@ -23,7 +24,10 @@ export class UpdateFormComponent implements OnInit {
   street: string = Messages.street;
   number: string = Messages.number;
   about: string = Messages.about;
+  isWorkAddress: string = Messages.isWorkAddress;
   webPage: string = Messages.web;
+  webPageToolip : string  = Messages.webPageToolip;
+  isWorkAddressTooltip: string = Messages.isWorkAddressTooltip;
 
   
   //TODO: get the listedAccount Object

@@ -46,15 +46,9 @@
     
     <div class="form-row align-items-center">
       <div class="col-auto my-1">
-        <label class="mr-sm-2" for="inlineFormCustomSelect">Rating</label>
+        <label class="mr-sm-2">Rate</label>
         <ngb-rating formControlName="rating" [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
-        <div  *ngIf="classificationForm.controls['rating'].invalid  && classificationForm.controls['rating'].touched">
-          <div *ngIf="classificationForm.controls['rating'].errors?.required">
-            <small class="text danger" >
-              {{required}}
-            </small>
-          </div>
-        </div>
+       
       </div>
   </div>
    

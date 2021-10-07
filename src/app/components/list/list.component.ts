@@ -20,8 +20,9 @@ export class ListComponent implements OnInit {
 
   constructor(private restService: RestService, 
               private route: ActivatedRoute,
-              private router: Router,
-              private publicService: PublicService) { }
+              private router: Router) {
+
+  }
 
   accounts: any[] = [];
 

@@ -52,6 +52,7 @@ export class ClassificationComponent implements OnInit {
   onSubmit() {
     console.log("Classification to send: ");
     console.table(this.classificationForm.value)
+
     this.publicService.saveClassification(this.uuid, this.classificationForm.value);
   }
     

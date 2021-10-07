@@ -35,7 +35,7 @@ export class PublicService {
   }
 
   saveClassification(uuid: string | null, classification: any) {    
-    this.http.post(URL + "save/classification/" + uuid, classification, { headers: this.reqHeaders })
+    this.restService.post("save/classification/" + uuid, classification)
     .subscribe(
     (data:any)=> {
       this.response = data,
@@ -51,6 +51,8 @@ export class PublicService {
   }
 
  
+
+
 
 }
 

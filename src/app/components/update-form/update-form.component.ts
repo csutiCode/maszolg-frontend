@@ -4,6 +4,8 @@ import { Component,  OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import {  ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
+import { AuthService } from 'src/app/services/auth.service';
+import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
 import { Messages } from '../utils/messages';
 
@@ -74,8 +76,6 @@ export class UpdateFormComponent implements OnInit {
 
   backendMessage: any;
 
-  token?: string;
-
   elseCity?: string;
 
   firstLogin: boolean = false;
@@ -86,16 +86,17 @@ export class UpdateFormComponent implements OnInit {
   constructor( 
                 private restService: RestService, 
                 private route: ActivatedRoute,
-                private cookieService: CookieService,
-                private http: HttpClient) {
-                  
-    this.getListedAccount(this.uuid);
-    this.token= cookieService.get("JWT");
+                private authService: AuthService) {
+
+       this.getListedAccount(this.uuid);
+
    }
 
+ 
+
     ngOnInit(): void {
-      this.getAllCountries();
-      this.onSelectCountry(this.selectedCountry.uuid);
+        this.getAllCountries();
+        this.onSelectCountry(this.selectedCountry.uuid);
     }
 
     createForm() {
@@ -130,11 +131,10 @@ export class UpdateFormComponent implements OnInit {
        this.regForm.get("number")?.disable();
        this.regForm.get("workAddress")?.disable();
       }
-    
-     
-      
     }
 
+
+    //REFACTOR THIS
 
     getListedAccount(uuid: string | null) {
       return this.restService.get("search/account/" + uuid).subscribe(
@@ -157,9 +157,9 @@ export class UpdateFormComponent implements OnInit {
           this.createForm();
           
         }
-      )
+      ) 
     }
-
+ 
      
     getAllCountries() {
       return this.restService.get("search").subscribe(
@@ -175,54 +175,26 @@ export class UpdateFormComponent implements OnInit {
     }
 
 
-    onSubmit() {
-        
-        console.table(this.regForm.value);
-
-        console.log("Listed Account Object before sending it: ")
-        console.table(this.listedAccount);
-
-        
-        var reqHeader = new HttpHeaders({ 
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + this.token,
-          'Access-Control-Allow-Credentials': 'true',
-          "Access-Control-Allow-Origin": "http://localhost:8080/*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-        });
+    onSubmit() {        
+        //saveListedAccount method from the authService layer
+        this.authService.saveListedAccount(this.regForm.value);
+        //reload the page
+        window.location.reload();
+    }
 
 
-          this.http.post("http://localhost:8080/auth/save/listedAccount", this.regForm.value,  { headers: reqHeader }).subscribe(
-          (data:any)=> {
-            this.listedAccount = data,
-            console.log(this.listedAccount)
-            //simple reload
-            //reload the page
-            window.location.reload();
-          }
-        )
-  }
-
-
-  enableEdit() {
-    
-    this.enabled = true;
-    
-    this.regForm.get("firstName")?.enable();  
-    this.regForm.get("lastName")?.enable();
-    this.regForm.get("comment")?.enable();
-    this.regForm.get("webPage")?.enable();
-    this.regForm.get("phoneNumber")?.enable();
-    this.regForm.get("postalCode")?.enable();
-    this.regForm.get("street")?.enable();
-    this.regForm.get("number")?.enable();
-    this.regForm.get("workAddress")?.enable();
-  }
-
-  
-
-
-
+    enableEdit() {
+      this.enabled = true;
+      
+      this.regForm.get("firstName")?.enable();  
+      this.regForm.get("lastName")?.enable();
+      this.regForm.get("comment")?.enable();
+      this.regForm.get("webPage")?.enable();
+      this.regForm.get("phoneNumber")?.enable();
+      this.regForm.get("postalCode")?.enable();
+      this.regForm.get("street")?.enable();
+      this.regForm.get("number")?.enable();
+      this.regForm.get("workAddress")?.enable();
+    }
 
 }

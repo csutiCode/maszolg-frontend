@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, SchedulerLike, throwError } from 'rxjs';
 import {catchError} from 'rxjs/operators';
+import { Messages } from '../components/utils/messages';
 
 
 
@@ -10,20 +11,18 @@ import {catchError} from 'rxjs/operators';
 })
 export class RestService {
 
-  //TODO: define the correct path
-  readonly URL: string = "http://localhost:8080/";
+   URL: string = Messages.baseLocalUrl
 
   
 
   readonly HTTP_PARAMS: Object = {
       headers: new HttpHeaders(
           {
-              'Content-Type': 'application/JSON',
-              'Access-Control-Allow-Credentials': 'true',
-              "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-                "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
-                "Accept-Charset": "utf-8"
+            'Content-Type': 'application/JSON',
+            'Access-Control-Allow-Credentials': 'true',
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
                 
               
           }

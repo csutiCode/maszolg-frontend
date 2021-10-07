@@ -1,34 +1,29 @@
 export class Messages {
 
-    /* VALIDATIONS
-    */
+    /* VALIDATIONS */
 
     public static required = "Kötelező elem"
     public static disabledButton = "Az adatlap hiányos"
     public static wrongEmail = "Hibás e-mail cím"
 
-    /* FOOTER
-    */
+    /* FOOTER */
     public static data_protection ="Adatvédelem";
 
     public static contact="Kapcsolat";
 
-    /* LOGIN AND REGISTRATION
-    */
+    /* LOGIN AND REGISTRATION  */
 
     public static login = "Bejelentkezés";
 
     public static registration ="Regisztráció";
 
-    /* NAV
-    */
+    /* NAV */
 
     public static search ="Szolgáltatót keresek";
     public static account="Szolgáltató vagyok";
     public static aboutUs="Rólunk";
 
-    /* LOGGED IN
-    */
+    /* LOGGED IN */
     
     public static myData ="Adatlapom";
     public static profession ="Foglalkozás";
@@ -39,12 +34,11 @@ export class Messages {
     public static changeTooltip = "Cseréld le a profilképed!"
     public static uploadPicture = "Profilkép feltöltése"
 
-    /* SEARCH
-    */
+    /* SEARCH  */
    
 
-    /* UPDATE
-    */
+    /* UPDATE */
+
     public static firstName ="Keresztnév";
     public static lastName ="Vezetéknév";
     public static email ="E-Mail";
@@ -59,16 +53,19 @@ export class Messages {
     public static webPageToolip = "www.<weboldalam>.hu"
     public static isWorkAddressTooltip = "Ha ezt kipipálod, az adatlapodon látható lesz a megadott lakcím."
   
-     /* LIST
-    */
+     /* LIST  */
     public static fullName = "Név";
     public static category  = "Kategória"
     public static rank = "Minősítés"
 
-    /* ACCOUNT DETAILS
-    */
+    /* ACCOUNT DETAILS */
 
     public static lastLogin ="Utolsó bejelentkezés"
     public static workAddress = "Munkahelyi cím"
     public static web = "Weboldal"
+
+
+    /* URL */
+    public static baseLocalUrl = "http://localhost:8080/"
+
 }

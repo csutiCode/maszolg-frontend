@@ -23,6 +23,7 @@ export class UpdateFormComponent implements OnInit {
   street: string = Messages.street;
   number: string = Messages.number;
   about: string = Messages.about;
+  webPage: string = Messages.web;
 
   
   //TODO: get the listedAccount Object
@@ -34,6 +35,7 @@ export class UpdateFormComponent implements OnInit {
     email: new FormControl(''),
     comment: new FormControl(''),
     phoneNumber: new FormControl('', Validators.required),
+    webPage: new FormControl(''),
     country: new FormControl('', Validators.required),
     city:  new FormControl('', Validators.required),
     postalCode:  new FormControl('', Validators.required),
@@ -100,6 +102,7 @@ export class UpdateFormComponent implements OnInit {
       this.regForm.get("firstName")?.setValue(this.listedAccount.firstName);
       this.regForm.get("lastName")?.setValue(this.listedAccount.lastName);
       this.regForm.get("comment")?.setValue(this.listedAccount?.comment);
+      this.regForm.get("webPage")?.setValue(this.listedAccount?.webPage);
       this.regForm.get("phoneNumber")?.setValue(this.listedAccount?.phoneNumber);
       this.regForm.get("city")?.setValue(this.listedAccount?.address?.city.city_uuid);
       this.regForm.get("postalCode")?.setValue(this.listedAccount?.address?.postalCode);
@@ -117,6 +120,7 @@ export class UpdateFormComponent implements OnInit {
        this.regForm.get("firstName")?.disable();
        this.regForm.get("lastName")?.disable();
        this.regForm.get("comment")?.disable();
+       //this.regForm.get("webPage")?.disable();
        this.regForm.get("phoneNumber")?.disable();
        this.regForm.get("postalCode")?.disable();
        this.regForm.get("street")?.disable();
@@ -190,7 +194,7 @@ export class UpdateFormComponent implements OnInit {
             console.log(this.listedAccount)
             //simple reload
             //reload the page
-            window.location.reload();
+            //window.location.reload();
           }
         )
   }

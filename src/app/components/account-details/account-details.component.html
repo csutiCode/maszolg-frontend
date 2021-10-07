@@ -84,6 +84,8 @@
 -->
 
 
+<div>
+
 
 <section class="section about-section gray-bg w-50 m-auto" id="about">
   <div class="container">
@@ -106,8 +108,8 @@
                           <p>{{account.phoneNumber}}</p>
                       </div>
                       <div class="media">
-                          <label>{{web}}</label>
-                          <p>TODO: webhely</p>
+                          <label>{{webPage}}</label>
+                          <p>{{account.webPage}}</p>
                       </div>
                       <div class="media">
                         <label>{{rank}}</label>
@@ -123,7 +125,7 @@
                               <label>Address</label>
                               <p>California, USA</p>
                           </div>
-                          </div>             
+                      </div>             
                   </div>
               </div>
           </div>
@@ -132,18 +134,17 @@
                   <img [src]='image' title="" alt="">
               </div>
           </div>
-      </div>
-
-      
-          
-            <div class="mb-3 w-50 m-auto" *ngIf="!isCookieSet">
-              <button  class=" btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
-              <button  class=" btn btn-lg btn-primary " (click)="openVerticallyCentered(content)">Vissza</button>
-            </div>
-          
+      </div>       
       
   </div>
+  <div  *ngIf="!isCookieSet">
+    <button  class=" btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
+    <button  class=" btn btn-lg btn-primary " (click)="openVerticallyCentered(content)">Vissza</button>
+  </div>
 </section>
+
+
+</div>
 
 
 <ng-template #content let-modal>

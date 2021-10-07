@@ -19,7 +19,7 @@ export class AccountDetailsComponent implements OnInit {
   about: string = Messages.about;
   phone : string = Messages.phone;
   email: string = Messages.email;
-  web :string = Messages.web;
+  webPage :string = Messages.web;
   rank: string = Messages.rank;
 
   account: any;
@@ -92,6 +92,7 @@ export class AccountDetailsComponent implements OnInit {
     return this.restService.get("search/account/" + uuid).subscribe(
       (data:any)=> {
         this.account = data,
+        console.log("LISTED ACCONT: ")
         console.table(this.account)
         console.log(this.account.lastLogin)
       }

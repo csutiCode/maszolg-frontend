@@ -25,13 +25,8 @@ export class LoginComponent implements OnInit {
   listedAccount?: ListedAccount;
   firstLogin: boolean = false;
 
-  constructor(private restService: RestService, 
-              private fb: FormBuilder, 
-              private router: Router, 
-              private http: HttpClient,
-              private cookieService: CookieService,
-              private authService: AuthService
-              ) {
+  constructor(private fb: FormBuilder,
+              private authService: AuthService) {
    }
   
 

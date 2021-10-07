@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
+import { Messages } from '../utils/messages';
 
 @Component({
   selector: 'app-list',
@@ -9,6 +10,12 @@ import { RestService } from 'src/app/services/rest.service';
 })
 
 export class ListComponent implements OnInit {
+
+
+  category : string = Messages.category;
+  fullName : string = Messages.fullName;
+  rank : string = Messages.rank;
+  profession : string = Messages.profession;
 
   constructor(private restService: RestService, 
               private route: ActivatedRoute,

@@ -24,7 +24,7 @@ export class Messages {
     */
     
     public static myData ="Adatlapom";
-    public static profession ="Foglalkozásom";
+    public static profession ="Foglalkozás";
     public static updateMyData ="Adataim frissítése";
     public static news ="Újdonságok";
     public static logout ="Kijelentkezés";
@@ -34,6 +34,7 @@ export class Messages {
 
     /* SEARCH
     */
+   
 
     /* UPDATE
     */
@@ -47,10 +48,18 @@ export class Messages {
     public static postalCode = "Irányítószám";
     public static street = "Utca";
     public static number = "Házszám";
+    public static isWorkAddress = "Munkahelyi cím?"
   
+     /* LIST
+    */
+    public static fullName = "Név";
+    public static category  = "Kategória"
+    public static rank = "Minősítés"
 
+    /* ACCOUNT DETAILS
+    */
 
-
-
-
+    public static lastLogin ="Utolsó bejelentkezés"
+    public static workAddress = "Munkahelyi cím"
+    public static web = "Weboldal"
 }

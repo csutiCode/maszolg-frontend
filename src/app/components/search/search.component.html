@@ -1,7 +1,7 @@
 <div class="card  w-50 m-auto" style="width: 18rem;">
 
 <div class="class= w-75 m-auto" >
-    <label for="country">Country</label>
+    <label for="country">{{country}}</label>
     <select [(ngModel)]="selectedCountry.uuid" (change)="onSelect(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
             <option value="0"> </option>
             <option *ngFor="let country of countries" [value]="country.country_uuid">
@@ -9,7 +9,7 @@
     </select>
 </div>
 <div class="w-75 m-auto" *ngIf="selectedCountry.uuid!=0">
-    <label for ="city">City</label>
+    <label for ="city">{{city}}</label>
     <select [(ngModel)]="selectedCity" class="form-select" aria-label="Default select example">
             <option *ngFor="let city of cities" [value]="city.name">
                 {{city.name}}

@@ -1,32 +1,35 @@
+<!-- 
+  
 <div class="card w-50 m-auto">
   <div class="container">
 
     <img [src]='image' alt="Avatar" style="width: 16rem">
 
-    <h4>Name: </h4>
+    
     <h1>{{account.firstName}} {{account.lastName}}</h1>
 
-    <h4>Phone:</h4>
-    <h1> {{account.phoneNumber}}</h1>
-
-    <h4>E-Mail:</h4>
-    <h1> {{account.email}}</h1>
-
-    <h4>Abount me: </h4>
-    <h1>{{account.comment}}</h1>
-
-    <h4>Professions:</h4>
     <p> <span *ngFor="let profession of account.professions">{{profession.name}}</span></p>
 
+    
+    <h1> {{account.phoneNumber}}</h1>
+
+    
+    <h1> {{account.email}}</h1>
+
+    
+    <h1>{{account.comment}}</h1>
+
+    
+    
     <div *ngIf="account.address.workAddress">
-      <h4 >Address:</h4>
+      <h4 >{{workAddress}}:</h4>
     <p>{{account.address.postalCode}}</p>
     <p>{{account.address.city.cityName}}</p>
     <p>{{account.address.number}}</p>
 
     </div>
 
-    <h4>Last login: </h4>
+    <h4>{{lastLogin}}:</h4>
     <h1>{{account.lastLogin}}</h1>
     
   </div>
@@ -78,6 +81,70 @@
       </div>
 </div>
 
+-->
+
+
+
+<section class="section about-section gray-bg w-50 m-auto" id="about">
+  <div class="container">
+      <div class="row align-items-center flex-row-reverse">
+          <div class="col-lg-6">
+              <div class="about-text go-to">
+                  <h3 class="dark-color">{{account.lastName}} {{account.firstName}}</h3>
+                  <h6 class="theme-color lead"><span *ngFor="let profession of account.professions">{{profession.name}}</span></h6>
+                  
+                  <p>{{account.comment}}</p>
+                  <div class="row about-list">
+                    
+                    <div class="col-md-6">
+                      <div class="media">
+                          <label>{{email}}</label>
+                          <p>{{account.email}}</p>
+                      </div>
+                      <div class="media">
+                          <label>{{phone}}</label>
+                          <p>{{account.phoneNumber}}</p>
+                      </div>
+                      <div class="media">
+                          <label>{{web}}</label>
+                          <p>TODO: webhely</p>
+                      </div>
+                      <div class="media">
+                        <label>{{rank}}</label>
+                        <p><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></p>
+                    </div>
+                  </div>
+                      <div class="col-md-6"  *ngIf="account.address.workAddress">
+                          <div class="media">
+                              <label>Residence</label>
+                              <p>Canada</p>
+                          </div>
+                          <div class="media">
+                              <label>Address</label>
+                              <p>California, USA</p>
+                          </div>
+                          </div>             
+                  </div>
+              </div>
+          </div>
+          <div class="col-lg-6">
+              <div class="about-avatar">
+                  <img [src]='image' title="" alt="">
+              </div>
+          </div>
+      </div>
+
+      
+          
+            <div class="mb-3 w-50 m-auto" *ngIf="!isCookieSet">
+              <button  class=" btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
+              <button  class=" btn btn-lg btn-primary " (click)="openVerticallyCentered(content)">Vissza</button>
+            </div>
+          
+      
+  </div>
+</section>
+
 
 <ng-template #content let-modal>
   <div class="modal-header">
@@ -108,11 +175,5 @@
   <div class="modal-footer">
     <button type="button" class="close" (click)="onComment(commentOnClassification)" (click)="modal.dismiss('Cross click')">Elküld</button>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')">Megse</button>
-
   </div>
-  
 </ng-template>
-
-
-
-

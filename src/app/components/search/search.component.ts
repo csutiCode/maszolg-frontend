@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
+import { Messages } from '../utils/messages';
 
 @Component({
   selector: 'app-search',
@@ -9,6 +10,10 @@ import { RestService } from 'src/app/services/rest.service';
 })
 
 export class SearchComponent implements OnInit {
+
+
+  country: string = Messages.country;
+  city: string = Messages.city;
 
   constructor(private restService: RestService, 
               private router: Router) { }

@@ -1,7 +1,7 @@
 <div class="card w-75 m-auto">
- <p>All accounts in the city: {{cityName}} </p>
+ <p>Az összes szolgáltató itt: {{cityName}} </p>
 
- <label>Kategoria</label>
+ <label>{{category}}</label>
 
     <select [(ngModel)]="selectedCategory.name" class="form-select"  
             (change)="onSelect(selectedCategory.name)" 
@@ -29,16 +29,14 @@
 <table class="table ">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Profession</th>
-        <th scope="col">Rank</th>
+        <th scope="col">{{fullName}}</th>
+        <th scope="col">{{profession}}</th>
+        <th scope="col">{{rank}}</th>
       </tr>
     </thead>
     <tbody>
         <tr class="hovered" *ngFor="let account of accounts | slice: pageSize | slice: 0:itemsPerPage"  (click)="onMore(account.listedAccount_uuid)">
-            <td>{{account.firstName}}</td>
-            <td>{{account.lastName}}</td>
+            <td>{{account.lastName}} {{account.firstName}}</td>
             <td> <span *ngFor="let profession of account.professions">{{profession.name}}</span></td>
             <td><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></td>
         </tr>

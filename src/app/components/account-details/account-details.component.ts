@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie';
 import { RestService } from 'src/app/services/rest.service';
+import { Messages } from '../utils/messages';
 
 @Component({
   selector: 'app-account-details',
@@ -12,6 +13,14 @@ import { RestService } from 'src/app/services/rest.service';
   styleUrls: ['./account-details.component.css']
 })
 export class AccountDetailsComponent implements OnInit {
+
+  workAddress: string = Messages.workAddress;
+  lastLogin: string = Messages.lastLogin;
+  about: string = Messages.about;
+  phone : string = Messages.phone;
+  email: string = Messages.email;
+  web :string = Messages.web;
+  rank: string = Messages.rank;
 
   account: any;
 

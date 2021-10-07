@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ListedAccount } from '../listedAccount';
 import { AuthService } from 'src/app/services/auth.service';
 import { Messages } from '../utils/messages';
 
@@ -18,18 +17,14 @@ export class LoginComponent implements OnInit {
 
   loginForm: any;
   token: any;
-  listedAccount?: ListedAccount;
-  firstLogin: boolean = false;
 
   constructor(private fb: FormBuilder,
               private authService: AuthService) {
    }
   
-
   ngOnInit(): void {
     this.createForm() 
   }
-
 
   createForm() {
     this.loginForm = this.fb.group({

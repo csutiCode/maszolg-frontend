@@ -121,7 +121,7 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   
-  onComment(comment:string) {    
+  onSendComment(comment:string) {    
     this.commentOnClassificationDto.classificationUuid = this.classificationUuid;
     this.commentOnClassificationDto.comment = comment;
     this.authService.sendComment(this.commentOnClassificationDto)

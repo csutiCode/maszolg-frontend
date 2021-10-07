@@ -1,54 +1,4 @@
-<!-- 
-  
-<div class="card w-50 m-auto">
-  <div class="container">
-
-    <img [src]='image' alt="Avatar" style="width: 16rem">
-
-    
-    <h1>{{account.firstName}} {{account.lastName}}</h1>
-
-    <p> <span *ngFor="let profession of account.professions">{{profession.name}}</span></p>
-
-    
-    <h1> {{account.phoneNumber}}</h1>
-
-    
-    <h1> {{account.email}}</h1>
-
-    
-    <h1>{{account.comment}}</h1>
-
-    
-    
-    <div *ngIf="account.address.workAddress">
-      <h4 >{{workAddress}}:</h4>
-    <p>{{account.address.postalCode}}</p>
-    <p>{{account.address.city.cityName}}</p>
-    <p>{{account.address.number}}</p>
-
-    </div>
-
-    <h4>{{lastLogin}}:</h4>
-    <h1>{{account.lastLogin}}</h1>
-    
-  </div>
-
-  <div class="mb-3  m-auto" *ngIf="!isCookieSet">
-    <button  class=" btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
-  </div>
-
-  
-  
-</div>
-
-
--->
-
-
 <div>
-
-
 <section class="section about-section gray-bg w-50 m-auto" id="about">
   <div class="container">
       <div class="row align-items-center flex-row-reverse">
@@ -143,12 +93,6 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
 </div>
 
 
@@ -179,7 +123,7 @@
     <textarea  [(ngModel)]="commentOnClassification"  value="comcommentOnClassificationment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
   </div>
   <div class="modal-footer">
-    <button type="button" class="close" (click)="onComment(commentOnClassification)" (click)="modal.dismiss('Cross click')">Elküld</button>
+    <button type="button" class="close" (click)="onSendComment(commentOnClassification)" (click)="modal.dismiss('Cross click')">Elküld</button>
     <button type="button" class="close" (click)="modal.dismiss('Cross click')">Megse</button>
   </div>
 </ng-template>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
 import { Messages } from '../utils/messages';
 
@@ -19,7 +20,8 @@ export class ListComponent implements OnInit {
 
   constructor(private restService: RestService, 
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private publicService: PublicService) { }
 
   accounts: any[] = [];
 
@@ -43,19 +45,22 @@ export class ListComponent implements OnInit {
         console.log(params); 
       }
     );
+     
       this.getAllAccountsForCity();
       this.getAllCategories();
   }
-
+  
   getAllAccountsForCity() {
+   
     return this.restService.get("search/city/" + this.cityName).subscribe(
       (data:any)=> {
         this.accounts = data
         console.table(this.accounts)
       }
     )
+    
   }
-
+  
   getAllCategories() {
     return this.restService.get("search/categories").subscribe(
       (data:any)=> {

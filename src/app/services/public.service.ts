@@ -30,7 +30,8 @@ export class PublicService {
  });
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+            private restService: RestService) {
   }
 
   saveClassification(uuid: string | null, classification: any) {    
@@ -45,11 +46,11 @@ export class PublicService {
         console.table(error),
       this.response = error.error,
       this.status = error.status
-    }
-)
+      }
+    )
   }
 
-
+ 
 
 }
 

@@ -16,7 +16,22 @@ export class AuthService {
 
   token?: string;
 
-  reqHeader =   new HttpHeaders({ 
+  response?: any;
+
+  error?: any;
+
+  status?: number = 200;
+
+  reqHeaders = new HttpHeaders({ 
+    'Content-Type': 'application/JSON',
+    'Access-Control-Allow-Credentials': 'true',
+    "Access-Control-Allow-Origin": "*",
+     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+    "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+ });
+
+
+  reqHeaderAuth =   new HttpHeaders({ 
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
     'Access-Control-Allow-Credentials': 'true',
@@ -37,6 +52,25 @@ export class AuthService {
         }
    }
 
+   public register(registerRequest: any) {
+    
+    this.http.post("http://localhost:8080/account/createAccount", registerRequest, { headers: this.reqHeaders })
+      .subscribe(
+        (data:any)=> {
+          this.response = data,
+          //this.status = this.response.status,
+            console.log("message from backend: ")
+            console.log(this.response)
+          }, (error: any) => {
+            console.table(error),
+            console.log('HTTP Error status code: ', error.error),
+            this.response = error.error,
+            this.status = error.status
+        }
+      )
+
+   }
+
    public login(loginForm : any) {
     console.log("loginform value from the authservice: ")
     console.table(loginForm.value)
@@ -46,17 +80,17 @@ export class AuthService {
           console.log(this.token)
           //set the token as cookie -> works
           this.cookieService.put("JWT", this.token);
-          
+          //hide the navbar
           this.hide();
+          //get the listedAccount and make a redirect
           this.getListedAccount();
           
       }
     )
-     
-   }
+  }
 
    getListedAccount() {
-    this.http.get("http://localhost:8080/auth",  { headers: this.reqHeader }).subscribe(
+    this.http.get("http://localhost:8080/auth",  { headers: this.reqHeaderAuth }).subscribe(
       (data:any)=> {
         this.listedAccount = data,
         this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid} })
@@ -66,7 +100,7 @@ export class AuthService {
    
 
    public saveListedAccount(form : any) {
-         this.http.post("http://localhost:8080/auth/save/listedAccount", form.value,  { headers: this.reqHeader }).subscribe(
+         this.http.post("http://localhost:8080/auth/save/listedAccount", form.value,  { headers: this.reqHeaderAuth }).subscribe(
           (data:any)=> {
             this.listedAccount = data,
             console.log(this.listedAccount)  

@@ -1,9 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { RestService } from 'src/app/services/rest.service';
-import { CookieService } from 'ngx-cookie';
 import { ListedAccount } from '../listedAccount';
 import { AuthService } from 'src/app/services/auth.service';
 import { Messages } from '../utils/messages';

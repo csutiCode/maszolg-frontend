@@ -2,9 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
-import { BehaviorSubject } from 'rxjs';
-import { BooleanLiteral } from 'typescript';
-import { FormGroup} from '@angular/forms';
+import { RestService } from './rest.service';
 
 
 @Injectable({
@@ -15,6 +13,8 @@ export class AuthService {
   visible: boolean;
 
   listedAccount: any;
+
+  token?: string;
 
   reqHeader =   new HttpHeaders({ 
     'Content-Type': 'application/json',
@@ -28,14 +28,42 @@ export class AuthService {
 
   constructor(private cookieService: CookieService,
         private router: Router,
-        private http: HttpClient) {
-    //this hides the navbar if somebody logged in
-      this.visible = true; 
-      if (this.getToken()!=null) {
-        this.visible = false; 
-      }
+        private http: HttpClient,
+        private restService: RestService) {
+        //this hides the navbar if somebody logged in
+        this.visible = true; 
+          if (this.getToken()!=null) {
+            this.visible = false; 
+        }
    }
 
+   public login(loginForm : any) {
+    console.log("loginform value from the authservice: ")
+    console.table(loginForm.value)
+      this.restService.post("account/login", loginForm.value).subscribe(
+        (data:any)=> {
+          this.token = data,
+          console.log(this.token)
+          //set the token as cookie -> works
+          this.cookieService.put("JWT", this.token);
+          
+          this.hide();
+          this.getListedAccount();
+          
+      }
+    )
+     
+   }
+
+   getListedAccount() {
+    this.http.get("http://localhost:8080/auth",  { headers: this.reqHeader }).subscribe(
+      (data:any)=> {
+        this.listedAccount = data,
+        this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid} })
+      }
+    ) 
+  }
+   
 
    public saveListedAccount(form : any) {
          this.http.post("http://localhost:8080/auth/save/listedAccount", form.value,  { headers: this.reqHeader }).subscribe(

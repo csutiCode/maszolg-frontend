@@ -1,5 +1,11 @@
 export class Messages {
 
+    /* VALIDATIONS
+    */
+
+    public static required = "Kötelező elem"
+    public static disabledButton = "Az adatlap hiányos"
+
     /* FOOTER
     */
     public static data_protection ="Adatvédelem";

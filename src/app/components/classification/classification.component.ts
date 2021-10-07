@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RestService } from 'src/app/services/rest.service';
+import { Messages } from '../utils/messages';
 
 @Component({
   selector: 'app-classification',
@@ -11,6 +12,8 @@ import { RestService } from 'src/app/services/rest.service';
   styleUrls: ['./classification.component.css']
 })
 export class ClassificationComponent implements OnInit {
+
+  required:string = Messages.required;
 
   classificationForm: any;
 

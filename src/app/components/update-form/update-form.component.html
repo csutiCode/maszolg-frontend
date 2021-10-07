@@ -4,14 +4,15 @@
         <label  class="col-sm-2 col-form-label">{{firstName}}</label>
         <div class="col-sm-10">
           <input class="form-control" formControlName="firstName">  
+            <div *ngIf="regForm.controls['firstName'].invalid  && regForm.controls['firstName'].touched">
+              <div *ngIf="regForm.controls['firstName'].errors?.required">
+                <small class="text danger" >
+                  {{required}}
+                </small>
+              </div>
+          </div>
          </div>
-         <div *ngIf="regForm.controls['firstName'].invalid  && regForm.controls['firstName'].touched">
-            <div *ngIf="regForm.controls['firstName'].errors?.required">
-              <small class="text danger" >
-                First name is required.
-              </small>
-            </div>
-        </div>
+         
     </div>
 
 
@@ -19,14 +20,14 @@
         <label  class="col-sm-2 col-form-label">{{lastName}}</label>
         <div class="col-sm-10">
           <input class="form-control" formControlName="lastName">
+            <div *ngIf="regForm.controls['lastName'].invalid  && regForm.controls['lastName'].touched">
+              <div *ngIf="regForm.controls['lastName'].errors?.required">
+                <small class="text danger" >
+                  {{required}}
+                </small>
+              </div>
+            </div>
         </div>
-        <div *ngIf="regForm.controls['lastName'].invalid  && regForm.controls['lastName'].touched">
-          <div *ngIf="regForm.controls['lastName'].errors?.required">
-            <small class="text danger" >
-              First name is required.
-            </small>
-          </div>
-      </div>
     </div>
 
     
@@ -42,14 +43,14 @@
     <label  class="col-sm-2 col-form-label">{{phone}}</label>
     <div class="col-sm-10">
       <input  class="form-control"   formControlName="phoneNumber">
-    </div>
-    <div *ngIf="regForm.controls['phoneNumber'].invalid  && regForm.controls['phoneNumber'].touched">
-      <div *ngIf="regForm.controls['phoneNumber'].errors?.required">
-        <small class="text danger" >
-          First name is required.
-        </small>
+      <div *ngIf="regForm.controls['phoneNumber'].invalid  && regForm.controls['phoneNumber'].touched">
+        <div *ngIf="regForm.controls['phoneNumber'].errors?.required">
+          <small class="text danger" >
+            {{required}}
+          </small>
+        </div>
       </div>
-  </div>
+    </div>
   </div>
 
 
@@ -57,18 +58,7 @@
         <label  class="col-sm-2 col-form-label">{{about}}</label>
         <div class="col-sm-10">
           <input class="form-control"  placeholder=""  formControlName="comment">
-        </div>
-        <!-- 
-            <div *ngIf="regForm.controls['comment'].invalid  && regForm.controls['comment'].touched">
-          <div *ngIf="regForm.controls['comment'].errors.required">
-            <small class="text danger" >
-              First name is required.
-            </small>
-          </div>
-      </div>
-
-        -->
-      
+        </div>      
     </div>
 
     <div class="form-group row" >
@@ -114,16 +104,7 @@
                 <option > </option>
                 <option *ngFor="let country of countries" [value]="country.country_uuid">
                 {{country.name}}</option>
-                <!--
-              <div *ngIf="regForm.controls['country'].invalid  && regForm.controls['country'].touched">
-                  <div *ngIf="regForm.controls['country'].errors?.required">
-                    <small class="text danger" >
-                      Country is required.
-                    </small>
-                  </div>
-              </div>
-                 -->
-               
+                              
         </select>
     </div>   
 
@@ -134,13 +115,6 @@
                 <option *ngFor="let city of cities" [value]="city.name">
                     {{city.name}}
                 </option>
-                <div *ngIf="regForm.controls['city'].invalid  && regForm.controls['city'].touched">
-                  <div *ngIf="regForm.controls['city'].errors?.required">
-                    <small class="text danger" >
-                      City is required.
-                    </small>
-                  </div>
-              </div>       
         </select>
     </div>
 
@@ -149,6 +123,13 @@
       <label  class="col-sm-2 col-form-label">{{city}}</label>
       <div class="col-sm-10">
         <input  class="form-control" [(ngModel)]="elseCity" >
+        <div *ngIf="regForm.controls['elseCity'].invalid  && regForm.controls['elseCity'].touched">
+          <div *ngIf="regForm.controls['elseCity'].errors?.required">
+            <small class="text danger" >
+              {{required}}
+            </small>
+          </div>
+        </div>
       </div> 
     </div>
 
@@ -159,53 +140,34 @@
             <div class="col-sm-10">
               <input class="form-control" placeholder=""  formControlName="postalCode">
             </div>
-            <div *ngIf="regForm.controls['postalCode'].invalid  && regForm.controls['postalCode'].touched">
-              <div *ngIf="regForm.controls['postalCode'].errors?.required">
-                <small class="text danger" >
-                  First name is required.
-                </small>
-              </div>
-          </div>
         </div>
+
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">{{street}}</label>
             <div class="col-sm-10">
               <input class="form-control" placeholder=""  formControlName="street">
             </div>
-            <div *ngIf="regForm.controls['street'].invalid  && regForm.controls['street'].touched">
-              <div *ngIf="regForm.controls['street'].errors?.required">
-                <small class="text danger" >
-                  First name is required.
-                </small>
-              </div>
-          </div>
         </div>
+
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">{{number}}</label>
             <div class="col-sm-10">
               <input type="email" class="form-control" placeholder=""  formControlName="number">
             </div>
-            <div *ngIf="regForm.controls['number'].invalid  && regForm.controls['number'].touched">
-              <div *ngIf="regForm.controls['number'].errors?.required">
-                <small class="text danger" >
-                  First name is required.
-                </small>
-              </div>
-          </div>
         </div>
+
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label" ngbTooltip="{{isWorkAddressTooltip}}" >{{isWorkAddress}}</label>
             <input  ngbTooltip="{{isWorkAddressTooltip}}" type="checkbox" formControlName="workAddress">
-       
         </div>
-       
     </div>
 
     
 
     <div *ngIf="enabled">
-      <button class="w-20 btn btn-sm btn-primary" ngbTooltip="You need to fill all of the fields to send it"
-         type="submit">Send</button>
+      <button class="w-20 btn btn-sm btn-primary" [disabled]="!regForm.valid" 
+         type="submit">
+         <span ngbTooltip="!regForm.valid ? '{{disabledButton}}' : ''">Elküld</span></button>
     </div>
 
   </form>

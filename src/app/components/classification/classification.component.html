@@ -3,60 +3,65 @@
         <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">
           <input  class="form-control"   formControlName="email">
+          <div  *ngIf="classificationForm.controls['email'].invalid  && classificationForm.controls['email'].touched">
+            <div *ngIf="classificationForm.controls['email'].errors?.required">
+              <small class="text danger" >
+                {{required}}
+              </small>
+            </div>
+          </div>
         </div>
     </div>
-    <div *ngIf="classificationForm.controls['email'].invalid  && classificationForm.controls['email'].touched"
-    class="alert alert-danger">
-    
-        <div *ngIf="classificationForm.controls['email'].errors.required">
-          E-mail is required.
-        </div>
-</div>
+
+  
     <div class="form-group row" >
         <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
         <div class="col-sm-10" >
           <input class="form-control"  formControlName="createdBy">
+          <div  *ngIf="classificationForm.controls['createdBy'].invalid  && classificationForm.controls['createdBy'].touched">
+            <div *ngIf="classificationForm.controls['createdBy'].errors?.required">
+              <small class="text danger" >
+                {{required}}
+              </small>
+            </div>
+          </div>
         </div>
-          <div *ngIf="classificationForm.controls['createdBy'].invalid  && classificationForm.controls['createdBy'].touched"
-          class="alert alert-danger">
-          
-              <div *ngIf="classificationForm.controls['createdBy'].errors.required">
-                Name is required.
-              </div>
-      </div>
+    </div>
   
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">text</label>
         <div class="col-sm-10">
           <input  class="form-control"  formControlName="text">
+          <div  *ngIf="classificationForm.controls['text'].invalid  && classificationForm.controls['text'].touched">
+            <div *ngIf="classificationForm.controls['text'].errors?.required">
+              <small class="text danger" >
+                {{required}}
+              </small>
+            </div>
+          </div>
         </div>
     </div>
-  </div>
-  <div *ngIf="classificationForm.controls['text'].invalid  && classificationForm.controls['text'].touched"
-  class="alert alert-danger">
   
-      <div *ngIf="classificationForm.controls['text'].errors.required">
-        Comment is required.
-      </div>
-</div>
   
     
     <div class="form-row align-items-center">
       <div class="col-auto my-1">
         <label class="mr-sm-2" for="inlineFormCustomSelect">Rating</label>
         <ngb-rating formControlName="rating" [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+        <div  *ngIf="classificationForm.controls['rating'].invalid  && classificationForm.controls['rating'].touched">
+          <div *ngIf="classificationForm.controls['rating'].errors?.required">
+            <small class="text danger" >
+              {{required}}
+            </small>
+          </div>
+        </div>
       </div>
   </div>
-    <div *ngIf="classificationForm.controls['rating'].invalid  && classificationForm.controls['rating'].touched"
-    class="alert alert-danger">
-    
-        <div *ngIf="classificationForm.controls['rating'].errors.required">
-          rating is required.
-        </div>
-  </div>
+   
   <div>
     <button class="w-100 btn btn-lg btn-primary"  type="submit" [disabled]="!classificationForm.valid" >Elkuld</button>
  </div>
+ 
 </form>
 
 <ng-template #content let-modal>

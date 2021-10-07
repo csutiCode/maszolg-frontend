@@ -28,6 +28,8 @@ export class UpdateFormComponent implements OnInit {
   webPage: string = Messages.web;
   webPageToolip : string  = Messages.webPageToolip;
   isWorkAddressTooltip: string = Messages.isWorkAddressTooltip;
+  required:string = Messages.required;
+  disabledButton:string = Messages.disabledButton;
 
   
   //TODO: get the listedAccount Object
@@ -42,9 +44,9 @@ export class UpdateFormComponent implements OnInit {
     webPage: new FormControl(''),
     country: new FormControl('', Validators.required),
     city:  new FormControl('', Validators.required),
-    postalCode:  new FormControl('', Validators.required),
-    street:  new FormControl('', Validators.required),
-    number:  new FormControl('', Validators.required),
+    postalCode:  new FormControl(''),
+    street:  new FormControl(''),
+    number:  new FormControl(''),
     workAddress: new FormControl(''),
 
     cityFromBackend: new FormControl(''),

@@ -45,8 +45,6 @@ export class AccountDetailsComponent implements OnInit {
 
   classificationUuid: string = '';
 
-  token: string = this.cookieService.get("JWT");
-
   commentOnClassification:string ='';
 
 
@@ -114,7 +112,6 @@ export class AccountDetailsComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
-
   openComment(content: any, uuid: string) {
     console.log("UUID:")
     this.classificationUuid = uuid;
@@ -127,7 +124,6 @@ export class AccountDetailsComponent implements OnInit {
   onComment(comment:string) {    
     this.commentOnClassificationDto.classificationUuid = this.classificationUuid;
     this.commentOnClassificationDto.comment = comment;
-
     this.authService.sendComment(this.commentOnClassificationDto)
     window.location.reload();
   }

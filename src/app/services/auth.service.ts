@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
+import { Messages } from '../components/utils/messages';
 import { RestService } from './rest.service';
 
 
@@ -10,6 +11,8 @@ import { RestService } from './rest.service';
   providedIn: 'root'
 })
 export class AuthService {
+
+  URL = Messages.baseLocalUrl
 
   visible: boolean;
 
@@ -56,7 +59,7 @@ export class AuthService {
 
    public register(registerRequest: any) {
     
-    this.http.post("http://localhost:8080/account/createAccount", registerRequest, { headers: this.reqHeaders })
+    this.http.post(URL + "account/createAccount", registerRequest, { headers: this.reqHeaders })
       .subscribe(
         (data:any)=> {
           this.response = data,
@@ -92,7 +95,7 @@ export class AuthService {
   }
 
    getListedAccount() {
-    this.http.get("http://localhost:8080/auth",  { headers: this.reqHeaderAuth }).subscribe(
+    this.http.get(URL + "auth",  { headers: this.reqHeaderAuth }).subscribe(
       (data:any)=> {
         this.listedAccount = data,
         this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid} })
@@ -103,7 +106,7 @@ export class AuthService {
    
 
    public saveListedAccount(form : any) {
-         this.http.post("http://localhost:8080/auth/save/listedAccount", form,  { headers: this.reqHeaderAuth }).subscribe(
+         this.http.post(URL + "auth/save/listedAccount", form,  { headers: this.reqHeaderAuth }).subscribe(
           (data:any)=> {
             this.listedAccount = data,
             console.log(this.listedAccount)  
@@ -113,7 +116,7 @@ export class AuthService {
 
    public sendComment(commentOnClassificationDto : any) {
     console.log(commentOnClassificationDto)
-      this.http.post("http://localhost:8080/auth/save/commentOnClassification", commentOnClassificationDto,  { headers: this.reqHeaderAuth }).subscribe(
+      this.http.post(URL + "auth/save/commentOnClassification", commentOnClassificationDto,  { headers: this.reqHeaderAuth }).subscribe(
         (data:any)=> {
           this.response = data,
           console.log(this.response)

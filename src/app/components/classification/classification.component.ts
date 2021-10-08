@@ -12,6 +12,7 @@ import { Messages } from '../utils/messages';
 })
 export class ClassificationComponent implements OnInit {
 
+
   required:string = Messages.required;
 
   classificationForm: any;
@@ -50,10 +51,21 @@ export class ClassificationComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("Classification to send: ");
-    console.table(this.classificationForm.value)
 
-    this.publicService.saveClassification(this.uuid, this.classificationForm.value);
+    const promise = this.publicService.saveClassificationPromise(this.uuid, this.classificationForm.value);
+
+    promise.then((data:any)=> {
+      this.response = data,
+      console.log("message from backend: ")
+      console.log(this.status)
+      }, (error: any) => {
+        console.log('HTTP Error status code: ', error.error),
+        console.table(error),
+      this.response = error.error,
+      this.status = error.status
+        }
+    )
+    
   }
     
   openVerticallyCentered(content: any) {
@@ -64,7 +76,10 @@ export class ClassificationComponent implements OnInit {
     //reload the page with the button
     window.location.reload();
   }
-    
+  
+  then() {
+
+  }
 
 
 }

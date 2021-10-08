@@ -47,13 +47,19 @@
     <div class="form-row align-items-center">
       <div class="col-auto my-1">
         <label class="mr-sm-2">Rate</label>
-        <ngb-rating formControlName="rating" [max]="5" [(rate)]="starRating" [readonly]="false"></ngb-rating>
+        <div class="container">
+          <span id="rateMe2"  class="empty-stars"></span>
+        </div>
+       
+        <ngb-rating formControlName="rating"  [max]="5" [readonly]="false"></ngb-rating>
+       
        
       </div>
   </div>
    
   <div>
     <button class="w-100 btn btn-lg btn-primary"  type="submit" [disabled]="!classificationForm.valid" >Elkuld</button>
+    
  </div>
  
 </form>

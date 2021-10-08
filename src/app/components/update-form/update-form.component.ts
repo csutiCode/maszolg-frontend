@@ -180,7 +180,7 @@ export class UpdateFormComponent implements OnInit {
         console.log(this.regForm.value)
         this.authService.saveListedAccount(this.regForm.value);
         //reload the page
-        //window.location.reload();
+        window.location.reload();
     }
 
 

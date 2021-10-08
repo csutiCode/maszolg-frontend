@@ -17,9 +17,11 @@ export class PublicService {
 
   countries: Array<any> | undefined
 
-  response: any;
+  response?: any;
 
-  status: any;
+  error?: any;
+
+  status?: number = 200;
 
   reqHeaders = new HttpHeaders({ 
     'Content-Type': 'application/JSON',
@@ -37,8 +39,6 @@ export class PublicService {
   getImage(uuid : string | null) {
     return this.http.get("http://localhost:8080/search/getImage/" + uuid, 
           {observe: 'body', headers: this.reqHeaders, responseType: 'blob'}).toPromise();
-    
-    
   }
 
   getListedAccount(uuid: string | null) {
@@ -48,10 +48,6 @@ export class PublicService {
   saveClassification(uuid: string | null, classification: any) {    
     return this.restService.post("save/classification/" + uuid, classification).toPromise(); 
   }
-
- 
-
-
 
 }
 

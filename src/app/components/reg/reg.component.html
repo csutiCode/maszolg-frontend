@@ -33,18 +33,7 @@
         </div>
       <label for="floatingPassword">Jelszó</label>
     </div>
-    <!-- 
-       <div class="field-message" *ngIf="registrationForm.controls['password'].errors.passwordStrength">
-        <small class="text danger" >
-          Password not strong enough.
-        </small>
-      </div> 
-       
-    -->
-     
-         
-     
- 
+    
     <div class="form-floating">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="confirmedPassword">
         <div *ngIf="registrationForm.controls['confirmedPassword'].invalid  && registrationForm.controls['confirmedPassword'].touched">
@@ -56,41 +45,26 @@
         </div>
         <label for="floatingPassword">Jelszó</label>
       </div>    
-
       <div class="form-floating">
           <div class="input-group">
             <input class="form-control" placeholder="yyyy-mm-dd"
                     ngbDatepicker #d="ngbDatepicker"   formControlName="dateOfBirth"  >
             <button class="btn btn-outline-secondary calendar"  (click)="d.toggle()" type="button"></button>             
         </div>
-        <!-- 
-           <div *ngIf="registrationForm.controls['dateOfBirth'].errors.dateOfBirth"
-          class="alert alert-danger">
-            <div *ngIf="registrationForm.controls['dateOfBirth'].errors.dateOfBirth">
-              to old
-            </div>
-        </div>
-        -->
-
       </div>
       <hr/>
 
       <div class="form-floating">
         <button class="w-100 btn btn-lg btn-primary" type="submit"   [disabled]="!registrationForm.valid">Regisztráció</button>
-
       </div>
-
   </form>
-
-
 </div>>
 
 
-  
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Registration status</h4>
+    <h4 class="modal-title">Regisztráció állapota</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -104,10 +78,10 @@
   </div>
    
   <div class="modal-footer" *ngIf="status==200">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" routerLink="/login">Login</button>
+    <button type="button" class="btn btn-sm btn-primary" (click)="modal.close('Close click')" routerLink="/login">Bejelentkezés</button>
   </div>
 
   <div class="modal-footer" *ngIf="status!=200">
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" routerLink="/reg">Back</button>
+    <button type="button" class="btn btn-sm btn-primary" (click)="modal.close('Close click')" routerLink="/reg">Vissza</button>
   </div>
 </ng-template>

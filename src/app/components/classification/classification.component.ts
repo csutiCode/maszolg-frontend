@@ -21,12 +21,13 @@ export class ClassificationComponent implements OnInit {
 
   backendMessage?: string;
 
-  response?: any;
+  response:any =  this.publicService.response;
 
-  error?: any;
+  error?: any = this.publicService.error;
 
-  status?: number = 200;
+  status?: number = this.publicService.status;
 
+ 
   starRating = 0; 
 
   
@@ -51,19 +52,18 @@ export class ClassificationComponent implements OnInit {
   }
 
   onSubmit() {
+
     const promise = this.publicService.saveClassification(this.uuid, this.classificationForm.value);
-    promise.then((data:any)=> {
+
+    console.log("PROMISE: ")
+    console.table(promise)
+    promise.then( (data:any)=> {
       this.response = data,
-      console.log("message from backend: ")
-      console.log(this.status)
-      }, (error: any) => {
-        console.log('HTTP Error status code: ', error.error),
-        console.table(error),
-      this.response = error.error,
-      this.status = error.status
+        console.log(this.response)
+      }, () => {
+        this.response = "Egy szolgáltatót havonta csak egyszer lehet minősíteni."
         }
     )
-    
   }
     
   openVerticallyCentered(content: any) {

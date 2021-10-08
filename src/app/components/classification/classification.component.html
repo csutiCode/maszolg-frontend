@@ -1,6 +1,6 @@
 <form class="" [formGroup]="classificationForm" (ngSubmit)="onSubmit()"  (ngSubmit)="openVerticallyCentered(content)">
     <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+        <label for="inputEmail3" class="col-sm-2 col-form-label">E-Mail</label>
         <div class="col-sm-10">
           <input  class="form-control"   formControlName="email">
           <div  *ngIf="classificationForm.controls['email'].invalid  && classificationForm.controls['email'].touched">
@@ -15,7 +15,7 @@
 
   
     <div class="form-group row" >
-        <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Név</label>
         <div class="col-sm-10" >
           <input class="form-control"  formControlName="createdBy">
           <div  *ngIf="classificationForm.controls['createdBy'].invalid  && classificationForm.controls['createdBy'].touched">
@@ -29,7 +29,7 @@
     </div>
   
     <div class="form-group row">
-        <label for="inputEmail3" class="col-sm-2 col-form-label">text</label>
+        <label for="inputEmail3" class="col-sm-2 col-form-label">Szöveg</label>
         <div class="col-sm-10">
           <input  class="form-control"  formControlName="text">
           <div  *ngIf="classificationForm.controls['text'].invalid  && classificationForm.controls['text'].touched">
@@ -41,32 +41,27 @@
           </div>
         </div>
     </div>
-  
-  
-    
+
     <div class="form-row align-items-center">
       <div class="col-auto my-1">
-        <label class="mr-sm-2">Rate</label>
+        <label class="mr-sm-2">Minősítés</label>
         <div class="container">
           <span id="rateMe2"  class="empty-stars"></span>
         </div>
-       
         <ngb-rating formControlName="rating"  [max]="5" [readonly]="false"></ngb-rating>
-       
-       
       </div>
   </div>
    
   <div>
-    <button class="w-100 btn btn-lg btn-primary"  type="submit" [disabled]="!classificationForm.valid" >Elkuld</button>
-    
- </div>
- 
+    <button class="w-100 btn btn-lg btn-primary"  type="submit" [disabled]="!classificationForm.valid" >Elküld</button>
+  </div>
 </form>
+
+
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Classification status</h4>
+    <h4 class="modal-title">Visszajelzés</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -80,14 +75,11 @@
   </div>
    
   <div class="modal-footer" *ngIf="status==200">     
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')"  (click)="reloadPage()">OK</button>
+    <button type="button" class="btn btn-sm btn-primary " (click)="modal.close('Close click')"  (click)="reloadPage()">OK</button>
   </div>
 
   <div class="modal-footer" *ngIf="status!=200">
-    <div>
-      <p>Ooops, something went wrong!</p>
-    </div>
-    <button type="button" class="btn btn-light" (click)="modal.close('Close click')" (click)="reloadPage()" >Back</button>
+    <button type="button" class="btn btn-sm btn-primary " (click)="modal.close('Close click')">Vissza</button>
   </div>
 </ng-template>
 

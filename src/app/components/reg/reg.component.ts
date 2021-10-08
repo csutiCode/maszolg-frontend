@@ -69,7 +69,7 @@ export class RegComponent implements OnInit {
         console.log(this.response)
       }, (error: any) => {
         console.table(error),
-        console.log('HTTP Error status code: ', error.error),
+        console.log('HTTP Error status text: ', error.error),
         this.response = error.error,
         this.status = error.status
       }

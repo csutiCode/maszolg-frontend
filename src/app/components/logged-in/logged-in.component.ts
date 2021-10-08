@@ -44,7 +44,6 @@ export class LoggedInComponent implements OnInit {
               private cookieService: CookieService,
               public authService: AuthService,
               private modalService: NgbModal,
-              private http: HttpClient,
               private sanitizer: DomSanitizer,
               private publicService : PublicService) {
   }

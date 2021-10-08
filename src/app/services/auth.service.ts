@@ -75,7 +75,7 @@ export class AuthService {
    public login(loginForm : any) {
     console.log("loginform value from the authservice: ")
     console.table(loginForm.value)
-      this.restService.post("account/login", loginForm.value).subscribe(
+      this.restService.post("account/login", loginForm.value,  { headers: this.reqHeaderAuth }).subscribe(
         (data:any)=> {
           this.token = data,
           console.log(this.token)

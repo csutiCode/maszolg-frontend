@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
+import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
 import { Messages } from '../utils/messages';
 
@@ -36,7 +37,7 @@ export class AccountDetailsComponent implements OnInit {
   response: any;
 
   //if a cookie is present, the user is logged in 
-  isCookieSet: boolean = this.cookieService.get("JWT") ? true : false;
+  isCookieSet: boolean = this.authService.getToken() ? true : false;
 
   commentOnClassificationDto: any ={
     classificationUuid: '',
@@ -52,10 +53,9 @@ export class AccountDetailsComponent implements OnInit {
   constructor(private restService: RestService, 
     private route: ActivatedRoute,
     private modalService: NgbModal,
-    private cookieService: CookieService,
-    private http: HttpClient,
     private sanitizer: DomSanitizer,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private publicService: PublicService) { }
 
   ngOnInit(): void {
     this.route.queryParams
@@ -64,28 +64,9 @@ export class AccountDetailsComponent implements OnInit {
     }
     );
     this.getListedAccount(this.route.snapshot.queryParamMap.get('uuid'));
-    
-    const reqHeader = new HttpHeaders({ 
-      'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Origin": "http://localhost:8080/*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-   });
-      
-    //get the image from the backend
-    this.image = this.http.get("http://localhost:8080/search/getImage/" + this.uuid, 
-        {observe: 'body', headers: reqHeader, responseType: 'blob'}).subscribe(data => {
-  
-        let objectURL =URL.createObjectURL(data);
-        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-  
-        console.log("data")
-        console.table(data)
-        console.log("image")
-        console.table(this.image)
-  
-      });
-      
+    this.fetchImage();
+
+   
   }
 
   getListedAccount(uuid: string | null) {
@@ -97,6 +78,17 @@ export class AccountDetailsComponent implements OnInit {
         console.log(this.account.lastLogin)
       }
     )
+  }
+
+  fetchImage() {
+    //http request from the publicservice
+    const promise = this.publicService.getImage(this.uuid);
+
+    promise.then(data => {
+  
+    let objectURL =URL.createObjectURL(data);
+    this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+  });
   }
   
 

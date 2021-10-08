@@ -34,13 +34,19 @@ export class PublicService {
             private restService: RestService) {
   }
 
+  getImage(uuid : string | null) {
+    return this.http.get("http://localhost:8080/search/getImage/" + uuid, 
+          {observe: 'body', headers: this.reqHeaders, responseType: 'blob'}).toPromise();
+    
+    
+  }
+
   getListedAccount(uuid: string | null) {
     return this.restService.get("search/account/" + uuid).toPromise();
   }
 
   saveClassification(uuid: string | null, classification: any) {    
-    return this.restService.post("save/classification/" + uuid, classification).toPromise();
-    
+    return this.restService.post("save/classification/" + uuid, classification).toPromise(); 
   }
 
  

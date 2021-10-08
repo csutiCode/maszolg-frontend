@@ -45,6 +45,14 @@ export class AuthService {
       "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
   });
 
+  reqHeaderImage =   new HttpHeaders({ 
+    'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
+    'Access-Control-Allow-Credentials': 'true',
+    "Access-Control-Allow-Origin": "http://localhost:8080/*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+  });
+
 
   constructor(private cookieService: CookieService,
         private router: Router,
@@ -59,8 +67,7 @@ export class AuthService {
    }
 
    public register(registerRequest: any) {
-    console.log("REGISTER REQUEST FROM THE AUTHSERVICE: ")
-    console.table(registerRequest)
+    
     return this.http.post("http://localhost:8080/account/createAccount", registerRequest, { headers: this.reqHeaders }).toPromise();
        
    }
@@ -80,8 +87,11 @@ export class AuthService {
       }
     )
   }
+  
 
    getListedAccount() {
+     console.log("TOKEN from the getlistedaccount:  ")
+     console.log(this.token)
     this.http.get("http://localhost:8080/auth",  { headers: this.reqHeaderAuth }).subscribe(
       (data:any)=> {
         this.listedAccount = data,
@@ -110,6 +120,20 @@ export class AuthService {
         }
       )
    }
+
+
+   uploadImage(uuid : string | null, formData: any) {
+    return this.http.post("http://localhost:8080/auth/uploadImage/"+ uuid, formData,  { headers: this.reqHeaderImage }).toPromise();
+    }
+
+    delete(uuid: string | null) {
+      this.http.get("http://localhost:8080/auth/delete/" + uuid,  { headers: this.reqHeaderAuth }).subscribe(
+        (data:any)=> {
+          this.response = data,
+          console.log(this.response)
+        }
+      )
+    }
 
   
   getToken(): string {

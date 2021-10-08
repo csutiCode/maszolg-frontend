@@ -1,9 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+
 import { Component,  OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import {  ActivatedRoute } from '@angular/router';
-import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';

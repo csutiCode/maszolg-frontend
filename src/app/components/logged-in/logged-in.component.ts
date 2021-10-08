@@ -8,6 +8,7 @@ import { RestService } from 'src/app/services/rest.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Messages } from '../utils/messages';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { PublicService } from 'src/app/services/public.service';
 
 @Component({
   selector: 'app-logged-in',
@@ -44,42 +45,35 @@ export class LoggedInComponent implements OnInit {
               public authService: AuthService,
               private modalService: NgbModal,
               private http: HttpClient,
-              private sanitizer: DomSanitizer) {
+              private sanitizer: DomSanitizer,
+              private publicService : PublicService) {
   }
 
   ngOnInit(): void {
 
   this.restService.getListedAccount("search/accounts/" + this.uuid);
-  this.getImage();
+  this.fetchImage();
   }
 
-  getImage() {
-    //TODO: refactor this shit!!!
-    const reqHeader = new HttpHeaders({ 
-      //'Content-Type': 'multipart/form-data',
-      'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
-      'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Origin": "http://localhost:8080/*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-   });
-      
-    //get the image from the backend
-    this.image = this.http.get("http://localhost:8080/search/getImage/" + this.uuid, 
-        {observe: 'body', headers: reqHeader, responseType: 'blob'}).subscribe(data => {
+  fetchImage() {
+    //http request from the publicservice
+    const promise = this.publicService.getImage(this.uuid);
+
+    promise.then(data => {
   
-        let objectURL =URL.createObjectURL(data);
-        this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      let objectURL =URL.createObjectURL(data);
+      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+
+      console.log("data")
+      console.table(data)
+      console.log("image")
+      console.table(this.image)
+      //change to the 
+      if (data.size!=0) {
+        this.isDefault=false;
+      }
+    });
   
-        console.log("data")
-        console.table(data)
-        console.log("image")
-        console.table(this.image)
-        //change to the 
-        if (data.size!=0) {
-          this.isDefault=false;
-        }
-      });
   }
   /*
     +++++++++++++++++++++++++++++++++++++++++++++++++ SWITCH IN LOGGED IN BETWEEN THE NESTED COMPONENTS +++++++++++++++++++++++++++++++++
@@ -113,29 +107,24 @@ export class LoggedInComponent implements OnInit {
     onUpload() {
         console.log(this.file);
         this.upload();
-        window.location.reload();
+        //window.location.reload();
     }
 
     //send the post request with the image to the backend
     upload() {
+
     //formdata to handle the "pair"
     this.formData.append("file", this.file);
+    
+    const promise = this.authService.uploadImage(this.uuid, this.formData);
 
-    var reqHeader = new HttpHeaders({ 
-      //'Content-Type': 'multipart/form-data',
-      'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
-      'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Origin": "http://localhost:8080/*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization",
-   });
-
-     this.http.post("http://localhost:8080/auth/uploadImage/"+ this.uuid, this.formData,  { headers: reqHeader }).subscribe(
-      (data:any)=> {
-        this.message = data,
-        console.log(this.message)
+    promise.then((data:any)=> {
+      this.message = data,
+      console.log("MESSAGE FROM THE SERVER AFTER IMAGE UPLOAD:")
+      console.log(this.message)
       }
     )
+   
   }
 
    /*
@@ -143,25 +132,7 @@ export class LoggedInComponent implements OnInit {
     */
   
   delete() {
-
-    var reqHeader = new HttpHeaders({ 
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
-      'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Origin": "http://localhost:8080/*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-    });
-
-
-      this.http.get("http://localhost:8080/auth/delete/" + this.uuid,  { headers: reqHeader }).subscribe(
-      (data:any)=> {
-        this.message = data,
-        console.log(this.message)
-        //reload the page
-        //window.location.reload();
-      }
-    )
+    this.authService.delete(this.uuid);
   }
 
 

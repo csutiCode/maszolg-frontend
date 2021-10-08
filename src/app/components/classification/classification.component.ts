@@ -62,7 +62,7 @@ export class ClassificationComponent implements OnInit {
         console.log(this.response)
       }, () => {
         this.response = "Egy szolgáltatót havonta csak egyszer lehet minősíteni."
-        }
+      }
     )
   }
     

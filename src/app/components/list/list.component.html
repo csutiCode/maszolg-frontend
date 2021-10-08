@@ -1,8 +1,14 @@
+
+
+
 <div class="card w-75 m-auto">
  <p>Az összes szolgáltató itt: {{cityName}} </p>
 
- <label>{{category}}</label>
 
+
+ <div class="justify-content-end">
+   <div class="nav-item">
+    <label>{{category}}</label>
     <select [(ngModel)]="selectedCategory.name" class="form-select"  
             (change)="onSelect(selectedCategory.name)" 
             aria-label="Default select example"
@@ -11,19 +17,18 @@
       <option *ngFor="let category of categories" [value]="category.name">
           {{category.name}}
       </option>
-
   </select>
-
-<div *ngIf="accounts.length > 5">
-  <ngb-pagination class="d-flex justify-content-center" 
-              aria-label="Default pagination" 
-              [collectionSize]="accounts.length" 
-              #numPages 
-              [pageSize]="itemsPerPage" 
-              [(page)]="currentPage" 
-              (pageChange)="onPageChange(currentPage)">
-            </ngb-pagination>
 </div>
+ 
+
+<div class="nav-item">
+  <label>Elem per oldal</label>
+  <select class="form-select"  [(ngModel)]="itemsPerPage">
+    <option *ngFor="let number of itemsPerPageArray">{{number}}</option>
+  </select>
+  </div>
+</div>
+ 
 
 
 <table class="table ">
@@ -42,6 +47,17 @@
         </tr>
         
     </tbody>
+        
+    <div *ngIf="accounts.length > 5">
+      <ngb-pagination class="d-flex justify-content-center" 
+                  aria-label="Default pagination" 
+                  [collectionSize]="accounts.length" 
+                  #numPages 
+                  [pageSize]="itemsPerPage" 
+                  [(page)]="currentPage" 
+                  (pageChange)="onPageChange(currentPage)">
+                </ngb-pagination>
+    </div>
   </table>
   
 

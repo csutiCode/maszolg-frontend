@@ -36,6 +36,8 @@ export class ListComponent implements OnInit {
 
   itemsPerPage = 5;
 
+  itemsPerPageArray: any[] = [5, 10, 15, 20]
+
   pageSize= 1;
 
 

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   token: any;
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService) {
+          private authService: AuthService) {
    }
   
   ngOnInit(): void {

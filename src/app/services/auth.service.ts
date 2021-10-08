@@ -57,8 +57,7 @@ export class AuthService {
   constructor(private cookieService: CookieService,
         private router: Router,
         private http: HttpClient,
-        private restService: RestService,
-        private sanitizer: DomSanitizer) {
+        private restService: RestService) {
         //this hides the navbar if somebody logged in
         this.visible = true; 
           if (this.getToken()!=null) {
@@ -73,10 +72,9 @@ export class AuthService {
    }
   
    public login(loginForm : any) {
-    console.log("loginform value from the authservice: ")
-    console.table(loginForm.value)
-      this.restService.post("account/login", loginForm.value,  { headers: this.reqHeaderAuth }).subscribe(
-        (data:any)=> {
+    const promise = this.restService.post("account/login", loginForm.value,  { headers: this.reqHeaderAuth }).toPromise();
+
+    promise.then((data:any)=> {
           this.token = data,
           console.log(this.token)
           //set the token as cookie -> works

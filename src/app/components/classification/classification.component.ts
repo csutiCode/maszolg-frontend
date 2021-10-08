@@ -51,9 +51,7 @@ export class ClassificationComponent implements OnInit {
   }
 
   onSubmit() {
-
-    const promise = this.publicService.saveClassificationPromise(this.uuid, this.classificationForm.value);
-
+    const promise = this.publicService.saveClassification(this.uuid, this.classificationForm.value);
     promise.then((data:any)=> {
       this.response = data,
       console.log("message from backend: ")

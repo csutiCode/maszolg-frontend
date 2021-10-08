@@ -34,27 +34,12 @@ export class PublicService {
             private restService: RestService) {
   }
 
-  saveClassification(uuid: string | null, classification: any) {    
-    this.restService.post("save/classification/" + uuid, classification)
-    .subscribe(
-    (data:any)=> {
-      this.response = data,
-      console.log("message from backend PUBLICSERVICE: ")
-      console.log(this.status)
-      }, (error: any) => {
-        console.log('HTTP Error status code PUBLICSERVICE: ', error.error),
-        console.table(error),
-      this.response = error.error,
-      this.status = error.status
-      }
-    )
+  getListedAccount(uuid: string | null) {
+    return this.restService.get("search/account/" + uuid).toPromise();
   }
 
-
-  saveClassificationPromise(uuid: string | null, classification: any) {    
-    
+  saveClassification(uuid: string | null, classification: any) {    
     return this.restService.post("save/classification/" + uuid, classification).toPromise();
-    
     
   }
 

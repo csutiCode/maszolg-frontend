@@ -39,7 +39,6 @@ export class RegComponent implements OnInit {
 
   constructor(private fb: FormBuilder, 
               private modalService: NgbModal,
-              private http: HttpClient,
               private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -60,7 +59,8 @@ export class RegComponent implements OnInit {
 
 
   onSubmit() {
-
+    console.log("REGFORM: ")
+    console.log(this.registrationForm.value);
     this.authService.register(this.mapFormToRegisterRequest());
       //TODO: same await problem
       console.log("RESPONSE FROM ONSUBMIT:")
@@ -75,11 +75,15 @@ export class RegComponent implements OnInit {
   }
 
   mapFormToRegisterRequest() {
+    
     this.registerRequest = this.registrationForm.value;
     this.date = this.registrationForm.get("dateOfBirth").value;
     this.date = new Date(this.date.year, this.date.month, this.date.day)
     this.registerRequest.dateOfBirth= this.date;
+    console.log("REGISTER REQUEST FROM THE MAPPING METHOD:")
+    console.table(this.registerRequest)
     return this.registerRequest;
+
   }
   
 

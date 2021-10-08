@@ -86,9 +86,10 @@ export class UpdateFormComponent implements OnInit {
   constructor( 
                 private restService: RestService, 
                 private route: ActivatedRoute,
-                private authService: AuthService) {
-
-       this.getListedAccount(this.uuid);
+                private authService: AuthService,
+                private publicService: PublicService) {
+  
+      this.fetchListedAccount();
 
    }
 
@@ -134,32 +135,29 @@ export class UpdateFormComponent implements OnInit {
     }
 
 
-    //REFACTOR THIS
-
-    getListedAccount(uuid: string | null) {
-      return this.restService.get("search/account/" + uuid).subscribe(
-        (data:any)=> {
-          this.listedAccount = data,
-          console.log("Listed Account object from the method in UpdateForm Component: ");
-          console.table(this.listedAccount)
-          //I have to call this method here, because all other initialization is too early -> they don't create listedaccount object
-          //if the most important property is not set, then first login
-          if (this.listedAccount.firstName==null) {
-            this.firstLogin = true;
-            this.enabled = true;
-          } else {
-            this.firstLogin = false;
-            this.enabled = false;
-          }
-          console.log("firstname");
-          console.log(this.listedAccount.firstName);
-          
-          this.createForm();
-          
+  fetchListedAccount() {
+    const promise = this.publicService.getListedAccount(this.uuid);
+    promise.then((data:any)=> {
+      this.listedAccount = data,
+      console.log("Listed Account object from the method in UpdateForm Component: ");
+      console.table(this.listedAccount)
+      //I have to call this method here, because all other initialization is too early -> they don't create listedaccount object
+      //if the most important property is not set, then first login
+      if (this.listedAccount.firstName==null) {
+        this.firstLogin = true;
+        this.enabled = true;
+      } else {
+        this.firstLogin = false;
+        this.enabled = false;
+      }
+      console.log("firstname");
+      console.log(this.listedAccount.firstName);
+      
+      this.createForm();
+      
         }
       ) 
-    }
- 
+  }
      
     getAllCountries() {
       return this.restService.get("search").subscribe(

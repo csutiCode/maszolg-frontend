@@ -12,6 +12,7 @@ import { RestService } from './rest.service';
 })
 export class AuthService {
 
+  //TODO: SOMEHOW DOESN'T WORK
   URL = Messages.baseLocalUrl
 
   visible: boolean;
@@ -58,22 +59,20 @@ export class AuthService {
    }
 
    public register(registerRequest: any) {
-    
-    this.http.post(URL + "account/createAccount", registerRequest, { headers: this.reqHeaders })
-      .subscribe(
-        (data:any)=> {
-          this.response = data,
-          //this.status = this.response.status,
-            console.log("message from backend: ")
-            console.log(this.response)
-          }, (error: any) => {
-            console.table(error),
-            console.log('HTTP Error status code: ', error.error),
-            this.response = error.error,
-            this.status = error.status
-        }
-      )
-
+    console.log("REGISTER REQUEST FROM THE AUTHSERVICE: ")
+    console.table(registerRequest)
+      this.http.post("http://localhost:8080/account/createAccount", registerRequest, { headers: this.reqHeaders })
+        .subscribe(
+          (data:any)=> {
+            this.response = data,
+              console.log(this.response)
+            }, (error: any) => {
+              console.table(error),
+              console.log('HTTP Error status code: ', error.error),
+              this.response = error.error,
+              this.status = error.status
+          }
+        )
    }
 
    public login(loginForm : any) {
@@ -88,14 +87,12 @@ export class AuthService {
           //hide the navbar
           //get the listedAccount and make a redirect
           this.getListedAccount();
-          
-          
       }
     )
   }
 
    getListedAccount() {
-    this.http.get(URL + "auth",  { headers: this.reqHeaderAuth }).subscribe(
+    this.http.get("http://localhost:8080/auth",  { headers: this.reqHeaderAuth }).subscribe(
       (data:any)=> {
         this.listedAccount = data,
         this.router.navigate(['loggedIn'], { queryParams: { uuid: this.listedAccount?.listedAccount_uuid} })
@@ -106,7 +103,7 @@ export class AuthService {
    
 
    public saveListedAccount(form : any) {
-         this.http.post(URL + "auth/save/listedAccount", form,  { headers: this.reqHeaderAuth }).subscribe(
+         this.http.post("http://localhost:8080/auth/save/listedAccount", form,  { headers: this.reqHeaderAuth }).subscribe(
           (data:any)=> {
             this.listedAccount = data,
             console.log(this.listedAccount)  
@@ -116,7 +113,7 @@ export class AuthService {
 
    public sendComment(commentOnClassificationDto : any) {
     console.log(commentOnClassificationDto)
-      this.http.post(URL + "auth/save/commentOnClassification", commentOnClassificationDto,  { headers: this.reqHeaderAuth }).subscribe(
+      this.http.post("http://localhost:8080/auth/save/commentOnClassification", commentOnClassificationDto,  { headers: this.reqHeaderAuth }).subscribe(
         (data:any)=> {
           this.response = data,
           console.log(this.response)

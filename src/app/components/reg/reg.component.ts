@@ -42,7 +42,7 @@ export class RegComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.createForm() 
+    this.createForm(); 
   }
 
 
@@ -61,12 +61,20 @@ export class RegComponent implements OnInit {
   onSubmit() {
     console.log("REGFORM: ")
     console.log(this.registrationForm.value);
-    this.authService.register(this.mapFormToRegisterRequest());
-      //TODO: same await problem
-      console.log("RESPONSE FROM ONSUBMIT:")
-      console.log(this.authService.response);
-      this.error = this.authService.error;
-      this.status = this.authService.status;
+
+    const promise = this.authService.register(this.mapFormToRegisterRequest());
+
+    promise.then( (data:any)=> {
+      this.response = data,
+        console.log(this.response)
+      }, (error: any) => {
+        console.table(error),
+        console.log('HTTP Error status code: ', error.error),
+        this.response = error.error,
+        this.status = error.status
+      }
+    )
+    
 
   }
 
@@ -75,7 +83,7 @@ export class RegComponent implements OnInit {
   }
 
   mapFormToRegisterRequest() {
-    
+
     this.registerRequest = this.registrationForm.value;
     this.date = this.registrationForm.get("dateOfBirth").value;
     this.date = new Date(this.date.year, this.date.month, this.date.day)

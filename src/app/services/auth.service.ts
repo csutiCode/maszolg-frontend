@@ -61,20 +61,10 @@ export class AuthService {
    public register(registerRequest: any) {
     console.log("REGISTER REQUEST FROM THE AUTHSERVICE: ")
     console.table(registerRequest)
-      this.http.post("http://localhost:8080/account/createAccount", registerRequest, { headers: this.reqHeaders })
-        .subscribe(
-          (data:any)=> {
-            this.response = data,
-              console.log(this.response)
-            }, (error: any) => {
-              console.table(error),
-              console.log('HTTP Error status code: ', error.error),
-              this.response = error.error,
-              this.status = error.status
-          }
-        )
+    return this.http.post("http://localhost:8080/account/createAccount", registerRequest, { headers: this.reqHeaders }).toPromise();
+       
    }
-
+  
    public login(loginForm : any) {
     console.log("loginform value from the authservice: ")
     console.table(loginForm.value)

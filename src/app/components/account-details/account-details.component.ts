@@ -23,6 +23,7 @@ export class AccountDetailsComponent implements OnInit {
   email: string = Messages.email;
   webPage :string = Messages.web;
   rank: string = Messages.rank;
+  residence: string = Messages.residence;
 
   account: any;
 

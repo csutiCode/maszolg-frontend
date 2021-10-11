@@ -5,9 +5,9 @@
           <div class="col-lg-6">
               <div class="about-text go-to">
                   <h3 class="dark-color">{{account.lastName}} {{account.firstName}}</h3>
-                  <h6 class="theme-color lead"><span *ngFor="let profession of account.professions">{{profession.name}}</span></h6>
+                  <h6 class="theme-color lead"><span *ngFor="let profession of account.professions">{{profession.name}} </span></h6>
                   
-                  <p>{{account.comment}}</p>
+                  <p>{{account.about}}</p>
                   <div class="row about-list">
                     
                     <div class="col-md-6">
@@ -30,13 +30,10 @@
                   </div>
                       <div class="col-md-6"  *ngIf="account.address.workAddress">
                           <div class="media">
-                              <label>Residence</label>
-                              <p>Canada</p>
+                              <label>{{residence}}</label>
+                              <p>{{account.address.city.name}}</p>
                           </div>
-                          <div class="media">
-                              <label>Address</label>
-                              <p>California, USA</p>
-                          </div>
+                         
                       </div>             
                   </div>
               </div>

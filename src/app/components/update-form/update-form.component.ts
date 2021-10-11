@@ -39,7 +39,7 @@ export class UpdateFormComponent implements OnInit {
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl(''),
-    comment: new FormControl(''),
+    about: new FormControl(''),
     phoneNumber: new FormControl('', Validators.required),
     webPage: new FormControl(''),
     country: new FormControl('', Validators.required),
@@ -103,7 +103,7 @@ export class UpdateFormComponent implements OnInit {
       this.regForm.get("email")?.setValue(this.listedAccount?.email);      
       this.regForm.get("firstName")?.setValue(this.listedAccount.firstName);
       this.regForm.get("lastName")?.setValue(this.listedAccount.lastName);
-      this.regForm.get("comment")?.setValue(this.listedAccount?.comment);
+      this.regForm.get("about")?.setValue(this.listedAccount?.about);
       this.regForm.get("webPage")?.setValue(this.listedAccount?.webPage);
       this.regForm.get("phoneNumber")?.setValue(this.listedAccount?.phoneNumber);
       this.regForm.get("city")?.setValue(this.listedAccount?.address?.city.city_uuid);
@@ -122,7 +122,7 @@ export class UpdateFormComponent implements OnInit {
       if  (!this.enabled) {
        this.regForm.get("firstName")?.disable();
        this.regForm.get("lastName")?.disable();
-       this.regForm.get("comment")?.disable();
+       this.regForm.get("about")?.disable();
        this.regForm.get("webPage")?.disable();
        this.regForm.get("phoneNumber")?.disable();
        this.regForm.get("postalCode")?.disable();
@@ -185,7 +185,7 @@ export class UpdateFormComponent implements OnInit {
       
       this.regForm.get("firstName")?.enable();  
       this.regForm.get("lastName")?.enable();
-      this.regForm.get("comment")?.enable();
+      this.regForm.get("about")?.enable();
       this.regForm.get("webPage")?.enable();
       this.regForm.get("phoneNumber")?.enable();
       this.regForm.get("postalCode")?.enable();

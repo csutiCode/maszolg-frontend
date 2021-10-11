@@ -110,24 +110,11 @@ export class ProfessionComponent implements OnInit {
 
 
   onSubmit() {
-
-    console.log(this.professionArray)
-    console.log("SELECTED ITEMS TO POST:")
-    console.table(this.selectedItems)
-
     for (var item of this.selectedItems) {
-
-        console.log(item.name)
-        console.log(this.doesContain(item.name))
-
         if (this.doesContain(item.name)) {
           this.removeItem(item);
         }
     }
-
-
-    console.log("SELECTED ITEMS AFTER CLEANING:")
-    console.table(this.selectedItems)
 
     if (this.selectedItems.length==0) {
       return;
@@ -138,7 +125,7 @@ export class ProfessionComponent implements OnInit {
     promise.then( (data: any) => {
       this.backendMessage = data,
       console.log(this.backendMessage)
-      //window.location.reload();
+      window.location.reload();
     });
   }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  ActivatedRoute, Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
-import { FormBuilder} from '@angular/forms';
 import { Profession } from '../listedAccount';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth.service';
@@ -48,12 +47,11 @@ export class ProfessionComponent implements OnInit {
 
   backendMessage: any;
 
-  professionArray?: Array<string>;
+  professionArray: any;
 
 
   constructor( private restService: RestService,
     private route: ActivatedRoute,
-    private http: HttpClient,
     public authService: AuthService) {
     }
 
@@ -112,18 +110,36 @@ export class ProfessionComponent implements OnInit {
 
 
   onSubmit() {
-   
+
+    console.log(this.professionArray)
     console.log("SELECTED ITEMS TO POST:")
     console.table(this.selectedItems)
+
+    for (var item of this.selectedItems) {
+
+        console.log(item.name)
+        console.log(this.doesContain(item.name))
+
+        if (this.doesContain(item.name)) {
+          this.removeItem(item);
+        }
+    }
+
+
+    console.log("SELECTED ITEMS AFTER CLEANING:")
+    console.table(this.selectedItems)
+
+    if (this.selectedItems.length==0) {
+      return;
+    }
 
     const promise = this.authService.postProfession(this.uuid, this.selectedItems);
 
     promise.then( (data: any) => {
       this.backendMessage = data,
       console.log(this.backendMessage)
-      window.location.reload();
+      //window.location.reload();
     });
-  
   }
 
     onItemSelect(item: any) {
@@ -137,23 +153,21 @@ export class ProfessionComponent implements OnInit {
    
     //if it contains the selected Item, do not let it send to the backend
     doesContain(item : string): boolean {
-      return this.professionArray?.includes(item) ? false : true;
-    }
 
-    cleanTheArray(array : Array<any>): string[] {
-
-      let cleanedArray!: Array<string>;
-
-      for (var item of array) {
-        if (this.doesContain(item.name)) {
-          array
-        }
+      for (var element of this.professionArray) {
+        if (element.name == item) {
+          return true;
+        } 
       }
-      console.log("array in the method")
-      console.log(cleanedArray)
-      return cleanedArray;
+      return false;
     }
 
+    removeItem(obj : any){
+      this.selectedItems = this.selectedItems.filter((item: any) => item !== obj);
+ 
+   }
+
+    
    
     
 }

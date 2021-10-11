@@ -75,9 +75,6 @@ export class ClassificationComponent implements OnInit {
     window.location.reload();
   }
   
-  then() {
-
-  }
-
+  
 
 }

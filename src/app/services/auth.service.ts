@@ -27,23 +27,7 @@ export class AuthService {
 
   status?: number = 200;
 
-  reqHeaders = new HttpHeaders({ 
-    'Content-Type': 'application/JSON',
-    'Access-Control-Allow-Credentials': 'true',
-    "Access-Control-Allow-Origin": "*",
-     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-    "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
- });
  
-
-  reqHeaderImage =   new HttpHeaders({ 
-    'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
-    'Access-Control-Allow-Credentials': 'true',
-    "Access-Control-Allow-Origin": "http://localhost:8080/*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-  });
-
 
   constructor(private cookieService: CookieService,
         private router: Router,
@@ -58,7 +42,7 @@ export class AuthService {
 
    public register(registerRequest: any) {
     
-    return this.http.post("http://localhost:8080/account/createAccount", registerRequest, { headers: this.reqHeaders }).toPromise();
+    return this.http.post("http://localhost:8080/account/createAccount", registerRequest, { headers: this.getHttpHeaders() }).toPromise();
        
    }
 
@@ -114,7 +98,7 @@ export class AuthService {
 
 
    uploadImage(uuid : string | null, formData: any) {
-    return this.http.post("http://localhost:8080/auth/uploadImage/"+ uuid, formData,  { headers: this.reqHeaderImage }).toPromise();
+    return this.http.post("http://localhost:8080/auth/uploadImage/"+ uuid, formData,  { headers: this.getReqHeadersImage() }).toPromise();
     }
 
     delete(uuid: string | null) {
@@ -150,6 +134,29 @@ export class AuthService {
     });
 
     return reqHeaderAuth;
+  }
+
+
+  getHttpHeaders(): HttpHeaders {
+    const reqHeaders = new HttpHeaders({ 
+      'Content-Type': 'application/JSON',
+      'Access-Control-Allow-Credentials': 'true',
+      "Access-Control-Allow-Origin": "*",
+       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+   });
+   return reqHeaders;
+  }
+
+  getReqHeadersImage(): HttpHeaders {
+    const reqHeaderImage =   new HttpHeaders({ 
+      'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
+      'Access-Control-Allow-Credentials': 'true',
+      "Access-Control-Allow-Origin": "http://localhost:8080/*",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+    });
+    return reqHeaderImage;
   }
 
 

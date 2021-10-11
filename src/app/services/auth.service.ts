@@ -110,6 +110,10 @@ export class AuthService {
       )
     }
 
+    postProfession(uuid : string | null, selectedItems : any) {
+      return this.http.post("http://localhost:8080/auth/save/professions/" + uuid, selectedItems,  { headers: this.getHttpHeaderAuth() }).toPromise();
+    }
+
   
   getToken(): string {
     console.log("Token from getToken: " + this.cookieService.get("JWT"));

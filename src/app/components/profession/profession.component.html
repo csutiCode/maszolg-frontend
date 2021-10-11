@@ -1,7 +1,7 @@
 
     
 <div *ngIf="areProfessionsSet">
-    <p>Your professions: </p>
+    <p>Foglalkozásom:</p>
     <span *ngFor="let profession of listedAccount.professions">{{profession.name}}</span>
     
     <div *ngIf="!edit">

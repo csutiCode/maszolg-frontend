@@ -57,7 +57,7 @@ import { ContactComponent } from './components/contact/contact.component';
     CookieModule.forRoot(),
     NgMultiSelectDropDownModule,
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
     
 
   ],
@@ -73,6 +73,7 @@ import { ContactComponent } from './components/contact/contact.component';
     
 
   ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

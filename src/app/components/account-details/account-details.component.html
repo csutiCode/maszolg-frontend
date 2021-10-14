@@ -10,21 +10,18 @@
                   <p>{{account.about}}</p>
                   <div class="row about-list">
                     
-                    <div class="col-md-6">
+                    <div class="media">
+                          <i class="bi bi-envelope"><a> {{account.email}}</a></i>
+                     
                       <div class="media">
-                          <label>{{email}}</label>
-                          <p>{{account.email}}</p>
+                          <i class="bi bi-telephone"><a> {{account.phoneNumber}}</a></i>
                       </div>
                       <div class="media">
-                          <label>{{phone}}</label>
-                          <p>{{account.phoneNumber}}</p>
+                        <i class="bi bi-box-arrow-up-right"></i>
+                          <a  target="_blank" href="{{account.webPage}} + http://"> {{account.webPage}}</a>
                       </div>
                       <div class="media">
-                          <label>{{webPage}}</label>
-                          <p><a  target="_blank" href="{{account.webPage}} + http://">{{account.webPage}}</a></p>
-                      </div>
-                      <div class="media">
-                        <label>{{rank}}</label>
+                        
                         <p><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></p>
                     </div>
                   </div>

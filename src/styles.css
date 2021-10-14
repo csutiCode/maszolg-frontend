@@ -3,6 +3,9 @@
 
 @import '~bootstrap/dist/css/bootstrap.css';
 
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+
 .card {
     /* Add shadows to create the "card" effect */
     box-shadow: 0 20px 20px 0 rgba(0,0,0,0.2);

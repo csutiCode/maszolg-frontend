@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
 import { Messages } from '../utils/messages';
 
@@ -24,7 +23,7 @@ export class ListComponent implements OnInit {
 
   }
 
-  accounts: any[] = [];
+  accounts: any;
 
   cityName: string | null = this.route.snapshot.queryParamMap.get('city')
 
@@ -32,6 +31,9 @@ export class ListComponent implements OnInit {
 
   selectedCategory: any =  {id: 0, name: ''};
 
+  searchText?: string;
+  
+  /*
   currentPage = 1;
 
   itemsPerPage = 5;
@@ -40,7 +42,7 @@ export class ListComponent implements OnInit {
 
   pageSize= 1;
 
-
+  */
   ngOnInit(): void {
     //get the city parameter from the URL
     this.route.queryParams
@@ -94,6 +96,25 @@ export class ListComponent implements OnInit {
     this.router.navigate(['account'], { queryParams: { uuid: accountUuid }});
   }
 
+
+
+
+  applyFilter(event: Event) {
+    
+    const target = (<HTMLInputElement>event.target).value
+    if (!target) {
+      this.accounts = this.getAllAccountsForCity();
+    }
+    this.accounts = this.accounts.filter((account:any) => account.firstName.toLowerCase().includes(target.toLowerCase())
+    | account.lastName.toLowerCase().includes(target.toLowerCase()))
+
+    console.log("ACCOUNTS:")
+
+    console.table(this.accounts)
+
+  }
+
+  /*
   //to pagination
   public onPageChange(pageNum: number): void {
     this.pageSize = this.itemsPerPage*(pageNum - 1);
@@ -103,4 +124,8 @@ export class ListComponent implements OnInit {
     this.itemsPerPage = this.pageSize + num;
   }
   
+  */
+
+
+
 }

@@ -4,28 +4,40 @@
 <div class="card w-75 m-auto">
  <p>Az összes szolgáltató itt: {{cityName}} </p>
 
- 
-
-
  <div class="justify-content-end">
-   <div class="nav-item">
-    <label>{{category}}</label>
-    <select [(ngModel)]="selectedCategory.name" class="form-select"  
-            (change)="onSelect(selectedCategory.name)" 
-            aria-label="Default select example"
-            aria-label="Default select example">
-      <option value="0">Mind</option>
-      <option *ngFor="let category of categories" [value]="category.name">
-          {{category.name}}
-      </option>
-  </select>
+    <div class="nav-item">
+      <label>{{category}}</label>
+      <select [(ngModel)]="selectedCategory.name" class="form-select"  
+              (change)="onSelect(selectedCategory.name)" 
+              aria-label="Default select example"
+              aria-label="Default select example">
+        <option value="0">Mind</option>
+        <option *ngFor="let category of categories" [value]="category.name">
+            {{category.name}}
+        </option>
+    </select>
+  </div>
+
+  <div class="nav-item">
+    <label for="sort">Rendezés</label>
+      <select [(ngModel)]="sortOption" class="form-select"  id="sort"
+              (change)="onSort(sortOption)" 
+              aria-label="Default select example">
+        <option *ngFor="let sortOption of sortArray" [value]="sortOption">
+            {{sortOption}}
+        </option>
+    </select>
+  </div>
+  
+  <div class="nav-item">
+    <label for="filter">Keresés</label>
+      <input ngbTooltip="Foglalkozás vagy név" class="form-control" id="filter" (keyup)="applyFilter($event)">
+    </div>
+  
+
+
 </div>
 
-<div class="nav-item">
-  <label for="filter">Keresés</label>
-    <input class="form-control" id="filter" (keyup)="applyFilter($event)">
-  </div>
-</div>
 
 
 

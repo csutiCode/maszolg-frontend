@@ -23,7 +23,7 @@ export class ListComponent implements OnInit {
 
   }
 
-  accounts: any;
+  accounts: any[] = [];
 
   cityName: string | null = this.route.snapshot.queryParamMap.get('city')
 
@@ -32,6 +32,10 @@ export class ListComponent implements OnInit {
   selectedCategory: any =  {id: 0, name: ''};
 
   searchText?: string;
+
+  sortArray : string[] = ["Minősítés", "abc", "nincs"]
+
+  sortOption: string = '';
   
   /*
   currentPage = 1;
@@ -98,19 +102,36 @@ export class ListComponent implements OnInit {
 
 
 
-
   applyFilter(event: Event) {
     
     const target = (<HTMLInputElement>event.target).value
+
     if (!target) {
-      this.accounts = this.getAllAccountsForCity();
+      this.getAllAccountsForCity();
     }
+    //TODO: SEARCH ON THE PROFESSION AS WELL
     this.accounts = this.accounts.filter((account:any) => account.firstName.toLowerCase().includes(target.toLowerCase())
     | account.lastName.toLowerCase().includes(target.toLowerCase()))
 
-    console.log("ACCOUNTS:")
 
-    console.table(this.accounts)
+  }
+
+
+  onSort(sortOption : string) {
+    //make a switch
+    switch (sortOption) {
+      case "abc":
+        console.log(sortOption)
+        this.accounts = this.accounts.sort((a: any,b: any) =>  a.lastName.localeCompare(b.lastName));
+        break;
+      case "Minősítés":
+        this.accounts = this.accounts.sort((a: any, b: any) => b.averageRating - a.averageRating);
+        break;
+      case "nincs":
+        this.getAllAccountsForCity;
+        break
+      
+    }
 
   }
 

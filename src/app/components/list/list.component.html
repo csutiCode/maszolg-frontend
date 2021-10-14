@@ -20,10 +20,10 @@
       </option>
   </select>
 </div>
- 
+
 <div class="nav-item">
-  <label>Keresés</label>
-    <input type="text"  [(ngModel)]="searchText" (keyup)="applyFilter($event)">
+  <label for="filter">Keresés</label>
+    <input class="form-control" id="filter" (keyup)="applyFilter($event)">
   </div>
 </div>
 

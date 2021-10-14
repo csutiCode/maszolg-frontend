@@ -3,7 +3,6 @@
 <div class="class= w-75 m-auto" >
     <label for="country">{{country}}</label>
     <select [(ngModel)]="selectedCountry.uuid" (change)="onSelect(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
-            <option value="0"> </option>
             <option *ngFor="let country of countries" [value]="country.country_uuid">
             {{country.name}}</option>
     </select>

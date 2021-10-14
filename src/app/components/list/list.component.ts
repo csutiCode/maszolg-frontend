@@ -104,16 +104,15 @@ export class ListComponent implements OnInit {
 
   applyFilter(event: Event) {
     
-    const target = (<HTMLInputElement>event.target).value
-
-    if (!target) {
+    const filter = (<HTMLInputElement>event.target).value.toLowerCase();
+   
+    if (!filter) {
       this.getAllAccountsForCity();
     }
     //TODO: SEARCH ON THE PROFESSION AS WELL
-    this.accounts = this.accounts.filter((account:any) => account.firstName.toLowerCase().includes(target.toLowerCase())
-    | account.lastName.toLowerCase().includes(target.toLowerCase()))
-
-
+    this.accounts = this.accounts.filter((account:any) => 
+        account.firstName.toLowerCase().includes(filter)
+      | account.lastName.toLowerCase().includes(filter))
   }
 
 

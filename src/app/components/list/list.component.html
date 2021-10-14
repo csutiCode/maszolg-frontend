@@ -1,6 +1,4 @@
 
-
-
 <div class="card w-75 m-auto">
  <p>Az összes szolgáltató itt: {{cityName}} </p>
 
@@ -33,13 +31,7 @@
     <label for="filter">Keresés</label>
       <input ngbTooltip="Foglalkozás vagy név" class="form-control" id="filter" (keyup)="applyFilter($event)">
     </div>
-  
-
-
 </div>
-
-
-
 
 
 <table class="table ">
@@ -53,14 +45,13 @@
     <tbody>
         <tr class="hovered" *ngFor="let account of accounts"  (click)="onMore(account.listedAccount_uuid)">
             <td>{{account.lastName}} {{account.firstName}}</td>
-            <td> <span *ngFor="let profession of account.professions">{{profession.name}}</span></td>
+            <td> <span *ngFor="let profession of account.professions">{{profession.name}} </span></td>
             <td><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></td>
         </tr>
         
     </tbody>
-      <!-- 
 
-        
+    <!-- 
 <div class="nav-item">
   <label>Elem per oldal</label>
   <select class="form-select"  [(ngModel)]="itemsPerPage">
@@ -79,7 +70,7 @@
                   (pageChange)="onPageChange(currentPage)">
                 </ngb-pagination>
     </div>
-      --> 
+--> 
     
   </table>
   

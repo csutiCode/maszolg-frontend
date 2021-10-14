@@ -52,6 +52,7 @@ export class Messages {
     public static isWorkAddress = "Munkahelyi cím?"
     public static webPageToolip = "www.<weboldalam>.hu"
     public static isWorkAddressTooltip = "Ha ezt kipipálod, az adatlapodon látható lesz a megadott lakcím."
+    public static enableEdit = "Szerkesztés"
   
      /* LIST  */
     public static fullName = "Név";

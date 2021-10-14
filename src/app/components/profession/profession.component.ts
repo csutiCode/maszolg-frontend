@@ -16,6 +16,7 @@ export class ProfessionComponent implements OnInit {
   
 
   category:string = Messages.category;
+  enableEditButton:string = Messages.enableEdit;
 
   dropdownList : any;
   selectedItems : any;

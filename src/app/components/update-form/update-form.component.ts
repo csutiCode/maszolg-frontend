@@ -30,6 +30,7 @@ export class UpdateFormComponent implements OnInit {
   isWorkAddressTooltip: string = Messages.isWorkAddressTooltip;
   required:string = Messages.required;
   disabledButton:string = Messages.disabledButton;
+  enableEditButton:string = Messages.enableEdit;
 
   
   //TODO: get the listedAccount Object

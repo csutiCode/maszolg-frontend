@@ -1,27 +1,4 @@
 
-/*
-
-
-
-
-  
-  
-  .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-  
-  
-  .container {
-    padding: 2px 16px;
-  }
-
-  img {
-    border-radius: 8px;
-    width: 180px;
-    float: right;
-  }
-  */
-
 
   .card {
    
@@ -36,6 +13,7 @@ body{
     margin-top:20px;
 }
 .section {
+    
     padding: 100px 0;
     position: relative;
     border-radius: 4%;
@@ -46,7 +24,7 @@ body{
     background-color: #f5f5f5;
 }
 img {
-    max-width: 100%;
+    max-width: 20%;
 }
 img {
     vertical-align: middle;
@@ -156,4 +134,11 @@ mark {
 }
 .dark-color {
     color: #20247b;
+}
+ul {
+  text-align: center;
+}
+
+li {
+  list-style: none;
 }

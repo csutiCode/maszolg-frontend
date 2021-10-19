@@ -1,4 +1,7 @@
-<div>
+
+<div class="container">
+
+  <!-- 
 <section class="section about-section gray-bg w-50 m-auto" id="about">
   <div class="container">
       <div class="row align-items-center flex-row-reverse">
@@ -47,6 +50,45 @@
     <button  class="btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
   </div>
 </section>
+-->
+
+
+
+<section class="section about-section gray-bg m-auto" id="about">
+<div>
+  <ul>
+    <li>
+      <img [src]='image' title="" alt="">
+    </li>
+    <li>
+      <h3 class="dark-color">{{account.lastName}} {{account.firstName}}</h3>
+      <h6 class="theme-color lead"><span *ngFor="let profession of account.professions">{{profession.name}} </span></h6>
+      <p>{{account.about}}</p>
+    </li>
+    <li>
+      <i class="bi bi-envelope"><a> {{account.email}}</a></i>
+    </li>
+    <li>
+      <i class="bi bi-telephone"><a> {{account.phoneNumber}}</a></i>
+    </li>
+    <li>
+      <a  target="_blank" href="{{account.webPage}} + http://"> {{account.webPage}}</a>
+    </li>
+    <li>
+      <p><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></p>
+    </li>
+    <li>
+      <label>{{residence}}</label>
+      <p>{{account.address.city.name}}</p>
+    </li>
+  </ul>
+  <div  *ngIf="!isCookieSet" class="d-flex justify-content-center">
+    <button  class="btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
+  </div>
+</div>
+</section>
+
+
 
 
 

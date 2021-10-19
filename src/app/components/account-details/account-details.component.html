@@ -1,104 +1,45 @@
 
 <div class="container">
-
-  <!-- 
-<section class="section about-section gray-bg w-50 m-auto" id="about">
-  <div class="container">
-      <div class="row align-items-center flex-row-reverse">
-          <div class="col-lg-6">
-              <div class="about-text go-to">
-                  <h3 class="dark-color">{{account.lastName}} {{account.firstName}}</h3>
-                  <h6 class="theme-color lead"><span *ngFor="let profession of account.professions">{{profession.name}} </span></h6>
-                  
-                  <p>{{account.about}}</p>
-                  <div class="row about-list">
-                    
-                    <div class="media">
-                          <i class="bi bi-envelope"><a> {{account.email}}</a></i>
-                     
-                      <div class="media">
-                          <i class="bi bi-telephone"><a> {{account.phoneNumber}}</a></i>
-                      </div>
-                      <div class="media">
-                        <i class="bi bi-house"></i>
-                          <a  target="_blank" href="{{account.webPage}} + http://"> {{account.webPage}}</a>
-                      </div>
-                      <div class="media">
-                        
-                        <p><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></p>
-                    </div>
-                  </div>
-                      <div class="col-md-6"  *ngIf="account.address.workAddress">
-                          <div class="media">
-                              <label>{{residence}}</label>
-                              <p>{{account.address.city.name}}</p>
-                          </div>
-                         
-                      </div>             
-                  </div>
-              </div>
-          </div>
-          <div class="col-lg-6">
-              <div class="about-avatar">
-                  <img [src]='image' title="" alt="">
-              </div>
-          </div>
-      </div>       
-      
+  <section class="section about-section gray-bg m-auto" id="about">
+  <div>
+    <ul>
+      <li>
+        <img [src]='image' title="" alt="">
+      </li>
+      <li>
+        <h3 class="dark-color">{{account.lastName}} {{account.firstName}}</h3>
+        <h6 class="theme-color lead"><span *ngFor="let profession of account.professions">{{profession.name}} </span></h6>
+        <p>{{account.about}}</p>
+      </li>
+      <li>
+        <i class="bi bi-envelope"><a> {{account.email}}</a></i>
+      </li>
+      <li>
+        <i class="bi bi-telephone"><a> {{account.phoneNumber}}</a></i>
+      </li>
+      <li>
+        <a  target="_blank" href="{{account.webPage}} + http://"> {{account.webPage}}</a>
+      </li>
+      <li>
+        <p><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></p>
+      </li>
+      <li>
+        <label>{{residence}}</label>
+        <p>{{account.address.city.name}}</p>
+      </li>
+    </ul>
+    <div  *ngIf="!isCookieSet" class="d-flex justify-content-center">
+      <button  class="btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
+    </div>
   </div>
-  <div  *ngIf="!isCookieSet" class="d-flex justify-content-center">
-    <button  class="btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
-  </div>
-</section>
--->
-
-
-
-<section class="section about-section gray-bg m-auto" id="about">
-<div>
-  <ul>
-    <li>
-      <img [src]='image' title="" alt="">
-    </li>
-    <li>
-      <h3 class="dark-color">{{account.lastName}} {{account.firstName}}</h3>
-      <h6 class="theme-color lead"><span *ngFor="let profession of account.professions">{{profession.name}} </span></h6>
-      <p>{{account.about}}</p>
-    </li>
-    <li>
-      <i class="bi bi-envelope"><a> {{account.email}}</a></i>
-    </li>
-    <li>
-      <i class="bi bi-telephone"><a> {{account.phoneNumber}}</a></i>
-    </li>
-    <li>
-      <a  target="_blank" href="{{account.webPage}} + http://"> {{account.webPage}}</a>
-    </li>
-    <li>
-      <p><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></p>
-    </li>
-    <li>
-      <label>{{residence}}</label>
-      <p>{{account.address.city.name}}</p>
-    </li>
-  </ul>
-  <div  *ngIf="!isCookieSet" class="d-flex justify-content-center">
-    <button  class="btn btn-lg btn-primary" (click)="openVerticallyCentered(content)">Értékelem</button>
-  </div>
-</div>
-</section>
-
-
-
-
-
+  </section>
 
 <div>
-  <div class="card w-50 m-auto" *ngIf="account.classifications.length>0">
+  <div class="card" *ngIf="account.classifications.length>0">
     <p>Értékelések:</p>
     <div *ngFor="let classification of account.classifications">
       <div>
-        <table class="card m-auto">
+        <table class="card">
           <tr>
             <th>Created By: </th>
             <td>{{classification.createdBy}}</td>

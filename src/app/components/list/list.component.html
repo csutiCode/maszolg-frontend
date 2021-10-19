@@ -1,5 +1,5 @@
 
-<div class="card w-75 m-auto">
+<div class="card">
  <p>Az összes szolgáltató itt: {{cityName}} </p>
 
  <div class="justify-content-end">
@@ -31,11 +31,10 @@
     <label for="filter">Keresés</label>
       <input ngbTooltip="Foglalkozás vagy név" class="form-control" id="filter" (keyup)="applyFilter($event)">
     </div>
-</div>
 
-
-<table class="table ">
-    <thead class="thead-dark">
+<div>
+  <table class="table m-auto">
+    <thead class="thead-dark m-auto">
       <tr>
         <th scope="col">{{fullName}}</th>
         <th scope="col">{{profession}}</th>
@@ -74,6 +73,12 @@
     
   </table>
   
+</div>
+    
+  
+
+</div>
+
 
 
 

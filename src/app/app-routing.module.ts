@@ -13,8 +13,8 @@ import { SearchComponent } from './components/search/search.component';
 import { UpdateFormComponent } from './components/update-form/update-form.component';
 
 const routes: Routes = [
-  { path: 'search', component: SearchComponent },
-  { path: 'about', component: AboutComponent },
+  {path: 'search', component: SearchComponent },
+  {path: 'about', component: AboutComponent },
   {path: 'list', component: ListComponent},
   {path: 'login', component: LoginComponent} ,
   {path: 'reg', component: RegComponent},
@@ -23,7 +23,8 @@ const routes: Routes = [
   {path: 'account', component: AccountDetailsComponent},
   {path: 'loggedIn', component: LoggedInComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'data-protection', component: DataProtectionComponent}
+  {path: 'data-protection', component: DataProtectionComponent},
+  {path: '', redirectTo: '/search', pathMatch: 'full'}
 
 ];
 

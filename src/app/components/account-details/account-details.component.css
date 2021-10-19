@@ -142,3 +142,7 @@ ul {
 li {
   list-style: none;
 }
+
+tr {
+  text-align: center;
+}

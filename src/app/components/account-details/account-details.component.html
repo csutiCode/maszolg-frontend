@@ -34,31 +34,15 @@
   </div>
   </section>
 
-<div>
-  <div class="card" *ngIf="account.classifications.length>0">
-    <p>Értékelések:</p>
+
+  <div *ngIf="account.classifications.length>0">
+
     <div *ngFor="let classification of account.classifications">
-      <div>
-        <table class="card">
-          <tr>
-            <th>Created By: </th>
-            <td>{{classification.createdBy}}</td>
-          </tr>
-          <tr>
-            <th>Text:</th>
-            <td>{{classification.text}}</td>
-          </tr>
-          <tr>
-            <th>Rating:</th>
-            <td>{{classification.rating}}</td>
-             <td><ngb-rating  class="sr-only" [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></td>
-          </tr>
-          <tr *ngIf="classification.commented">
-            <th>{{account.firstName}} megjegyzese:</th>
-            <td>{{classification.comment}}</td>
-          </tr>
-        </table>
-      </div>
+      <div class="classification">
+        <p><i>"{{classification.text}}"</i></p>
+        <p> <sub>{{classification.createdBy}}</sub> </p>
+        <p class="rating">{{classification.rating}}</p>
+       </div>
       <div class="card m-auto" *ngIf="isCookieSet && !classification.commented">
         <button (click)="openComment(comment, classification.classificationUuid)">React</button>
       </div>
@@ -71,7 +55,7 @@
     </div>
   </div>
 </div>
-</div>
+
 
 
 <ng-template #content let-modal>

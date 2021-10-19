@@ -9,20 +9,18 @@
     padding: 1rem;
     }
 
-.image {
-    padding-right: 22rem;
-}
-
 img {
    
     border-radius: 8px;
     width: 6rem;
     box-shadow: 0 20px 20px 0 rgba(0,0,0,0.2);
+    cursor:pointer
     
 }
 
 .img:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    cursor:pointer
 }
 
 .nav-item {

@@ -54,7 +54,7 @@
   </div>
    
   <div>
-    <button class="w-100 btn btn-lg btn-primary"  type="submit" [disabled]="!classificationForm.valid" >Elküld</button>
+    <button class="w-100 btn-lg"   type="submit" [disabled]="!classificationForm.valid" >Elküld</button>
   </div>
 </form>
 
@@ -77,11 +77,11 @@
   </div>
    
   <div class="modal-footer" *ngIf="status==200">     
-    <button type="button" class="btn btn-sm btn-primary " (click)="modal.close('Close click')"  (click)="reloadPage()">OK</button>
+    <button type="button" class=" btn-sm " (click)="modal.close('Close click')"  (click)="reloadPage()">OK</button>
   </div>
 
   <div class="modal-footer" *ngIf="status!=200">
-    <button type="button" class="btn btn-sm btn-primary " (click)="modal.close('Close click')">Vissza</button>
+    <button type="button" class=" btn-sm " (click)="modal.close('Close click')">Vissza</button>
   </div>
 </ng-template>
 

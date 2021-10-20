@@ -15,21 +15,21 @@
         </div>
 
         <div class="btn-group">
-            <button class="btn btn-lg btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Menü
             </button>
             <ul class="dropdown-menu">
                 <li class="nav-item">
-                    <button class="w-100 btn btn-lg btn-primary " (click)="switchTo('myData')" > {{myData}}</button>              
+                    <button class="w-100  btn-lg" (click)="switchTo('myData')" > {{myData}}</button>              
                 </li>
                 <li class="nav-item">
-                    <button class="w-100 btn btn-lg btn-primary"  (click)="switchTo('updateForm')">{{updateMyData}}</button>
+                    <button class="w-100  btn-lg"  (click)="switchTo('updateForm')">{{updateMyData}}</button>
                 </li>
                 <li class="nav-item">
-                    <button class="w-100 btn btn-lg btn-primary" (click)="switchTo('news')"> {{news}}</button>              
+                    <button class="w-100  btn-lg " (click)="switchTo('news')"> {{news}}</button>              
                 </li>
                 <li class="nav-item">
-                    <button class="w-100 btn btn-lg btn-primary"  (click)="onLogout()"> {{logout}}</button>              
+                    <button class="w-100  btn-lg "  (click)="onLogout()"> {{logout}}</button>              
                 </li>
             </ul>
           </div>     
@@ -72,11 +72,9 @@
                         (change)="onChange($event)">
                 <div class="m-auto">
                     <button (click)="onUpload()" (click)="modal.close('Close click')"
-                    class="btn btn-primary  m-auto ">Feltöltés</button>
-                    <button type="button" class="btn btn-primary  m-auto" (click)="modal.close('Close click')" >Vissza</button>
-
+                    class="  m-auto ">Feltöltés</button>
+                    <button type="button" class=" btn-primary" (click)="modal.close('Close click')" >Vissza</button>
                 </div>
-             
             </div>
           </div>
           <div>

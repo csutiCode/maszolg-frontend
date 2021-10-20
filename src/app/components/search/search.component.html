@@ -1,22 +1,23 @@
-<div class="card  w-50 m-auto" style="width: 18rem;">
 
-<div class="class= w-75 m-auto" >
+
+<div class="w-50 m-auto" >
     <label for="country">{{country}}</label>
     <select [(ngModel)]="selectedCountry.uuid" (change)="onSelect(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
             <option *ngFor="let country of countries" [value]="country.country_uuid">
             {{country.name}}</option>
     </select>
 </div>
-<div class="w-75 m-auto" *ngIf="selectedCountry.uuid!=0">
+<div class="w-50 m-auto" *ngIf="selectedCountry.uuid!=0">
     <label for ="city">{{city}}</label>
     <select [(ngModel)]="selectedCity" class="form-select" aria-label="Default select example">
             <option *ngFor="let city of cities" [value]="city.name">
                 {{city.name}}
             </option>
-    </select>        
+    </select>   
+    
+    <button *ngIf="selectedCity.uuid!=0" class="w-50  btn-lg " (click)="onSubmit(selectedCity)">Keress</button>
+    
 </div>
-    <div class="class=w-75 m-auto" *ngIf="selectedCity.uuid!=0">
-        <button  class="w-100 btn btn-lg btn-primary" (click)="onSubmit(selectedCity)">Keress</button>
-    </div>
-</div>
+   
+
 

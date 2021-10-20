@@ -2,9 +2,12 @@
 div {
     display: inline;
 }
+.nav-item {
+    padding: 1rem 1rem 1rem 1rem;
 
+}
 a {
-    font-family: "Lucida Console", "Courier New", monospace;
+    font-family: "Verdana", sans-serif;
     display: inline;
     font-style: normal;
     color: black;

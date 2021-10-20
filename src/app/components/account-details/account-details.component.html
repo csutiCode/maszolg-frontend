@@ -25,7 +25,9 @@
       </li>
       <li>
         <label>{{residence}}</label>
-        <p>{{account.address.city.name}}</p>
+        <p>{{account.address.city.postalCode}}</p>
+        <p>{{account.address.city.street}}</p>
+        <p>{{account.address.city.number}}</p>
       </li>
     </ul>
     <div  *ngIf="!isCookieSet" class="d-flex justify-content-center">
@@ -44,7 +46,7 @@
         <p class="rating">{{classification.rating}}</p>
        </div>
       <div class="card m-auto" *ngIf="isCookieSet && !classification.commented">
-        <button (click)="openComment(comment, classification.classificationUuid)">React</button>
+        <button (click)="openComment(comment, classification.classificationUuid)">Válaszolok</button>
       </div>
 
     </div>

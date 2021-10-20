@@ -41,7 +41,7 @@ export class UpdateFormComponent implements OnInit {
     lastName: new FormControl('', Validators.required),
     email: new FormControl(''),
     about: new FormControl(''),
-    phoneNumber: new FormControl('', Validators.required),
+    phoneNumber: new FormControl(''),
     webPage: new FormControl(''),
     country: new FormControl('', Validators.required),
     city:  new FormControl('', Validators.required),

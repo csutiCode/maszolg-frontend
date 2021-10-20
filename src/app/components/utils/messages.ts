@@ -64,7 +64,7 @@ export class Messages {
     public static lastLogin ="Utolsó bejelentkezés"
     public static workAddress = "Munkahelyi cím"
     public static web = "Weboldal"
-    public static residence = "Lakhely"
+    public static residence = "Telephely"
 
 
     /* URL */

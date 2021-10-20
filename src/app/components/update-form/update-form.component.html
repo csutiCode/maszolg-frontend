@@ -12,7 +12,6 @@
               </div>
           </div>
          </div>
-         
     </div>
 
 
@@ -76,28 +75,7 @@
       </div> 
     </div>
 
-    
-    <div class="form-group row" *ngIf="!enabled">
-      <label  class="col-sm-2 col-form-label">{{postalCode}}</label>
-      <div class="col-sm-10">
-        <input  class="form-control"   formControlName="postalCodeFromBackend" readonly>
-      </div>
-    </div>
-
-    <div class="form-group row" *ngIf="!enabled">
-      <label  class="col-sm-2 col-form-label">{{street}}</label>
-      <div class="col-sm-10">
-        <input  class="form-control"   formControlName="streetFromBackend" readonly>
-      </div>
-    </div>
-
-    <div class="form-group row" *ngIf="!enabled">
-      <label  class="col-sm-2 col-form-label">{{number}}</label>
-      <div class="col-sm-10">
-        <input  class="form-control"   formControlName="numberFromBackend" readonly>
-      </div>
-    </div>
-
+  
     <div class="mb-3" *ngIf="enabled">
         <label for="country">{{country}}</label>
         <select [(ngModel)]="selectedCountry.uuid" formControlName="country" (change)="onSelectCountry(selectedCountry.uuid)" class="form-select" aria-label="Default select example">
@@ -136,30 +114,32 @@
 
     <div>
         <div class="form-group row">
+          <label for="inputEmail3" class="col-sm-2 col-form-label" ngbTooltip="{{isWorkAddressTooltip}}" >{{isWorkAddress}}</label>
+          <input #workAddress ngbTooltip="{{isWorkAddressTooltip}}" type="checkbox" formControlName="workAddress">
+        </div>
+
+        <div class="form-group row" *ngIf="workAddress.checked">
             <label for="inputEmail3" class="col-sm-2 col-form-label">{{postalCode}}</label>
             <div class="col-sm-10">
               <input class="form-control" placeholder=""  formControlName="postalCode">
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="workAddress.checked">
             <label for="inputEmail3" class="col-sm-2 col-form-label">{{street}}</label>
             <div class="col-sm-10">
               <input class="form-control" placeholder=""  formControlName="street">
             </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row" *ngIf="workAddress.checked">
             <label for="inputEmail3" class="col-sm-2 col-form-label">{{number}}</label>
             <div class="col-sm-10">
               <input type="email" class="form-control" placeholder=""  formControlName="number">
             </div>
         </div>
 
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label" ngbTooltip="{{isWorkAddressTooltip}}" >{{isWorkAddress}}</label>
-            <input  ngbTooltip="{{isWorkAddressTooltip}}" type="checkbox" formControlName="workAddress">
-        </div>
+      
     </div>
 
     

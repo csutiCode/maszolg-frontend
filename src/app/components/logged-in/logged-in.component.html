@@ -23,9 +23,6 @@
                     <button class="w-100 btn btn-lg btn-primary " (click)="switchTo('myData')" > {{myData}}</button>              
                 </li>
                 <li class="nav-item">
-                    <button class="w-100 btn btn-lg btn-primary"  (click)="switchTo('profession')">{{profession}}</button>
-                </li>
-                <li class="nav-item">
                     <button class="w-100 btn btn-lg btn-primary"  (click)="switchTo('updateForm')">{{updateMyData}}</button>
                 </li>
                 <li class="nav-item">
@@ -53,13 +50,10 @@
     <div class="card w-80 m-auto" *ngIf="switch==='updateForm'">
         <app-update-form></app-update-form>
     </div>
-
     <div class="card w-80 m-auto" *ngIf="switch==='myData'">
         <app-account-details></app-account-details>
     </div>
-    <div class="card w-80 m-auto" *ngIf="switch==='profession'">
-        <app-profession></app-profession>
-    </div>
+   
     
 </div>
 

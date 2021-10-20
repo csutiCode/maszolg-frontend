@@ -18,7 +18,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoggedInComponent } from './components/logged-in/logged-in.component';
 import { CookieModule, CookieService } from 'ngx-cookie';
 import { TokenInterceptor } from './interceptors/TokenInterceptor';
-import { ProfessionComponent } from './components/profession/profession.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,7 +41,6 @@ import { ContactComponent } from './components/contact/contact.component';
     ClassificationComponent,
     UpdateFormComponent,
     LoggedInComponent,
-    ProfessionComponent,
     NewsComponent,
     DataProtectionComponent,
     ContactComponent,

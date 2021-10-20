@@ -1,4 +1,5 @@
-<form class="" [formGroup]="classificationForm" (ngSubmit)="onSubmit()"  (ngSubmit)="openVerticallyCentered(content)">
+
+  <form [formGroup]="classificationForm" (ngSubmit)="onSubmit()"  (ngSubmit)="openVerticallyCentered(content)">
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">E-Mail</label>
         <div class="col-sm-10">
@@ -56,6 +57,7 @@
     <button class="w-100 btn btn-lg btn-primary"  type="submit" [disabled]="!classificationForm.valid" >Elküld</button>
   </div>
 </form>
+
 
 
 

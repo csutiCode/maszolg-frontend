@@ -4,10 +4,6 @@
     <p>Foglalkozásom:</p>
     <span *ngFor="let profession of listedAccount.professions">{{profession.name}}</span>
     
-    <div *ngIf="!edit">
-        <button class="w-40 btn btn-sm btn-primary"  (click)="enableEdit()">{{enableEditButton}}</button>
-    </div>
-
 </div>
 
 

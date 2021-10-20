@@ -88,7 +88,8 @@ export class ProfessionComponent implements OnInit {
       }
     )
   }
-  onSelectCategory(uuid: string){ 
+  
+  onSelectCategory(uuid : string){ 
     this.professions = this.categories?.find((category) => category.category_uuid == uuid ).professions;
     this.dropdownList = this.professions; 
     console.table(this.dropdownList)

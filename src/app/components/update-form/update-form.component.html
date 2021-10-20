@@ -75,6 +75,13 @@
       </div> 
     </div>
 
+    <div class="form-group row" *ngIf="!enabled">
+      <label  class="col-sm-2 col-form-label">Foglalkozásom</label>
+      <div class="col-sm-10">
+        <p  class="form-control"  *ngFor="let profession of professionArray" readonly>{{profession.name}} </p>
+      </div> 
+    </div>
+
   
     <div class="mb-3" *ngIf="enabled">
         <label for="country">{{country}}</label>
@@ -138,19 +145,35 @@
               <input type="email" class="form-control" placeholder=""  formControlName="number">
             </div>
         </div>
+    </div>  
+</form>
 
-      
+
+<div *ngIf="enabled">
+  <div class="mb-3" >
+    <label for="category">{{category}}</label>
+    <select [(ngModel)]="selectedCategory.uuid" (change)="onSelectCategory(selectedCategory.uuid)" class="form-select" aria-label="Default select example">
+            <option value="0"> </option>
+            <option *ngFor="let category of categories" [value]="category.category_uuid">
+            {{category.name}}</option>
+    </select>
+</div>   
+
+    <div class="mb-3" *ngIf="selectedCategory.uuid!=0">
+        <ng-multiselect-dropdown
+        [placeholder]="''"
+        [settings]="dropdownSettings"
+        [data]="dropdownList"
+        [(ngModel)]="selectedItems">
+      </ng-multiselect-dropdown>
     </div>
+</div>
+  <div *ngIf="enabled">
+    <button class="w-20 btn btn-sm btn-primary" [disabled]="!regForm.valid" (click)="onSubmit()"
+      >
+      <span>Elküld</span></button>
+  </div>
 
-    
-
-    <div *ngIf="enabled">
-      <button class="w-20 btn btn-sm btn-primary" [disabled]="!regForm.valid" 
-         type="submit">
-         <span>Elküld</span></button>
-    </div>
-
-  </form>
     <div *ngIf="!enabled">
       <button class="w-20 btn btn-sm btn-primary" (click)="enableEdit()"  ngbTooltip="Enable to edit your data!">{{enableEditButton}}</button>
     </div>

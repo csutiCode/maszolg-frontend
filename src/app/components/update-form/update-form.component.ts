@@ -5,6 +5,7 @@ import {  ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
+import { Profession } from '../listedAccount';
 import { Messages } from '../utils/messages';
 
 @Component({
@@ -31,8 +32,8 @@ export class UpdateFormComponent implements OnInit {
   required:string = Messages.required;
   disabledButton:string = Messages.disabledButton;
   enableEditButton:string = Messages.enableEdit;
+  category:string = Messages.category;
 
-  
   //TODO: get the listedAccount Object
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
@@ -49,12 +50,10 @@ export class UpdateFormComponent implements OnInit {
     street:  new FormControl(''),
     number:  new FormControl(''),
     workAddress: new FormControl(''),
-
     cityFromBackend: new FormControl(''),
-    postalCodeFromBackend: new FormControl(''),
-    streetFromBackend: new FormControl(''),
-    numberFromBackend: new FormControl('')
 
+    
+    
 
 });
 
@@ -81,6 +80,34 @@ export class UpdateFormComponent implements OnInit {
 
   enabled: boolean = true;
 
+  dropdownList : any;
+
+  selectedItems : any;
+
+  dropdownSettings: any;
+
+  categories: Array<any> | undefined;
+
+  professions?: Array<Profession> | undefined;
+ 
+  selectedProfessions?: Array<string>;
+
+  areProfessionsSet: boolean = false;
+
+  edit?: boolean;
+
+  selectedCategory: any = {
+    uuid: 0, name: ''
+  };
+
+  selectedProfession: any = {
+    uuid: 0, name: ''
+  };
+
+
+  professionArray: any;
+
+
 
   constructor( 
                 private restService: RestService, 
@@ -97,6 +124,25 @@ export class UpdateFormComponent implements OnInit {
     ngOnInit(): void {
         this.getAllCountries();
         this.onSelectCountry(this.selectedCountry.uuid);
+
+
+        this.getAllCategories();
+        this.onSelectCategory(this.selectedCategory.uuid);
+
+
+        this.dropdownList = [
+        
+        ];
+        this.selectedItems = [
+        
+        ];
+        this.dropdownSettings = {
+          singleSelection: false,
+          idField: 'profession_uuid',
+          textField: 'name',
+          enableCheckAll: false,
+          itemsShowLimit: 3,
+        };
     }
 
     createForm() {
@@ -113,10 +159,9 @@ export class UpdateFormComponent implements OnInit {
       this.regForm.get("number")?.setValue(this.listedAccount?.address?.number);
       this.regForm.get("workAddress")?.setValue(this.listedAccount?.address?.workAddress)
 
+
       this.regForm.get("cityFromBackend")?.setValue(this.listedAccount?.address?.city.name);
-      this.regForm.get("postalCodeFromBackend")?.setValue(this.listedAccount?.address?.postalCode);
-      this.regForm.get("streetFromBackend")?.setValue(this.listedAccount?.address?.street);
-      this.regForm.get("numberFromBackend")?.setValue(this.listedAccount?.address?.number);
+      
 
 
       //disable the edit of the fields, if they are already set
@@ -149,9 +194,10 @@ export class UpdateFormComponent implements OnInit {
         this.firstLogin = false;
         this.enabled = false;
       }
-      console.log("firstname");
-      console.log(this.listedAccount.firstName);
-      
+      this.areProfessionsSet = this.listedAccount.professions.length > 0 ? true : false;
+      this.professionArray = this.listedAccount.professions;
+      console.log("Professions already set:");
+      console.table(this.professionArray);
       this.createForm();
       
         }
@@ -176,6 +222,8 @@ export class UpdateFormComponent implements OnInit {
         //saveListedAccount method from the authService layer
         console.log(this.regForm.value)
         this.authService.saveListedAccount(this.regForm.value);
+
+        this.submitProfession();
         //reload the page
         window.location.reload();
     }
@@ -194,5 +242,61 @@ export class UpdateFormComponent implements OnInit {
       this.regForm.get("number")?.enable();
       this.regForm.get("workAddress")?.enable();
     }
+
+
+    getAllCategories() {
+      return this.restService.get("search/categories").subscribe(
+        (data:any)=> {
+          this.categories = data,
+          console.log(this.categories)
+        }
+      )
+    }
+
+    onSelectCategory(uuid: string){ 
+      //UUID is fix 0
+      console.log("UUID")
+      console.log(this.selectedCategory.uuid)
+
+      this.professions = this.categories?.find((category) => category.category_uuid == uuid ).professions;
+      this.dropdownList = this.professions; 
+      console.table(this.dropdownList)
+    }
+
+    doesContain(item : string): boolean {
+
+      for (var element of this.professionArray) {
+        if (element.name == item) {
+          return true;
+        } 
+      }
+      return false;
+    }
+
+    submitProfession() {
+      for (var item of this.selectedItems) {
+          if (this.doesContain(item.name)) {
+            this.removeItem(item);
+          }
+      }
+  
+      if (this.selectedItems.length==0) {
+        return;
+      }
+  
+      const promise = this.authService.postProfession(this.uuid, this.selectedItems);
+  
+      promise.then( (data: any) => {
+        this.backendMessage = data,
+        console.log(this.backendMessage)
+        window.location.reload();
+      });
+    }
+
+    removeItem(obj : any){
+      this.selectedItems = this.selectedItems.filter((item: any) => item !== obj);
+ 
+   }
+
 
 }

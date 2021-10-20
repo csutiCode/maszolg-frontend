@@ -10,8 +10,6 @@ export class AboutComponent implements OnInit {
 
   text: any;
 
-
-
   constructor(private restService: RestService) { }
 
   ngOnInit(): void {

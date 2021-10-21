@@ -5,7 +5,7 @@
     padding: 1rem;
   }
   
-  .container {
+.container {
     padding: 2px 16px;
 
   }
@@ -16,4 +16,8 @@ label {
   font-size: larger;
   color: rgba(71, 61, 61, 0.8);
 }
- 
+
+
+button {
+  padding: 10px 10px 10px 10px;
+}

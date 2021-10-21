@@ -106,9 +106,7 @@ export class UpdateFormComponent implements OnInit {
     uuid: 0, name: ''
   };
 
-
   professionArray: any;
-
 
 
   constructor( 
@@ -143,7 +141,7 @@ export class UpdateFormComponent implements OnInit {
           idField: 'profession_uuid',
           textField: 'name',
           enableCheckAll: false,
-          itemsShowLimit: 3,
+          itemsShowLimit: 6,
         };
     }
 
@@ -184,9 +182,7 @@ export class UpdateFormComponent implements OnInit {
   fetchListedAccount() {
     const promise = this.publicService.getListedAccount(this.uuid);
     promise.then((data:any)=> {
-      this.listedAccount = data,
-      console.log("Listed Account object from the method in UpdateForm Component: ");
-      console.table(this.listedAccount)
+      this.listedAccount = data;
       //I have to call this method here, because all other initialization is too early -> they don't create listedaccount object
       //if the most important property is not set, then first login
       if (this.listedAccount.firstName==null) {
@@ -198,8 +194,7 @@ export class UpdateFormComponent implements OnInit {
       }
       this.areProfessionsSet = this.listedAccount.professions.length > 0 ? true : false;
       this.professionArray = this.listedAccount.professions;
-      console.log("Professions already set:");
-      console.table(this.professionArray);
+      
       this.createForm();
       
         }
@@ -209,8 +204,7 @@ export class UpdateFormComponent implements OnInit {
     getAllCountries() {
       return this.restService.get("search").subscribe(
         (data:any)=> {
-          this.countries = data,
-          console.log(this.countries)
+          this.countries = data;
         }
       )
     }
@@ -222,7 +216,6 @@ export class UpdateFormComponent implements OnInit {
 
     onSubmit() {        
         //saveListedAccount method from the authService layer
-        console.log(this.regForm.value)
         this.authService.saveListedAccount(this.regForm.value);
 
         this.submitProfession();
@@ -256,13 +249,8 @@ export class UpdateFormComponent implements OnInit {
     }
 
     onSelectCategory(uuid: string){ 
-      //UUID is fix 0
-      console.log("UUID")
-      console.log(this.selectedCategory.uuid)
-
       this.professions = this.categories?.find((category) => category.category_uuid == uuid ).professions;
       this.dropdownList = this.professions; 
-      console.table(this.dropdownList)
     }
 
     doesContain(item : string): boolean {

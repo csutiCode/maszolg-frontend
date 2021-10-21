@@ -54,8 +54,7 @@ export class ListComponent implements OnInit {
    
     return this.restService.get("search/city/" + this.cityName).subscribe(
       (data:any)=> {
-        this.accounts = data
-        console.table(this.accounts)
+        this.accounts = data;
       }
     )
     
@@ -64,8 +63,7 @@ export class ListComponent implements OnInit {
   getAllCategories() {
     return this.restService.get("search/categories").subscribe(
       (data:any)=> {
-        this.categories = data,
-        console.log(this.categories)
+        this.categories = data;
       }
     )
   }
@@ -77,26 +75,21 @@ export class ListComponent implements OnInit {
     }
 
 
-  console.log(categoryName);
     this.restService.get("search/" + this.cityName + "/" + categoryName).subscribe(
       (data:any)=> {
-        this.accounts = data,
-        console.log(this.categories)
+        this.accounts = data;
       }
     )
   }
 
   onMore(accountUuid: string) {
-    console.log(accountUuid);
     this.router.navigate(['account'], { queryParams: { uuid: accountUuid }});
   }
 
 
 
   applyFilter(event: Event) {
-    
     const filter = (<HTMLInputElement>event.target).value.toLowerCase();
-   
     if (!filter) {
       this.getAllAccountsForCity();
     }
@@ -111,7 +104,6 @@ export class ListComponent implements OnInit {
     //make a switch
     switch (sortOption) {
       case "abc":
-        console.log(sortOption)
         this.accounts = this.accounts.sort((a: any,b: any) =>  a.lastName.localeCompare(b.lastName));
         break;
       case "Minősítés":
@@ -125,18 +117,5 @@ export class ListComponent implements OnInit {
 
   }
 
-  /*
-  //to pagination
-  public onPageChange(pageNum: number): void {
-    this.pageSize = this.itemsPerPage*(pageNum - 1);
-  }
   
-  public changePagesize(num: number): void {
-    this.itemsPerPage = this.pageSize + num;
-  }
-  
-  */
-
-
-
 }

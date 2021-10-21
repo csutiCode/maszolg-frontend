@@ -24,6 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewsComponent } from './components/news/news.component';
 import { DataProtectionComponent } from './components/data-protection/data-protection.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { NgSpinnerModule } from 'ng-bootstrap-spinner';
+
 
 
 @NgModule({
@@ -56,6 +58,7 @@ import { ContactComponent } from './components/contact/contact.component';
     NgMultiSelectDropDownModule,
     NgbModule,
     BrowserAnimationsModule,
+    NgSpinnerModule
     
 
   ],

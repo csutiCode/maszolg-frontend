@@ -167,10 +167,11 @@
         [(ngModel)]="selectedItems">
       </ng-multiselect-dropdown>
     </div>
+
+
 </div>
   <div *ngIf="enabled">
-    <button class="w-20 btn-sm" [disabled]="!regForm.valid" (click)="onSubmit()"
-      >
+    <button class="w-20 btn-sm" [disabled]="!regForm.valid" (click)="onSubmit()">
       <span>Elküld</span></button>
   </div>
 

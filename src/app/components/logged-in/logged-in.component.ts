@@ -63,10 +63,6 @@ export class LoggedInComponent implements OnInit {
       let objectURL =URL.createObjectURL(data);
       this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
 
-      console.log("data")
-      console.table(data)
-      console.log("image")
-      console.table(this.image)
       //change to the 
       if (data.size!=0) {
         this.isDefault=false;
@@ -82,7 +78,6 @@ export class LoggedInComponent implements OnInit {
   //get the value from the toggle
   switchTo(switchValue: string) {
     this.switch = switchValue;
-    console.log(this.switch)
 
   }
 
@@ -106,9 +101,8 @@ export class LoggedInComponent implements OnInit {
   
     // OnClick of button Upload
     onUpload() {
-        console.log(this.file);
         this.upload();
-        //window.location.reload();
+        window.location.reload();
     }
 
     //send the post request with the image to the backend
@@ -120,9 +114,7 @@ export class LoggedInComponent implements OnInit {
     const promise = this.authService.uploadImage(this.uuid, this.formData);
 
     promise.then((data:any)=> {
-      this.message = data,
-      console.log("MESSAGE FROM THE SERVER AFTER IMAGE UPLOAD:")
-      console.log(this.message)
+      this.message = data;
       }
     )
    

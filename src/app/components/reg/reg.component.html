@@ -87,10 +87,10 @@
   </div>
    
   <div class="modal-footer" *ngIf="status==200">
-    <button type="button" class="btn btn-sm btn-primary" (click)="modal.close('Close click')" routerLink="/login">Bejelentkezés</button>
+    <button type="button" class="btn-sm" (click)="modal.close('Close click')" routerLink="/login">Bejelentkezés</button>
   </div>
 
   <div class="modal-footer" *ngIf="status!=200">
-    <button type="button" class="btn btn-sm btn-primary" (click)="modal.close('Close click')" routerLink="/reg">Vissza</button>
+    <button type="button" class="btn-sm" (click)="modal.close('Close click')" routerLink="/reg">Vissza</button>
   </div>
 </ng-template>

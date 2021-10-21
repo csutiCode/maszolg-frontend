@@ -63,17 +63,14 @@ export class RegComponent implements OnInit {
 
 
   onSubmit() {
-    console.log("REGFORM: ")
-    console.log(this.registrationForm.value);
+   
 
     const promise = this.authService.register(this.mapFormToRegisterRequest());
 
     promise.then( (data:any)=> {
-      this.response = data,
-        console.log(this.response)
+      this.response = data;
       }, (error: any) => {
-        console.table(error),
-        console.log('HTTP Error status text: ', error.error),
+       
         this.response = error.error,
         this.status = error.status
       }
@@ -92,8 +89,7 @@ export class RegComponent implements OnInit {
     this.date = this.registrationForm.get("dateOfBirth").value;
     this.date = new Date(this.date.year, this.date.month, this.date.day)
     this.registerRequest.dateOfBirth= this.date;
-    console.log("REGISTER REQUEST FROM THE MAPPING METHOD:")
-    console.table(this.registerRequest)
+   
     return this.registerRequest;
 
   }

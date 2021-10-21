@@ -27,6 +27,8 @@ export class ClassificationComponent implements OnInit {
 
   status?: number = this.publicService.status;
 
+  showSpinner?: boolean;
+
  
   starRating = 0; 
 
@@ -39,7 +41,7 @@ export class ClassificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     
+     this.showSpinner = true;
   }
 
   createForm() {
@@ -55,12 +57,13 @@ export class ClassificationComponent implements OnInit {
 
     const promise = this.publicService.saveClassification(this.uuid, this.classificationForm.value);
 
-    console.log("PROMISE: ")
-    console.table(promise)
     promise.then( (data:any)=> {
       this.response = data,
+      this.showSpinner=true;
         console.log(this.response)
       }, () => {
+        this.showSpinner=false;
+
         this.response = "Egy szolgáltatót havonta csak egyszer lehet minősíteni."
       }
     )

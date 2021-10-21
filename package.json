@@ -23,6 +23,7 @@
     "bootstrap": "^4.5.0",
     "bootstrap-icons": "^1.6.0",
     "ionicons": "^5.5.3",
+    "ng-bootstrap-spinner": "^1.2.0",
     "ng-multiselect-dropdown": "^0.3.4",
     "ngx-cookie": "^5.0.2",
     "rxjs": "~6.6.0",

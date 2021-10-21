@@ -72,6 +72,23 @@
     border: 0;
   }
 
+  label {
+    font-family: "Verdana", sans-serif;
+    display: inline;
+    font-style: normal;
+    font-size: larger;
+    color: rgba(71, 61, 61, 0.8);
+  }
+
+  h1 {
+    font-family: "Verdana", sans-serif;
+    font-weight: bold;
+    display: inline;
+    font-style: normal;
+    font-size: larger;
+    color: rgba(71, 61, 61, 0.8);
+   }
+
   
 
 

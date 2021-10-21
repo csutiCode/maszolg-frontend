@@ -4,35 +4,28 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   border: solid;
 }
-  .card {
+.card {
     transition: 0.3s;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    border: solid;
     margin: 1rem;
-  }
-
-
+}
 body{
     color: #6F8BA4;
     margin-top:20px;
 }
-.section {
-    
+.section {   
     padding: 100px 0;
     position: relative;
-    border-radius: 4%;
-    box-shadow: 0 16px 16px 0 rgba(0,0,0,0.2);
-    border: solid;
+    border-radius: 20px;
+    box-shadow: 0 3rem 5rem 0 rgba(0,0,0,0.8);
 }
 .gray-bg {
     background-color: #f5f5f5;
 }
 img {
     max-width: 20%;
-}
-img {
     vertical-align: middle;
-    border-style: none;
+    border-style: inset;
+    border-radius: 20px;
 }
 /* About Me 
 ---------------------*/
@@ -134,7 +127,7 @@ mark {
     color: currentColor;
 }
 .theme-color {
-    color: #fc5356;
+    color: #20247b;
 }
 .dark-color {
     color: #20247b;
@@ -142,24 +135,22 @@ mark {
 ul {
   text-align: center;
 }
-
 li {
   list-style: none;
 }
-
 tr {
   text-align: center;
 }
-
 p {
   text-align: center;
-
 }
-
 .classification {
   transition: 0.3s;
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  border: solid;
-  border-radius: 40%;
+  border-radius: 20px;
   background: #f5f5f5;
+}
+ngb-rating {
+  color: #FFC107;
+  font-size: 20px;
 }

@@ -2,7 +2,6 @@
     background-color: antiquewhite;
     cursor:pointer;
 }
-
 .card {
     /* Add shadows to create the "card" effect */
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -10,16 +9,17 @@
     padding: 1rem;
     margin: 1rem 1rem 1rem 1rem;
 }
-
 .nav-item {
     display: inline-block;
     padding: 1rem;
 }
-
 .option {
     border-radius: 20px;
 }
-
+ngb-rating {
+    color: #FFC107;
+    font-size: 25px;
+}
 
 
   

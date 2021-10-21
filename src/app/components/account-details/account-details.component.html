@@ -23,11 +23,9 @@
       <li>
         <p><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></p>
       </li>
-      <li>
-        <label>{{residence}}</label>
-        <p>{{account.address.city.postalCode}}</p>
-        <p>{{account.address.city.street}}</p>
-        <p>{{account.address.city.number}}</p>
+      <li *ngIf="account.address.workAddress">  
+          <label>{{residence}}</label>
+          <p>{{account.address.postalCode}} {{account.address.street}} {{account.address.number}}</p> 
       </li>
     </ul>
     <div  *ngIf="!isCookieSet" class="d-flex justify-content-center">
@@ -38,45 +36,34 @@
 
 
   <div *ngIf="account.classifications.length>0">
-
     <div *ngFor="let classification of account.classifications">
       <div class="card">
-        <p><i>"{{classification.text}}"</i></p>
-        <p> <sub>{{classification.createdBy}}</sub> </p>
-        <p class="rating">{{classification.rating}}</p>
-       </div>
-      <div class="card m-auto" *ngIf="isCookieSet && !classification.commented">
-        <button (click)="openComment(comment, classification.classificationUuid)">Válaszolok</button>
+        <p><i>"{{classification.text}}" <ngb-rating [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></i></p>
+        <p> <sub>{{classification.createdBy}}, {{classification.createdOn}}</sub> </p>
+        <p *ngIf="classification.commented">{{account.firstName}} megjegyzése: "{{classification.comment}}", {{classification.commentCreatedOn}}</p>
+        <button *ngIf="isCookieSet && !classification.commented" class="w-25 m-auto" (click)="openComment(comment, classification.classificationUuid)">Válaszolok</button>
       </div>
-
+     
     </div>
-   </div>
-   <div class="card w-75 m-auto" *ngIf="classification"> 
-    <div class="card  m-auto">
-      <button  class="w-100 btn-lg" (click)="onCancel()">Megse</button>
     </div>
-  </div>
+    <div class="card w-75 m-auto" *ngIf="classification"> 
+      <div class="card  m-auto">
+        <button  class="w-100 btn-lg" (click)="onCancel()">Megse</button>
+      </div>
+    </div>
 </div>
 
 
 
 <ng-template #content let-modal >
-  
     <div class="modal-header">
       <h4 class="modal-title">Minősítés</h4>
-      <button class="btn-close" (click)="modal.dismiss()">
-        
+      <button class="btn-close" (click)="modal.dismiss()">    
       </button>
     </div>
-        <div class="modal-body">
-          
+        <div class="modal-body"> 
             <app-classification></app-classification>
-          
-          
     </div>
-    
- 
-  
 </ng-template>
 
 

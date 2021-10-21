@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { Messages } from '../utils/messages';
 
 @Component({
@@ -12,7 +13,7 @@ export class FooterComponent implements OnInit {
 
   contact: string = Messages.contact;
 
-  constructor() { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
   }

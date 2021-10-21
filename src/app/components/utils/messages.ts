@@ -30,8 +30,8 @@ export class Messages {
     public static updateMyData ="Adataim frissítése";
     public static news ="Újdonságok";
     public static logout ="Kijelentkezés";
-    public static uploadTooltip = "Töltsd fel a profilképed!"
-    public static changeTooltip = "Cseréld le a profilképed!"
+    public static uploadTooltip = "Töltse fel a profilképét!"
+    public static changeTooltip = "Cserélje le a profilképét!"
     public static uploadPicture = "Profilkép feltöltése"
 
     /* SEARCH  */

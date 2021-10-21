@@ -96,7 +96,7 @@
     <div class="mb-3" *ngIf="enabled">
         <label for ="city">{{city}}</label>
         <select [(ngModel)]="selectedCity" formControlName="city" class="form-select" aria-label="Default select example">
-                <option value="else"> Else </option>
+                <option value="else"> Egyéb </option>
                 <option *ngFor="let city of cities" [value]="city.name">
                     {{city.name}}
                 </option>
@@ -175,6 +175,6 @@
   </div>
 
     <div *ngIf="!enabled">
-      <button class="w-20 btn-sm" (click)="enableEdit()"  ngbTooltip="Enable to edit your data!">{{enableEditButton}}</button>
+      <button class="w-20 btn-sm" (click)="enableEdit()"  >{{enableEditButton}}</button>
     </div>
 </div>

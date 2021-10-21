@@ -35,6 +35,8 @@ export class RegComponent implements OnInit {
   };
 
 
+
+
   model?: NgbDateStruct
 
   constructor(private fb: FormBuilder, 
@@ -49,11 +51,13 @@ export class RegComponent implements OnInit {
   createForm() {
     this.registrationForm = this.fb.group({
       email: new FormControl ('', [Validators.required, Validators.email]),
+      //TODO:
       //, createPasswordStrengthValidator()
       password: new FormControl ('', [Validators.required, Validators.minLength(8)]),
       confirmedPassword: new FormControl ('', Validators.required),
       //   [Validators.required, createDateOfBirthValidator()]
-      dateOfBirth: new FormControl('', [Validators.required])
+      dateOfBirth: new FormControl('', [Validators.required]),
+      acceptGDPR: new FormControl(false, Validators.requiredTrue)
     }); 
   }
 

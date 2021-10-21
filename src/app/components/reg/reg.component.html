@@ -54,10 +54,16 @@
           </div>
         </div>
         <hr/>
-  
-        <div class="form-floating">
-          <button class="w-100 btn-lg" type="submit"   [disabled]="!registrationForm.valid">Regisztráció</button>
+        <div >
+          <label  class="col-sm-2 col-form-label">Elfogadom az 
+            <a href="#" target="_blank" routerLink="/data-protection" routerLinkActive="active">adatkezelési irányelveket</a> </label>
+          <input class="checkbox" #acceptGDPR type="checkbox" formControlName="acceptGDPR">
         </div>
+
+        <div class="form-floating">
+          <button class="w-100 btn-lg" type="submit" [disabled]="!registrationForm.valid">Regisztráció</button>
+        </div>
+
     </form>
 
   

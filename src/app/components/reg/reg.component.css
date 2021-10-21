@@ -27,3 +27,6 @@ button.calendar, button.calendar:active {
 }
 
 
+.checkbox {
+    margin: 1rem 0 0 1rem;
+}

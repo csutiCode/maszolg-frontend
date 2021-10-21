@@ -42,7 +42,6 @@
 -->
 
 <div class="forRem">
-
     <div class="card w-80 m-auto" *ngIf="switch==='news'">
         <app-news></app-news>
     </div>
@@ -53,8 +52,6 @@
     <div class="card w-80 m-auto" *ngIf="switch==='myData'">
         <app-account-details></app-account-details>
     </div>
-   
-    
 </div>
 
 <!--
@@ -65,21 +62,20 @@
 <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title">{{uploadPicture}}</h4>
-    </div>
-        <div class="modal-body">
-            <div class="text-center m-auto">
-                <input class="form-control  m-auto padding-bottom" type="file" 
-                        (change)="onChange($event)">
-                <div class="m-auto">
-                    <button (click)="onUpload()" (click)="modal.close('Close click')"
-                    class="  m-auto ">Feltöltés</button>
-                    <button type="button" class=" btn-primary" (click)="modal.close('Close click')" >Vissza</button>
+        </div>
+            <div class="modal-body">
+                <div class="text-center m-auto">
+                    <input class="form-control  m-auto padding-bottom" type="file" 
+                            (change)="onChange($event)">
+                    <div class="m-auto">
+                        <button (click)="onUpload()" (click)="modal.close('Close click')"
+                        class=" m-auto">Feltöltés</button>
+                        <button type="button"  (click)="modal.close('Close click')" >Vissza</button>
+                    </div>
                 </div>
             </div>
-          </div>
-          <div>
-    </div>
-
+            <div>
+        </div>
   </ng-template>
   
   

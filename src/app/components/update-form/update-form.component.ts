@@ -1,6 +1,6 @@
 
-import { Component,  OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
+import { Component,  OnInit, ViewEncapsulation } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {  ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicService } from 'src/app/services/public.service';
@@ -11,7 +11,9 @@ import { Messages } from '../utils/messages';
 @Component({
   selector: 'app-update-form',
   templateUrl: './update-form.component.html',
-  styleUrls: ['./update-form.component.css']
+  styleUrls: ['./update-form.component.css'],
+  encapsulation: ViewEncapsulation.None // Add this line
+
 })
 export class UpdateFormComponent implements OnInit {
 

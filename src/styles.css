@@ -88,6 +88,14 @@
     color: rgba(71, 61, 61, 0.8);
    }
 
-  
-
-
+   .multiselect-dropdown .dropdown-btn .selected-item{
+    border: 1px solid rgba(71, 61, 61, 0.8);
+    margin-right: 4px;
+    background: rgba(71, 61, 61, 0.8);
+    padding: 0 5px;
+    color: #fff;
+    border-radius: 2px;
+    float: left;
+    display: flex;
+    max-width: 100px;
+}

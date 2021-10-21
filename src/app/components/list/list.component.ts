@@ -37,16 +37,7 @@ export class ListComponent implements OnInit {
 
   sortOption: string = '';
   
-  /*
-  currentPage = 1;
-
-  itemsPerPage = 5;
-
-  itemsPerPageArray: any[] = [5, 10, 15, 20]
-
-  pageSize= 1;
-
-  */
+ 
   ngOnInit(): void {
     //get the city parameter from the URL
     this.route.queryParams

@@ -7,6 +7,16 @@
 
 
 
+.dropdown-item {
+  color: #fff;
+  text-decoration: none;
+  background-color: rgba(71, 61, 61, 0.8);
+  border-radius: 20px;
+}
+
+
+
+
 .div {
   box-shadow: 0 3rem 5rem 0 rgba(0,0,0,0.8);
 }

@@ -4,9 +4,11 @@
     transition: 0.3s;
     margin: 0 auto; /* Added */
     float: none; /* Added */
-    margin-bottom: 10px; /* Added */
+    margin-bottom: 15rem; /* Added */
     margin-top: 5%;
     padding: 1rem;
+    
+    
     }
 
 img {

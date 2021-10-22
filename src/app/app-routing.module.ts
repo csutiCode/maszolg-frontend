@@ -4,6 +4,7 @@ import { AboutComponent } from './components/about/about.component';
 import { AccountDetailsComponent } from './components/account-details/account-details.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DataProtectionComponent } from './components/data-protection/data-protection.component';
+import { FaqComponent } from './components/faq/faq.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListComponent } from './components/list/list.component';
 import { LoggedInComponent } from './components/logged-in/logged-in.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'loggedIn', component: LoggedInComponent},
   {path: 'contact', component: ContactComponent},
   {path: 'data-protection', component: DataProtectionComponent},
+  {path: 'faq', component: FaqComponent},
   {path: '', redirectTo: '/search', pathMatch: 'full'}
 
 ];

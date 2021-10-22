@@ -5,7 +5,6 @@
   border: solid;
 }
 .card {
-    transition: 0.3s;
     margin: 1rem;
 }
 body{
@@ -152,5 +151,13 @@ p {
 }
 ngb-rating {
   color: #FFC107;
-  font-size: 20px;
+  font-size: 30px;
+}
+
+p {
+  padding: 1rem 0 0 0;
+}
+
+.sub {
+  padding: 0 0 1rem 0;
 }

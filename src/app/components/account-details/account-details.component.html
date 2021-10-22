@@ -39,7 +39,7 @@
     <div *ngFor="let classification of account.classifications">
       <div class="card">
         <p><i>"{{classification.text}}" <ngb-rating [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></i></p>
-        <p> <sub>{{classification.createdBy}}, {{classification.createdOn}}</sub> </p>
+        <p class="sub">{{classification.createdBy}}, {{classification.createdOn}} </p>
         <p *ngIf="classification.commented">{{account.firstName}} megjegyzése: "{{classification.comment}}", {{classification.commentCreatedOn}}</p>
         <button *ngIf="isCookieSet && !classification.commented" class="w-25 m-auto" (click)="openComment(comment, classification.classificationUuid)">Válaszolok</button>
       </div>

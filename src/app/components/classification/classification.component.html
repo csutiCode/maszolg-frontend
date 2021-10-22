@@ -1,9 +1,5 @@
 
   <form [formGroup]="classificationForm" (ngSubmit)="onSubmit()"  (ngSubmit)="openVerticallyCentered(content)">
-
-
-
-
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">E-Mail</label>
         <div class="col-sm-10">
@@ -46,15 +42,29 @@
           </div>
         </div>
     </div>
-
     <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Minősítés</label>
+        <div class="col-sm-10">
+          <select formControlName="rating" value="list" class="form-select" aria-label="Default select example">
+            <option  [ngValue]="item.value" *ngFor="let item of ratingList.slice().reverse()">{{item.key}}</option>
+          </select>
+        </div>
+</div>
+
+<!-- 
+   <div class="form-group row">
         <label class="col-sm-2 col-form-label">Minősítés</label>
           <div class="col-sm-10">
-            <span id="rateMe2"  class="empty-stars"></span>
-            <ngb-rating formControlName="rating"  [max]="5" [readonly]="false"></ngb-rating>
+            <span id="rateMe2" class="empty-stars"></span>
+            <ngb-rating  [max]="5" formControlName="rating"></ngb-rating>
           </div>
   </div>
-  <div >
+-->
+ 
+
+
+
+  <div>
     <label  class="col-sm-2 col-form-label">Elfogadom az 
       <a href="#" target="_blank" routerLink="/data-protection" routerLinkActive="active">adatkezelési irányelveket</a> </label>
     <input class="checkbox" #acceptGDPR type="checkbox" formControlName="acceptGDPR">

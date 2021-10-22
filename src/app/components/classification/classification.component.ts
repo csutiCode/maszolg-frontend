@@ -50,6 +50,7 @@ export class ClassificationComponent implements OnInit {
       createdBy: ['', Validators.required ],
       text: new FormControl('', Validators.required),
       rating: new FormControl('', Validators.required),
+      acceptGDPR: new FormControl(false, Validators.requiredTrue)
     }); 
   }
 

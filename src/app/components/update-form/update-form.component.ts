@@ -217,7 +217,6 @@ export class UpdateFormComponent implements OnInit {
     onSubmit() {        
         //saveListedAccount method from the authService layer
         this.authService.saveListedAccount(this.regForm.value);
-
         this.submitProfession();
         //reload the page
         window.location.reload();

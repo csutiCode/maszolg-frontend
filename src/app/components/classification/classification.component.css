@@ -1,10 +1,14 @@
 ngb-rating {
     color: #FFC107;
-    font-size: 20px;
-    margin: 0 1rem;
+    font-size: 30px;
+    margin: 0 1rem 0 6rem;
 }
 
 
 div {
-    padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+    padding: 0.1rem 0.1rem 0.5rem 0.1rem;
+}
+
+.checkbox {
+    margin: 1rem 0 0 4rem;
 }

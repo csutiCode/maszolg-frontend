@@ -52,7 +52,6 @@ export class AuthService {
     let self = this;
     promise.then((data:any)=> {
           this.token = data,
-          console.log(this.token)
           this.cookieService.put("JWT", this.token);
           //hide the navbar
           //get the listedAccount and make a redirect
@@ -64,9 +63,7 @@ export class AuthService {
   
 
    getListedAccount(self : AuthService = this) {
-    
-     console.log("TOKEN from the getlistedaccount:  ")
-     console.log(self.token)
+
      self.http.get("http://localhost:8080/auth",  { headers: self.getHttpHeaderAuth() }).subscribe(
       (data:any)=> {
         self.listedAccount = data,
@@ -80,18 +77,15 @@ export class AuthService {
    public saveListedAccount(form : any) {
          this.http.post("http://localhost:8080/auth/save/listedAccount", form,  { headers: this.getHttpHeaderAuth() }).subscribe(
           (data:any)=> {
-            this.listedAccount = data,
-            console.log(this.listedAccount)  
+            this.listedAccount = data;
         }
       )
    }
 
    public sendComment(commentOnClassificationDto : any) {
-    console.log(commentOnClassificationDto)
       this.http.post("http://localhost:8080/auth/save/commentOnClassification", commentOnClassificationDto,  { headers: this.getHttpHeaderAuth() }).subscribe(
         (data:any)=> {
-          this.response = data,
-          console.log(this.response)
+          this.response = data;
         }
       )
    }
@@ -104,8 +98,7 @@ export class AuthService {
     delete(uuid: string | null) {
       this.http.get("http://localhost:8080/auth/delete/" + uuid,  { headers: this.getHttpHeaderAuth() }).subscribe(
         (data:any)=> {
-          this.response = data,
-          console.log(this.response)
+          this.response = data;
         }
       )
     }
@@ -116,7 +109,6 @@ export class AuthService {
 
   
   getToken(): string {
-    console.log("Token from getToken: " + this.cookieService.get("JWT"));
     return this.cookieService.get("JWT");
   }
 

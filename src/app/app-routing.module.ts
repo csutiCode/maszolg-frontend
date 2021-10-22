@@ -14,6 +14,7 @@ import { SearchComponent } from './components/search/search.component';
 import { UpdateFormComponent } from './components/update-form/update-form.component';
 
 const routes: Routes = [
+  
   {path: 'search', redirectTo: '/list?city=Bécs', pathMatch: 'full'},
   {path: 'search', component: SearchComponent },
   {path: 'about', component: AboutComponent },

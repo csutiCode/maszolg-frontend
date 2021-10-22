@@ -1,5 +1,4 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Component, Inject, OnInit,  } from '@angular/core';
+import { Component, OnInit,  } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import {  NgbDateStruct, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
@@ -69,6 +68,7 @@ export class RegComponent implements OnInit {
 
     promise.then( (data:any)=> {
       this.response = data;
+
       }, (error: any) => {
        
         this.response = error.error,

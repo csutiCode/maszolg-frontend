@@ -55,17 +55,21 @@ export class ClassificationComponent implements OnInit {
   }
 
   onSubmit() {
-
     const promise = this.publicService.saveClassification(this.uuid, this.classificationForm.value);
 
     promise.then( (data:any)=> {
-      this.response = data,
-      this.showSpinner=true;
-        console.log(this.response)
-      }, () => {
-        this.showSpinner=false;
 
-        this.response = "Egy szolgáltatót havonta csak egyszer lehet minősíteni."
+      this.response = data;
+      
+      }, (error: any) => {
+
+        console.log("ERROR")
+        console.table(error)
+        
+        this.status = error.status
+        console.log(this.status)
+        this.response = error.error
+        
       }
     )
   }

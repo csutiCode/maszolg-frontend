@@ -46,7 +46,18 @@ export class PublicService {
   }
 
   saveClassification(uuid: string | null, classification: any) {    
-    return this.restService.post("save/classification/" + uuid, classification).toPromise(); 
+    return this.http.post("http://localhost:8080/save/classification/" + uuid, classification, { headers: this.getHttpHeaders() }).toPromise(); 
+  }
+
+  getHttpHeaders(): HttpHeaders {
+    const reqHeaders = new HttpHeaders({ 
+      'Content-Type': 'application/JSON',
+      'Access-Control-Allow-Credentials': 'true',
+      "Access-Control-Allow-Origin": "*",
+       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+   });
+   return reqHeaders;
   }
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, SchedulerLike, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import { Messages } from '../components/utils/messages';
 

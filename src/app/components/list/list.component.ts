@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
+import { Profession } from '../listedAccount';
 import { Messages } from '../utils/messages';
 
 @Component({
@@ -93,12 +94,16 @@ export class ListComponent implements OnInit {
     if (!filter) {
       this.getAllAccountsForCity();
     }
+    
     //TODO: SEARCH ON THE PROFESSION AS WELL
     this.accounts = this.accounts.filter((account:any) => 
         account.firstName.toLowerCase().includes(filter)
       | account.lastName.toLowerCase().includes(filter))
+    
+      
   }
 
+  
 
   onSort(sortOption : string) {
     //make a switch

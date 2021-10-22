@@ -1,12 +1,8 @@
-
-  
-  
-  
-  <form [formGroup]="classificationForm" (ngSubmit)="onSubmit()"  (ngSubmit)="openVerticallyCentered(content)">
+<form [formGroup]="classificationForm" (ngSubmit)="onSubmit()"  (ngSubmit)="openVerticallyCentered(content)">
     <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label">E-Mail</label>
         <div class="col-sm-10">
-          <input  class="form-control"   formControlName="email">
+          <input  class="form-control"  formControlName="email">
           <div  *ngIf="classificationForm.controls['email'].invalid  && classificationForm.controls['email'].touched">
             <div *ngIf="classificationForm.controls['email'].errors?.required">
               <small class="text danger" >
@@ -54,6 +50,15 @@
         </div>
 </div>
 
+
+<!--
+  RECAPTCHA FOR PRODUCTION POSSIBLE
+<div class="form-group row">
+  <re-captcha (resolved)="resolved($event)"  siteKey="YOUR_SITE_KEY"> </re-captcha>
+</div>
+
+ -->
+
 <!-- 
    <div class="form-group row">
         <label class="col-sm-2 col-form-label">Minősítés</label>
@@ -73,10 +78,18 @@
     <input class="checkbox" #acceptGDPR type="checkbox" formControlName="acceptGDPR">
   </div>
    
-  <div>
+  <div *ngIf="notRobot">
     <button class="w-100 btn-lg"   type="submit" [disabled]="!classificationForm.valid" >Elküld</button>
   </div>
 </form>
+
+
+<div>
+
+  <p> Adja össze a két számot:  "{{firstNumber}}"       "{{secondNumber}}"" </p>
+  <input type="text"  (keyup)="testIfRobot($event)">
+  
+</div>
 
 
 

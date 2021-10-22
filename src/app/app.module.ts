@@ -26,6 +26,7 @@ import { DataProtectionComponent } from './components/data-protection/data-prote
 import { ContactComponent } from './components/contact/contact.component';
 import { NgSpinnerModule } from 'ng-bootstrap-spinner';
 import { FaqComponent } from './components/faq/faq.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 
 
@@ -48,6 +49,7 @@ import { FaqComponent } from './components/faq/faq.component';
     DataProtectionComponent,
     ContactComponent,
     FaqComponent,
+    
   ],
 
   imports: [
@@ -60,7 +62,8 @@ import { FaqComponent } from './components/faq/faq.component';
     NgMultiSelectDropDownModule,
     NgbModule,
     BrowserAnimationsModule,
-    NgSpinnerModule
+    NgSpinnerModule,
+    RecaptchaModule
     
 
   ],

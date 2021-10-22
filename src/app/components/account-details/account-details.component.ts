@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
+import { CaptchaService } from 'src/app/services/captcha.service';
 import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
 import { Messages } from '../utils/messages';
@@ -48,14 +49,14 @@ export class AccountDetailsComponent implements OnInit {
 
   commentOnClassification:string ='';
 
-
-
   constructor(private restService: RestService, 
     private route: ActivatedRoute,
     private modalService: NgbModal,
     private sanitizer: DomSanitizer,
     private authService: AuthService,
-    private publicService: PublicService) { }
+    private publicService: PublicService,
+    public captchaService: CaptchaService) { }
+
 
   ngOnInit(): void {
     this.route.queryParams
@@ -65,9 +66,9 @@ export class AccountDetailsComponent implements OnInit {
     );
     this.getListedAccount(this.route.snapshot.queryParamMap.get('uuid'));
     this.fetchImage();
-
-   
   }
+
+
 
   getListedAccount(uuid: string | null) {
     return this.restService.get("search/account/" + uuid).subscribe(
@@ -88,7 +89,8 @@ export class AccountDetailsComponent implements OnInit {
   
     let objectURL =URL.createObjectURL(data);
     this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-  });
+
+    });
   }
   
 

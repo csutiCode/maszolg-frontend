@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CaptchaService } from 'src/app/services/captcha.service';
 import { PublicService } from 'src/app/services/public.service';
 import { Messages } from '../utils/messages';
 
@@ -27,25 +28,62 @@ export class ClassificationComponent implements OnInit {
 
   status?: number = this.publicService.status;
 
+  
+
   ratingList : any[] =  [
     {key: "Nem ajánlom", value:"ONE"},
     {key: "Elégséges", value:"TWO"},
     {key: "Közepes", value:"THREE"},
     {key: "Ajánlom", value:"FOUR"},
     {key: "Kiváló", value:"FIVE"}
-
 ]
 
+  firstNumber?: string;
+
+  secondNumber?: string;
+
+  textResult?: string;
+
+  notRobot: boolean = false;
    
   constructor(private route: ActivatedRoute, 
               private fb: FormBuilder,
               private modalService: NgbModal,
-              private publicService: PublicService){
-    this.createForm() 
+              private publicService: PublicService,
+              public captchaService: CaptchaService){
+    this.createForm();
+
   }
 
   ngOnInit(): void {
+    this.captchaService.createCaptcha();
+    this.firstNumber = this.captchaService.firstNumber;
+    this.secondNumber = this.captchaService.secondNumber;
+    this.textResult = this.captchaService.textResult;
   }
+
+  testIfRobot(event: Event) {
+
+    const result = (<HTMLInputElement>event.target).value.toLowerCase();
+
+    console.log(this.textResult)
+
+
+    console.log(result)
+
+    if (result==this.textResult) {
+      this.notRobot = true;
+    } else {
+      this.notRobot = false;;
+    }
+
+  }
+
+
+
+  
+
+
 
   createForm() {
     this.classificationForm = this.fb.group({

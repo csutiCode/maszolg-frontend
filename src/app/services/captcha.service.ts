@@ -47,10 +47,7 @@ export class CaptchaService {
     {key:"tizenhét", value: 17},
     {key:"tizennyolc", value: 18},
     {key:"tizenkilenc", value: 19},
-
   ]
-
-
 
   captchaMap = new Map<string, number>();
 
@@ -66,7 +63,7 @@ export class CaptchaService {
     this.firstNumber = firstRandom.key;
     this.secondNumber = secondRandom.key;
 
-    this.result = firstRandom.value + secondRandom.value
+    this.result = firstRandom.value + secondRandom.value;
     
     for (var num of this.resultList) {
       if (num.value == this.result) {

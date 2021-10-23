@@ -48,6 +48,17 @@
             <option  [ngValue]="item.value" *ngFor="let item of ratingList.slice().reverse()">{{item.key}}</option>
           </select>
         </div>
+
+        <div class="m-auto">
+          
+          <label  ngbTooltip="Így ellenőrzöm, hogy nem robot" class="col-sm-2 col-form-label">Adja össze a két számot:  {{firstNumber}}   {{secondNumber}}</label>
+          
+          <div class="m-auto">
+
+            <input class="form-control" type="text" ngbTooltip="A végeredmény leírva" (keyup)="testIfRobot($event)">
+
+          </div>
+      </div>
 </div>
 
 
@@ -84,12 +95,7 @@
 </form>
 
 
-<div>
 
-  <p> Adja össze a két számot:  "{{firstNumber}}"       "{{secondNumber}}"" </p>
-  <input type="text"  (keyup)="testIfRobot($event)">
-  
-</div>
 
 
 

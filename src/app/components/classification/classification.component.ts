@@ -66,11 +66,6 @@ export class ClassificationComponent implements OnInit {
 
     const result = (<HTMLInputElement>event.target).value.toLowerCase();
 
-    console.log(this.textResult)
-
-
-    console.log(result)
-
     if (result==this.textResult) {
       this.notRobot = true;
     } else {
@@ -78,11 +73,6 @@ export class ClassificationComponent implements OnInit {
     }
 
   }
-
-
-
-  
-
 
 
   createForm() {

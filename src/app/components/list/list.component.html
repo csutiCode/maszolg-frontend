@@ -35,8 +35,8 @@
     </div>
 
 <div>
-  <table class="table m-auto">
-    <thead class="thead-dark m-auto">
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">{{fullName}}</th>
         <th scope="col">{{profession}}</th>
@@ -49,7 +49,6 @@
             <td> <span *ngFor="let profession of account.professions">{{profession.name}} </span></td>
 
             <td><ngb-rating class="m-auto" [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></td>
-
         </tr>
       
         

@@ -20,3 +20,14 @@ ngb-rating {
     color: #FFC107;
     font-size: 25px;
 }
+
+
+@media only screen and (min-width: 0px) and (max-width: 700px) {
+    td {
+        display:inline-block;
+        padding:5px;
+        width:100%;
+    }
+}
+
+

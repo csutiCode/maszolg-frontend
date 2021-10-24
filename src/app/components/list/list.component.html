@@ -44,12 +44,14 @@
       </tr>
     </thead>
     <tbody>
-        <tr class="hovered" *ngFor="let account of accounts"  (click)="onMore(account.listedAccount_uuid)">
+        <tr class="hovered m-auto" *ngFor="let account of accounts"  (click)="onMore(account.listedAccount_uuid)">
             <td>{{account.lastName}} {{account.firstName}}</td>
             <td> <span *ngFor="let profession of account.professions">{{profession.name}} </span></td>
 
-            <td><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></td>
+            <td><ngb-rating class="m-auto" [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></td>
+
         </tr>
+      
         
     </tbody>
 

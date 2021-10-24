@@ -3,8 +3,12 @@
   <section class="section about-section gray-bg m-auto" id="about">
   <div>
     <ul>
-      <li>
+      <li *ngIf="!isDefault">
         <img [src]='image' title="" alt="">
+
+      </li>
+      <li *ngIf="isDefault">
+        <img src="assets/images/avatar.png" >
       </li>
       <li>
         <h3 class="dark-color">{{account.lastName}} {{account.firstName}}</h3>

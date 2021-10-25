@@ -154,7 +154,10 @@ export class UpdateFormComponent implements OnInit {
       this.regForm.get("about")?.setValue(this.listedAccount?.about);
       this.regForm.get("webPage")?.setValue(this.listedAccount?.webPage);
       this.regForm.get("phoneNumber")?.setValue(this.listedAccount?.phoneNumber);
-      this.regForm.get("city")?.setValue(this.listedAccount?.address?.city.city_uuid);
+      //for the vienna test version
+      this.regForm.get("country")?.setValue("Ausztia");
+      this.regForm.get("city")?.setValue("Bécs");
+
       this.regForm.get("postalCode")?.setValue(this.listedAccount?.address?.postalCode);
       this.regForm.get("street")?.setValue(this.listedAccount?.address?.street);
       this.regForm.get("number")?.setValue(this.listedAccount?.address?.number);

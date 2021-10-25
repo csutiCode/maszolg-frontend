@@ -17,7 +17,6 @@ export function createPasswordStrengthValidator(): ValidatorFn {
     }
 }
 
-//TODO: FIX THIS SHIT
 export function createDateOfBirthValidator(): ValidatorFn {
     return (control:AbstractControl) : ValidationErrors | null => {
 
@@ -38,7 +37,19 @@ export function createDateOfBirthValidator(): ValidatorFn {
         console.log(min)
         return !dateOfBirthValid ? {dateOfBirth:true}: null;
     }
+}
 
+export function createPhoneNumberValidator(): ValidatorFn {
+    return (control:AbstractControl) : ValidationErrors | null => {
+
+        const value = control.value;
+        if (!value) {
+            return null;
+        }
+        const isValidPhoneNumber = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/.test(value);
+
+        return !isValidPhoneNumber ? {number : true}: null
+    }
 }
 
 

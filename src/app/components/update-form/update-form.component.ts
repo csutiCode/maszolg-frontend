@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
 import { Profession } from '../listedAccount';
+import { createDateOfBirthValidator, createPhoneNumberValidator } from '../utils/formValidators';
 import { Messages } from '../utils/messages';
 
 @Component({
@@ -44,7 +45,7 @@ export class UpdateFormComponent implements OnInit {
     lastName: new FormControl('', Validators.required),
     email: new FormControl(''),
     about: new FormControl(''),
-    phoneNumber: new FormControl(''),
+    phoneNumber: new FormControl('', createPhoneNumberValidator()),
     webPage: new FormControl(''),
     country: new FormControl('', Validators.required),
     city:  new FormControl('', Validators.required),

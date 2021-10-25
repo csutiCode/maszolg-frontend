@@ -27,7 +27,7 @@ export class AccountDetailsComponent implements OnInit {
 
   account: any;
 
-  uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
+  id: any | null = this.route.snapshot.queryParamMap.get('path')
 
   classification: boolean = false;
 
@@ -61,19 +61,19 @@ export class AccountDetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.route.queryParams
-    .subscribe(params => {
-      console.log(params); 
-    }
-    );
-    this.getListedAccount(this.route.snapshot.queryParamMap.get('uuid'));
+ 
+    let param = this.route.snapshot.queryParamMap.get('path');
+    var lastOne = param?.substr(param.length - 1);
+    //get the last element of param to hide the id
+    this.getListedAccount(lastOne);
     this.fetchImage();
   }
 
 
 
-  getListedAccount(uuid: string | null) {
-    return this.restService.get("search/account/" + uuid).subscribe(
+  getListedAccount(id: any | null) {
+    
+    return this.restService.get("search/public/account/" + id).subscribe(
       (data:any)=> {
         this.account = data,
         console.log("LISTED ACCONT: ")
@@ -82,18 +82,18 @@ export class AccountDetailsComponent implements OnInit {
       }
     )
   }
-
+  
   fetchImage() {
     //http request from the publicservice
-    const promise = this.publicService.getImage(this.uuid);
+    const promise = this.publicService.getImageWithId(this.id);
 
     promise.then(data => {
   
     let objectURL =URL.createObjectURL(data);
     this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    if (data.size!=0) {
-      this.isDefault=false;
-    }
+      if (data.size!=0) {
+        this.isDefault=false;
+      }
     });
   }
   
@@ -126,6 +126,5 @@ export class AccountDetailsComponent implements OnInit {
     window.location.reload();
   }
 
-   
-
+  
 }

@@ -32,6 +32,11 @@ export class PublicService {
 
   constructor(private http: HttpClient) {
   }
+
+  getImageWithId(id : number | null) {
+    return this.http.get("http://localhost:8080/search/public/getImage/" + id, 
+          {observe: 'body', headers: this.reqHeaders, responseType: 'blob'}).toPromise();
+  }
   
   getImage(uuid : string | null) {
     return this.http.get("http://localhost:8080/search/getImage/" + uuid, 

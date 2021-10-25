@@ -6,6 +6,15 @@ form {
     margin: 0 auto;
     display: block;
 }
+.container {
+    background: none;
+    margin-left: auto;
+    margin-right: auto;
+    width: 24em;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
 .text-center {
     text-align: center!important;
 }

@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ListComponent } from './components/list/list.component';
 import { LoggedInComponent } from './components/logged-in/logged-in.component';
 import { LoginComponent } from './components/login/login.component';
+import { PasswordUpdateComponent } from './components/password-update/password-update.component';
 import { RegComponent } from './components/reg/reg.component';
 import { SearchComponent } from './components/search/search.component';
 import { UpdateFormComponent } from './components/update-form/update-form.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   {path: 'contact', component: ContactComponent},
   {path: 'data-protection', component: DataProtectionComponent},
   {path: 'faq', component: FaqComponent},
+  {path: 'passwordUpdate', component: PasswordUpdateComponent},
 
 ];
 

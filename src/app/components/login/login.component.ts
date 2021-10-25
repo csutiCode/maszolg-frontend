@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { PublicService } from 'src/app/services/public.service';
 import { Messages } from '../utils/messages';
 
 
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
 
 
   loginForm: any;
-  token: any;
+
 
   constructor(private fb: FormBuilder,
           private authService: AuthService) {
@@ -35,7 +37,9 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     this.authService.login(this.loginForm);
-    
-    }
+  }
+
+
+  
 
 }

@@ -1,3 +1,16 @@
 <div class="card w-75 m-auto">
 <h1>Gyakran ismételt kérdések</h1>
+<h2>Mit tegyek, ha elfelejtettem a jelszavam?
+
+</h2>
+<p>Az alábbi linkre kattintva állíthat be új jelszót.</p>
+<div class="container" *ngIf="!passwordResetSent">
+    <input type="text" class="form-control" placeholder="name@example.com" [(ngModel)]="email">
+    <button class="w-40 btn-sm" type="submit" (click)="onResetPassword()" > Új jelszó kérése</button>
+</div>
+<div *ngIf="passwordResetSent">
+    <p>Jelszavát az e-mail címére kapott link segítségével állíthatja vissza.</p>  
+</div>
+
+
 </div>

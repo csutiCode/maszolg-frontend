@@ -11,8 +11,6 @@ import { RestService } from './rest.service';
 
 export class PublicService {
 
-  
-
   URL: string = Messages.baseLocalUrl
 
   countries: Array<any> | undefined
@@ -29,20 +27,19 @@ export class PublicService {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
     "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
- });
+  });
 
 
-  constructor(private http: HttpClient,
-            private restService: RestService) {
+  constructor(private http: HttpClient) {
   }
-
+  
   getImage(uuid : string | null) {
     return this.http.get("http://localhost:8080/search/getImage/" + uuid, 
           {observe: 'body', headers: this.reqHeaders, responseType: 'blob'}).toPromise();
   }
 
   getListedAccount(uuid: string | null) {
-    return this.restService.get("search/account/" + uuid).toPromise();
+    return this.http.get("http://localhost:8080/search/account/" + uuid).toPromise();
   }
 
   saveClassification(uuid: string | null, classification: any) {    

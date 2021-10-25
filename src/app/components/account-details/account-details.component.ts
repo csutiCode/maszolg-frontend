@@ -37,6 +37,8 @@ export class AccountDetailsComponent implements OnInit {
 
   response: any;
 
+  isDefault: boolean = true;
+
   //if a cookie is present, the user is logged in 
   isCookieSet: boolean = this.authService.getToken() ? true : false;
 
@@ -89,7 +91,9 @@ export class AccountDetailsComponent implements OnInit {
   
     let objectURL =URL.createObjectURL(data);
     this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-
+    if (data.size!=0) {
+      this.isDefault=false;
+    }
     });
   }
   

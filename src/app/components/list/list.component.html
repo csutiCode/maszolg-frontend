@@ -35,8 +35,8 @@
     </div>
 
 <div>
-  <table class="table m-auto">
-    <thead class="thead-dark m-auto">
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
         <th scope="col">{{fullName}}</th>
         <th scope="col">{{profession}}</th>
@@ -44,18 +44,13 @@
       </tr>
     </thead>
     <tbody>
-        <tr class="hovered" *ngFor="let account of accounts"  (click)="onMore(account.listedAccount_uuid)">
+        <tr class="hovered m-auto" *ngFor="let account of accounts"  (click)="onMore(account.listedAccount_uuid)">
             <td>{{account.lastName}} {{account.firstName}}</td>
             <td> <span *ngFor="let profession of account.professions">{{profession.name}} </span></td>
-
-            <td><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></td>
-        </tr>
-        
-    </tbody>
-
-    
-  </table>
-  
+            <td><ngb-rating class="m-auto" [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></td>
+        </tr>  
+    </tbody> 
+  </table>  
 </div>
 </div>
   </div>

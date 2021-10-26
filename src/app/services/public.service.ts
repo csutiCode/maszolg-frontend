@@ -51,13 +51,13 @@ export class PublicService {
     return this.http.post("http://localhost:8080/save/classification/" + uuid, classification, { headers: this.getHttpHeaders()}).toPromise(); 
   }
 
-  passwordReset(email : string | undefined) {
+  passwordReset(email : any) {
+    console.table(email)
     return this.http.post("http://localhost:8080/password/reset", email, { headers: this.getHttpHeaders()}).toPromise();
   }
 
   passwordUpdate(form : any) {
     return this.http.post("http://localhost:8080/password/update", form, { headers: this.getHttpHeaders()}).toPromise();
-
   }
 
   getHttpHeaders(): HttpHeaders {

@@ -3,14 +3,32 @@
 <h2>Mit tegyek, ha elfelejtettem a jelszavam?
 
 </h2>
-<p>Az alábbi linkre kattintva állíthat be új jelszót.</p>
-<div class="container" *ngIf="!passwordResetSent">
-    <input type="text" class="form-control" placeholder="name@example.com" [(ngModel)]="email">
-    <button class="w-40 btn-sm" type="submit" (click)="onResetPassword()" > Új jelszó kérése</button>
-</div>
-<div *ngIf="passwordResetSent">
-    <p>Jelszavát az e-mail címére kapott link segítségével állíthatja vissza.</p>  
-</div>
+
+    <form [formGroup]="passwordResetForm"  (ngSubmit)="onResetPassword()" >
+        <p>Az alábbi linkre kattintva állíthat be új jelszót.</p>
+        <div *ngIf="!passwordResetSent">
+            <input type="text" class="form-control" placeholder="name@example.com" formControlName="email">
+            <div  *ngIf="passwordResetForm.controls['email'].invalid  && passwordResetForm.controls['email'].touched">
+                <div *ngIf="passwordResetForm.controls['email'].errors?.required">
+                <small class="text danger" >
+                    {{required}}
+                </small>
+                </div>
+                <div *ngIf="passwordResetForm.controls['email'].errors?.email">
+                    <small class="text danger" >
+                    {{wrongEmail}}
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button class="w-40 btn-sm" type="submit" [disabled]="!passwordResetForm.valid" >Új jelszó kérése</button>
+            </div>
+        </div>
+    </form>
+    
+    <div *ngIf="passwordResetSent">
+        <p>Jelszavát az e-mail címére kapott link segítségével állíthatja vissza.</p>  
+    </div>
 
 
 </div>

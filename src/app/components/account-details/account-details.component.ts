@@ -27,7 +27,7 @@ export class AccountDetailsComponent implements OnInit {
 
   account: any;
 
-  id: any | null = this.route.snapshot.queryParamMap.get('path')
+  
 
   classification: boolean = false;
 
@@ -64,9 +64,9 @@ export class AccountDetailsComponent implements OnInit {
 
     let param = this.route.snapshot.queryParamMap.get('path');
 
-      this.getListedAccount(this.getIdFromParam(param));
+    this.getListedAccount(this.getIdFromParam(param));
 
-    this.fetchImage();
+    this.fetchImage(this.getIdFromParam(param));
   }
 
   getIdFromParam(param: string | null): string  {
@@ -92,9 +92,9 @@ export class AccountDetailsComponent implements OnInit {
     )
   }
   
-  fetchImage() {
+  fetchImage(id: any | null) {
     //http request from the publicservice
-    const promise = this.publicService.getImageWithId(this.id);
+    const promise = this.publicService.getImageWithId(id);
 
     promise.then(data => {
   

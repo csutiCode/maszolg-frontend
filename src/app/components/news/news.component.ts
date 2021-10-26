@@ -28,14 +28,14 @@ export class NewsComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.fetchListedAccount();
     this.getTexts();
   }
 
   fetchListedAccount() {
     const promise = this.publicService.getListedAccount(this.uuid);
     promise.then((data:any)=> {
-      this.listedAccount = data;     
+      this.listedAccount = data;    
+       console.table(this.listedAccount.classifications)
         }
       ) 
   }
@@ -43,8 +43,11 @@ export class NewsComponent implements OnInit {
   getTexts() {
     return this.restService.get("news/" + this.uuid).subscribe(
       (data:any)=> {
+        
         this.texts = data,
         console.table(this.texts)
+        this.fetchListedAccount();
+
       }
     )
   }

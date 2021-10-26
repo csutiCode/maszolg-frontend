@@ -2,25 +2,27 @@
     <p>{{text.fullText}}</p>
 </div>
 
+<div>
 
-
-<div *ngIf="listedAccount.classifications.length>0">
-    <div *ngFor="let classification of listedAccount.classifications">
-            <div class="card">
-                <p><i>"{{classification.text}}" <ngb-rating [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></i></p>
-                <p class="sub">{{classification.createdBy}}, {{classification.createdOn}} </p>
-                <p *ngIf="classification.commented">{{account.firstName}} megjegyzése: "{{classification.comment}}", {{classification.commentCreatedOn}}</p>
-                <button *ngIf="!classification.commented" class="w-25 m-auto" (click)="openComment(comment, classification.classificationUuid)">Válaszolok</button>
+    <div *ngIf="listedAccount.classifications.length > 0">
+        <div *ngFor="let classification of listedAccount.classifications">
+                <div >
+                    <p><i>"{{classification.text}}" <ngb-rating [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></i></p>
+                    <p class="sub">{{classification.createdBy}}, {{classification.createdOn}} </p>
+                    <p *ngIf="classification.commented">{{account.firstName}} megjegyzése: "{{classification.comment}}", {{classification.commentCreatedOn}}</p>
+                    <button *ngIf="!classification.commented" class="w-25 m-auto" (click)="openComment(comment, classification.classificationUuid)">Válaszolok</button>
+                </div>
+         
             </div>
-     
+        
+        <div class="card w-75 m-auto" *ngIf="classification"> 
+          <div class="card  m-auto">
+            <button  class="w-100 btn-lg" (click)="onCancel()">Megse</button>
+          </div>
         </div>
     
-    <div class="card w-75 m-auto" *ngIf="classification"> 
-      <div class="card  m-auto">
-        <button  class="w-100 btn-lg" (click)="onCancel()">Megse</button>
-      </div>
     </div>
-
+    
 </div>
 
 

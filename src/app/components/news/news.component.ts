@@ -21,11 +21,14 @@ export class NewsComponent implements OnInit {
 
   ready: boolean = false;
 
-  constructor(private restService: RestService,
-              private route: ActivatedRoute,
+  classifications?: any[];
+
+  constructor(private route: ActivatedRoute,
               public authService: AuthService,
               private modalService: NgbModal,
               private publicService : PublicService) {
+     
+
   }
 
 
@@ -36,12 +39,14 @@ export class NewsComponent implements OnInit {
   }
 
   fetchListedAccount() {
+
     const promise = this.publicService.getListedAccount(this.uuid);
+
     promise.then((data:any)=> {
       this.listedAccount = data;    
       console.table(this.listedAccount)
-       console.table(this.listedAccount.classifications)
-       this.ready = true;
+      console.table(this.listedAccount.classifications)
+       this.classifications = this.listedAccount.classifications;
         }
       ) 
   }

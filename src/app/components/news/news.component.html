@@ -6,7 +6,7 @@
 
     <div >
         <div *ngFor="let classification of listedAccount.classifications">
-                <div >
+                <div class="card">
                     <p><i>"{{classification.text}}" <ngb-rating [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></i></p>
                     <p class="sub">{{classification.createdBy}}, {{classification.createdOn}} </p>
                     <p *ngIf="classification.commented">{{account.firstName}} megjegyzése: "{{classification.comment}}", {{classification.commentCreatedOn}}</p>

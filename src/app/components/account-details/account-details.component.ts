@@ -61,18 +61,27 @@ export class AccountDetailsComponent implements OnInit {
 
 
   ngOnInit(): void {
- 
+
     let param = this.route.snapshot.queryParamMap.get('path');
-    var lastOne = param?.substr(param.length - 1);
-    //get the last element of param to hide the id
-    this.getListedAccount(lastOne);
+
+      this.getListedAccount(this.getIdFromParam(param));
+
     this.fetchImage();
+  }
+
+  getIdFromParam(param: string | null): string  {
+    var array: string[] | undefined = new Array();
+    array = param?.split("-");
+    let id = "0";
+    if (typeof array != "undefined"){
+      id = array[1];
+    }
+    return id;
   }
 
 
 
   getListedAccount(id: any | null) {
-    
     return this.restService.get("search/public/account/" + id).subscribe(
       (data:any)=> {
         this.account = data,

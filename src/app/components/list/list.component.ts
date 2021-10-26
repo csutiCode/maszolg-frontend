@@ -86,6 +86,7 @@ export class ListComponent implements OnInit {
   onMore(id: number) {
     //generate a random string to hide the Id
     let param = (Math.random() + 1).toString(36).substring(7);
+    param = param + "-";
     this.router.navigate(['account'], { queryParams: { path: param + id }});
   }
 

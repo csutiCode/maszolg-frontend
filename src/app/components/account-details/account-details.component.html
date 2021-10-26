@@ -22,7 +22,7 @@
         <i class="bi bi-telephone"><a> {{account.phoneNumber}}</a></i>
       </li>
       <li>
-        <a  target="_blank" href="{{account.webPage}} + http://"> {{account.webPage}}</a>
+        <a  target="_blank" href="http://{{account.webPage}}"> {{account.webPage}}</a>
       </li>
       <li>
         <p><ngb-rating [max]="5" [readonly]="true" [(rate)]="account.averageRating"></ngb-rating></p>

@@ -44,9 +44,10 @@ export class FaqComponent implements OnInit {
     const promise = this.publicService.passwordReset(email);
 
     promise.then( (data:any)=> {
+      
       this.response = data;
       this.passwordResetSent = true;
-      
+
       }, (error: any) => {
        
         this.response = error.error,

@@ -5,7 +5,7 @@
     
     <div >
 
-      <input  type="email" class="form-control" id="floatingInput" placeholder="name@example.com" formControlName="email">
+      <input  type="email" class="form-control" id="floatingInput" placeholder="E-Mail" formControlName="email">
       <div *ngIf="loginForm.controls['email'].invalid  && loginForm.controls['email'].touched">
         <div *ngIf="loginForm.controls['email'].errors?.required">
           <small class="text danger" >
@@ -13,12 +13,11 @@
           </small>
         </div>
       </div>
-      <label for="floatingInput">Email cím</label>
     </div>
    
    
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Jelszó" formControlName="password">
       <div *ngIf="loginForm.controls['password'].invalid  && loginForm.controls['password'].touched">
         <div *ngIf="loginForm.controls['password'].errors?.required">
           <small class="text danger" >
@@ -26,7 +25,6 @@
           </small>
         </div>
       </div>
-      <label for="floatingPassword">Jelszó</label>
     </div>
 
    

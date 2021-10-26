@@ -6,7 +6,7 @@
   
       <div class="form-floating ">
         
-        <input  class="form-control  "  placeholder="name@example.com" formControlName="email">
+        <input  class="form-control  "  placeholder="E-Mail" formControlName="email">
         <div *ngIf="registrationForm.controls['email'].invalid  && registrationForm.controls['email'].touched">
           <div *ngIf="registrationForm.controls['email'].errors?.required">
             <small class="text danger" >
@@ -19,12 +19,11 @@
             </small>
           </div>
         </div>
-        <label for="floatingInput">E-Mail</label>
        
       </div>
      
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Jelszó" formControlName="password">
           <div *ngIf="registrationForm.controls['password'].invalid  && registrationForm.controls['password'].touched">
             <div *ngIf="registrationForm.controls['password'].errors?.required">
               <small class="text danger" >
@@ -32,11 +31,11 @@
               </small>
             </div>
           </div>
-        <label for="floatingPassword">Jelszó</label>
-      </div>
+
+        </div>
       
       <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="confirmedPassword">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Jelszó megerősítése" formControlName="confirmedPassword">
           <div *ngIf="registrationForm.controls['confirmedPassword'].invalid  && registrationForm.controls['confirmedPassword'].touched">
             <div *ngIf="registrationForm.controls['confirmedPassword'].errors?.required">
               <small class="text danger" >
@@ -44,11 +43,10 @@
               </small>
             </div>
           </div>
-          <label for="floatingPassword">Jelszó megerősítése</label>
         </div>    
         <div class="form-floating">
             <div class="input-group">
-              <input class="form-control" placeholder="yyyy-mm-dd"
+              <input class="form-control" placeholder="éééé-hh-nn"
                       ngbDatepicker #d="ngbDatepicker"   formControlName="dateOfBirth"  >
               <button class="btn btn-outline-secondary calendar"  (click)="d.toggle()" type="button"></button>             
           </div>

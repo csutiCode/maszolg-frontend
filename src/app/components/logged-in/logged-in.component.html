@@ -42,16 +42,17 @@
 -->
 
 <div class="forRem">
+   
     <div class="card w-80 m-auto" *ngIf="switch==='news'">
         <app-news></app-news>
+       
     </div>
 
     <div class="card w-80 m-auto" *ngIf="switch==='updateForm'">
         <app-update-form></app-update-form>
     </div>
     <div class="card w-80 m-auto" *ngIf="switch==='myData'">
-        <app-account-details></app-account-details>
-    </div>
+        
 </div>
 
 <!--
@@ -77,6 +78,7 @@
             <div>
         </div>
   </ng-template>
+  
   
   
    

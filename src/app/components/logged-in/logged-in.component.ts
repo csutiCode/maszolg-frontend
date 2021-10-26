@@ -39,7 +39,6 @@ export class LoggedInComponent implements OnInit {
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
   constructor(private router: Router, 
-              private restService: RestService, 
               private route: ActivatedRoute,
               private cookieService: CookieService,
               public authService: AuthService,
@@ -49,10 +48,11 @@ export class LoggedInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.fetchImage();
 
-  this.restService.getListedAccount("search/accounts/" + this.uuid);
-  this.fetchImage();
   }
+
+  
 
   fetchImage() {
     //http request from the publicservice
@@ -144,13 +144,7 @@ export class LoggedInComponent implements OnInit {
   
   }
 
-
-
-
   
-
-
-
 
 
 

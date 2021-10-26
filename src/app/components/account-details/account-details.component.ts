@@ -1,10 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
-import { CaptchaService } from 'src/app/services/captcha.service';
 import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
 import { Messages } from '../utils/messages';
@@ -56,30 +54,21 @@ export class AccountDetailsComponent implements OnInit {
     private modalService: NgbModal,
     private sanitizer: DomSanitizer,
     private authService: AuthService,
-    private publicService: PublicService,
-    public captchaService: CaptchaService) { }
+    private publicService: PublicService) { }
 
 
   ngOnInit(): void {
 
     let param = this.route.snapshot.queryParamMap.get('path');
 
-    this.getListedAccount(this.getIdFromParam(param));
+    let id = this.publicService.getIdFromParam(param);
 
-    this.fetchImage(this.getIdFromParam(param));
+    this.getListedAccount(id);
+
+    this.fetchImage(id);
   }
 
-  getIdFromParam(param: string | null): string  {
-    var array: string[] | undefined = new Array();
-    array = param?.split("-");
-    let id = "0";
-    if (typeof array != "undefined"){
-      id = array[1];
-    }
-    return id;
-  }
-
-
+  
 
   getListedAccount(id: any | null) {
     return this.restService.get("search/public/account/" + id).subscribe(
@@ -120,11 +109,8 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   openComment(content: any, uuid: string) {
-    console.log("UUID:")
     this.classificationUuid = uuid;
-    console.log(uuid)
     this.modalService.open(content, { centered: true });
-    console.log("is commented?")
   }
 
   

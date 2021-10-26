@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'ngx-cookie';
+import { AuthService } from 'src/app/services/auth.service';
+import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
 
 @Component({
@@ -13,22 +17,86 @@ export class NewsComponent implements OnInit {
 
   uuid = this.route.snapshot.queryParamMap.get('uuid')
 
+  listedAccount: any;
+
   constructor(private restService: RestService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              public authService: AuthService,
+              private modalService: NgbModal,
+              private publicService : PublicService) {
   }
 
 
   ngOnInit(): void {
+    this.fetchListedAccount();
     this.getTexts();
+  }
+
+  fetchListedAccount() {
+    const promise = this.publicService.getListedAccount(this.uuid);
+    promise.then((data:any)=> {
+      this.listedAccount = data;     
+        }
+      ) 
   }
 
   getTexts() {
     return this.restService.get("news/" + this.uuid).subscribe(
       (data:any)=> {
         this.texts = data,
-        console.log("LISTED ACCONT: ")
         console.table(this.texts)
       }
     )
   }
+
+  
+   /*
+    +++++++++++++++++++++++++++++++++++++++++++++++++ CLASSIFICATIONS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    */
+    account: any;
+
+  
+
+  classification: boolean = false;
+
+    commentOnClassificationDto: any ={
+      classificationUuid: '',
+      comment: ''
+    }
+  
+    classificationUuid: string = '';
+  
+    commentOnClassification:string ='';
+
+  onCancel() {
+    this.classification = false;
+  }
+
+  openVerticallyCenteredModal(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
+
+  openComment(content: any, uuid: string) {
+    console.log("UUID:")
+    this.classificationUuid = uuid;
+    console.log(uuid)
+    this.modalService.open(content, { centered: true });
+    console.log("is commented?")
+  }
+
+  
+  onSendComment(comment:string) {    
+    this.commentOnClassificationDto.classificationUuid = this.classificationUuid;
+    this.commentOnClassificationDto.comment = comment;
+    this.authService.sendComment(this.commentOnClassificationDto)
+    window.location.reload();
+  }
+
+
+
+
+  
+
+
+
 }

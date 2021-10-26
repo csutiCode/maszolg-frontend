@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CaptchaService } from 'src/app/services/captcha.service';
 import { PublicService } from 'src/app/services/public.service';
 import { Messages } from '../utils/messages';
 
@@ -18,7 +17,9 @@ export class ClassificationComponent implements OnInit {
 
   classificationForm: any;
 
-  uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
+  path: string | null = this.route.snapshot.queryParamMap.get('path')
+
+  id: any;
 
   backendMessage?: string;
 
@@ -28,9 +29,8 @@ export class ClassificationComponent implements OnInit {
 
   status?: number = this.publicService.status;
 
-  
 
-  ratingList : any[] =  [
+  ratingList : any[] = [
     {key: "Nem ajánlom", value:"ONE"},
     {key: "Elégséges", value:"TWO"},
     {key: "Közepes", value:"THREE"},
@@ -49,30 +49,34 @@ export class ClassificationComponent implements OnInit {
   constructor(private route: ActivatedRoute, 
               private fb: FormBuilder,
               private modalService: NgbModal,
-              private publicService: PublicService,
-              public captchaService: CaptchaService){
-    this.createForm();
+              private publicService: PublicService){
 
+    this.createForm();
   }
 
   ngOnInit(): void {
-    this.captchaService.createCaptcha();
-    this.firstNumber = this.captchaService.firstNumber;
-    this.secondNumber = this.captchaService.secondNumber;
-    this.textResult = this.captchaService.textResult;
+
+    this.id = this.publicService.getIdFromParam(this.path);
+
+    this.publicService.createCaptcha();
+
+    this.firstNumber = this.publicService.firstNumber;
+    this.secondNumber = this.publicService.secondNumber;
+    this.textResult = this.publicService.textResult;
   }
 
   testIfRobot(event: Event) {
 
     const result = (<HTMLInputElement>event.target).value.toLowerCase();
-
+    
     if (result==this.textResult) {
       this.notRobot = true;
     } else {
       this.notRobot = false;;
     }
-
   }
+
+
 
 
   createForm() {
@@ -90,7 +94,7 @@ export class ClassificationComponent implements OnInit {
 
     console.table(this.classificationForm.value)
 
-    const promise = this.publicService.saveClassification(this.uuid, this.classificationForm.value);
+    const promise = this.publicService.saveClassification(this.id, this.classificationForm.value);
 
     promise.then( (data:any)=> {
 
@@ -103,6 +107,8 @@ export class ClassificationComponent implements OnInit {
       }
     )
   }
+
+
     
   openVerticallyCentered(content: any) {
     this.modalService.open(content, { centered: true });

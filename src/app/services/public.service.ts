@@ -60,6 +60,11 @@ export class PublicService {
     return this.http.post("http://localhost:8080/password/update", form, { headers: this.getHttpHeaders()}).toPromise();
   }
 
+  getTexts(uuid: string | null) {
+    return this.http.get("http://localhost:8080/news/" + uuid, { headers: this.getHttpHeaders()}).toPromise();
+
+  }
+
   getHttpHeaders(): HttpHeaders {
     const reqHeaders = new HttpHeaders({ 
       'Content-Type': 'application/JSON',

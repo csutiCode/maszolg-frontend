@@ -20,9 +20,6 @@
             </button>
             <ul class="dropdown-menu">
                 <li class="nav-item">
-                    <button class="w-100  btn-lg" (click)="switchTo('myData')" > {{myData}}</button>              
-                </li>
-                <li class="nav-item">
                     <button class="w-100  btn-lg"  (click)="switchTo('updateForm')">{{updateMyData}}</button>
                 </li>
                 <li class="nav-item">
@@ -42,16 +39,12 @@
 -->
 
 <div class="forRem">
-   
     <div class="card w-80 m-auto" *ngIf="switch==='news'">
         <app-news></app-news>
-       
     </div>
-
     <div class="card w-80 m-auto" *ngIf="switch==='updateForm'">
         <app-update-form></app-update-form>
     </div>
-    <div class="card w-80 m-auto" *ngIf="switch==='myData'">
         
 </div>
 

@@ -19,6 +19,8 @@ export class NewsComponent implements OnInit {
 
   listedAccount: any;
 
+  ready: boolean = false;
+
   constructor(private restService: RestService,
               private route: ActivatedRoute,
               public authService: AuthService,
@@ -29,27 +31,28 @@ export class NewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTexts();
+    this.fetchListedAccount();
+
   }
 
   fetchListedAccount() {
     const promise = this.publicService.getListedAccount(this.uuid);
     promise.then((data:any)=> {
       this.listedAccount = data;    
+      console.table(this.listedAccount)
        console.table(this.listedAccount.classifications)
+       this.ready = true;
         }
       ) 
   }
 
   getTexts() {
-    return this.restService.get("news/" + this.uuid).subscribe(
-      (data:any)=> {
-        
-        this.texts = data,
-        console.table(this.texts)
-        this.fetchListedAccount();
-
-      }
-    )
+    const promise = this.publicService.getTexts(this.uuid);
+    promise.then( (data:any)=> {
+      this.texts = data,
+      console.table(this.texts)
+    }
+  )
   }
 
   

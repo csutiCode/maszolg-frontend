@@ -38,9 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    
     this.authService.login(this.loginForm);
-    this.status = this.authService.status;
   }
 
 

@@ -5,19 +5,18 @@
   </div>
 
 </div>
-<div class="head">
+<div class="head" *ngIf="listedAccount.classifications.length > 0">
   <h1 >Értékelései:</h1>
 
 </div>
-<div *ngIf="listedAccount.classifications.length > 0">
+<div >
     <div >
         <div *ngFor="let classification of listedAccount.classifications">
                 <div class="card">
                     <p><i>"{{classification.text}}" <ngb-rating [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></i></p>
                     <p class="sub">{{classification.createdBy}}, {{classification.createdOn}} </p>
                     <p *ngIf="classification.commented">Megjegyzésem: "{{classification.comment}}", {{classification.commentCreatedOn}}</p>
-
-                    <button *ngIf="!classification.commented" class="w-25 m-auto" (click)="openComment(comment, classification.classificationUuid)">Válaszolok</button>
+                    <button *ngIf="!classification.commented" class="m-auto" (click)="openComment(comment, classification.classificationUuid)">Válaszolok</button>
                 </div>
             </div>
         

@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
 import { createPasswordStrengthValidator } from '../utils/formValidators';
@@ -24,18 +25,15 @@ export class PasswordUpdateComponent implements OnInit {
 
   response: any;
 
-  @HostListener('window:popstate', ['$event'])
-  onPopState(event: any) {
-    //We need this to delete the cookie, if somebody accidently makes a back and show the header and footer 
-    this.cookieService.remove("JWT");
-    this.authService.show();
-  }
+  
+  @ViewChild('content', { static: false }) private content: any;
+
+
 
   constructor(private fb: FormBuilder,
             private http: HttpClient,
             private router : Router,
-            private cookieService: CookieService,
-            private authService: AuthService) { }
+            private modalService: NgbModal) { }
 
   ngOnInit(): void {
   
@@ -65,11 +63,17 @@ export class PasswordUpdateComponent implements OnInit {
       //if successfull, redirect on login
       this.router.navigate(['/login']);
       }, (error: any) => {
-       
+        //if an exeption occurs, 
+        this.modalService.open(this.content);
         this.response = error.error,
         this.status = error.status
+        console.table(error)
       }
     )
-    
+
   }
+ 
+  
+
+ 
 }

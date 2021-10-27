@@ -1,12 +1,13 @@
 
-import { Component,  OnInit, ViewEncapsulation } from '@angular/core';
+import { Component,  HostListener,  OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {  ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
 import { Profession } from '../listedAccount';
-import { createDateOfBirthValidator, createPhoneNumberValidator } from '../utils/formValidators';
+import { createPhoneNumberValidator } from '../utils/formValidators';
 import { Messages } from '../utils/messages';
 
 @Component({
@@ -17,6 +18,14 @@ import { Messages } from '../utils/messages';
 
 })
 export class UpdateFormComponent implements OnInit {
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    //We need this to delete the cookie, if somebody accidently makes a back and show the header and footer 
+    this.cookieService.remove("JWT");
+    this.authService.show();
+  }
+
 
   firstName: string = Messages.firstName;
   lastName: string = Messages.lastName;
@@ -114,7 +123,8 @@ export class UpdateFormComponent implements OnInit {
                 private restService: RestService, 
                 private route: ActivatedRoute,
                 private authService: AuthService,
-                private publicService: PublicService) {
+                private publicService: PublicService,
+                private cookieService: CookieService) {
   
       this.fetchListedAccount();
 

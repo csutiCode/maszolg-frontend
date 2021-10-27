@@ -47,3 +47,24 @@ p {
 .head {
     text-align: center;
 }
+
+.button {
+  border-radius: 20px;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 700px) {
+  .card {
+    margin: 0;
+    padding: 0;
+  }
+  .sub {
+    padding: 0;
+  }
+  .container {
+    padding: 0;
+  }
+  p {
+    padding: 0;
+  }
+  
+}

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicService } from 'src/app/services/public.service';
-import { RestService } from 'src/app/services/rest.service';
 
 @Component({
   selector: 'app-news',
@@ -13,7 +11,7 @@ import { RestService } from 'src/app/services/rest.service';
 })
 export class NewsComponent implements OnInit {
 
-  texts?: any[];
+  texts: any;
 
   uuid = this.route.snapshot.queryParamMap.get('uuid')
 

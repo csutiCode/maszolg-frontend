@@ -28,6 +28,7 @@ import { NgSpinnerModule } from 'ng-bootstrap-spinner';
 import { FaqComponent } from './components/faq/faq.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { PasswordUpdateComponent } from './components/password-update/password-update.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 
@@ -51,6 +52,7 @@ import { PasswordUpdateComponent } from './components/password-update/password-u
     ContactComponent,
     FaqComponent,
     PasswordUpdateComponent,
+    ErrorComponent,
     
   ],
 

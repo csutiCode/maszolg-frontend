@@ -57,8 +57,8 @@ export class Messages {
     public static street = "Utca";
     public static number = "Házszám";
     public static isWorkAddress = "Munkahelyi cím?"
-    public static webPageToolip = "www.<weboldalam>.hu"
-    public static isWorkAddressTooltip = "Ha ezt kipipálod, az adatlapodon látható lesz a megadott lakcím."
+    public static webPageToolip = "www." + "weboldalam" + ".hu"
+    public static isWorkAddressTooltip = "A megadott cím nyilvános."
     public static enableEdit = "Szerkesztés"
   
      /* LIST  */

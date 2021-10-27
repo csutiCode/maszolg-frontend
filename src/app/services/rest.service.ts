@@ -13,6 +13,8 @@ export class RestService {
 
    URL: string = Messages.baseLocalUrl
 
+   status: any;
+
   
 
   readonly HTTP_PARAMS: Object = {
@@ -55,6 +57,7 @@ get<T>(path: string, data?: any): Observable<T> {
                   let errorMsg: string;
                   if (error.error instanceof ErrorEvent) {
                       errorMsg = `Error: ${error.error.message}`;
+
                       } else {
                       errorMsg = this.getServerErrorMessage(error);
                       }
@@ -74,6 +77,7 @@ post<T>(path: string, data: any, getParams?: any): Observable<T> {
             if (error.error instanceof ErrorEvent) {
                 console.log("Error message from the service:")
                 errorMsg = `Error: ${error.error.message}`;
+                console.table(error.error)
                 } else {
                 console.log("Error message from the service:")
                 errorMsg = this.getServerErrorMessage(error);

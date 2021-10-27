@@ -48,15 +48,25 @@ export class AuthService {
 
  
    public login(loginForm : any) {
+
     const promise = this.restService.post("account/login", loginForm.value,  { headers: this.getHttpHeaderAuth() }).toPromise();
+
     let self = this;
     promise.then((data:any)=> {
           this.token = data,
           this.cookieService.put("JWT", this.token);
+          this.status = this.restService.status;
           //hide the navbar
           //get the listedAccount and make a redirect
           self.getListedAccount(self);
+      }//doesn't work 
+      /*
+        (error: any) => {
+        this.response = error.error,
+        console.table(this.error)
+        this.status = error.status
       }
+      */
     )
   }
 

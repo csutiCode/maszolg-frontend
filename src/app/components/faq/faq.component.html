@@ -1,11 +1,10 @@
 <div class="card w-75 m-auto">
-<h2>Gyakran ismételt kérdések</h2>
-<h1>Mit tegyek, ha elfelejtettem a jelszavam?
-
-</h1>
-
+    <h2>Gyakran ismételt kérdések</h2>
+    <h1>1. Mit tegyek, ha elfelejtettem a jelszavam?</h1>
+<div>
+    <p>Adja meg az e-mail címét, amivel regisztrált, majd kap egy e-mailt egy tokennel és egy linket </p>
     <form [formGroup]="passwordResetForm"  (ngSubmit)="onResetPassword()" >
-        <p>Az alábbi linkre kattintva állíthat be új jelszót.</p>
+        
         <div *ngIf="!passwordResetSent">
             <input type="text" class="form-control" placeholder="name@example.com" formControlName="email">
             <div  *ngIf="passwordResetForm.controls['email'].invalid  && passwordResetForm.controls['email'].touched">
@@ -20,15 +19,28 @@
                     </small>
                 </div>
             </div>
+            <br>
             <div>
                 <button class="w-40 btn-sm" type="submit" [disabled]="!passwordResetForm.valid" >Új jelszó kérése</button>
             </div>
         </div>
+        <br>
     </form>
-    
     <div *ngIf="passwordResetSent">
         <p>Jelszavát az e-mail címére kapott link segítségével állíthatja vissza.</p>  
     </div>
+</div>
+<br>
+<div>
+    
+    <h1>2. Hogyan törölhetem a fiókom?</h1>
+    <p>Ha töröltetni szeretné a felhasználói fiókját, írjon egy e-mailt a magyszolg@magyszolg.hu címre!</p>
+
+
+</div>
+   
+    
+ 
 
 
 </div>

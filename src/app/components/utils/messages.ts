@@ -28,7 +28,7 @@ export class Messages {
     public static myData ="Adatlapom";
     public static profession ="Foglalkozás";
     public static updateMyData ="Adataim frissítése";
-    public static news ="Újdonságok";
+    public static news ="Értesítések";
     public static logout ="Kijelentkezés";
     public static uploadTooltip = "Töltse fel a profilképét!"
     public static changeTooltip = "Cserélje le a profilképét!"

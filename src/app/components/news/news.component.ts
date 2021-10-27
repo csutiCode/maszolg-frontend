@@ -27,8 +27,6 @@ export class NewsComponent implements OnInit {
               public authService: AuthService,
               private modalService: NgbModal,
               private publicService : PublicService) {
-     
-
   }
 
 
@@ -56,8 +54,8 @@ export class NewsComponent implements OnInit {
     promise.then( (data:any)=> {
       this.texts = data,
       console.table(this.texts)
-    }
-  )
+      }
+    )
   }
 
   

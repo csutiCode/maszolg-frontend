@@ -34,7 +34,7 @@ export class ListComponent implements OnInit {
 
   searchText?: string;
 
-  sortArray : string[] = ["Minősítés", "abc", "nincs"]
+  sortArray : string[] = ["minősítés szerint", "abc szerint", "nincs"]
 
   sortOption: string = '';
   
@@ -111,10 +111,10 @@ export class ListComponent implements OnInit {
   onSort(sortOption : string) {
     //make a switch
     switch (sortOption) {
-      case "abc":
+      case "abc szerint":
         this.accounts = this.accounts.sort((a: any,b: any) =>  a.lastName.localeCompare(b.lastName));
         break;
-      case "Minősítés":
+      case "minősítés szerint":
         this.accounts = this.accounts.sort((a: any, b: any) => b.averageRating - a.averageRating);
         break;
       case "nincs":

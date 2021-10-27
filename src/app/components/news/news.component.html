@@ -1,15 +1,22 @@
-<div *ngFor="let text of texts">
+<div class="head" >
+  <h1 >Rendszerüzenetek:</h1>
+  <div class="card" *ngFor="let text of texts">
     <p>{{text.fullText}}</p>
+  </div>
+
 </div>
+<div class="head">
+  <h1 >Értékelései:</h1>
 
+</div>
 <div *ngIf="listedAccount.classifications.length > 0">
-
     <div >
         <div *ngFor="let classification of listedAccount.classifications">
                 <div class="card">
                     <p><i>"{{classification.text}}" <ngb-rating [max]="5" [readonly]="true" [(rate)]="classification.rate"></ngb-rating></i></p>
                     <p class="sub">{{classification.createdBy}}, {{classification.createdOn}} </p>
-                    <p *ngIf="classification.commented">{{account.firstName}} megjegyzése: "{{classification.comment}}", {{classification.commentCreatedOn}}</p>
+                    <p *ngIf="classification.commented">Megjegyzésem: "{{classification.comment}}", {{classification.commentCreatedOn}}</p>
+
                     <button *ngIf="!classification.commented" class="w-25 m-auto" (click)="openComment(comment, classification.classificationUuid)">Válaszolok</button>
                 </div>
             </div>
@@ -19,9 +26,7 @@
             <button  class="w-100 btn-lg" (click)="onCancel()">Megse</button>
           </div>
         </div>
-    
-    </div>
-    
+    </div> 
 </div>
 
 

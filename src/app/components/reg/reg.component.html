@@ -4,7 +4,6 @@
      
      
   
-      <div class="form-floating ">
         
         <input  class="form-control  "  placeholder="E-Mail" formControlName="email">
         <div *ngIf="registrationForm.controls['email'].invalid  && registrationForm.controls['email'].touched">
@@ -20,9 +19,7 @@
           </div>
         </div>
        
-      </div>
      
-      <div class="form-floating">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Jelszó" formControlName="password">
           <div *ngIf="registrationForm.controls['password'].invalid  && registrationForm.controls['password'].touched">
             <div *ngIf="registrationForm.controls['password'].errors?.required">
@@ -32,9 +29,7 @@
             </div>
           </div>
 
-        </div>
       
-      <div class="form-floating">
           <input type="password" class="form-control" id="floatingPassword" placeholder="Jelszó megerősítése" formControlName="confirmedPassword">
           <div *ngIf="registrationForm.controls['confirmedPassword'].invalid  && registrationForm.controls['confirmedPassword'].touched">
             <div *ngIf="registrationForm.controls['confirmedPassword'].errors?.required">
@@ -43,14 +38,12 @@
               </small>
             </div>
           </div>
-        </div>    
-        <div class="form-floating">
+
             <div class="input-group">
               <input class="form-control" placeholder="éééé-hh-nn"
                       ngbDatepicker #d="ngbDatepicker"   formControlName="dateOfBirth"  >
               <button class="btn btn-outline-secondary calendar"  (click)="d.toggle()" type="button"></button>             
           </div>
-        </div>
         <hr/>
         <div >
           <label  class="col-sm-2 col-form-label">Elfogadom az 

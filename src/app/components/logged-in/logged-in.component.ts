@@ -142,7 +142,6 @@ export class LoggedInComponent implements OnInit {
     */
 
   onLogout() {
-    console.log("Logged out.")
     //delete the cookie from the storage
     this.cookieService.remove("JWT");
     //make the nav header visible

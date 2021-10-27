@@ -40,8 +40,7 @@ export class NewsComponent implements OnInit {
 
     promise.then((data:any)=> {
       this.listedAccount = data;    
-      console.table(this.listedAccount)
-      console.table(this.listedAccount.classifications)
+     
        this.classifications = this.listedAccount.classifications;
         }
       ) 
@@ -51,7 +50,6 @@ export class NewsComponent implements OnInit {
     const promise = this.publicService.getTexts(this.uuid);
     promise.then( (data:any)=> {
       this.texts = data,
-      console.table(this.texts)
       }
     )
   }
@@ -84,11 +82,8 @@ export class NewsComponent implements OnInit {
   }
 
   openComment(content: any, uuid: string) {
-    console.log("UUID:")
     this.classificationUuid = uuid;
-    console.log(uuid)
     this.modalService.open(content, { centered: true });
-    console.log("is commented?")
   }
 
   

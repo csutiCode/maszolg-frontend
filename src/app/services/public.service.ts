@@ -52,7 +52,6 @@ export class PublicService {
   }
 
   passwordReset(email : any) {
-    console.table(email)
     return this.http.post("http://localhost:8080/password/reset", email, { headers: this.getHttpHeaders()}).toPromise();
   }
 

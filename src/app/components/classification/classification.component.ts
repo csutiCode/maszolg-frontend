@@ -92,7 +92,6 @@ export class ClassificationComponent implements OnInit {
 
   onSubmit() {
 
-    console.table(this.classificationForm.value)
 
     const promise = this.publicService.saveClassification(this.id, this.classificationForm.value);
 

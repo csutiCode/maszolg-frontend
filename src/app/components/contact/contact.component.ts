@@ -22,7 +22,6 @@ export class ContactComponent implements OnInit {
     return this.restService.get("public/" + "contact").subscribe(
       (data:any)=> {
         this.text = data,
-        console.log(this.text)
       }
     )
   }

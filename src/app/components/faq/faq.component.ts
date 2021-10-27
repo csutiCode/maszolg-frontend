@@ -39,7 +39,6 @@ export class FaqComponent implements OnInit {
 
   onResetPassword() {
     
-    console.table(this.passwordResetForm.value)
     let email = this.passwordResetForm.get("email").value;
     const promise = this.publicService.passwordReset(email);
 

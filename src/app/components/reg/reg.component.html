@@ -27,6 +27,17 @@
                 {{required}}
               </small>
             </div>
+            <div *ngIf="registrationForm.controls['password'].errors?.minlength">
+              <small class="text danger" >
+                {{tooShort}}
+              </small>
+            </div>
+            <div *ngIf="registrationForm.controls['password'].errors?.passwordStrength">
+              <small class="text danger" >
+                {{wrongPassword}}
+              </small>
+            </div>
+            
           </div>
 
       
@@ -44,6 +55,7 @@
                       ngbDatepicker #d="ngbDatepicker"   formControlName="dateOfBirth"  >
               <button class="btn btn-outline-secondary calendar"  (click)="d.toggle()" type="button"></button>             
           </div>
+          
         <hr/>
         <div >
           <label  class="col-sm-2 col-form-label">Elfogadom az 

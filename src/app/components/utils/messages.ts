@@ -1,10 +1,17 @@
 export class Messages {
 
+    /* GENERAL */
+
+    public static adminMail = "admin@magyszolg.com"
+
     /* VALIDATIONS */
 
     public static required = "Kötelező elem"
     public static disabledButton = "Az adatlap hiányos"
     public static wrongEmail = "Hibás e-mail cím"
+    public static wrongPassword = "A jelszónak tartalmaznia kis betűt, nagy betűt és számot."
+    public static tooShort = "A jelszó hossza legalább 8 karakter."
+    public static notAnAdult = "A szolgáltatás igénybevételéhez nagykorúnak kell lennie."
 
     /* FOOTER */
     public static data_protection ="Adatvédelem";

@@ -15,6 +15,9 @@ export class RegComponent implements OnInit {
   
   required : string = Messages.required
   wrongEmail: string = Messages.wrongEmail
+  wrongPassword: string = Messages.wrongPassword
+  tooShort: string = Messages.tooShort
+  notAnAdult: string = Messages.notAnAdult
 
   registrationForm: any;
 
@@ -50,11 +53,9 @@ export class RegComponent implements OnInit {
   createForm() {
     this.registrationForm = this.fb.group({
       email: new FormControl ('', [Validators.required, Validators.email]),
-      //TODO:
-      // createPasswordStrengthValidator()
-      password: new FormControl ('', [Validators.required, Validators.minLength(8)]),
+      password: new FormControl ('', [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]),
       confirmedPassword: new FormControl ('', Validators.required),
-      // [Validators.required, createDateOfBirthValidator()]
+      // TODO , createDateOfBirthValidator()
       dateOfBirth: new FormControl('', [Validators.required]),
       acceptGDPR: new FormControl(false, Validators.requiredTrue)
     }); 

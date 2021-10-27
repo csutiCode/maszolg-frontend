@@ -2,7 +2,7 @@
     <h2>Gyakran ismételt kérdések</h2>
     <h1>1. Mit tegyek, ha elfelejtettem a jelszavam?</h1>
 <div>
-    <p>Adja meg az e-mail címét, amivel regisztrált, majd kap egy e-mailt egy tokennel és egy linket </p>
+    <p>Adja meg az e-mail címét, amivel regisztrált, majd kap egy e-mailt egy tokennel és egy linket, ahol megváltoztathatja a jelszavát.</p>
     <form [formGroup]="passwordResetForm"  (ngSubmit)="onResetPassword()" >
         
         <div *ngIf="!passwordResetSent">

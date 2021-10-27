@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie';
+import { AuthService } from 'src/app/services/auth.service';
 import { Messages } from '../utils/messages';
 
 @Component({
@@ -19,9 +21,18 @@ export class PasswordUpdateComponent implements OnInit {
 
   response: any;
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    //We need this to delete the cookie, if somebody accidently makes a back and show the header and footer 
+    this.cookieService.remove("JWT");
+    this.authService.show();
+  }
+
   constructor(private fb: FormBuilder,
             private http: HttpClient,
-            private router : Router) { }
+            private router : Router,
+            private cookieService: CookieService,
+            private authService: AuthService) { }
 
   ngOnInit(): void {
   

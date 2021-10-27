@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Data, NavigationStart, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
@@ -38,6 +38,13 @@ export class LoggedInComponent implements OnInit {
 
   uuid: string | null = this.route.snapshot.queryParamMap.get('uuid')
 
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    //We need this to delete the cookie, if somebody accidently makes a back and show the header and footer 
+    this.cookieService.remove("JWT");
+    this.authService.show();
+  }
+
   constructor(private router: Router, 
               private route: ActivatedRoute,
               private cookieService: CookieService,
@@ -45,11 +52,12 @@ export class LoggedInComponent implements OnInit {
               private modalService: NgbModal,
               private sanitizer: DomSanitizer,
               private publicService : PublicService) {
+
+            
   }
 
   ngOnInit(): void {
-    this.fetchImage();
-
+   
   }
 
   

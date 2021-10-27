@@ -68,7 +68,9 @@ export class RegComponent implements OnInit {
     const promise = this.authService.register(this.mapFormToRegisterRequest());
 
     promise.then( (data:any)=> {
+      this.status = this.response.status
       this.response = data;
+     
 
       }, (error: any) => {
        

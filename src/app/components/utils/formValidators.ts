@@ -11,7 +11,9 @@ export function createPasswordStrengthValidator(): ValidatorFn {
         const hasUpperCase = /[A-Z]+/.test(value);
         const hasLowerCase = /[a-z]+/.test(value);
         const hasNumeric = /[0-9]+/.test(value);
-        const passwordValid = hasUpperCase && hasLowerCase && hasNumeric;
+        const hasSpecial = /[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\[\]\:\;\'\"\|\~\`\_\-]/
+        .test(value);
+        const passwordValid = hasUpperCase && hasLowerCase && hasNumeric && hasSpecial;
         //name of the validator is "passwordStrength", I need to set it on the html template
         return !passwordValid ? {passwordStrength:true}: null;
     }

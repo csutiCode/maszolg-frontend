@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
+import { createPasswordStrengthValidator } from '../utils/formValidators';
 import { Messages } from '../utils/messages';
 
 @Component({
@@ -16,6 +17,8 @@ export class PasswordUpdateComponent implements OnInit {
   updatePasswordForm: any;
 
   required : string = Messages.required
+  wrongPassword : string = Messages.wrongPassword
+  tooShort:  string = Messages.tooShort
 
   status: any;
 
@@ -45,8 +48,8 @@ export class PasswordUpdateComponent implements OnInit {
   createForm() {
     this.updatePasswordForm = this.fb.group({
       token: new FormControl ('', [Validators.required]),
-      password: new FormControl ('', Validators.required),
-      confirmedPassword: new FormControl('', Validators.required)
+      password: new FormControl ('', [Validators.required, Validators.minLength(8), createPasswordStrengthValidator()]),
+      confirmedPassword: new FormControl('', [Validators.required, createPasswordStrengthValidator()])
     }); 
   }
 

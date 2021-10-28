@@ -255,7 +255,7 @@ export class UpdateFormComponent implements OnInit {
     getAllCategories() {
       return this.restService.get("search/categories").subscribe(
         (data:any)=> {
-          this.categories = data,
+          this.categories = data;
         }
       )
     }

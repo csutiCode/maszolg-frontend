@@ -20,7 +20,7 @@ export class AboutComponent implements OnInit {
   getAboutText() {
     return this.restService.get("public/" + "about").subscribe(
       (data:any)=> {
-        this.text = data,
+        this.text = data;
       }
     )
   }

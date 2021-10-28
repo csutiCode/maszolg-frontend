@@ -49,7 +49,7 @@ export class NewsComponent implements OnInit {
   getTexts() {
     const promise = this.publicService.getTexts(this.uuid);
     promise.then( (data:any)=> {
-      this.texts = data,
+      this.texts = data;
       }
     )
   }

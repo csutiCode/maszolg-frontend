@@ -73,7 +73,7 @@ export class AccountDetailsComponent implements OnInit {
   getListedAccount(id: any | null) {
     return this.restService.get("search/public/account/" + id).subscribe(
       (data:any)=> {
-        this.account = data,
+        this.account = data;
     
       }
     )

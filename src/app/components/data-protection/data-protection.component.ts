@@ -24,7 +24,7 @@ export class DataProtectionComponent implements OnInit {
   getText() {
     return this.restService.get("public/" + "data-protection").subscribe(
       (data:any)=> {
-        this.text = data,
+        this.text = data;
       }
     )
   }

@@ -56,8 +56,12 @@ export class PublicService {
   }
 
   passwordReset(email : any) {
+<<<<<<< HEAD
     let url = this.baseUrl + "password/reset";
     return this.http.post(url, email, { headers: this.getHttpHeaders()}).toPromise();
+=======
+    return this.http.post("http://localhost:8080/password/reset", email, { headers: this.getHttpHeaders()}).toPromise();
+>>>>>>> vienna-aws
   }
 
   passwordUpdate(form : any) {

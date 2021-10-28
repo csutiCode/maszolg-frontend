@@ -256,7 +256,6 @@ export class UpdateFormComponent implements OnInit {
       return this.restService.get("search/categories").subscribe(
         (data:any)=> {
           this.categories = data,
-          console.log(this.categories)
         }
       )
     }
@@ -291,7 +290,6 @@ export class UpdateFormComponent implements OnInit {
   
       promise.then( (data: any) => {
         this.backendMessage = data,
-        console.log(this.backendMessage)
         window.location.reload();
       });
     }

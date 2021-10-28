@@ -74,9 +74,7 @@ export class AccountDetailsComponent implements OnInit {
     return this.restService.get("search/public/account/" + id).subscribe(
       (data:any)=> {
         this.account = data,
-        console.log("LISTED ACCONT: ")
-        console.table(this.account)
-        console.log(this.account.lastLogin)
+    
       }
     )
   }

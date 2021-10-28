@@ -54,7 +54,6 @@ export class PasswordUpdateComponent implements OnInit {
 
 
   onSubmit() {    
-    console.table(this.updatePasswordForm.value)
     const promise = this.http.post("http://localhost:8080/password/update", this.updatePasswordForm.value).toPromise();
 
     promise.then( (data:any)=> {
@@ -67,7 +66,6 @@ export class PasswordUpdateComponent implements OnInit {
         this.modalService.open(this.content);
         this.response = error.error,
         this.status = error.status
-        console.table(error)
       }
     )
 

@@ -21,7 +21,6 @@ export class AboutComponent implements OnInit {
     return this.restService.get("public/" + "about").subscribe(
       (data:any)=> {
         this.text = data,
-        console.log(this.text)
       }
     )
   }

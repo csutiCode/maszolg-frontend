@@ -24,9 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewsComponent } from './components/news/news.component';
 import { DataProtectionComponent } from './components/data-protection/data-protection.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { NgSpinnerModule } from 'ng-bootstrap-spinner';
 import { FaqComponent } from './components/faq/faq.component';
-import { RecaptchaModule } from 'ng-recaptcha';
 import { PasswordUpdateComponent } from './components/password-update/password-update.component';
 
 
@@ -63,9 +61,7 @@ import { PasswordUpdateComponent } from './components/password-update/password-u
     CookieModule.forRoot(),
     NgMultiSelectDropDownModule,
     NgbModule,
-    BrowserAnimationsModule,
-    NgSpinnerModule,
-    RecaptchaModule
+    BrowserAnimationsModule
     
 
   ],

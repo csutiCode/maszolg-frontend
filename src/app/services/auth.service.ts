@@ -116,7 +116,7 @@ export class AuthService {
     }
 
     postProfession(uuid : string | null, selectedItems : any) {
-      let url = this.URL + "/auth/save/professions/" + uuid;
+      let url = this.URL + "auth/save/professions/" + uuid;
 
       return this.http.post(url, selectedItems,  { headers: this.getHttpHeaderAuth() }).toPromise();
     }

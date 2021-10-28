@@ -11,7 +11,7 @@ import { Messages } from '../components/utils/messages';
 })
 export class RestService {
 
-   URL: string = Messages.baseLocalUrl
+   URL: string = Messages.baseUrl
 
    status: any;
 

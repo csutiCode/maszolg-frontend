@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
-import { Messages } from '../components/utils/messages';
 import { RestService } from './rest.service';
 
 
@@ -13,7 +11,7 @@ import { RestService } from './rest.service';
 export class AuthService {
 
   //TODO: SOMEHOW DOESN'T WORK
-  URL: string = "http://localhost:8080/";
+  URL: string = "http://magyszolg-env.eba-f2ppfptp.us-east-2.elasticbeanstalk.com/";
 
   visible: boolean;
 

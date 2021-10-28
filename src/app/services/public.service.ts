@@ -11,7 +11,7 @@ import { RestService } from './rest.service';
 
 export class PublicService {
 
-  baseUrl: string = "http://localhost:8080/";
+  baseUrl: string = "http://magyszolg-env.eba-f2ppfptp.us-east-2.elasticbeanstalk.com/";
 
 
 

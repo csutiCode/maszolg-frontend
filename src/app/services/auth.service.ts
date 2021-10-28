@@ -13,7 +13,7 @@ import { RestService } from './rest.service';
 export class AuthService {
 
   //TODO: SOMEHOW DOESN'T WORK
-  URL = Messages.baseLocalUrl
+  URL: string = "http://localhost:8080/";
 
   visible: boolean;
 
@@ -41,8 +41,8 @@ export class AuthService {
    }
 
    public register(registerRequest: any) {
-    
-    return this.http.post("http://localhost:8080/account/createAccount", registerRequest, { headers: this.getHttpHeaders() }).toPromise();
+    let url = this.URL + "account/createAccount";
+    return this.http.post(url, registerRequest, { headers: this.getHttpHeaders() }).toPromise();
        
    }
 
@@ -73,8 +73,8 @@ export class AuthService {
   
 
    getListedAccount(self : AuthService = this) {
-
-     self.http.get("http://localhost:8080/auth",  { headers: self.getHttpHeaderAuth() }).subscribe(
+    let url = this.URL + "auth";
+     self.http.get(url, { headers: self.getHttpHeaderAuth() }).subscribe(
       (data:any)=> {
         self.listedAccount = data,
         self.router.navigate(['loggedIn'], { queryParams: { uuid: self.listedAccount?.listedAccount_uuid} })
@@ -85,7 +85,8 @@ export class AuthService {
    
 
    public saveListedAccount(form : any) {
-         this.http.post("http://localhost:8080/auth/save/listedAccount", form,  { headers: this.getHttpHeaderAuth() }).subscribe(
+         let url = this.URL + "auth/save/listedAccount";
+         this.http.post(url, form,  { headers: this.getHttpHeaderAuth() }).subscribe(
           (data:any)=> {
             this.listedAccount = data;
         }
@@ -93,7 +94,8 @@ export class AuthService {
    }
 
    public sendComment(commentOnClassificationDto : any) {
-      this.http.post("http://localhost:8080/auth/save/commentOnClassification", commentOnClassificationDto,  { headers: this.getHttpHeaderAuth() }).subscribe(
+     let url = this.URL + "auth/save/commentOnClassification";
+      this.http.post(url, commentOnClassificationDto,  { headers: this.getHttpHeaderAuth() }).subscribe(
         (data:any)=> {
           this.response = data;
         }
@@ -102,11 +104,13 @@ export class AuthService {
 
 
    uploadImage(uuid : string | null, formData: any) {
-    return this.http.post("http://localhost:8080/auth/uploadImage/"+ uuid, formData,  { headers: this.getReqHeadersImage() }).toPromise();
+     let url = this.URL + "auth/uploadImage/" + uuid;
+    return this.http.post(url, formData,  { headers: this.getReqHeadersImage() }).toPromise();
     }
 
     delete(uuid: string | null) {
-      this.http.get("http://localhost:8080/auth/delete/" + uuid,  { headers: this.getHttpHeaderAuth() }).subscribe(
+      let url = this.URL + "auth/delete/" + uuid;
+      this.http.get(url,  { headers: this.getHttpHeaderAuth() }).subscribe(
         (data:any)=> {
           this.response = data;
         }
@@ -114,7 +118,9 @@ export class AuthService {
     }
 
     postProfession(uuid : string | null, selectedItems : any) {
-      return this.http.post("http://localhost:8080/auth/save/professions/" + uuid, selectedItems,  { headers: this.getHttpHeaderAuth() }).toPromise();
+      let url = this.URL + "/auth/save/professions/" + uuid;
+
+      return this.http.post(url, selectedItems,  { headers: this.getHttpHeaderAuth() }).toPromise();
     }
 
   
@@ -134,7 +140,7 @@ export class AuthService {
       'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
       'Content-Type': 'application/json', 
       'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Origin": "http://localhost:8080/*",
+      "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
         "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
     });
@@ -158,7 +164,7 @@ export class AuthService {
     const reqHeaderImage =   new HttpHeaders({ 
       'Authorization': 'Bearer ' + this.cookieService.get("JWT"),
       'Access-Control-Allow-Credentials': 'true',
-      "Access-Control-Allow-Origin": "http://localhost:8080/*",
+      "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
         "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
     });

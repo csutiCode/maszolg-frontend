@@ -11,7 +11,9 @@ import { RestService } from './rest.service';
 
 export class PublicService {
 
-  URL: string = Messages.baseLocalUrl
+  baseUrl: string = "http://localhost:8080/";
+
+
 
   countries: Array<any> | undefined
 
@@ -34,33 +36,45 @@ export class PublicService {
   }
 
   getImageWithId(id : number | null) {
-    return this.http.get("http://localhost:8080/search/public/getImage/" + id, 
-          {observe: 'body', headers: this.reqHeaders, responseType: 'blob'}).toPromise();
+    let url = this.baseUrl + "search/public/getImage/" + id;
+    return this.http.get(url, {observe: 'body', headers: this.reqHeaders, responseType: 'blob'}).toPromise();
   }
   
   getImage(uuid : string | null) {
-    return this.http.get("http://localhost:8080/search/getImage/" + uuid, 
-          {observe: 'body', headers: this.reqHeaders, responseType: 'blob'}).toPromise();
+    let url = this.baseUrl + "search/public/getImage/" + uuid;
+    return this.http.get(url, {observe: 'body', headers: this.reqHeaders, responseType: 'blob'}).toPromise();
   }
 
   getListedAccount(uuid: string | null) {
-    return this.http.get("http://localhost:8080/search/account/" + uuid).toPromise();
+    let url = this.baseUrl + "search/account/" + uuid;
+    return this.http.get(url).toPromise();
   }
 
   saveClassification(uuid: string | null, classification: any) {    
-    return this.http.post("http://localhost:8080/save/classification/" + uuid, classification, { headers: this.getHttpHeaders()}).toPromise(); 
+    let url = this.baseUrl + "search/account/" + uuid;
+    return this.http.post(url, classification, { headers: this.getHttpHeaders()}).toPromise(); 
   }
 
   passwordReset(email : any) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    let url = this.baseUrl + "password/reset";
+    return this.http.post(url, email, { headers: this.getHttpHeaders()}).toPromise();
+=======
+>>>>>>> master
     return this.http.post("http://localhost:8080/password/reset", email, { headers: this.getHttpHeaders()}).toPromise();
+>>>>>>> vienna-aws
   }
 
   passwordUpdate(form : any) {
-    return this.http.post("http://localhost:8080/password/update", form, { headers: this.getHttpHeaders()}).toPromise();
+    let url = this.baseUrl + "password/update";
+    return this.http.post(url, form, { headers: this.getHttpHeaders()}).toPromise();
   }
 
   getTexts(uuid: string | null) {
-    return this.http.get("http://localhost:8080/news/" + uuid, { headers: this.getHttpHeaders()}).toPromise();
+    let url = this.baseUrl + "news/" + uuid;
+    return this.http.get(url, { headers: this.getHttpHeaders()}).toPromise();
 
   }
 

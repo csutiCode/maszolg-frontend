@@ -102,7 +102,7 @@ export class AuthService {
 
 
    uploadImage(uuid : string | null, formData: any) {
-     let url = this.URL + "auth/uploadImage/" + uuid;
+    let url = this.URL + "auth/uploadImage/" + uuid;
     return this.http.post(url, formData,  { headers: this.getReqHeadersImage() }).toPromise();
     }
 

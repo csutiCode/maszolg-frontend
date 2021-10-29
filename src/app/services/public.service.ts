@@ -41,7 +41,7 @@ export class PublicService {
   }
   
   getImage(uuid : string | null) {
-    let url = this.baseUrl + "search/public/getImage/" + uuid;
+    let url = this.baseUrl + "search/getImage/" + uuid;
     return this.http.get(url, {observe: 'body', headers: this.reqHeaders, responseType: 'blob'}).toPromise();
   }
 

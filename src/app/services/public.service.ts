@@ -50,8 +50,8 @@ export class PublicService {
     return this.http.get(url).toPromise();
   }
 
-  saveClassification(uuid: string | null, classification: any) {    
-    let url = this.baseUrl + "search/account/" + uuid;
+  saveClassification(id: string | null, classification: any) {    
+    let url = this.baseUrl + "save/classification/" + id;
     return this.http.post(url, classification, { headers: this.getHttpHeaders()}).toPromise(); 
   }
 

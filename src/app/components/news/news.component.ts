@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicService } from 'src/app/services/public.service';
 
@@ -10,6 +11,14 @@ import { PublicService } from 'src/app/services/public.service';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event: any) {
+    //We need this to delete the cookie, if somebody accidently makes a back and show the header and footer 
+    this.cookieService.remove("JWT");
+    this.authService.show();
+  }
+
 
   texts: any;
 
@@ -24,7 +33,8 @@ export class NewsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               public authService: AuthService,
               private modalService: NgbModal,
-              private publicService : PublicService) {
+              private publicService : PublicService,
+              private cookieService: CookieService) {
   }
 
 

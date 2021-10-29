@@ -11,7 +11,7 @@ import { RestService } from './rest.service';
 export class AuthService {
 
   //TODO: SOMEHOW DOESN'T WORK
-  URL: string = "http://magyszolg-env.eba-f2ppfptp.us-east-2.elasticbeanstalk.com/";
+  URL: string = "http://magyszolg-env.eba-vekatrk3.eu-west-2.elasticbeanstalk.com/";
 
   visible: boolean;
 

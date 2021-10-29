@@ -75,6 +75,5 @@ export class Messages {
 
 
     /* URL */
-    public static baseUrl = "http://magyszolg-env.eba-f2ppfptp.us-east-2.elasticbeanstalk.com/"
-
+    public static baseUrl = "http://magyszolg-env.eba-vekatrk3.eu-west-2.elasticbeanstalk.com/"
 }

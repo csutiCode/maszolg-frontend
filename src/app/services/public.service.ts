@@ -23,26 +23,18 @@ export class PublicService {
 
   status?: number = 200;
 
-  reqHeaders = new HttpHeaders({ 
-    'Content-Type': 'application/JSON',
-    'Access-Control-Allow-Credentials': 'true',
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-    "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-  });
-
-
+  
   constructor(private http: HttpClient) {
   }
 
   getImageWithId(id : number | null) {
     let url = this.baseUrl + "search/public/getImage/" + id;
-    return this.http.get(url, {observe: 'body', headers: this.reqHeaders, responseType: 'blob'}).toPromise();
+    return this.http.get(url, {observe: 'body', headers: this.getHttpHeaders(), responseType: 'blob'}).toPromise();
   }
   
   getImage(uuid : string | null) {
     let url = this.baseUrl + "search/public/getImage/" + uuid;
-    return this.http.get(url, {observe: 'body', headers: this.reqHeaders, responseType: 'blob'}).toPromise();
+    return this.http.get(url, {observe: 'body', headers: this.getHttpHeaders(), responseType: 'blob'}).toPromise();
   }
 
   getListedAccount(uuid: string | null) {

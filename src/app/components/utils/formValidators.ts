@@ -48,7 +48,6 @@ export function createPhoneNumberValidator(): ValidatorFn {
             return null;
         }
         const isValidPhoneNumber = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/.test(value);
-
         return !isValidPhoneNumber ? {number : true}: null
     }
 }

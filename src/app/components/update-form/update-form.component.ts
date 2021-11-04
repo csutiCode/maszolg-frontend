@@ -6,8 +6,8 @@ import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
-import { Profession } from '../listedAccount';
 import { createPhoneNumberValidator } from '../utils/formValidators';
+import { Profession } from '../utils/interfaces';
 import { Messages } from '../utils/messages';
 
 @Component({

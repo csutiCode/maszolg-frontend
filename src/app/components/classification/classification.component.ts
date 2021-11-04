@@ -12,7 +12,7 @@ import { Messages } from '../utils/messages';
 })
 export class ClassificationComponent implements OnInit {
 
-
+  counter?: number;
   required:string = Messages.required;
 
   classificationForm: any;
@@ -28,6 +28,8 @@ export class ClassificationComponent implements OnInit {
   error?: any = this.publicService.error;
 
   status?: number = this.publicService.status;
+
+  showSpinner: boolean = false;
 
 
   ratingList : any[] = [
@@ -94,7 +96,8 @@ export class ClassificationComponent implements OnInit {
 
 
     const promise = this.publicService.saveClassification(this.id, this.classificationForm.value);
-
+    
+  
     promise.then( (data:any)=> {
 
       this.response = data;

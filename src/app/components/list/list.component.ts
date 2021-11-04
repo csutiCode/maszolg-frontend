@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RestService } from 'src/app/services/rest.service';
-import { Profession } from '../listedAccount';
 import { Messages } from '../utils/messages';
 
 @Component({

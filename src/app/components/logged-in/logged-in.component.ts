@@ -1,14 +1,12 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute, Data, NavigationStart, Router } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
-import { RestService } from 'src/app/services/rest.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Messages } from '../utils/messages';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { PublicService } from 'src/app/services/public.service';
+import { ListedAccount } from '../utils/interfaces';
 
 @Component({
   selector: 'app-logged-in',
@@ -30,7 +28,7 @@ export class LoggedInComponent implements OnInit {
 
   switch: string = "news";
 
-  listedAccount:  any;
+  listedAccount?:  ListedAccount;
   message?: string;
   image?: any;
   data?: any;

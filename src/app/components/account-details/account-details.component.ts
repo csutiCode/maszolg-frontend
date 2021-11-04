@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicService } from 'src/app/services/public.service';
 import { RestService } from 'src/app/services/rest.service';
+import { ListedAccount } from '../utils/interfaces';
 import { Messages } from '../utils/messages';
 
 @Component({
@@ -23,7 +24,7 @@ export class AccountDetailsComponent implements OnInit {
   rank: string = Messages.rank;
   residence: string = Messages.residence;
 
-  account: any;
+  account?: any;
 
   
 

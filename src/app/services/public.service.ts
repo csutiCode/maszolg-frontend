@@ -28,39 +28,32 @@ export class PublicService {
   }
 
   getImageWithId(id : number | null) {
-    let url = this.baseUrl + "search/public/getImage/" + id;
-    return this.http.get(url, {observe: 'body', headers: this.getHttpHeaders(), responseType: 'blob'}).toPromise();
+    return this.http.get(`${this.baseUrl}search/public/getImage/${id}`, {observe: 'body', headers: this.getHttpHeaders(), responseType: 'blob'}).toPromise();
   }
   
   getImage(uuid : string | null) {
-    let url = this.baseUrl + "search/public/getImage/" + uuid;
-    return this.http.get(url, {observe: 'body', headers: this.getHttpHeaders(), responseType: 'blob'}).toPromise();
+    return this.http.get(`${this.baseUrl}search/public/getImage/${uuid}`, {observe: 'body', headers: this.getHttpHeaders(), responseType: 'blob'}).toPromise();
   }
 
   getListedAccount(uuid: string | null) {
-    let url = this.baseUrl + "search/account/" + uuid;
-    return this.http.get(url).toPromise();
+    return this.http.get(`${this.baseUrl}search/account/${uuid}`).toPromise();
   }
 
   saveClassification(id: string | null, classification: any) {    
-    let url = this.baseUrl + "save/classification/" + id;
-    return this.http.post(url, classification, { headers: this.getHttpHeaders()}).toPromise(); 
+    return this.http.post(`${this.baseUrl}save/classification/${id}`, classification, { headers: this.getHttpHeaders()}).toPromise(); 
   }
 
   passwordReset(email : any) {
-    let url = this.baseUrl + "password/reset";
-    return this.http.post(url, email, { headers: this.getHttpHeaders()}).toPromise();
+    return this.http.post(`${this.baseUrl}password/reset`, email, { headers: this.getHttpHeaders()}).toPromise();
 
   }
 
   passwordUpdate(form : any) {
-    let url = this.baseUrl + "password/update";
-    return this.http.post(url, form, { headers: this.getHttpHeaders()}).toPromise();
+    return this.http.post(`${this.baseUrl}password/update`, form, { headers: this.getHttpHeaders()}).toPromise();
   }
 
   getTexts(uuid: string | null) {
-    let url = this.baseUrl + "news/" + uuid;
-    return this.http.get(url, { headers: this.getHttpHeaders()}).toPromise();
+    return this.http.get(`${this.baseUrl}news/${uuid}`, { headers: this.getHttpHeaders()}).toPromise();
 
   }
 

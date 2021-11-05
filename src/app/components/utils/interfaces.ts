@@ -10,20 +10,20 @@
         postalCode?: any;
         street?: any;
         number?: any;
-        workAddress: boolean;
+        workAddress?: boolean;
     }
 
     export interface ListedAccount {
         id: number;
-        firstName: string;
-        lastName: string;
+        firstName?: string;
+        lastName?: string;
         phoneNumber?: any;
-        professions: Profession[];
-        address: Address;
+        professions?: Profession[];
+        address?: Address;
         about?: any;
         lastLogin?: any;
         registeredAt?: any;
-        classifications: Classification[];
+        classifications?: Classification[];
         listedAccount_uuid: string;
         email?: any;
         averageRating: number;
@@ -43,10 +43,10 @@
     }
 
     export interface Classification {
-        rating: string;
-        text: string;
+        rating?: string;
+        text?: string;
         createdOn?: any;
-        createdBy: string;
+        createdBy?: string;
         classificationUuid: string;
         email: string;
         comment?: any;
@@ -54,3 +54,4 @@
         rate: number;
         commented: boolean;
     }
+    

@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
-import { Messages } from '../components/utils/messages';
 import { RestService } from './rest.service';
 
 
@@ -12,7 +10,6 @@ import { RestService } from './rest.service';
 })
 export class AuthService {
 
-  //TODO: SOMEHOW DOESN'T WORK
   URL: string = "http://localhost:8080/";
 
   visible: boolean;
@@ -41,8 +38,7 @@ export class AuthService {
    }
 
    public register(registerRequest: any) {
-    let url = this.URL + "account/createAccount";
-    return this.http.post(url, registerRequest, { headers: this.getHttpHeaders() }).toPromise();
+    return this.http.post(`${this.URL}account/createAccount`, registerRequest, { headers: this.getHttpHeaders() }).toPromise();
        
    }
 

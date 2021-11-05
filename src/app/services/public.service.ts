@@ -69,7 +69,7 @@ export class PublicService {
   }
 
   getIdFromParam(param: string | null): string  {
-    var array: string[] | undefined = new Array();
+    var array: string[] | undefined;
     array = param?.split("-");
     let id = "0";
     if (typeof array != "undefined"){
@@ -137,14 +137,13 @@ export class PublicService {
     this.secondNumber = secondRandom.key;
 
     this.result = firstRandom.value + secondRandom.value;
-    
+        
     for (var num of this.resultList) {
       if (num.value == this.result) {
         this.textResult = num.key;
         break;
       }
     }
-
     return this.result;
   }
 

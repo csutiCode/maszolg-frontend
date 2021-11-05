@@ -4,8 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicService } from 'src/app/services/public.service';
-import { RestService } from 'src/app/services/rest.service';
-import { ListedAccount } from '../utils/interfaces';
 import { Messages } from '../utils/messages';
 
 @Component({
@@ -50,7 +48,7 @@ export class AccountDetailsComponent implements OnInit {
 
   commentOnClassification:string ='';
 
-  constructor(private restService: RestService, 
+  constructor(
     private route: ActivatedRoute,
     private modalService: NgbModal,
     private sanitizer: DomSanitizer,
@@ -72,7 +70,7 @@ export class AccountDetailsComponent implements OnInit {
   
 
   getListedAccount(id: any | null) {
-    return this.restService.get("search/public/account/" + id).subscribe(
+    return this.publicService.genericGet("search/public/account/" + id).subscribe(
       (data:any)=> {
         this.account = data;
     

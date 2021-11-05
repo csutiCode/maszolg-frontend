@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { RestService } from 'src/app/services/rest.service';
+import { PublicService } from 'src/app/services/public.service';
+import { Messages } from '../utils/messages';
 
 @Component({
   selector: 'app-contact',
@@ -10,16 +12,14 @@ export class ContactComponent implements OnInit {
 
   text: any;
 
-  constructor(private restService: RestService) { }
+  constructor(private publicService : PublicService) { }
 
   ngOnInit(): void {
     this.getAboutText();
   }
-
-
   
   getAboutText() {
-    return this.restService.get("public/" + "contact").subscribe(
+    return this.publicService.genericGet("public/contact").subscribe(
       (data:any)=> {
         this.text = data;
       }

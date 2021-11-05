@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Messages } from '../components/utils/messages';
-import { RestService } from './rest.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +11,7 @@ import { RestService } from './rest.service';
 
 export class PublicService {
 
-  baseUrl: string = "http://localhost:8080/";
+  baseUrl: string = Messages.baseLocalUrl;
 
 
 
@@ -26,6 +26,12 @@ export class PublicService {
   
   constructor(private http: HttpClient) {
   }
+  
+  //generic get method for the public requests
+  genericGet(path: string, data?: any): Observable<any>{
+    return this.http.get<any>(this.baseUrl + path).pipe();
+  }
+  
 
   getImageWithId(id : number | null) {
     return this.http.get(`${this.baseUrl}search/public/getImage/${id}`, {observe: 'body', headers: this.getHttpHeaders(), responseType: 'blob'}).toPromise();

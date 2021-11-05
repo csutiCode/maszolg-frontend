@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService } from 'src/app/services/rest.service';
-import { Messages } from '../utils/messages';
 
 @Component({
   selector: 'app-data-protection',
@@ -9,25 +7,12 @@ import { Messages } from '../utils/messages';
 })
 export class DataProtectionComponent implements OnInit {
 
-  text:any;
-
-  adminMail: string = Messages.adminMail;
-
-
-  constructor(private restService: RestService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.getText();
   }
 
   
-  getText() {
-    return this.restService.get("public/" + "data-protection").subscribe(
-      (data:any)=> {
-        this.text = data;
-      }
-    )
-  }
 
 
 }

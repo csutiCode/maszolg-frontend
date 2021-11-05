@@ -5,7 +5,6 @@ import {  ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicService } from 'src/app/services/public.service';
-import { RestService } from 'src/app/services/rest.service';
 import { createPhoneNumberValidator } from '../utils/formValidators';
 import { Profession } from '../utils/interfaces';
 import { Messages } from '../utils/messages';
@@ -119,12 +118,10 @@ export class UpdateFormComponent implements OnInit {
   professionArray: any;
 
 
-  constructor( 
-                private restService: RestService, 
-                private route: ActivatedRoute,
-                private authService: AuthService,
-                private publicService: PublicService,
-                private cookieService: CookieService) {
+  constructor(private route: ActivatedRoute,
+              private authService: AuthService,
+              private publicService: PublicService,
+              private cookieService: CookieService) {
   
       this.fetchListedAccount();
 
@@ -216,7 +213,7 @@ export class UpdateFormComponent implements OnInit {
   }
      
     getAllCountries() {
-      return this.restService.get("search").subscribe(
+      return this.publicService.genericGet("search").subscribe(
         (data:any)=> {
           this.countries = data;
         }
@@ -253,7 +250,7 @@ export class UpdateFormComponent implements OnInit {
 
 
     getAllCategories() {
-      return this.restService.get("search/categories").subscribe(
+      return this.publicService.genericGet("search/categories").subscribe(
         (data:any)=> {
           this.categories = data;
         }

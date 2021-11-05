@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
-import { RestService } from './rest.service';
+import { Messages } from '../components/utils/messages';
 
 
 @Injectable({
@@ -10,7 +10,7 @@ import { RestService } from './rest.service';
 })
 export class AuthService {
 
-  URL: string = "http://localhost:8080/";
+  URL: string = Messages.baseLocalUrl;
 
   visible: boolean;
 
@@ -28,8 +28,7 @@ export class AuthService {
 
   constructor(private cookieService: CookieService,
         private router: Router,
-        private http: HttpClient,
-        private restService: RestService) {
+        private http: HttpClient) {
         //this hides the navbar if somebody logged in
         this.visible = true; 
           if (this.getToken()!=null) {
@@ -42,35 +41,29 @@ export class AuthService {
        
    }
 
- 
    public login(loginForm : any) {
-
-    const promise = this.restService.post("account/login", loginForm.value,  { headers: this.getHttpHeaderAuth() }).toPromise();
+    const promise = this.http.post(`${this.URL}account/login`, loginForm.value,  { headers: this.getHttpHeaders()}).toPromise();
 
     let self = this;
     promise.then((data:any)=> {
           this.token = data,
+          console.log("TOKEN")
+          console.log(this.token)
           this.cookieService.put("JWT", this.token);
-          this.status = this.restService.status;
           //hide the navbar
           //get the listedAccount and make a redirect
           self.getListedAccount(self);
-      }//doesn't work 
-      /*
+      },
         (error: any) => {
-        this.response = error.error,
-        console.table(this.error)
-        this.status = error.status
+        console.table(error);
+        alert("Hiba történt.");
       }
-      */
     )
-  }
-
-  
+   }
+   
 
    getListedAccount(self : AuthService = this) {
-    let url = this.URL + "auth";
-     self.http.get(url, { headers: self.getHttpHeaderAuth() }).subscribe(
+     self.http.get(`${this.URL}auth`, { headers: self.getHttpHeaderAuth() }).subscribe(
       (data:any)=> {
         self.listedAccount = data,
         self.router.navigate(['loggedIn'], { queryParams: { uuid: self.listedAccount?.listedAccount_uuid} })
@@ -150,7 +143,7 @@ export class AuthService {
       'Content-Type': 'application/JSON',
       'Access-Control-Allow-Credentials': 'true',
       "Access-Control-Allow-Origin": "*",
-       "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
       "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
    });
    return reqHeaders;

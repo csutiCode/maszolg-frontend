@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { RestService } from 'src/app/services/rest.service';
+import { PublicService } from 'src/app/services/public.service';
 import { Messages } from '../utils/messages';
 
 @Component({
@@ -17,7 +17,7 @@ export class ListComponent implements OnInit {
   rank : string = Messages.rank;
   profession : string = Messages.profession;
 
-  constructor(private restService: RestService, 
+  constructor(private publicService: PublicService, 
               private route: ActivatedRoute,
               private router: Router) {
 
@@ -52,7 +52,7 @@ export class ListComponent implements OnInit {
   
   getAllAccountsForCity() {
    
-    return this.restService.get("search/city/" + this.cityName).subscribe(
+    return this.publicService.genericGet("search/city/" + this.cityName).subscribe(
       (data:any)=> {
         this.accounts = data;
       }
@@ -61,7 +61,7 @@ export class ListComponent implements OnInit {
   }
   
   getAllCategories() {
-    return this.restService.get("search/categories").subscribe(
+    return this.publicService.genericGet("search/categories").subscribe(
       (data:any)=> {
         this.categories = data;
       }
@@ -75,7 +75,7 @@ export class ListComponent implements OnInit {
     }
 
 
-    this.restService.get("search/" + this.cityName + "/" + categoryName).subscribe(
+    this.publicService.genericGet("search/" + this.cityName + "/" + categoryName).subscribe(
       (data:any)=> {
         this.accounts = data;
       }

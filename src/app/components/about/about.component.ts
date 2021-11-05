@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService } from 'src/app/services/rest.service';
+import { PublicService } from 'src/app/services/public.service';
 
 @Component({
   selector: 'app-about',
@@ -10,7 +10,7 @@ export class AboutComponent implements OnInit {
 
   text: any;
 
-  constructor(private restService: RestService) { }
+  constructor(private publicSerice: PublicService) { }
 
   ngOnInit(): void {
     this.text = this.getAboutText();
@@ -18,7 +18,7 @@ export class AboutComponent implements OnInit {
 
 
   getAboutText() {
-    return this.restService.get("public/" + "about").subscribe(
+    return this.publicSerice.genericGet("public/" + "about").subscribe(
       (data:any)=> {
         this.text = data;
       }

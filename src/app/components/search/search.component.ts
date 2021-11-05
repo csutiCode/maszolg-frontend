@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RestService } from 'src/app/services/rest.service';
+import { PublicService } from 'src/app/services/public.service';
 import { Messages } from '../utils/messages';
 
 @Component({
@@ -11,11 +11,10 @@ import { Messages } from '../utils/messages';
 
 export class SearchComponent implements OnInit {
 
-
   country: string = Messages.country;
   city: string = Messages.city;
 
-  constructor(private restService: RestService, 
+  constructor(private publicService: PublicService, 
               private router: Router) { }
 
   countries: Array<any> | undefined;
@@ -35,7 +34,7 @@ export class SearchComponent implements OnInit {
   }
 
   showAll() {
-    return this.restService.get("search").subscribe(
+    return this.publicService.genericGet("search").subscribe(
       (data:any)=> {
         this.countries = data,
         console.log(this.countries)
